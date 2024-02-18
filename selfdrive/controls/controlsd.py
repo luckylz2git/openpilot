@@ -1190,6 +1190,7 @@ class Controls:
 
   def update_frogpilot_params(self):
     self.frogpilot_variables.conditional_experimental_mode = self.params.get_bool("ConditionalExperimental")
+    self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
 
     custom_alerts = self.params.get_bool("CustomAlerts")
     self.green_light_alert = custom_alerts and self.params.get_bool("GreenLightAlert")
