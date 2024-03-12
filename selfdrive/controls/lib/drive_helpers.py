@@ -158,7 +158,7 @@ class VCruiseHelper:
     # CSLC resume/set logic
     if frogpilot_variables.CSLC:
       if desired_speed_limit != 0 and frogpilot_variables.set_speed_limit and self.v_cruise_kph_last > 250:
-        self.v_cruise_kph = desired_speed_limit * CV.MS_TO_KPH
+        self.v_cruise_kph = int(round(desired_speed_limit * CV.MS_TO_KPH))
       else: # Resume or set to match cars set speed to avoid harsh enables when car's and OP's speeds don't match
         self.v_cruise_kph = CS.cruiseState.speed * CV.MS_TO_KPH
       self.v_cruise_cluster_kph = self.v_cruise_kph
