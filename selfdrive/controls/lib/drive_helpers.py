@@ -157,7 +157,7 @@ class VCruiseHelper:
 
     # CSLC resume/set logic
     if frogpilot_variables.CSLC:
-      if self.frogpilot_variables.prev_button == ButtonType.resumeCruise and self.v_cruise_kph_last < 250:
+      if frogpilot_variables.prev_button == ButtonType.resumeCruise and self.v_cruise_kph_last < 250:
         self.v_cruise_kph = self.v_cruise_kph_last
       else:
         # Initial set speed
