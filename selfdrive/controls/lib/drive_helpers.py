@@ -155,6 +155,11 @@ class VCruiseHelper:
     if self.CP.pcmCruise and not frogpilot_variables.CSLC:
       return
 
+    if frogpilot_variables.conditional_experimental_mode:
+      initial = V_CRUISE_INITIAL
+    else:
+      initial = V_CRUISE_INITIAL_EXPERIMENTAL_MODE if experimental_mode else V_CRUISE_INITIAL
+
     # CSLC resume/set logic
     if frogpilot_variables.CSLC:
       if frogpilot_variables.prev_button == ButtonType.resumeCruise and self.v_cruise_kph_last < 250:
@@ -169,11 +174,6 @@ class VCruiseHelper:
           self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
       self.v_cruise_cluster_kph = self.v_cruise_kph
       return
-
-    if frogpilot_variables.conditional_experimental_mode:
-      initial = V_CRUISE_INITIAL
-    else:
-      initial = V_CRUISE_INITIAL_EXPERIMENTAL_MODE if experimental_mode else V_CRUISE_INITIAL
 
     # 250kph or above probably means we never had a set speed
     if any(b.type in (ButtonType.accelCruise, ButtonType.resumeCruise) for b in CS.buttonEvents) and self.v_cruise_kph_last < 250:
