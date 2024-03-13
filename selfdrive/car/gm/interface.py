@@ -156,13 +156,13 @@ class CarInterface(CarInterfaceBase):
       # Used for CEM with CSLC
       ret.openpilotLongitudinalControl = True 
       ret.longitudinalTuning.deadzoneBP = [0.]
-      ret.longitudinalTuning.deadzoneV = [0.56]  # == 2 km/h/s, 1.25 mph/s
-      ret.stoppingDecelRate = 11.18  # == 25 mph/s (.04 rate)
-      ret.longitudinalActuatorDelayLowerBound = 1.  # TODO: measure this
+      ret.longitudinalTuning.deadzoneV = [0.9]  # == 2 mph allowable delta
+      ret.stoppingDecelRate = 7.45  # == 16.67 mph/s (OFF + ON = 30 frames)
+      ret.longitudinalActuatorDelayLowerBound = 1.
       ret.longitudinalActuatorDelayUpperBound = 2.
 
-      ret.longitudinalTuning.kpBP = [10.7, 10.8, 28.]  # 10.7 m/s == 24 mph
-      ret.longitudinalTuning.kpV = [0., 20., 20.]  # set lower end to 0 since we can't drive below that speed
+      ret.longitudinalTuning.kpBP = [7.15, 7.2, 28.]  # 7.15 m/s == 16 mph
+      ret.longitudinalTuning.kpV = [0., 4., 2.]  # set lower end to 0 since we can't drive below that speed
       ret.longitudinalTuning.kiBP = [0.]
       ret.longitudinalTuning.kiV = [0.1]
 

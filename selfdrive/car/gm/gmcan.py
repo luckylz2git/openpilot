@@ -262,7 +262,7 @@ def create_gm_acc_spam_command(packer, controller, CS, slcSet, bus, Vego, frogpi
     if slcSet + 5 < Vego * CV.MS_TO_MPH:
       slcSet = slcSet - 10
   else:
-    slcSet = int(round(Vego * CV.MS_TO_MPH + accel * 15))
+    slcSet = int(round(Vego * CV.MS_TO_MPH + accel * 11.2))
   
   if slcSet <= int(math.floor((speedSetPoint - 1)/5.0)*5.0) and speedSetPoint > 20:
     cruiseBtn = CruiseButtons.DECEL_SET
