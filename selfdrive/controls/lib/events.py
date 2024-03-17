@@ -372,6 +372,7 @@ def holiday_alert(CP: car.CarParams, CS: car.CarState, sm: messaging.SubMaster, 
 
   return Alert(
     message,
+    "",
     AlertStatus.normal, AlertSize.small,
     Priority.LOWEST, VisualAlert.none, AudibleAlert.none, 5.)
 
