@@ -256,13 +256,13 @@ def create_gm_acc_spam_command(packer, controller, CS, slcSet, bus, Vego, frogpi
   speedSetPoint = int(round(CS.out.cruiseState.speed * CV.MS_TO_MPH))
 
   FRAMES_ON = 6
-  FRAMES_OFF = 30 - FRAMES_ON
+  FRAMES_OFF = 21 - FRAMES_ON
 
   if not frogpilot_variables.experimentalMode:
     if slcSet + 5 < Vego * CV.MS_TO_MPH:
       slcSet = slcSet - 10
   else:
-    slcSet = int(round(Vego * CV.MS_TO_MPH * 1.01 + accel * 11.2)) # 1.01 factor to match cluster speed better
+    slcSet = int(round((Vego * 1.01 + 4.6 * accel + 0.7 * accel ** 3 - 1 / 35 * accel ** 5) * CV.MS_TO_MPH)) # 1.01 factor to match cluster speed better
   
   if slcSet <= int(math.floor((speedSetPoint - 1)/5.0)*5.0) and speedSetPoint > 20:
     cruiseBtn = CruiseButtons.DECEL_SET
