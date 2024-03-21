@@ -255,7 +255,7 @@ def create_gm_acc_spam_command(packer, controller, CS, slcSet, bus, Vego, frogpi
   byfive = 0
   speedSetPoint = int(round(CS.out.cruiseState.speed * CV.MS_TO_MPH))
 
-  FRAMES_ON = 6
+  FRAMES_ON = 3
   FRAMES_OFF = 21 - FRAMES_ON
 
   if not frogpilot_variables.experimentalMode:
