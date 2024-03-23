@@ -225,7 +225,7 @@ class Controls:
         self.disengage_on_accelerator = False
         self.params.put_bool("DisengageOnAccelerator", False)
 
-    self.CP.alternativeExperience |= ALTERNATIVE_EXPERIENCE.RAISE_LONGITUDINAL_LIMITS_TO_ISO_MAX
+    self.CP.alternativeExperience |= ALTERNATIVE_EXPERIENCE.RAISE_LONGITUDINAL_LIMITS_TO_ISO_MAX # Also needed for GM CSLC
 
     # read params
     self.is_metric = self.params.get_bool("IsMetric")
@@ -775,6 +775,13 @@ class Controls:
   def state_transition(self, CS):
     """Compute conditional state transitions and execute actions on state transitions"""
 
+    resume_pressed = any(be.type in (ButtonType.accelCruise, ButtonType.resumeCruise) for be in CS.buttonEvents)
+    set_pressed = any(be.type in (ButtonType.decelCruise, ButtonType.setCruise) for be in CS.buttonEvents)
+    if resume_pressed:
+      self.frogpilot_variables.prev_button = ButtonType.resumeCruise
+    elif set_pressed:
+      self.frogpilot_variables.prev_button = ButtonType.setCruise
+
     self.v_cruise_helper.update_v_cruise(CS, self.enabled, self.is_metric, self.FPCC.speedLimitChanged, self.frogpilot_variables)
 
     # decrement the soft disable timer at every step, as it's reset on
@@ -1132,6 +1139,7 @@ class Controls:
     controlsState.forceDecel = bool(force_decel)
     controlsState.canErrorCounter = self.card.can_rcv_cum_timeout_counter
     controlsState.experimentalMode = self.experimental_mode
+    self.frogpilot_variables.experimentalMode = self.experimental_mode
 
     lat_tuning = self.CP.lateralTuning.which()
     if self.joystick_mode:
@@ -1224,6 +1232,7 @@ class Controls:
 
   def update_frogpilot_params(self):
     self.frogpilot_variables.conditional_experimental_mode = self.params.get_bool("ConditionalExperimental")
+    self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
 
     custom_alerts = self.params.get_bool("CustomAlerts")
     self.green_light_alert = custom_alerts and self.params.get_bool("GreenLightAlert")
@@ -1274,6 +1283,8 @@ class Controls:
     self.speed_limit_confirmation = self.speed_limit_controller and self.params.get_bool("SLCConfirmation")
     self.speed_limit_confirmation_lower = self.speed_limit_confirmation and self.params.get_bool("SLCConfirmationLower")
     self.speed_limit_confirmation_higher = self.speed_limit_confirmation and self.params.get_bool("SLCConfirmationHigher")
+
+    self.frogpilot_variables.is_metric = self.is_metric
 
 def main():
   controls = Controls()

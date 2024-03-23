@@ -101,10 +101,15 @@ class FrogPilotPlanner:
     # Update the max allowed speed
     self.v_cruise = self.update_v_cruise(carState, controlsState, enabled, modelData, v_cruise, v_ego)
 
+    self.params_memory.put_float("CSLCSpeed", self.v_cruise)
+
   def update_v_cruise(self, carState, controlsState, enabled, modelData, v_cruise, v_ego):
     # Offsets to adjust the max speed to match the cluster
     v_ego_cluster = max(carState.vEgoCluster, v_ego)
-    v_ego_diff = v_ego_cluster - v_ego
+    if self.CSLC:
+      v_ego_diff = 0
+    else:
+      v_ego_diff = v_ego_cluster - v_ego
 
     v_cruise_cluster = max(controlsState.vCruiseCluster, controlsState.vCruise) * CV.KPH_TO_MS
     v_cruise_diff = v_cruise_cluster - v_cruise
@@ -213,6 +218,8 @@ class FrogPilotPlanner:
 
   def update_frogpilot_params(self, params):
     self.is_metric = params.get_bool("IsMetric")
+
+    self.CSLC = params.get_bool("CSLCEnabled")
 
     self.conditional_experimental_mode = params.get_bool("ConditionalExperimental")
     if self.conditional_experimental_mode:
