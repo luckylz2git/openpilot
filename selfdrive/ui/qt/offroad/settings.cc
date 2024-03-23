@@ -258,7 +258,7 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
 
   // Backup FrogPilot
   std::vector<QString> frogpilotBackupOptions{tr("Backup"), tr("Delete"), tr("Restore")};
-  FrogPilotButtonsControl *frogpilotBackup = new FrogPilotButtonsControl("FrogPilot Backups", "Backup, delete, or restore your FrogPilot backups.", "", frogpilotBackupOptions);
+  FrogPilotButtonsControl *frogpilotBackup = new FrogPilotButtonsControl(tr("FrogPilot Backups"), "Backup, delete, or restore your FrogPilot backups.", "", frogpilotBackupOptions);
 
   connect(frogpilotBackup, &FrogPilotButtonsControl::buttonClicked, [=](int id) {
     QDir backupDir("/data/backups");
@@ -350,7 +350,7 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
 
   // Backup toggles
   std::vector<QString> toggleBackupOptions{tr("Backup"), tr("Delete"), tr("Restore")};
-  FrogPilotButtonsControl *toggleBackup = new FrogPilotButtonsControl("Toggle Backups", "Backup, delete, or restore your toggle backups.", "", toggleBackupOptions);
+  FrogPilotButtonsControl *toggleBackup = new FrogPilotButtonsControl(tr("Toggle Backups"), "Backup, delete, or restore your toggle backups.", "", toggleBackupOptions);
 
   connect(toggleBackup, &FrogPilotButtonsControl::buttonClicked, [=](int id) {
     QDir backupDir("/data/toggle_backups");
@@ -439,7 +439,7 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
 
   // Delete Data
   std::vector<QString> dataOptions{tr("Screen Recordings"), tr("Driving Data"), tr("Deep Storage Toggles")};
-  FrogPilotButtonsControl *deleteData = new FrogPilotButtonsControl("Delete Data", "Delete your driving data/deep storage toggle settings for privacy concerns or storage cleanup.", "", dataOptions);
+  FrogPilotButtonsControl *deleteData = new FrogPilotButtonsControl(tr("Delete Data"), "Delete your driving data/deep storage toggle settings for privacy concerns or storage cleanup.", "", dataOptions);
 
   connect(deleteData, &FrogPilotButtonsControl::buttonClicked, [=](int id) {
     if (id == 0) {

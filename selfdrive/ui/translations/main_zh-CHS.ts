@@ -297,8 +297,40 @@
         <translation>删除</translation>
     </message>
     <message>
+        <source>FrogPilot Backups</source>
+        <translation>FrogPilot备份</translation>
+    </message>
+    <message>
+        <source>Toggle Backups</source>
+        <translation>配置参数备份</translation>
+    </message>
+    <message>
         <source>Delete</source>
         <translation>删除</translation>
+    </message>
+    <message>
+        <source>Backup</source>
+        <translation>备份</translation>
+    </message>
+    <message>
+        <source>Restore</source>
+        <translation>还原</translation>
+    </message>
+    <message>
+        <source>Delete Data</source>
+        <translation>删除数据</translation>
+    </message>
+    <message>
+        <source>Screen Recordings</source>
+        <translation>录屏数据</translation>
+    </message>
+    <message>
+        <source>Driving Data</source>
+        <translation>行车数据</translation>
+    </message>
+    <message>
+        <source>Deep Storage Toggles</source>
+        <translation>配置数据</translation>
     </message>
     <message>
         <source>Flash Panda</source>
@@ -474,7 +506,7 @@
     </message>
     <message>
         <source>Conditional Experimental Mode</source>
-        <translation>试验模式切换条件</translation>
+        <translation>特定场景下的试验模式</translation>
     </message>
     <message>
         <source>Custom Driving Personalities</source>
@@ -486,6 +518,10 @@
     </message>
     <message>
         <source>Experimental Mode Via</source>
+        <translation>试验模式切换方式</translation>
+    </message>
+    <message>
+        <source>Experimental Mode Activation</source>
         <translation>试验模式切换方式</translation>
     </message>
     <message>
@@ -733,6 +769,10 @@
         <translation>主题设置</translation>
     </message>
     <message>
+        <source>Holiday Themes</source>
+        <translation>节日主题</translation>
+    </message>
+    <message>
         <source>Color Theme</source>
         <translation>色彩方案</translation>
     </message>
@@ -825,8 +865,52 @@
         <translation>随机事件提示</translation>
     </message>
     <message>
+        <source>Screen Management</source>
+        <translation>屏幕设置选项</translation>
+    </message>
+    <message>
+        <source>Hide UI Elements</source>
+        <translation>隐藏行车图例</translation>
+    </message>
+    <message>
+        <source>Alerts</source>
+        <translation>提醒</translation>
+    </message>
+    <message>
+        <source>Max Map Icon</source>
+        <translation>地图</translation>
+    </message>
+    <message>
+        <source>Max Speed</source>
+        <translation>定速</translation>
+    </message>
+    <message>
         <source>Screen Brightness</source>
         <translation>屏幕亮度设置</translation>
+    </message>
+    <message>
+        <source>Screen Brightness (Onroad)</source>
+        <translation>行车亮度设置</translation>
+    </message>
+    <message>
+        <source>Screen Recorder</source>
+        <translation>显示录屏按钮</translation>
+    </message>
+    <message>
+        <source>Screen Recorder</source>
+        <translation>显示录屏按钮</translation>
+    </message>
+    <message>
+        <source>Screen Timeout</source>
+        <translation>熄屏时长设置</translation>
+    </message>
+    <message>
+        <source>Screen Timeout (Onroad)</source>
+        <translation>行车熄屏时长</translation>
+    </message>
+    <message>
+        <source>Standby Mode</source>
+        <translation>自动点亮屏幕</translation>
     </message>
     <message>
         <source>Steering Wheel Icon</source>
