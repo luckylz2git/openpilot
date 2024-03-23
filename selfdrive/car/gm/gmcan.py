@@ -255,8 +255,8 @@ def create_gm_acc_spam_command(packer, controller, CS, slcSet, bus, Vego, frogpi
   byfive = 0
   speedSetPoint = int(round(CS.out.cruiseState.speed * CV.MS_TO_MPH))
 
-  FRAMES_ON = 3
-  FRAMES_OFF = 21 - FRAMES_ON
+  FRAMES_ON = 6
+  FRAMES_OFF = 30 - FRAMES_ON
 
   if not frogpilot_variables.experimentalMode:
     if slcSet + 5 < Vego * CV.MS_TO_MPH:
@@ -283,7 +283,7 @@ def create_gm_acc_spam_command(packer, controller, CS, slcSet, bus, Vego, frogpi
   if (cruiseBtn != CruiseButtons.INIT) and controller.frame % (FRAMES_ON + FRAMES_OFF) < FRAMES_ON:
     controller.last_button_frame = controller.frame
     idx = (CS.buttons_counter + 1) % 4
-    return [create_buttons_five(packer, bus, idx, cruiseBtn, byfive)]*30
+    return [create_buttons_five(packer, bus, idx, cruiseBtn, byfive)]*23
   else:
     return []
 
@@ -297,8 +297,8 @@ def create_gm_acc_spam_command_ms(packer, controller, CS, slcSet_ms, bus, Vego, 
   byfive = 0
   speedSetPoint = int(round(CS.out.cruiseState.speed * MS_CONVERT))
 
-  FRAMES_ON = 3
-  FRAMES_OFF = 21 - FRAMES_ON
+  FRAMES_ON = 6
+  FRAMES_OFF = 30 - FRAMES_ON
 
   if not frogpilot_variables.experimentalMode:
     if slcSet + 5 < Vego * MS_CONVERT:
@@ -325,6 +325,6 @@ def create_gm_acc_spam_command_ms(packer, controller, CS, slcSet_ms, bus, Vego, 
   if (cruiseBtn != CruiseButtons.INIT) and controller.frame % (FRAMES_ON + FRAMES_OFF) < FRAMES_ON:
     controller.last_button_frame = controller.frame
     idx = (CS.buttons_counter + 1) % 4
-    return [create_buttons_five(packer, bus, idx, cruiseBtn, byfive)]*30
+    return [create_buttons_five(packer, bus, idx, cruiseBtn, byfive)]*23
   else:
     return []

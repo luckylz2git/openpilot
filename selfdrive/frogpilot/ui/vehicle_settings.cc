@@ -52,7 +52,15 @@ QStringList getCarNames(const QString &carMake) {
           QRegularExpression nameRegex("=\\s*\"([^\"]+)\"");
           QRegularExpressionMatchIterator it = nameRegex.globalMatch(match.captured(1));
           while (it.hasNext()) {
-            names << it.next().captured(1);
+            QString capCarName = it.next().captured(1);
+            // 昂科旗
+            if (capCarName == "BUICK BABY ENCLAVE 2020") {
+              names << " 昂科旗(2020-23)";
+            } else if (capCarName == "BUICK BABY ENCLAVE AVENIR 2020") {
+              names << " 昂科旗·艾维亚(2020-23)";
+            } else {
+              names << capCarName; //it.next().captured(1);
+            }
           }
         }
       }
@@ -84,14 +92,30 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
 
   selectModelButton = new ButtonControl(tr("Select Model"), tr("SELECT"));
   QString modelSelection = QString::fromStdString(params.get("CarModel"));
+  QString modelDisplayName = modelSelection;
+  // 昂科旗
+  if (modelSelection == "BUICK BABY ENCLAVE 2020") {
+    modelDisplayName = " 昂科旗(2020-23)";
+  } else if (modelSelection == "BUICK BABY ENCLAVE AVENIR 2020") {
+    modelDisplayName = " 昂科旗·艾维亚(2020-23)";
+  }
   QObject::connect(selectModelButton, &ButtonControl::clicked, [this]() {
-    QString newModelSelection = MultiOptionDialog::getSelection(tr("Select a Model"), models, "", this);
-    if (!newModelSelection.isEmpty()) {
+    //QString newModelSelection = MultiOptionDialog::getSelection(tr("Select a Model"), models, "", this);
+    QString newModelDisplayName = MultiOptionDialog::getSelection(tr("Select a Model"), models, "", this);
+    QString newModelSelection = newModelDisplayName;
+    // 昂科旗
+    if (newModelSelection == " 昂科旗(2020-23)") {
+      newModelSelection = "BUICK BABY ENCLAVE 2020";
+    } else if (newModelSelection == " 昂科旗·艾维亚(2020-23)") {
+      newModelSelection = "BUICK BABY ENCLAVE AVENIR 2020";
+    }if (!newModelSelection.isEmpty()) {
       params.putNonBlocking("CarModel", newModelSelection.toStdString());
-      selectModelButton->setValue(newModelSelection);
+      //selectModelButton->setValue(newModelSelection);
+      selectModelButton->setValue(newModelDisplayName);
     }
   });
-  selectModelButton->setValue(modelSelection);
+  //selectModelButton->setValue(modelSelection);
+  selectModelButton->setValue(modelDisplayName);
   addItem(selectModelButton);
   selectModelButton->setVisible(false);
 
