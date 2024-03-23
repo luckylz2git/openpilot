@@ -214,7 +214,7 @@ class CarState(CarStateBase):
         self.display_menu = False
 
       # Switch the current state of Experimental Mode if the button is held down for 0.5 seconds
-      if self.distance_pressed_counter == CRUISE_LONG_PRESS and frogpilot_variables.experimental_mode_via_distance:
+      if self.distance_pressed_counter == (CRUISE_LONG_PRESS - (CRUISE_LONG_PRESS - 1) * frogpilot_variables.CSLC) and frogpilot_variables.experimental_mode_via_distance:
         if frogpilot_variables.conditional_experimental_mode:
           self.fpf.update_cestatus_distance()
         else:
