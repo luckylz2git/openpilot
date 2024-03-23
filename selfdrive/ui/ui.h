@@ -252,6 +252,13 @@ typedef struct UIScene {
   float speed_limit_overridden_speed;
   float unconfirmed_speed_limit;
 
+  float dash_speed_ratio1;
+  float dash_speed_ratio2;
+  float dash_speed_ratio3;
+  float set_speed_ratio1;
+  float set_speed_ratio2;
+  float set_speed_ratio3;
+
   int bearing_deg;
   int camera_view;
   int conditional_speed;

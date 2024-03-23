@@ -29,7 +29,21 @@ Change turn signal
 
 UI & Translation
 ========================
-* 
+* common/params.cc
+* selfdrive/car/car_helpers.py
+* selfdrive/controls/controlsd.py
+* selfdrive/controls/lib/events.py
+* selfdrive/frogpilot/fleetmanager/helpers.py
+* selfdrive/frogpilot/ui/control_settings.cc
+* selfdrive/frogpilot/ui/control_settings.h
+* selfdrive/frogpilot/ui/visual_settings.cc
+* selfdrive/frogpilot/ui/visual_settings.h
+* selfdrive/manager/manager.py
+* selfdrive/ui/qt/offroad/settings.cc
+* selfdrive/ui/qt/offroad/software_settings.cc
+* selfdrive/ui/qt/onroad.cc
+* selfdrive/ui/ui.cc
+* selfdrive/ui/ui.h
 
 
 Disable Driver Camera

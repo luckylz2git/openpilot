@@ -35,7 +35,7 @@ private:
   std::set<QString> customOnroadUIKeys = {"AccelerationPath", "AdjacentPath", "BlindSpotPath", "FPSCounter", "LeadInfo", "PedalsOnUI", "RoadNameUI"};
   std::set<QString> customThemeKeys = {"HolidayThemes", "CustomColors", "CustomIcons", "CustomSignals", "CustomSounds"};
   std::set<QString> modelUIKeys = {"DynamicPathWidth", "HideLeadMarker", "LaneLinesWidth", "PathEdgeWidth", "PathWidth", "RoadEdgesWidth", "UnlimitedLength"};
-  std::set<QString> qolKeys = {"DriveStats", "FullMap", "HideSpeed", "MapStyle", "WheelSpeed"};
+  std::set<QString> qolKeys = {"DriveStats", "FullMap", "HideSpeed", "MapStyle", "WheelSpeed", "DashSpeedRatio1", "DashSpeedRatio2", "DashSpeedRatio3", "SetSpeedRatio1", "SetSpeedRatio2", "SetSpeedRatio3"};
   std::set<QString> screenKeys = {"HideUIElements", "ScreenBrightness", "ScreenBrightnessOnroad", "ScreenRecorder", "ScreenTimeout", "ScreenTimeoutOnroad", "StandbyMode"};
 
   std::map<std::string, ParamControl*> toggles;

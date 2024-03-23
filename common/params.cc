@@ -435,6 +435,15 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"WarningImmediateVolume", PERSISTENT},
     {"WheelIcon", PERSISTENT},
     {"WheelSpeed", PERSISTENT},
+    // Customize Params
+    {"MinSteerSpeedStandard", PERSISTENT},
+    {"MinSteerSpeedEngage", PERSISTENT},
+    {"DashSpeedRatio1", PERSISTENT},
+    {"DashSpeedRatio2", PERSISTENT},
+    {"DashSpeedRatio3", PERSISTENT},
+    {"SetSpeedRatio1", PERSISTENT},
+    {"SetSpeedRatio2", PERSISTENT},
+    {"SetSpeedRatio3", PERSISTENT},
 };
 
 } // namespace

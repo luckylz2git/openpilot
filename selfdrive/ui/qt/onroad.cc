@@ -611,10 +611,30 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   bg.setColorAt(1, QColor::fromRgbF(0, 0, 0, 0));
   p.fillRect(0, 0, width(), UI_HEADER_HEIGHT, bg);
 
+  // QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
+  // QString speedLimitOffsetStr = slcSpeedLimitOffset == 0 ? "–" : QString::number(slcSpeedLimitOffset, 'f', 0).prepend(slcSpeedLimitOffset > 0 ? "+" : "");
+  // QString speedStr = QString::number(std::nearbyint(speed));
+  // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
+
   QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
   QString speedLimitOffsetStr = slcSpeedLimitOffset == 0 ? "–" : QString::number(slcSpeedLimitOffset, 'f', 0).prepend(slcSpeedLimitOffset > 0 ? "+" : "");
-  QString speedStr = QString::number(std::nearbyint(speed));
-  QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
+  // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
+  QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio1));
+  if (speed > 61 && speed < 91) speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio2));
+  if (speed >= 91) speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio3));
+  // 用speedStr来显示speed的修正值
+  // QString speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', 2);
+  // if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', 2);
+  // if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', 2);
+  // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.dash_speed_ratio)) : "–";
+  // setSpeedStr只显示整数部分
+  QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio1)) : "–";
+  if (is_cruise_set && setSpeed > 61 && setSpeed < 91) setSpeedStr = QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio2));
+  if (is_cruise_set && setSpeed >= 91) setSpeedStr = QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio3));
+  // 用speedLimitStr来显示speed的实际值
+  // QString speedLimitStr = QString::number(speed, 'f', 2);
+  // if (is_cruise_set && setSpeed > 61 && setSpeed < 91) speedLimitStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio2));
+  // if (is_cruise_set && setSpeed >= 91) speedLimitStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio3));
 
   if (!(scene.hide_max_speed)) {
     // Draw outer box + border to contain set speed and speed limit

@@ -438,11 +438,20 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
   addItem(toggleBackup);
 
   // Delete Data
-  std::vector<QString> dataOptions{tr("Deep Storage Toggles"), tr("Driving Data")};
+  std::vector<QString> dataOptions{tr("Screen Recordings"), tr("Driving Data"), tr("Deep Storage Toggles")};
   FrogPilotButtonsControl *deleteData = new FrogPilotButtonsControl("Delete Data", "Delete your driving data/deep storage toggle settings for privacy concerns or storage cleanup.", "", dataOptions);
 
   connect(deleteData, &FrogPilotButtonsControl::buttonClicked, [=](int id) {
     if (id == 0) {
+      if (!ConfirmationDialog::confirm(tr("Are you sure you want to permanently delete all of your screen recordings?"), tr("Delete"), this)) return;
+      std::thread([=]() {
+        deleteData->setValue("Deleting...");
+        std::system("rm -rf /data/media/0/videos");
+        deleteData->setValue("Deleted!");
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        deleteData->setValue("");
+      }).detach();
+    } else if (id == 2) {
       if (!ConfirmationDialog::confirm(tr("Are you sure you want to permanently delete all of your long term toggle settings storage?"), tr("Delete"), this)) return;
       std::thread([=]() {
         deleteData->setValue("Deleting...");
