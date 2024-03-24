@@ -37,7 +37,6 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
     {"RoadNameUI", tr("Road Name"), "See the name of the road you're on at the bottom of your screen. Sourced from OpenStreetMap.", ""},
 
     {"DriverCamera", tr("Driver Camera On Reverse"), "Show the driver's camera feed when you shift to reverse.", "../assets/img_driver_face_static.png"},
-    {"DriverPrivacyProtection", tr("Driver Privacy Protection"), "Protect the driver's privacy while driving on road.", "../assets/img_driver_face_static.png"},
 
     {"ModelUI", tr("Model UI"), "Personalize how the model's visualizations appear on your screen.", "../assets/offroad/icon_calibration.png"},
     {"DynamicPathWidth", tr("Dynamic Path Width"), "Have the path width dynamically adjust based on the current engagement state of openpilot.", ""},
@@ -52,6 +51,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
 
     {"QOLVisuals", tr("Quality of Life"), "Miscellaneous quality of life changes to improve your overall openpilot experience.", "../frogpilot/assets/toggle_icons/quality_of_life.png"},
     {"DriveStats", tr("Drive Stats In Home Screen"), "Display your device's drive stats in the home screen.", ""},
+    {"DriverPrivacyProtection", tr("Driver Privacy Protection"), "Protect the driver's privacy while driving on road.", ""},
     {"FullMap", tr("Full Sized Map"), "Maximize the size of the map in the onroad UI.", ""},
     {"DashSpeedRatio1", tr("Dash Speed Ratio L"), "Use the dash speed (25-60 kph) ratio in onroad ui.", ""},
     {"DashSpeedRatio2", tr("Dash Speed Ratio M"), "Use the dash speed (61-90 kph) ratio in onroad ui.", ""},

@@ -55,7 +55,9 @@ Driver Privacy Protection
 * selfdrive/frogpilot/fleetmanager/helpers.py
   * #L472 "DriverPrivacyProtection",
 * selfdrive/frogpilot/ui/visual_settings.cc
-  * #L39 DriverCamera
+  * #L54 DriverPrivacyProtection
+* selfdrive/frogpilot/ui/visual_settings.h
+  * #L38 DriverPrivacyProtection
 * selfdrive/controls/controlsd.py
   * #L203 self.driver_privacy_protection
   * #L204 self.driver_privacy_protection
