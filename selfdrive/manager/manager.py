@@ -137,6 +137,7 @@ def manager_init() -> None:
     ("DisengageVolume", "100"),
     ("DragonPilotTune", "0"),
     ("DriverCamera", "0"),
+    ("DriverPrivacyProtection", "0"),
     ("DriveStats", "1"),
     ("DynamicPathWidth", "0"),
     ("EngageVolume", "100"),

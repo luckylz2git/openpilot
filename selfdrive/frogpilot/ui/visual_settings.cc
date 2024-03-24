@@ -37,6 +37,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
     {"RoadNameUI", tr("Road Name"), "See the name of the road you're on at the bottom of your screen. Sourced from OpenStreetMap.", ""},
 
     {"DriverCamera", tr("Driver Camera On Reverse"), "Show the driver's camera feed when you shift to reverse.", "../assets/img_driver_face_static.png"},
+    {"DriverPrivacyProtection", tr("Driver Privacy Protection"), "Protect the driver's privacy while driving on road.", "../assets/img_driver_face_static.png"},
 
     {"ModelUI", tr("Model UI"), "Personalize how the model's visualizations appear on your screen.", "../assets/offroad/icon_calibration.png"},
     {"DynamicPathWidth", tr("Dynamic Path Width"), "Have the path width dynamically adjust based on the current engagement state of openpilot.", ""},

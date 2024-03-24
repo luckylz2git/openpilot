@@ -197,6 +197,12 @@ class Controls:
     ignore = self.sensor_packets + ['testJoystick']
     if SIMULATION:
       ignore += ['driverCameraState', 'managerState']
+
+    self.driver_privacy_protection = self.params.get_bool("DriverPrivacyProtection")
+    if self.driver_privacy_protection:
+      self.camera_packets = ["roadCameraState", "wideRoadCameraState"]
+      ignore += ['driverMonitoringState']
+
     self.sm = messaging.SubMaster(['deviceState', 'pandaStates', 'peripheralState', 'modelV2', 'liveCalibration',
                                    'driverMonitoringState', 'longitudinalPlan', 'liveLocationKalman',
                                    'managerState', 'liveParameters', 'radarState', 'liveTorqueParameters',

@@ -46,13 +46,20 @@ UI & Translation
 * selfdrive/ui/ui.h
 
 
-Disable Driver Camera
+Driver Privacy Protection
 ========================
-* common/params.cc {"DriverPrivacyProtection", PERSISTENT},
-* selfdrive/manager/manager.py ("DriverPrivacyProtection", "0"),
+* common/params.cc 
+  * #L271 {"DriverPrivacyProtection", PERSISTENT},
+* selfdrive/manager/manager.py 
+  * #L139 ("DriverPrivacyProtection", "0"),
+* selfdrive/frogpilot/ui/visual_settings.cc
+  * #L39 DriverCamera
 * selfdrive/controls/controlsd.py
-  * #L173 REMOVE "driverCameraState"
-  * #L199 SET true
-  * #L200 ADD "driverMonitoringState"
+  * #L203 self.driver_privacy_protection
+  * #L204 self.driver_privacy_protection
+  * #L199 ADD "driverMonitoringState"
+* selfdrive/ui/ui.cc
+  * #L351 scene.driver_privacy_protection
 * selfdrive/ui/qt/onroad.cc ?
-  * #L1182
+  * #L1201 //DMoji
+  * #L1202 !scene.driver_privacy_protection
