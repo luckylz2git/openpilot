@@ -52,6 +52,8 @@ Driver Privacy Protection
   * #L271 {"DriverPrivacyProtection", PERSISTENT},
 * selfdrive/manager/manager.py 
   * #L139 ("DriverPrivacyProtection", "0"),
+* selfdrive/frogpilot/fleetmanager/helpers.py
+  * #L472 "DriverPrivacyProtection",
 * selfdrive/frogpilot/ui/visual_settings.cc
   * #L39 DriverCamera
 * selfdrive/controls/controlsd.py
@@ -62,6 +64,6 @@ Driver Privacy Protection
   * #L351 scene.driver_privacy_protection
 * selfdrive/ui/ui.h
   * #L192 bool driver_privacy_protection;
-* selfdrive/ui/qt/onroad.cc ?
+* selfdrive/ui/qt/onroad.cc
   * #L1201 //DMoji
   * #L1202 !scene.driver_privacy_protection
