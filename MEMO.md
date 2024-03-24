@@ -60,6 +60,8 @@ Driver Privacy Protection
   * #L199 ADD "driverMonitoringState"
 * selfdrive/ui/ui.cc
   * #L351 scene.driver_privacy_protection
+* selfdrive/ui/ui.h
+  * #L192 bool driver_privacy_protection;
 * selfdrive/ui/qt/onroad.cc ?
   * #L1201 //DMoji
   * #L1202 !scene.driver_privacy_protection

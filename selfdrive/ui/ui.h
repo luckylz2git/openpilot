@@ -189,6 +189,7 @@ typedef struct UIScene {
   bool disable_smoothing_mtsc;
   bool disable_smoothing_vtsc;
   bool driver_camera;
+  bool driver_privacy_protection;
   bool dynamic_path_width;
   bool enabled;
   bool experimental_mode;
