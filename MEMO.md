@@ -48,6 +48,9 @@ UI & Translation
 
 Driver Privacy Protection
 ========================
+* DEBUG ONROAD, HIDE ERROR ALERT (selfdrive/ui/ui.h)
+  * #L66 return {};
+
 * common/params.cc 
   * #L271 {"DriverPrivacyProtection", PERSISTENT},
 * selfdrive/manager/manager.py 
