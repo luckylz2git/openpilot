@@ -135,6 +135,7 @@ SoftwarePanel::SoftwarePanel(QWidget* parent) : ListWidget(parent), scene(uiStat
   connect(gitCheckoutBtn, &ButtonControl::clicked, [&]() {
     if (ConfirmationDialog::confirm(tr("Are you sure you want to git checkout all of your local compile changes?"), tr("Checkout"), this)) {
       std::system("cd /data/openpilot && git checkout .");
+      std::this_thread::sleep_for(std::chrono::seconds(1));
       params.putBool("DoReboot", true);
     }
   });

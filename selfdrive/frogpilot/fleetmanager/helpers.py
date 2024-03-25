@@ -469,7 +469,7 @@ def get_all_toggle_values():
     "MinSteerSpeedStandard", "MinSteerSpeedEngage",
     "DashSpeedRatio1", "DashSpeedRatio2", "DashSpeedRatio3", "SetSpeedRatio1", "SetSpeedRatio2", "SetSpeedRatio3",
     "FrogPilotDrives", "FrogPilotKilometers", "FrogPilotMinutes", "CarMake", "CarModel", 
-    "DriverPrivacyProtection",
+    "DriverPrivacyProtection", "CSLCEnabled",
   ]
 
   toggle_values = {}
