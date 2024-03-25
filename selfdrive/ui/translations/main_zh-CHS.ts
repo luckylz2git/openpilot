@@ -298,7 +298,7 @@
     </message>
     <message>
         <source>FrogPilot Backups</source>
-        <translation>FrogPilot备份</translation>
+        <translation>FrogPilot系统备份</translation>
     </message>
     <message>
         <source>Toggle Backups</source>
@@ -318,7 +318,7 @@
     </message>
     <message>
         <source>Delete Data</source>
-        <translation>清理视频文件及配置参数</translation>
+        <translation>删除视频文件及配置</translation>
     </message>
     <message>
         <source>Screen Recordings</source>
