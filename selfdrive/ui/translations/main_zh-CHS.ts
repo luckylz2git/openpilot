@@ -318,19 +318,19 @@
     </message>
     <message>
         <source>Delete Data</source>
-        <translation>删除数据</translation>
+        <translation>清理视频文件及配置参数</translation>
     </message>
     <message>
         <source>Screen Recordings</source>
-        <translation>录屏数据</translation>
+        <translation>录屏</translation>
     </message>
     <message>
         <source>Driving Data</source>
-        <translation>行车数据</translation>
+        <translation>行车</translation>
     </message>
     <message>
         <source>Deep Storage Toggles</source>
-        <translation>配置数据</translation>
+        <translation>配置</translation>
     </message>
     <message>
         <source>Flash Panda</source>
