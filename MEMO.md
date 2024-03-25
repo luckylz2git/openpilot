@@ -55,6 +55,9 @@ Driver Privacy Protection
   * #L271 {"DriverPrivacyProtection", PERSISTENT},
 * selfdrive/manager/manager.py 
   * #L139 ("DriverPrivacyProtection", "0"),
+* selfdrive/manager/process_config.py 
+  * #L13 def drivermonitor
+  * #L70 PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", drivermonitor, enabled=(not PC or WEBCAM)),
 * selfdrive/frogpilot/fleetmanager/helpers.py
   * #L472 "DriverPrivacyProtection",
 * selfdrive/frogpilot/ui/visual_settings.cc
@@ -65,10 +68,3 @@ Driver Privacy Protection
   * #L203 self.driver_privacy_protection
   * #L204 self.driver_privacy_protection
   * #L199 ADD "driverMonitoringState"
-* selfdrive/ui/ui.cc
-  * #L351 scene.driver_privacy_protection
-* selfdrive/ui/ui.h
-  * #L192 bool driver_privacy_protection;
-* selfdrive/ui/qt/onroad.cc
-  * #L1201 //DMoji
-  * #L1202 !scene.driver_privacy_protection

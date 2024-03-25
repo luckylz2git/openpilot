@@ -10,6 +10,9 @@ WEBCAM = os.getenv("USE_WEBCAM") is not None
 def driverview(started: bool, params: Params, params_memory: Params, CP: car.CarParams) -> bool:
   return started or params.get_bool("IsDriverViewEnabled")
 
+def drivermonitor(started: bool, params: Params, params_memory: Params, CP: car.CarParams) -> bool:
+  return not params.get_bool("DriverPrivacyProtection") and (started or params.get_bool("IsDriverViewEnabled"))
+
 def notcar(started: bool, params: Params, params_memory: Params, CP: car.CarParams) -> bool:
   return started and CP.notCar
 
@@ -64,7 +67,7 @@ procs = [
   PythonProcess("micd", "system.micd", iscar),
   PythonProcess("timed", "system.timed", always_run, enabled=not PC),
 
-  PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", driverview, enabled=(not PC or WEBCAM)),
+  PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", drivermonitor, enabled=(not PC or WEBCAM)),
   NativeProcess("encoderd", "system/loggerd", ["./encoderd"], allow_logging),
   NativeProcess("stream_encoderd", "system/loggerd", ["./encoderd", "--stream"], notcar),
   NativeProcess("loggerd", "system/loggerd", ["./loggerd"], allow_logging),
