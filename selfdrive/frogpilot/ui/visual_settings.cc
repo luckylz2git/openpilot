@@ -204,7 +204,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
     } else if (param == "SetSpeedRatio3") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
     } else if (param == "SpeedDecimal") {
-      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 2, std::map<int, QString>(), this, false, "", 1, 1);
+      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 2, std::map<int, QString>(), this, false, "", 0, 1);
     } else if (param == "MapStyle") {
       QMap<int, QString> styleMap = {
         {0, tr("Stock openpilot")},

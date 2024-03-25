@@ -45,6 +45,7 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
     {"TrafficMode", tr("Traffic Mode"), "Hold down the 'distance' button for 2.5 seconds to enable more aggressive driving behavior catered towards stop and go traffic.", ""},
 
     {"Model", tr("Model Selector"), "Choose your preferred openpilot model.", "../assets/offroad/icon_calibration.png"},
+    {"CalibrationCircle", tr("Calibration Circle"), "Choose your calibration circle, larger number needs more time to calibration.", "../assets/offroad/icon_calibration.png"},
 
     {"MTSCEnabled", tr("Map Turn Speed Control"), "Slow down for anticipated curves detected by your downloaded maps.", "../frogpilot/assets/toggle_icons/icon_speed_map.png"},
     {"DisableMTSCSmoothing", tr("Disable MTSC UI Smoothing"), "Disables the smoothing for the requested speed in the onroad UI.", ""},
@@ -393,6 +394,8 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
         }
       });
       toggle = manageSLCVisualsToggle;
+    } else if (param == "CalibrationCircle") {
+      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 1, 10, std::map<int, QString>(), this, false, "", 1, 1);
     } else if (param == "Offset1" || param == "Offset2" || param == "Offset3" || param == "Offset4") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, -99, 99, std::map<int, QString>(), this, false, " mph");
     } else if (param == "ShowSLCOffset") {

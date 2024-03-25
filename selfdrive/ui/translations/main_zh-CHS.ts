@@ -573,6 +573,10 @@
         <translation>驾驶模型选择</translation>
     </message>
     <message>
+        <source>Calibration Circle</source>
+        <translation>模型校准次数</translation>
+    </message>
+    <message>
         <source>Map Turn Speed Control</source>
         <translation>地图控制过弯速度</translation>
     </message>
