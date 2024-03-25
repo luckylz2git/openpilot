@@ -281,6 +281,7 @@ def manager_init() -> None:
     ("SetSpeedRatio1", "1.065"),
     ("SetSpeedRatio2", "1.055"),
     ("SetSpeedRatio3", "1.045"),
+    ("SpeedDecimal", "0"),
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))

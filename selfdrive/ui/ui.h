@@ -259,6 +259,8 @@ typedef struct UIScene {
   float set_speed_ratio2;
   float set_speed_ratio3;
 
+  int speed_decimal;
+
   int bearing_deg;
   int camera_view;
   int conditional_speed;

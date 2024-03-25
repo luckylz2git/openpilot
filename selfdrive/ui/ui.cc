@@ -384,6 +384,8 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.set_speed_ratio2 = quality_of_life_visuals ? params.getFloat("SetSpeedRatio2") : 1;
   scene.set_speed_ratio3 = quality_of_life_visuals ? params.getFloat("SetSpeedRatio3") : 1;
 
+  scene.speed_decimal = quality_of_life_visuals ? params.getInt("SpeedDecimal") : 0;
+
   scene.personalities_via_screen = params.getBool("PersonalitiesViaScreen") && params.getBool("AdjustablePersonalities");
   scene.random_events = params.getBool("RandomEvents");
   scene.rotating_wheel = params.getBool("RotatingWheel");
