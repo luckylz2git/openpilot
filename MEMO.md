@@ -11,9 +11,12 @@ Add Baby Enclave
 * selfdrive/car/torque_data/lat_models/BUICK BABY ENCLAVE AVENIR 2020.json
 * selfdrive/frogpilot/ui/vehicle_settings.cc#L55 #L95 #L103
 
-NNFF CEM Tuning
+SDGM CSLC Tuning
 ========================
 * selfdrive/car/gm/gmcan.py#L258 #L286 / #L300 #L328
+* selfdrive/car/gm/interface.py
+  * #L17 params = Params()
+  * #L157 params.get_bool("CSLCEnabled")
 
 Change turn signal
 ========================
