@@ -61,6 +61,7 @@ Driver Privacy Protection
 * selfdrive/manager/process_config.py 
   * #L13 def drivermonitor
   * #L70 PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", drivermonitor, enabled=(not PC or WEBCAM)),
+  * #L86 PythonProcess("dmonitoringd", "selfdrive.monitoring.dmonitoringd", drivermonitor, enabled=(not PC or WEBCAM)),
 * selfdrive/frogpilot/fleetmanager/helpers.py
   * #L472 "DriverPrivacyProtection",
 * selfdrive/frogpilot/ui/visual_settings.cc
