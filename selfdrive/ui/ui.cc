@@ -376,6 +376,8 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.map_style = quality_of_life_visuals ? params.getInt("MapStyle") : 0;
   scene.wheel_speed = quality_of_life_visuals && params.getBool("WheelSpeed");
 
+  scene.cslc_enabled = params.getBool("CSLCEnabled");
+
   scene.dash_speed_ratio1 = quality_of_life_visuals ? params.getFloat("DashSpeedRatio1") : 1;
   scene.dash_speed_ratio2 = quality_of_life_visuals ? params.getFloat("DashSpeedRatio2") : 1;
   scene.dash_speed_ratio3 = quality_of_life_visuals ? params.getFloat("DashSpeedRatio3") : 1;

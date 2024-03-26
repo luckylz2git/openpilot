@@ -238,6 +238,7 @@ typedef struct UIScene {
   bool use_vienna_slc_sign;
   bool vtsc_controlling_curve;
   bool wheel_speed;
+  bool cslc_enabled;
 
   float acceleration;
   float adjusted_cruise;
