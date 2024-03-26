@@ -446,7 +446,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"SetSpeedRatio2", PERSISTENT},
     {"SetSpeedRatio3", PERSISTENT},
     {"SpeedDecimal", PERSISTENT},
-    {"CalibrationCircle", PERSISTENT},
+    {"CalibrationCycles", PERSISTENT},
 };
 
 } // namespace
