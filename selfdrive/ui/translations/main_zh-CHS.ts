@@ -506,7 +506,7 @@
     </message>
     <message>
         <source>Conditional Experimental Mode</source>
-        <translation>特定场景下的试验模式</translation>
+        <translation>预设场景自动激活试验模式</translation>
     </message>
     <message>
         <source>Custom Driving Personalities</source>
