@@ -638,9 +638,9 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   if (scene.cslc_enabled) {
     //5kph=3.125mph
     if (scene.speed_decimal > 0) { // 显示小数部分
-      setSpeedStr = is_cruise_set ? QString::number(setSpeed - cruiseAdjustment + scene.is_metric ? 5 : 3.125, 'f', scene.speed_decimal) : "–";
+      setSpeedStr = is_cruise_set ? QString::number(setSpeed - cruiseAdjustment + (scene.is_metric ? 5 : 3.125), 'f', scene.speed_decimal) : "–";
     } else { // 显示整数部分
-      setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment + scene.is_metric ? 5 : 3.125)) : "–";
+      setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment + (scene.is_metric ? 5 : 3.125))) : "–";
     }
   } else {
     if (scene.speed_decimal > 0) { // 显示小数部分
