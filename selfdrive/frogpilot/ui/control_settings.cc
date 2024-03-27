@@ -614,15 +614,15 @@ void FrogPilotControlsPanel::updateMetric() {
   FrogPilotParamValueControl *stoppingDistanceToggle = static_cast<FrogPilotParamValueControl*>(toggles["StoppingDistance"]);
 
   if (isMetric) {
-    offset1Toggle->setTitle(tr("Speed Limit Offset (0-34 kph)"));
-    offset2Toggle->setTitle(tr("Speed Limit Offset (35-54 kph)"));
-    offset3Toggle->setTitle(tr("Speed Limit Offset (55-64 kph)"));
-    offset4Toggle->setTitle(tr("Speed Limit Offset (65-99 kph)"));
+    offset1Toggle->setTitle(tr("Speed Limit Offset (0-24 kph)"));
+    offset2Toggle->setTitle(tr("Speed Limit Offset (25-60 kph)"));
+    offset3Toggle->setTitle(tr("Speed Limit Offset (61-90 kph)"));
+    offset4Toggle->setTitle(tr("Speed Limit Offset (90+ kph)"));
 
-    offset1Toggle->setDescription("Set speed limit offset for limits between 0-34 kph.");
-    offset2Toggle->setDescription("Set speed limit offset for limits between 35-54 kph.");
-    offset3Toggle->setDescription("Set speed limit offset for limits between 55-64 kph.");
-    offset4Toggle->setDescription("Set speed limit offset for limits between 65-99 kph.");
+    offset1Toggle->setDescription("Set speed limit offset for limits between 0-24 kph.");
+    offset2Toggle->setDescription("Set speed limit offset for limits between 25-60 kph.");
+    offset3Toggle->setDescription("Set speed limit offset for limits between 61-90 kph.");
+    offset4Toggle->setDescription("Set speed limit offset for limits above 90+ kph.");
 
     laneWidthToggle->updateControl(0, 30, " meters", 10);
 
