@@ -269,6 +269,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"DragonPilotTune", PERSISTENT},
     {"DriverCamera", PERSISTENT},
     {"DriverPrivacyProtection", PERSISTENT},
+    {"DriverPrivacyProtectionFake", PERSISTENT},
     {"DriveStats", PERSISTENT},
     {"DynamicPathWidth", PERSISTENT},
     {"EngageVolume", PERSISTENT},

@@ -51,7 +51,8 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
 
     {"QOLVisuals", tr("Quality of Life"), "Miscellaneous quality of life changes to improve your overall openpilot experience.", "../frogpilot/assets/toggle_icons/quality_of_life.png"},
     {"DriveStats", tr("Drive Stats In Home Screen"), "Display your device's drive stats in the home screen.", ""},
-    {"DriverPrivacyProtection", tr("Driver Privacy Protection"), "Protect the driver's privacy while driving on road.", ""},
+    //DriverPrivacyProtectionFake & DriverPrivacyProtection
+    {"DriverPrivacyProtectionFake", tr("Driver Privacy Protection"), "Protect the driver's privacy while driving on road.", ""},
     {"FullMap", tr("Full Sized Map"), "Maximize the size of the map in the onroad UI.", ""},
     {"DashSpeedRatio1", tr("Dash Speed Ratio L"), "Use the dash speed (25-60 kph) ratio in onroad ui.", ""},
     {"DashSpeedRatio2", tr("Dash Speed Ratio M"), "Use the dash speed (61-90 kph) ratio in onroad ui.", ""},

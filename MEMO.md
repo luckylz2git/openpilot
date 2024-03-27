@@ -48,6 +48,12 @@ UI & Translation
 * selfdrive/ui/ui.cc
 * selfdrive/ui/ui.h
 
+Review Training Guide
+========================
+* mv selfdrive/assets/training selfdrive/assets/training_en
+* cd selfdrive/assets/ && ln -n training_en training
+* rm selfdrive/assets/training
+* cd selfdrive/assets/ && ln -n training_chs training
 
 Driver Privacy Protection
 ========================
