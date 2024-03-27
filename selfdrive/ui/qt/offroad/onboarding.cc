@@ -57,7 +57,7 @@ void TrainingGuide::showEvent(QShowEvent *event) {
 }
 
 QImage TrainingGuide::loadImage(int id) {
-  QImage img((params.get("LanguageSetting") == "main_zh-CHS" ? "../assets/training_chs/" : img_path) + QString("step%1.png").arg(id));
+  QImage img((Params().get("LanguageSetting") == "main_zh-CHS" ? QString("../assets/training_chs/") : img_path) + QString("step%1.png").arg(id));
   image_raw_size = img.size();
   if (image_raw_size != rect().size()) {
     img = img.scaled(width(), height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
