@@ -533,6 +533,8 @@ void panda_state_thread(std::vector<Panda *> pandas, bool spoofing_started) {
 
 
 void peripheral_control_thread(Panda *panda, bool no_fan_control) {
+  bool driver_privacy_protection = Params.get_bool("DriverPrivacyProtection");
+
   util::set_thread_name("boardd_peripheral_control");
 
   SubMaster sm({"deviceState", "driverCameraState"});
@@ -581,6 +583,9 @@ void peripheral_control_thread(Panda *panda, bool no_fan_control) {
       panda->set_ir_pwr(ir_pwr);
       prev_ir_pwr = ir_pwr;
     }
+
+    // Disable IR on DriverPrivacyProtection
+    ir_pwr = driver_privacy_protection ? 0.0 : ir_pwr;
 
     // Write to rtc once per minute when no ignition present
     if (!ignition && (sm.frame % 120 == 1)) {
