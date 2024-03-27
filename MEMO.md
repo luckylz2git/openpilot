@@ -50,10 +50,15 @@ UI & Translation
 
 Review Training Guide
 ========================
-* mv selfdrive/assets/training selfdrive/assets/training_en
-* cd selfdrive/assets/ && ln -n training_en training
-* rm selfdrive/assets/training
-* cd selfdrive/assets/ && ln -n training_chs training
+* selfdriver/ui/qt/offroad/onboarding.cc
+  * #60 "../assets/training_chs/"
+* selfdriver/ui/qt/offroad/onboarding.h
+  * #L54 const QString img_path = "../assets/training/";
+* Backup Plan 2
+  * mv selfdrive/assets/training selfdrive/assets/training_en
+  * cd selfdrive/assets/ && ln -n training_en training
+  * rm selfdrive/assets/training
+  * cd selfdrive/assets/ && ln -n training_chs training
 
 Driver Privacy Protection
 ========================
