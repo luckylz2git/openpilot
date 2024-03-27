@@ -68,7 +68,7 @@ Driver Privacy Protection
 * common/params.cc 
   * #L271 {"DriverPrivacyProtection", PERSISTENT},
 * selfdrive/boardd/boardd.cc
-  * #L536 bool driver_privacy_protection = Params.get_bool("DriverPrivacyProtection");
+  * #L537 bool driver_privacy_protection = p.getBool("DriverPrivacyProtection");
   * #L588 ir_pwr = driver_privacy_protection ? 0.0 : ir_pwr;
 * selfdrive/manager/manager.py 
   * #L139 ("DriverPrivacyProtection", "0"),
