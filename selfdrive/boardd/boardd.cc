@@ -581,12 +581,9 @@ void peripheral_control_thread(Panda *panda, bool no_fan_control) {
     }
 
     if (ir_pwr != prev_ir_pwr || sm.frame % 100 == 0 || ir_pwr >= 50.0) {
-      panda->set_ir_pwr(ir_pwr);
+      panda->set_ir_pwr(driver_privacy_protection ? 0.0 : ir_pwr);
       prev_ir_pwr = ir_pwr;
     }
-
-    // Disable IR on DriverPrivacyProtection
-    ir_pwr = driver_privacy_protection ? 0.0 : ir_pwr;
 
     // Write to rtc once per minute when no ignition present
     if (!ignition && (sm.frame % 120 == 1)) {
