@@ -629,12 +629,40 @@
         <translation>自动限速控制</translation>
     </message>
     <message>
+        <source>Controls Settings</source>
+        <translation>限速控制设定</translation>
+    </message>
+    <message>
+        <source>Speed Limit Offset (0-24 kph)</source>
+        <translation>限速修正 (0-24 kph)</translation>
+    </message>
+    <message>
+        <source>Speed Limit Offset (25-60 kph)</source>
+        <translation>限速修正 (25-60 kph)</translation>
+    </message>
+    <message>
+        <source>Speed Limit Offset (61-90 kph)</source>
+        <translation>限速修正 (61-90 kph)</translation>
+    </message>
+    <message>
+        <source>Speed Limit Offset (90+ kph)</source>
+        <translation>限速修正 (90+ kph)</translation>
+    </message>
+    <message>
         <source>Use Turn Desires</source>
         <translation>转向期望估算</translation>
     </message>
     <message>
         <source>Vision Turn Speed Controller</source>
         <translation>视觉控制过弯速度</translation>
+    </message>
+    <message>
+        <source>Curve Detection Sensitivity</source>
+        <translation>弯道监测灵敏度</translation>
+    </message>
+    <message>
+        <source>Turn Speed Aggressiveness</source>
+        <translation>转弯响应速度</translation>
     </message>
     <message>
         <source>Distance Button</source>
@@ -1007,6 +1035,10 @@
     <message>
         <source>Set Speed Ratio H</source>
         <translation>巡航高速系数</translation>
+    </message>
+    <message>
+        <source>Speed Decimal</source>
+        <translation>车速显示小数位数</translation>
     </message>
 </context>
 <context>
