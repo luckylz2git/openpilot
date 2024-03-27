@@ -533,7 +533,7 @@ void panda_state_thread(std::vector<Panda *> pandas, bool spoofing_started) {
 
 
 void peripheral_control_thread(Panda *panda, bool no_fan_control) {
-  bool driver_privacy_protection = Params.get_bool("DriverPrivacyProtection");
+  bool driver_privacy_protection = Params.getBool("DriverPrivacyProtection");
 
   util::set_thread_name("boardd_peripheral_control");
 
