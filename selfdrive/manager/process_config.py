@@ -11,7 +11,7 @@ def driverview(started: bool, params: Params, params_memory: Params, CP: car.Car
   return started or params.get_bool("IsDriverViewEnabled")
 
 def drivermonitor(started: bool, params: Params, params_memory: Params, CP: car.CarParams) -> bool:
-  return not params.get_bool("DriverPrivacyProtection") and (started or params.get_bool("IsDriverViewEnabled"))
+  return (not params.get_bool("DriverPrivacyProtection")) and (started or params.get_bool("IsDriverViewEnabled"))
 
 def notcar(started: bool, params: Params, params_memory: Params, CP: car.CarParams) -> bool:
   return started and CP.notCar
@@ -67,7 +67,7 @@ procs = [
   PythonProcess("micd", "system.micd", iscar),
   PythonProcess("timed", "system.timed", always_run, enabled=not PC),
 
-  PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", drivermonitor), #, enabled=(not PC or WEBCAM)),
+  PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", drivermonitor, enabled=(not PC or WEBCAM)),
   NativeProcess("encoderd", "system/loggerd", ["./encoderd"], allow_logging),
   NativeProcess("stream_encoderd", "system/loggerd", ["./encoderd", "--stream"], notcar),
   NativeProcess("loggerd", "system/loggerd", ["./loggerd"], allow_logging),
@@ -83,7 +83,7 @@ procs = [
   PythonProcess("torqued", "selfdrive.locationd.torqued", only_onroad),
   PythonProcess("controlsd", "selfdrive.controls.controlsd", only_onroad),
   PythonProcess("deleter", "system.loggerd.deleter", always_run),
-  PythonProcess("dmonitoringd", "selfdrive.monitoring.dmonitoringd", drivermonitor), #, enabled=(not PC or WEBCAM)),
+  PythonProcess("dmonitoringd", "selfdrive.monitoring.dmonitoringd", drivermonitor, enabled=(not PC or WEBCAM)),
   PythonProcess("qcomgpsd", "system.qcomgpsd.qcomgpsd", qcomgps, enabled=TICI),
   PythonProcess("navd", "selfdrive.navd.navd", only_onroad),
   PythonProcess("pandad", "selfdrive.boardd.pandad", always_run),
