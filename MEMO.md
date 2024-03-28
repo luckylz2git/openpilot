@@ -5,8 +5,9 @@ Add Baby Enclave
 * selfdrive/car/gm/values.py#L125 #L180 #L259
 * selfdrive/car/torque_data/override.toml #L43
 * selfdrive/controls/lib/desire_helper.py #L10
-* selfdrive/controls/lib/events.py #L751
-* selfdrive/thermald/thermald.py #L331
+* selfdrive/controls/lib/events.py #L751 不改了
+* selfdrive/controls/controlsd.py #L547 #L584 self.random_events
+* selfdrive/thermald/thermald.py #L330 and params.get_bool("RandomEvents")
 * selfdrive/car/torque_data/lat_models/BUICK BABY ENCLAVE 2020.json
 * selfdrive/car/torque_data/lat_models/BUICK BABY ENCLAVE AVENIR 2020.json
 * selfdrive/frogpilot/ui/vehicle_settings.cc#L55 #L95 #L103
