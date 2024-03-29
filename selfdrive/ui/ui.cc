@@ -386,10 +386,10 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.set_speed_ratio2 = quality_of_life_visuals ? params.getFloat("SetSpeedRatio2") : 1;
   scene.set_speed_ratio3 = quality_of_life_visuals ? params.getFloat("SetSpeedRatio3") : 1;
 
-  scene.offset1 = params.getInt("Offset1") * (scene.is_metric ? 1 : 1/1.609344);
-  scene.offset2 = params.getInt("Offset2") * (scene.is_metric ? 1 : 1/1.609344);
-  scene.offset3 = params.getInt("Offset3") * (scene.is_metric ? 1 : 1/1.609344);
-  scene.offset4 = params.getInt("Offset4") * (scene.is_metric ? 1 : 1/1.609344);
+  scene.cslc_offset1 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset1") * (scene.is_metric ? 1 : 1/1.609344) : 0;
+  scene.cslc_offset2 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset2") * (scene.is_metric ? 1 : 1/1.609344) : 0;
+  scene.cslc_offset3 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset3") * (scene.is_metric ? 1 : 1/1.609344) : 0;
+  scene.cslc_offset4 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset4") * (scene.is_metric ? 1 : 1/1.609344) : 0;
 
   scene.speed_decimal = quality_of_life_visuals ? params.getInt("SpeedDecimal") : 0;
 
