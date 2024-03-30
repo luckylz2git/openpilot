@@ -790,8 +790,8 @@
         <translation>巡航限速控制CSLC</translation>
     </message>
     <message>
-        <source>Use OnStar GPS Signal</source>
-        <translation>使用安吉星GPS信号</translation>
+        <source>Use OnStar GPS Signal (incomplete)</source>
+        <translation>使用安吉星GPS信号(未实现)</translation>
     </message>
     <message>
         <source>SELECT</source>
@@ -881,8 +881,8 @@
         <translation>倒挡启用驾驶员视角</translation>
     </message>
     <message>
-        <source>Driver Privacy Protection</source>
-        <translation>驾驶员隐私保护</translation>
+        <source>Driver Privacy Protection (incomplete)</source>
+        <translation>驾驶员隐私保护(未实现)</translation>
     </message>
     <message>
         <source>Model UI</source>
