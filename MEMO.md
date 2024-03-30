@@ -18,6 +18,8 @@ SDGM CSLC Tuning
 * selfdrive/car/gm/interface.py
   * #L17 params = Params()
   * #L157 params.get_bool("CSLCEnabled")
+* panda/board/safety/safety_gm.h
+  * #L156-165
 
 Change turn signal
 ========================
