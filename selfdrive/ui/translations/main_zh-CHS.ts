@@ -889,6 +889,14 @@
         <translation>倒挡启用驾驶员视角</translation>
     </message>
     <message>
+        <source>Model UI</source>
+        <translation>道路模型界面</translation>
+    </message>
+    <message>
+        <source>Hide Lead Marker</source>
+        <translation>隐藏前车标识</translation>
+    </message>    
+    <message>
         <source>Driver Privacy Protection (incomplete)</source>
         <translation>驾驶员隐私保护(未实现)</translation>
     </message>
