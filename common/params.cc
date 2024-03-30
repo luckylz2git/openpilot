@@ -448,6 +448,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"SetSpeedRatio3", PERSISTENT},
     {"SpeedDecimal", PERSISTENT},
     {"CalibrationCycles", PERSISTENT},
+    {"OnStarGPS", PERSISTENT},
 };
 
 } // namespace

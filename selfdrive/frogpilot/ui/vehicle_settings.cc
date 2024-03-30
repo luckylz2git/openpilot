@@ -124,6 +124,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
 
   std::vector<std::tuple<QString, QString, QString, QString>> vehicleToggles {
     {"CSLCEnabled", tr("GM SDGM CSLC"), "Set cars cruise speed based on SLC, MTSC, and VTSC.", ""},
+    {"OnStarGPS", tr("Use OnStar GPS Signal"), "Use GM OnStar GPS Signal, instead of built-in GPS Receiver.", ""},
     {"EVTable", tr("EV Lookup Tables"), "Smoothen out the gas and brake controls for EV vehicles.", ""},
     {"GasRegenCmd", tr("GM Truck Gas Tune"), "Increase acceleration and smoothen brake to stop. For use on Silverado/Sierra only.", ""},
     {"LongPitch", tr("Long Pitch Compensation"), "Reduce speed and acceleration error for greater passenger comfort and improved vehicle efficiency.", ""},
@@ -173,7 +174,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     });
   }
 
-  std::set<std::string> rebootKeys = {"CrosstrekTorque", "GasRegenCmd", "LowerVolt"};
+  std::set<std::string> rebootKeys = {"CrosstrekTorque", "GasRegenCmd", "LowerVolt", "CSLCEnabled"};
   for (const std::string &key : rebootKeys) {
     QObject::connect(toggles[key], &ToggleControl::toggleFlipped, [this]() {
       if (started) {

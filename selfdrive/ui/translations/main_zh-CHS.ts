@@ -790,6 +790,10 @@
         <translation>巡航限速控制CSLC</translation>
     </message>
     <message>
+        <source>Use OnStar GPS Signal</source>
+        <translation>使用安吉星GPS信号</translation>
+    </message>
+    <message>
         <source>SELECT</source>
         <translation>选择</translation>
     </message>

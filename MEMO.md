@@ -87,3 +87,14 @@ Driver Privacy Protection
   * #L203 self.driver_privacy_protection
   * #L204 self.driver_privacy_protection
   * #L199 ADD "driverMonitoringState"
+
+Use OnStar GPS Signal
+========================
+* common/params.cc
+  * #L451
+* selfdrive/manager/manager.py
+  * #L287
+* selfdrive/frogpilot/ui/vehicle_settings.cc
+  * #L127
+* selfdrive/frogpilot/ui/vehicle_settings.h
+  * #L31
