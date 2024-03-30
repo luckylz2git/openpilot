@@ -506,7 +506,11 @@
     </message>
     <message>
         <source>Conditional Experimental Mode</source>
-        <translation>预设场景自动激活试验模式</translation>
+        <translation>CEM:预设场景试验模式</translation>
+    </message>
+    <message>
+        <source>Hide the Status Bar</source>
+        <translation>隐藏提示状态</translation>
     </message>
     <message>
         <source>Custom Driving Personalities</source>
@@ -553,6 +557,10 @@
         <translation>横向控制参数</translation>
     </message>
     <message>
+        <source>NNFF - Neural Network Feedforward</source>
+        <translation>NNFF:启用前馈神经网络</translation>
+    </message>
+    <message>
         <source>Steer Ratio</source>
         <translation>转向比</translation>
     </message>
@@ -578,7 +586,7 @@
     </message>
     <message>
         <source>Map Turn Speed Control</source>
-        <translation>地图控制过弯速度</translation>
+        <translation>MTSC:地图控制过弯速度</translation>
     </message>
     <message>
         <source>Nudgeless Lane Change</source>
@@ -626,7 +634,7 @@
     </message>
     <message>
         <source>Speed Limit Controller</source>
-        <translation>自动限速控制</translation>
+        <translation>SLC:自动限速控制</translation>
     </message>
     <message>
         <source>Controls Settings</source>
@@ -654,7 +662,7 @@
     </message>
     <message>
         <source>Vision Turn Speed Controller</source>
-        <translation>视觉控制过弯速度</translation>
+        <translation>VTSC:视觉控制过弯速度</translation>
     </message>
     <message>
         <source>Curve Detection Sensitivity</source>
@@ -787,7 +795,7 @@
     </message>
     <message>
         <source>GM SDGM CSLC</source>
-        <translation>巡航限速控制CSLC</translation>
+        <translation>CSLC:巡航限速控制</translation>
     </message>
     <message>
         <source>Use OnStar GPS Signal (incomplete)</source>
@@ -885,8 +893,24 @@
         <translation>驾驶员隐私保护(未实现)</translation>
     </message>
     <message>
-        <source>Model UI</source>
-        <translation>道路模型界面</translation>
+        <source>Full Sized Map</source>
+        <translation>全屏地图显示</translation>
+    </message>
+    <message>
+        <source>Drive Stats In Home Screen</source>
+        <translation>主页显示行驶统计</translation>
+    </message>
+    <message>
+        <source>Map Style</source>
+        <translation>地图样式</translation>
+    </message>
+    <message>
+        <source>Map Style</source>
+        <translation>地图样式</translation>
+    </message>
+    <message>
+        <source>Hide Speed</source>
+        <translation>隐藏当前车速</translation>
     </message>
     <message>
         <source>Numerical Temperature Gauge</source>
