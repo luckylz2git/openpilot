@@ -171,6 +171,8 @@ private:
   ExperimentalButton *experimental_btn;
   QPixmap dm_img;
   float speed;
+  float onstar_gps_longitude;
+  float onstar_gps_latitude;
   QString speedUnit;
   float setSpeed;
   float speedLimit;
