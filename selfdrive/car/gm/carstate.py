@@ -269,6 +269,7 @@ class CarState(CarStateBase):
           ("BCMDoorBeltStatus", 10),
           ("BCMGeneralPlatformStatus", 10),
           ("ASCMSteeringButton", 33),
+          ("TCICOnStarGPSPosition", 20), #20Hz
         ]
         if CP.enableBsm:
           messages.append(("BCMBlindSpotMonitor", 10))
@@ -310,6 +311,7 @@ class CarState(CarStateBase):
         ("BCMDoorBeltStatus", 10),
         ("BCMGeneralPlatformStatus", 10),
         ("ASCMSteeringButton", 33),
+        ("TCICOnStarGPSPosition", 20), #20Hz
       ]
       if CP.enableBsm:
         messages.append(("BCMBlindSpotMonitor", 10))
