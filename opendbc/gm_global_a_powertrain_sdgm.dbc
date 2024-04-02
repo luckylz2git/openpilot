@@ -223,6 +223,9 @@ BO_ 715 ASCMGasRegenCmd: 8 K124_ASCM
 
 BO_ 717 ASCM_2CD: 5 K124_ASCM
 
+BO_ 723 TCICOnStartGPSAltitude: 4 K73_TCIC
+ SG_ GPSAltitude : 23|16@0+ (1,0) [0|65535] "cm" NEO
+
 BO_ 761 BRAKE_RELATED_2: 7 XXX
  SG_ UserBrakePressure2 : 47|9@0+ (1,0) [0|511] "" XXX
 
