@@ -45,23 +45,23 @@ class CarState(CarStateBase):
       self.buttons_counter = pt_cp.vl["ASCMSteeringButton"]["RollingCounter"]
       self.onstar_gps_longitude = 0. # ONSTAR_GPS_TEST
       self.onstar_gps_latitude = 0. # ONSTAR_GPS_TEST
-      self.onstar_gps_altitude = 0. # ONSTAR_GPS_TEST
+      # self.onstar_gps_altitude = 0. # ONSTAR_GPS_TEST
       ret.onstarGpsLongitude = 0. # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = 0. # ONSTAR_GPS_TEST
-      ret.onstarGpsAltitude = 0. # ONSTAR_GPS_TEST
-      # ret.currentGearNumber = 0 # ONSTAR_GPS_TEST
-      # ret.nextGearNumber = 0 # ONSTAR_GPS_TEST
+      # ret.onstarGpsAltitude = 0. # ONSTAR_GPS_TEST
+      ret.currentGearNumber = 0 # ONSTAR_GPS_TEST
+      ret.nextGearNumber = 0 # ONSTAR_GPS_TEST
     else:
       self.cruise_buttons = cam_cp.vl["ASCMSteeringButton"]["ACCButtons"]
       self.buttons_counter = cam_cp.vl["ASCMSteeringButton"]["RollingCounter"]
       self.onstar_gps_longitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLongitude"] # ONSTAR_GPS_TEST
       self.onstar_gps_latitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLatitude"] # ONSTAR_GPS_TEST
-      self.onstar_gps_altitude = cam_cp.vl["TCICOnStarGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
+      # self.onstar_gps_altitude = cam_cp.vl["TCICOnStarGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
       ret.onstarGpsLongitude = self.onstar_gps_longitude # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = self.onstar_gps_latitude # ONSTAR_GPS_TEST
-      ret.onstarGpsAltitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST
-      # ret.currentGearNumber = cam_cp.vl["ECMPRDNL2"]["CurrentGearNumber"] # ONSTAR_GPS_TEST
-      # ret.nextGearNumber = cam_cp.vl["ECMPRDNL2"]["NextGearNumber"] # ONSTAR_GPS_TEST
+      # ret.onstarGpsAltitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST
+      ret.currentGearNumber = cam_cp.vl["ECMPRDNL2"]["CurrentGearNumber"] # ONSTAR_GPS_TEST
+      ret.nextGearNumber = cam_cp.vl["ECMPRDNL2"]["NextGearNumber"] # ONSTAR_GPS_TEST
 
     self.pscm_status = copy.copy(pt_cp.vl["PSCMStatus"])
     # This is to avoid a fault where you engage while still moving backwards after shifting to D.
@@ -278,15 +278,15 @@ class CarState(CarStateBase):
           ("BCMGeneralPlatformStatus", 10),
           ("ASCMSteeringButton", 33),
           ("TCICOnStarGPSPosition", 10), #10Hz # ONSTAR_GPS_TEST
-          ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
-          # ("ECMPRDNL2", 40), #40Hz # ONSTAR_GPS_TEST
+          # ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
+          ("ECMPRDNL2", 40), #40Hz # ONSTAR_GPS_TEST
         ]
         if CP.enableBsm:
           messages.append(("BCMBlindSpotMonitor", 10))
       else:
         messages += [
           ("AEBCmd", 10),
-          # ("ECMPRDNL2", 10), #10Hz # ONSTAR_GPS_TEST
+          ("ECMPRDNL2", 10), #10Hz # ONSTAR_GPS_TEST
         ]
       if CP.carFingerprint not in CC_ONLY_CAR:
         messages += [
@@ -323,7 +323,7 @@ class CarState(CarStateBase):
         ("BCMGeneralPlatformStatus", 10),
         ("ASCMSteeringButton", 33),
         ("TCICOnStarGPSPosition", 10), #10Hz # ONSTAR_GPS_TEST
-        ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
+        # ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
       ]
       if CP.enableBsm:
         messages.append(("BCMBlindSpotMonitor", 10))
