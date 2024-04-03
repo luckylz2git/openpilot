@@ -622,7 +622,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
 
   QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
   auto curTime = QDateTime::currentDateTime().time();
-  speedLimitStr = curTime.toString("mm:ss");
+  speedLimitStr = curTime.toString("HH:mm:ss");
   QString speedLimitOffsetStr = slcSpeedLimitOffset == 0 ? "–" : QString::number(slcSpeedLimitOffset, 'f', 0).prepend(slcSpeedLimitOffset > 0 ? "+" : "");
   // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
   // 显示整数部分
@@ -753,7 +753,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       if (speedLimitController && showSLCOffset && !slcOverridden) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(70, QFont::Bold));
+        p.setFont(InterFont(40, QFont::Bold)); //70
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
         p.setFont(InterFont(50, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 120, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
@@ -761,7 +761,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("SPEED"));
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(70, QFont::Bold));
+        p.setFont(InterFont(40, QFont::Bold)); //70
         p.drawText(sign_rect.adjusted(0, 85, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       }
       p.restore();
@@ -779,12 +779,12 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       p.setOpacity(slcOverridden ? 0.25 : 1.0);
       p.setPen(blackColor());
       if (showSLCOffset) {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 40 : 40, QFont::Bold)); //60 : 70
         p.drawText(sign_rect.adjusted(0, -25, 0, 0), Qt::AlignCenter, speedLimitStr);
         p.setFont(InterFont(40, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 100, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
       } else {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 40 : 40, QFont::Bold)); //60 : 70
         p.drawText(sign_rect, Qt::AlignCenter, speedLimitStr);
       }
       p.restore();
