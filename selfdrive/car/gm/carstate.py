@@ -43,17 +43,21 @@ class CarState(CarStateBase):
     if self.CP.carFingerprint not in SDGM_CAR:
       self.cruise_buttons = pt_cp.vl["ASCMSteeringButton"]["ACCButtons"]
       self.buttons_counter = pt_cp.vl["ASCMSteeringButton"]["RollingCounter"]
-      self.onstar_gps_longitude = 0.0 # ONSTAR_GPS_TEST
-      self.onstar_gps_latitude = 0.0 # ONSTAR_GPS_TEST
-      ret.onstarGpsLongitude = 0.0 # ONSTAR_GPS_TEST
-      ret.onstarGpsLatitude = 0.0 # ONSTAR_GPS_TEST
+      self.onstar_gps_longitude = 0 # ONSTAR_GPS_TEST
+      self.onstar_gps_latitude = 0 # ONSTAR_GPS_TEST
+      self.onstar_gps_altitude = 0 # ONSTAR_GPS_TEST
+      ret.onstarGpsLongitude = 0 # ONSTAR_GPS_TEST
+      ret.onstarGpsLatitude = 0 # ONSTAR_GPS_TEST
+      ret.onstarGpsAltitude = 0 # ONSTAR_GPS_TEST
     else:
       self.cruise_buttons = cam_cp.vl["ASCMSteeringButton"]["ACCButtons"]
       self.buttons_counter = cam_cp.vl["ASCMSteeringButton"]["RollingCounter"]
       self.onstar_gps_longitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLongitude"] # ONSTAR_GPS_TEST
       self.onstar_gps_latitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLatitude"] # ONSTAR_GPS_TEST
+      self.onstar_gps_altitude = cam_cp.vl["TCICOnStartGPSAltitude"]["GPSAlatitude"] # ONSTAR_GPS_TEST
       ret.onstarGpsLongitude = self.onstar_gps_longitude # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = self.onstar_gps_latitude # ONSTAR_GPS_TEST
+      ret.onstarGpsAlatitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST
 
     self.pscm_status = copy.copy(pt_cp.vl["PSCMStatus"])
     # This is to avoid a fault where you engage while still moving backwards after shifting to D.

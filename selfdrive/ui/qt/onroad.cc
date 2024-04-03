@@ -567,6 +567,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
 
   onstar_gps_longitude = car_state.getOnstarGpsLongitude(); // ONSTAR_GPS_TEST
   onstar_gps_latitude = car_state.getOnstarGpsLatitude(); // ONSTAR_GPS_TEST
+  onstar_gps_altitude = car_state.getOnstarGpsAlatitude(); // ONSTAR_GPS_TEST
 
   // Handle older routes where vEgoCluster is not set
   v_ego_cluster_seen = v_ego_cluster_seen || car_state.getVEgoCluster() != 0.0;
@@ -619,8 +620,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // QString speedStr = QString::number(std::nearbyint(speed));
   // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
 
-  //QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
-  QString speedLimitStr = QString::number(onstar_gps_latitude, 'f', 0); // ONSTAR_GPS_TEST
+  QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
   QString speedLimitOffsetStr = slcSpeedLimitOffset == 0 ? "–" : QString::number(slcSpeedLimitOffset, 'f', 0).prepend(slcSpeedLimitOffset > 0 ? "+" : "");
   // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
   // 显示整数部分
@@ -633,7 +633,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', scene.speed_decimal);
     if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', scene.speed_decimal);
   }
-  speedStr = QString::number(onstar_gps_longitude, 'f', 0); // ONSTAR_GPS_TEST
+  speedStr = QString("%1\n%2\n%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
+  speedStr = QString("%1\n%2\n%3").arg(410136602).arg(81047835).arg(1619); // ONSTAR_GPS_TEST
   // 用speedStr来显示speed的修正值
   // QString speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', 2);
   // if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', 2);
@@ -750,7 +751,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       if (speedLimitController && showSLCOffset && !slcOverridden) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(30, QFont::Bold)); //70 ONSTAR_GPS_TEST
+        p.setFont(InterFont(70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
         p.setFont(InterFont(50, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 120, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
@@ -758,7 +759,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("SPEED"));
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(30, QFont::Bold)); //70 ONSTAR_GPS_TEST
+        p.setFont(InterFont(70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, 85, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       }
       p.restore();
@@ -776,12 +777,12 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       p.setOpacity(slcOverridden ? 0.25 : 1.0);
       p.setPen(blackColor());
       if (showSLCOffset) {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 30 : 30, QFont::Bold)); //60 : 70 ONSTAR_GPS_TEST
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, -25, 0, 0), Qt::AlignCenter, speedLimitStr);
         p.setFont(InterFont(40, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 100, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
       } else {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 30 : 30, QFont::Bold)); //60 : 70 ONSTAR_GPS_TEST
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
         p.drawText(sign_rect, Qt::AlignCenter, speedLimitStr);
       }
       p.restore();
