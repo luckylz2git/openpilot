@@ -184,8 +184,8 @@ struct CarState {
   onstarGpsLatitude @49 :Float32; # TEST ONSTAR GPS
   # onstarGpsAltitude @50 :Float32; # TEST ONSTAR GPS
 
-  currentGearNumber @50 :Int16; # TEST ONSTAR GPS
-  nextGearNumber @51 :Int16; # TEST ONSTAR GPS
+  # currentGearNumber @50 :Int16; # TEST ONSTAR GPS
+  # nextGearNumber @51 :Int16; # TEST ONSTAR GPS
 
   yawRate @22 :Float32;     # best estimate of yaw rate
   standstill @18 :Bool;
