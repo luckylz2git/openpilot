@@ -54,7 +54,7 @@ class CarState(CarStateBase):
       self.buttons_counter = cam_cp.vl["ASCMSteeringButton"]["RollingCounter"]
       self.onstar_gps_longitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLongitude"] # ONSTAR_GPS_TEST
       self.onstar_gps_latitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLatitude"] # ONSTAR_GPS_TEST
-      self.onstar_gps_altitude = cam_cp.vl["TCICOnStartGPSAltitude"]["GPSAlatitude"] # ONSTAR_GPS_TEST
+      self.onstar_gps_altitude = cam_cp.vl["TCICOnStartGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
       ret.onstarGpsLongitude = self.onstar_gps_longitude # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = self.onstar_gps_latitude # ONSTAR_GPS_TEST
       ret.onstarGpsAlatitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST

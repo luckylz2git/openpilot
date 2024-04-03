@@ -567,7 +567,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
 
   onstar_gps_longitude = car_state.getOnstarGpsLongitude(); // ONSTAR_GPS_TEST
   onstar_gps_latitude = car_state.getOnstarGpsLatitude(); // ONSTAR_GPS_TEST
-  onstar_gps_altitude = car_state.getOnstarGpsAlatitude(); // ONSTAR_GPS_TEST
+  onstar_gps_altitude = car_state.getOnstarGpsAltitude(); // ONSTAR_GPS_TEST
 
   // Handle older routes where vEgoCluster is not set
   v_ego_cluster_seen = v_ego_cluster_seen || car_state.getVEgoCluster() != 0.0;
@@ -636,7 +636,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', scene.speed_decimal);
   }
   speedStr = QString("%1,%2,%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
-  speedStr = QString("%1,%2,%3").arg(410136602).arg(81047835).arg(1619); // ONSTAR_GPS_TEST
+  //speedStr = QString("%1,%2,%3").arg(410136602).arg(81047835).arg(1619); // ONSTAR_GPS_TEST
   // 用speedStr来显示speed的修正值
   // QString speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', 2);
   // if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', 2);
@@ -753,7 +753,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       if (speedLimitController && showSLCOffset && !slcOverridden) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(40, QFont::Bold)); //70
+        p.setFont(InterFont(35, QFont::Bold)); //70
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
         p.setFont(InterFont(50, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 120, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
@@ -761,7 +761,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("SPEED"));
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(40, QFont::Bold)); //70
+        p.setFont(InterFont(35, QFont::Bold)); //70
         p.drawText(sign_rect.adjusted(0, 85, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       }
       p.restore();
@@ -779,12 +779,12 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       p.setOpacity(slcOverridden ? 0.25 : 1.0);
       p.setPen(blackColor());
       if (showSLCOffset) {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 40 : 40, QFont::Bold)); //60 : 70
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 35 : 35, QFont::Bold)); //60 : 70
         p.drawText(sign_rect.adjusted(0, -25, 0, 0), Qt::AlignCenter, speedLimitStr);
         p.setFont(InterFont(40, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 100, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
       } else {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 40 : 40, QFont::Bold)); //60 : 70
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 35 : 35, QFont::Bold)); //60 : 70
         p.drawText(sign_rect, Qt::AlignCenter, speedLimitStr);
       }
       p.restore();

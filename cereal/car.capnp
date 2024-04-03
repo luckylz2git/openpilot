@@ -182,7 +182,7 @@ struct CarState {
 
   onstarGpsLongitude @48 :UInt32; # TEST ONSTAR GPS
   onstarGpsLatitude @49 :UInt32; # TEST ONSTAR GPS
-  onstarGpsAlatitude @50 :UInt32; # TEST ONSTAR GPS
+  onstarGpsAltitude @50 :UInt32; # TEST ONSTAR GPS
 
   yawRate @22 :Float32;     # best estimate of yaw rate
   standstill @18 :Bool;
