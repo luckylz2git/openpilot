@@ -56,7 +56,7 @@ class CarState(CarStateBase):
       self.buttons_counter = cam_cp.vl["ASCMSteeringButton"]["RollingCounter"]
       self.onstar_gps_longitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLongitude"] # ONSTAR_GPS_TEST
       self.onstar_gps_latitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLatitude"] # ONSTAR_GPS_TEST
-      self.onstar_gps_altitude = cam_cp.vl["TCICOnStartGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
+      self.onstar_gps_altitude = cam_cp.vl["TCICOnStarGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
       ret.onstarGpsLongitude = self.onstar_gps_longitude # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = self.onstar_gps_latitude # ONSTAR_GPS_TEST
       ret.onstarGpsAltitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST
@@ -278,7 +278,7 @@ class CarState(CarStateBase):
           ("BCMGeneralPlatformStatus", 10),
           ("ASCMSteeringButton", 33),
           ("TCICOnStarGPSPosition", 10), #10Hz # ONSTAR_GPS_TEST
-          ("TCICOnStartGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
+          ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
           # ("ECMPRDNL2", 40), #40Hz # ONSTAR_GPS_TEST
         ]
         if CP.enableBsm:
@@ -323,7 +323,7 @@ class CarState(CarStateBase):
         ("BCMGeneralPlatformStatus", 10),
         ("ASCMSteeringButton", 33),
         ("TCICOnStarGPSPosition", 10), #10Hz # ONSTAR_GPS_TEST
-        ("TCICOnStartGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
+        ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
       ]
       if CP.enableBsm:
         messages.append(("BCMBlindSpotMonitor", 10))
