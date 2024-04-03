@@ -59,6 +59,9 @@ class CarState(CarStateBase):
       ret.onstarGpsLatitude = self.onstar_gps_latitude # ONSTAR_GPS_TEST
       ret.onstarGpsAltitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST
 
+    ret.currentGearNumber = pt_cp.vl["ECMPRDNL2"]["CurrentGearNumber"] # ONSTAR_GPS_TEST
+    ret.nextGearNumber = pt_cp.vl["ECMPRDNL2"]["NextGearNumber"] # ONSTAR_GPS_TEST
+
     self.pscm_status = copy.copy(pt_cp.vl["PSCMStatus"])
     # This is to avoid a fault where you engage while still moving backwards after shifting to D.
     # An Equinox has been seen with an unsupported status (3), so only check if either wheel is in reverse (2)
