@@ -57,7 +57,7 @@ class CarState(CarStateBase):
       self.onstar_gps_altitude = cam_cp.vl["TCICOnStartGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
       ret.onstarGpsLongitude = self.onstar_gps_longitude # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = self.onstar_gps_latitude # ONSTAR_GPS_TEST
-      ret.onstarGpsAlatitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST
+      ret.onstarGpsAltitude = self.onstar_gps_altitude # ONSTAR_GPS_TEST
 
     self.pscm_status = copy.copy(pt_cp.vl["PSCMStatus"])
     # This is to avoid a fault where you engage while still moving backwards after shifting to D.

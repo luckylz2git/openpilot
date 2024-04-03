@@ -180,9 +180,9 @@ struct CarState {
   vEgoRaw @17 :Float32;      # unfiltered speed from CAN sensors
   vEgoCluster @44 :Float32;  # best estimate of speed shown on car's instrument cluster, used for UI
 
-  onstarGpsLongitude @48 :UInt32; # TEST ONSTAR GPS
-  onstarGpsLatitude @49 :UInt32; # TEST ONSTAR GPS
-  onstarGpsAltitude @50 :UInt32; # TEST ONSTAR GPS
+  onstarGpsLongitude @48 :Int16; # TEST ONSTAR GPS
+  onstarGpsLatitude @49 :Int16; # TEST ONSTAR GPS
+  onstarGpsAltitude @50 :Int16; # TEST ONSTAR GPS
 
   yawRate @22 :Float32;     # best estimate of yaw rate
   standstill @18 :Bool;
