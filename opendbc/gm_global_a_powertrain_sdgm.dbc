@@ -190,11 +190,9 @@ BO_ 497 BCMGeneralPlatformStatus: 8 K9_BCM
  SG_ ParkBrakeSwActive : 36|1@0+ (1,0) [0|3] "" XXX
 
 BO_ 501 ECMPRDNL2: 8 K20_ECM
- SG_ CurrentGearNumber : 3|4@0+ (1,0) [0|15] "" NEO
- SG_ NextGearNumber : 11|4@0+ (1,0) [0|15] "" NEO
+ SG_ TransmissionState : 48|4@1+ (1,0) [0|7] "" NEO
  SG_ PRNDL2 : 27|4@0+ (1,0) [0|255] "" NEO
  SG_ ManualMode : 41|1@0+ (1,0) [0|1] "" NEO
- SG_ TransmissionState : 48|4@1+ (1,0) [0|7] "" NEO
 
 BO_ 532 BRAKE_RELATED: 6 XXX
  SG_ UserBrakePressure : 0|9@0+ (1,0) [0|511] "" XXX

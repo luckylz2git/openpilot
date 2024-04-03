@@ -569,8 +569,8 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   onstar_gps_latitude = car_state.getOnstarGpsLatitude(); // ONSTAR_GPS_TEST
   onstar_gps_altitude = car_state.getOnstarGpsAltitude(); // ONSTAR_GPS_TEST
 
-  current_gear_number = car_state.getCurrentGearNumber(); // ONSTAR_GPS_TEST
-  next_gear_number = car_state.getNextGearNumber(); // ONSTAR_GPS_TEST
+  // current_gear_number = car_state.getCurrentGearNumber(); // ONSTAR_GPS_TEST
+  // next_gear_number = car_state.getNextGearNumber(); // ONSTAR_GPS_TEST
 
   // Handle older routes where vEgoCluster is not set
   v_ego_cluster_seen = v_ego_cluster_seen || car_state.getVEgoCluster() != 0.0;
@@ -639,7 +639,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', scene.speed_decimal);
   }
   // speedStr = QString("%1,%2,%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
-  speedStr = QString::number(current_gear_number, 'f', 0) + "," + QString::number(next_gear_number, 'f', 0) + "," + QString::number(onstar_gps_longitude, 'f', 0) + "," + QString::number(onstar_gps_latitude, 'f', 0) + "," + QString::number(onstar_gps_altitude, 'f', 0); // ONSTAR_GPS_TEST
+  // QString::number(current_gear_number, 'f', 0) + "," + QString::number(next_gear_number, 'f', 0) + "," + 
+  speedStr = QString::number(onstar_gps_longitude, 'f', 0) + "," + QString::number(onstar_gps_latitude, 'f', 0) + "," + QString::number(onstar_gps_altitude, 'f', 0); // ONSTAR_GPS_TEST
   //speedStr = "0,0," + QString::number(410136602.0, 'f', 0) + "," + QString::number(81047835.0, 'f', 0) + "," + QString::number(1619.0, 'f', 0); // ONSTAR_GPS_TEST
   // 用speedStr来显示speed的修正值
   // QString speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', 2);
