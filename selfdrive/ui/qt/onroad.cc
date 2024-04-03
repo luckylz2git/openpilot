@@ -636,7 +636,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', scene.speed_decimal);
   }
   speedStr = QString("%1,%2,%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
-  //speedStr = QString("%1,%2,%3").arg(410136602).arg(81047835).arg(1619); // ONSTAR_GPS_TEST
+  speedStr = QString("%1,%2,%3").arg(410136602.0).arg(81047835.0).arg(1619.0); // ONSTAR_GPS_TEST
   // 用speedStr来显示speed的修正值
   // QString speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', 2);
   // if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', 2);
