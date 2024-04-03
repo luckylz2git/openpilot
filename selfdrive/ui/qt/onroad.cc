@@ -639,8 +639,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', scene.speed_decimal);
   }
   // speedStr = QString("%1,%2,%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
-  speedStr = QString::number(current_gear_number, 'f', 0) + "," + QString::number(next_gear_number, 'f', 0) + "," + QString::number(onstar_gps_longitude, 'f', 0) + "," + QString::number(onstar_gps_latitude, 'f', 0) + QString::number(onstar_gps_altitude, 'f', 0); // ONSTAR_GPS_TEST
-  speedStr = "0,0," + QString::number(410136602.0, 'f', 0) + "," + QString::number(81047835.0, 'f', 0) + QString::number(1619.0, 'f', 0); // ONSTAR_GPS_TEST
+  speedStr = QString::number(current_gear_number, 'f', 0) + "," + QString::number(next_gear_number, 'f', 0) + "," + QString::number(onstar_gps_longitude, 'f', 0) + "," + QString::number(onstar_gps_latitude, 'f', 0) + "," + QString::number(onstar_gps_altitude, 'f', 0); // ONSTAR_GPS_TEST
+  //speedStr = "0,0," + QString::number(410136602.0, 'f', 0) + "," + QString::number(81047835.0, 'f', 0) + "," + QString::number(1619.0, 'f', 0); // ONSTAR_GPS_TEST
   // 用speedStr来显示speed的修正值
   // QString speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', 2);
   // if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', 2);
