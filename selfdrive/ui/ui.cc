@@ -12,7 +12,7 @@
 #include "common/util.h"
 #include "common/watchdog.h"
 #include "system/hardware/hw.h"
-#include "common/timing.h" // ONSTAR_GPS_TEST
+// #include "common/timing.h" // ONSTAR_GPS_TEST
 #define BACKLIGHT_DT 0.05
 #define BACKLIGHT_TS 10.00
 

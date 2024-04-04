@@ -11,7 +11,7 @@
 #include <QMouseEvent>
 
 #include "common/swaglog.h"
-#include "common/timing.h" // ONSTAR_GPS_TEST
+// #include "common/timing.h" // ONSTAR_GPS_TEST
 #include "selfdrive/ui/qt/util.h"
 #ifdef ENABLE_MAPS
 #include "selfdrive/ui/qt/maps/map_helpers.h"
