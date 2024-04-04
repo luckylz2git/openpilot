@@ -173,9 +173,9 @@ private:
   float speed;
   float onstar_gps_longitude;
   float onstar_gps_latitude;
-  // float onstar_gps_altitude;
-  // int current_gear_number;
-  // int next_gear_number;
+  float onstar_gps_altitude;
+  int current_gear_number;
+  int next_gear_number;
 
   QString speedUnit;
   float setSpeed;
