@@ -47,6 +47,7 @@ class CarState(CarStateBase):
       ret.onstarGpsLongitude = 0. # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = 0. # ONSTAR_GPS_TEST
       ret.onstarGpsAltitude = 0. # ONSTAR_GPS_TEST
+      ret.onstarGpsBearing = 0. # ONSTAR_GPS_TEST
 
       ret.currentGearNumber = 0 # ONSTAR_GPS_TEST
       ret.nextGearNumber = 0 # ONSTAR_GPS_TEST
@@ -56,7 +57,8 @@ class CarState(CarStateBase):
 
       ret.onstarGpsLongitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLongitude"] # ONSTAR_GPS_TEST
       ret.onstarGpsLatitude = cam_cp.vl["TCICOnStarGPSPosition"]["GPSLatitude"] # ONSTAR_GPS_TEST
-      ret.onstarGpsAltitude = pt_cp.vl["TCICOnStarGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
+      ret.onstarGpsAltitude = 0. #pt_cp.vl["WrongGPSAltitude"]["GPSAltitude"] # ONSTAR_GPS_TEST
+      ret.onstarGpsBearing = cam_cp.vl["SPEED_RELATED"]["GPSBearing"] # ONSTAR_GPS_TEST
       ret.currentGearNumber = pt_cp.vl["ECMPRDNL2"]["CurrentGearNumber"] # ONSTAR_GPS_TEST
       ret.nextGearNumber = pt_cp.vl["ECMPRDNL2"]["NextGearNumber"] # ONSTAR_GPS_TEST
 
@@ -275,7 +277,8 @@ class CarState(CarStateBase):
           ("BCMGeneralPlatformStatus", 10),
           ("ASCMSteeringButton", 33),
           ("TCICOnStarGPSPosition", 10), #10Hz # ONSTAR_GPS_TEST
-          # ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
+          ("SPEED_RELATED", 10), #10Hz # ONSTAR_GPS_TEST
+          # ("WrongGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
           # ("ECMPRDNL2", 40), #40Hz # ONSTAR_GPS_TEST
         ]
         if CP.enableBsm:
@@ -302,7 +305,7 @@ class CarState(CarStateBase):
       ("EBCMFrictionBrakeStatus", 20),
       ("PSCMSteeringAngle", 100),
       ("ECMAcceleratorPos", 80),
-      ("TCICOnStarGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
+      # ("WrongGPSAltitude", 20), #20Hz # ONSTAR_GPS_TEST
     ]
 
     if CP.carFingerprint in SDGM_CAR:

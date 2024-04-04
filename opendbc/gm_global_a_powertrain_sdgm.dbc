@@ -206,7 +206,7 @@ BO_ 562 EBCMFrictionBrakeStatus: 8 K17_EBCM
  SG_ FrictionBrakeUnavailable : 46|1@0+ (1,0) [0|1] "" XXX
 
 BO_ 608 SPEED_RELATED: 8 XXX
- SG_ GPSBearing : 3|20@0+ (0.001,0) [0|1048575] "deg" XXX
+ SG_ GPSBearing : 3|20@0+ (0.001,0) [0|1048575] "deg" GPS
  SG_ RollingCounter : 5|2@0+ (1,0) [0|0] "" XXX
  SG_ ClusterSpeed : 31|8@0+ (1,0) [0|0] "" XXX
 
@@ -226,8 +226,8 @@ BO_ 715 ASCMGasRegenCmd: 8 K124_ASCM
 
 BO_ 717 ASCM_2CD: 5 K124_ASCM
 
-BO_ 723 TCICOnStarGPSAltitude: 4 K73_TCIC
- SG_ GPSAltitude : 23|16@0+ (1,0) [0|65535] "cm" NEO
+BO_ 723 WrongGPSAltitude: 4 K73_TCIC
+ SG_ GPSAltitude : 23|16@0+ (1,0) [0|65535] "cm" GPS
 
 BO_ 761 BRAKE_RELATED_2: 7 XXX
  SG_ UserBrakePressure2 : 47|9@0+ (1,0) [0|511] "" XXX
@@ -246,8 +246,8 @@ BO_ 800 AEBCmd: 6 K124_ASCM
  SG_ AEBCmd2 : 23|8@0+ (1,0) [0|0] "" NEO
 
 BO_ 810 TCICOnStarGPSPosition: 8 K73_TCIC
- SG_ GPSLongitude : 39|32@0+ (1,0) [0|0] "milliarcsecond"  NEO
- SG_ GPSLatitude : 7|32@0+ (1,0) [0|0] "milliarcsecond"  NEO
+ SG_ GPSLongitude : 39|32@0+ (1,0) [0|0] "milliarcsecond"  GPS
+ SG_ GPSLatitude : 7|32@0+ (1,0) [0|0] "milliarcsecond"  GPS
 
 BO_ 840 EBCMWheelSpdFront: 5 K17_EBCM
  SG_ FLWheelSpd : 7|16@0+ (0.0311,0) [0|255] "km/h"  NEO
