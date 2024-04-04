@@ -11,7 +11,7 @@
 #include <QMouseEvent>
 
 #include "common/swaglog.h"
-#include "common/timing.h"
+#include "common/timing.h" // ONSTAR_GPS_TEST
 #include "selfdrive/ui/qt/util.h"
 #ifdef ENABLE_MAPS
 #include "selfdrive/ui/qt/maps/map_helpers.h"
@@ -762,7 +762,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       if (speedLimitController && showSLCOffset && !slcOverridden) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(35, QFont::Bold)); //70
+        p.setFont(InterFont(70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
         p.setFont(InterFont(50, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 120, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
@@ -770,7 +770,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("SPEED"));
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
-        p.setFont(InterFont(35, QFont::Bold)); //70
+        p.setFont(InterFont(70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, 85, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       }
       p.restore();
@@ -788,12 +788,12 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       p.setOpacity(slcOverridden ? 0.25 : 1.0);
       p.setPen(blackColor());
       if (showSLCOffset) {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 35 : 35, QFont::Bold)); //60 : 70
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, -25, 0, 0), Qt::AlignCenter, speedLimitStr);
         p.setFont(InterFont(40, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 100, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
       } else {
-        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 35 : 35, QFont::Bold)); //60 : 70
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
         p.drawText(sign_rect, Qt::AlignCenter, speedLimitStr);
       }
       p.restore();
@@ -803,7 +803,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // current speed
   if (!(scene.hide_speed || fullMapOpen)) {
     p.save();
-    p.setFont(InterFont(50, QFont::Bold)); //176 ONSTAR_GPS_TEST
+    p.setFont(InterFont(176, QFont::Bold));
     if (trafficModeActive) {
       p.setPen(QColor(225, 0, 0, 255));
     }
