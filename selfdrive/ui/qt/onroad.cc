@@ -641,7 +641,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   }
   // speedStr = QString("%1,%2,%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
   // QString::number(onstar_gps_longitude, 'f', 0) + "," + QString::number(onstar_gps_latitude, 'f', 0) + ","
-  speedStr = +  QString("%1°").arg(onstar_gps_bearing, 0, 'f', 1) + "," + QString::number(current_gear_number) + "," + QString::number(next_gear_number); // ONSTAR_GPS_TEST
+  speedStr = QString("%1°").arg(onstar_gps_bearing, 0, 'f', 1) + "," + QString::number(current_gear_number) + "," + QString::number(next_gear_number); // ONSTAR_GPS_TEST
   
   //speedStr = "0,0," + QString::number(410136602.0, 'f', 0) + "," + QString::number(81047835.0, 'f', 0) + "," + QString::number(1619.0, 'f', 0); // ONSTAR_GPS_TEST
   // 用speedStr来显示speed的修正值
