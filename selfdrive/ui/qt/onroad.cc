@@ -570,7 +570,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   onstar_gps_altitude = car_state.getOnstarGpsAltitude(); // ONSTAR_GPS_TEST
   // onstar_gps_bearing = car_state.getOnstarGpsBearing(); // ONSTAR_GPS_TEST
 
-  gear_shifter = car_state.getGearShifter(); //GEAR_NUMBER_TEST
+  gear_shifter = (int)car_state.getGearShifter(); //GEAR_NUMBER_TEST
   current_gear_number = car_state.getCurrentGearNumber(); // ONSTAR_GPS_TEST
   next_gear_number = car_state.getNextGearNumber(); // ONSTAR_GPS_TEST
 
