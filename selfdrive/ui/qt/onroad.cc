@@ -626,13 +626,14 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
 
   QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
-  if (gear_shifter == cereal::CarState::GearShifter::PARK) {
+  //GEAR_NUMBER_TEST
+  if (gear_shifter == 1) {
     speedLimitStr = "P";
-  } else if (gear_shifter == cereal::CarState::GearShifter::REVERSE) {
+  } else if (gear_shifter == 4) {
     speedLimitStr = "R";
-  } else if (gear_shifter == cereal::CarState::GearShifter::NEUTRAL) {
+  } else if (gear_shifter == 3) {
     speedLimitStr = "N";
-  } else if (gear_shifter == cereal::CarState::GearShifter::UNKNOWN) {
+  } else if (gear_shifter == 0) {
     speedLimitStr = "U";
   } else {
     speedLimitStr = QString::number(current_gear_number);
