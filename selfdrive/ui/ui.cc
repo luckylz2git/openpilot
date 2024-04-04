@@ -244,10 +244,10 @@ static void update_state(UIState *s) {
     scene.parked = carState.getGearShifter() == cereal::CarState::GearShifter::PARK;
 
     if (scene.compass && scene.onstar_gps) {
-      auto curTime = QDateTime::currentDateTime().time();
-      int deg = (((int)curTime.toString("ss")) * 6) % 360;
-      // scene.bearing_deg = (int)std::round(carState.getOnstarGpsBearing());
-      scene.bearing_deg = deg;
+      // auto curTime = QDateTime::currentDateTime().time();
+      // int deg = (((int)curTime.toString("ss")) * 6) % 360;
+      scene.bearing_deg = (int)std::round(carState.getOnstarGpsBearing());
+      // scene.bearing_deg = deg;
     }
   }
   if (sm.updated("controlsState")) {
