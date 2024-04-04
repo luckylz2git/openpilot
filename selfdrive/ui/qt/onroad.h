@@ -174,8 +174,8 @@ private:
   float onstar_gps_longitude;
   float onstar_gps_latitude;
   float onstar_gps_altitude;
-  float onstar_gps_bearing;
-  
+  // float onstar_gps_bearing;
+
   int current_gear_number;
   int next_gear_number;
 

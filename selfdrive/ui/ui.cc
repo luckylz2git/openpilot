@@ -241,6 +241,10 @@ static void update_state(UIState *s) {
       scene.steering_angle_deg = carState.getSteeringAngleDeg();
     }
     scene.parked = carState.getGearShifter() == cereal::CarState::GearShifter::PARK;
+
+    if (scene.compass && scene.onstar_gps) {
+      scene.bearing_deg = (int)std::round(carState.getOnstarGpsBearing());
+    }
   }
   if (sm.updated("controlsState")) {
     auto controlsState = sm["controlsState"].getControlsState();
@@ -284,7 +288,7 @@ static void update_state(UIState *s) {
   }
   if (sm.updated("liveLocationKalman")) {
     auto liveLocationKalman = sm["liveLocationKalman"].getLiveLocationKalman();
-    if (scene.compass) {
+    if (scene.compass && !scene.onstar_gps) { // ONSTAR_GPS_TEST
       auto orientation = liveLocationKalman.getCalibratedOrientationNED();
       if (orientation.getValid()) {
         scene.bearing_deg = RAD2DEG(orientation.getValue()[2]);
@@ -322,6 +326,7 @@ void ui_update_frogpilot_params(UIState *s) {
 
   scene.camera_view = params.getInt("CameraView");
   scene.compass = params.getBool("Compass");
+  scene.onstar_gps = params.getBool("OnStarGPS"); // ONSTAR_GPS_TEST
 
   scene.conditional_experimental = params.getBool("ConditionalExperimental");
   scene.conditional_speed = scene.conditional_experimental ? params.getInt("CESpeed") : 0;

@@ -568,7 +568,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   onstar_gps_longitude = car_state.getOnstarGpsLongitude(); // ONSTAR_GPS_TEST
   onstar_gps_latitude = car_state.getOnstarGpsLatitude(); // ONSTAR_GPS_TEST
   onstar_gps_altitude = car_state.getOnstarGpsAltitude(); // ONSTAR_GPS_TEST
-  onstar_gps_bearing = car_state.getOnstarGpsBearing(); // ONSTAR_GPS_TEST
+  // onstar_gps_bearing = car_state.getOnstarGpsBearing(); // ONSTAR_GPS_TEST
 
   current_gear_number = car_state.getCurrentGearNumber(); // ONSTAR_GPS_TEST
   next_gear_number = car_state.getNextGearNumber(); // ONSTAR_GPS_TEST
@@ -625,8 +625,9 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
 
   QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
-  auto curTime = QDateTime::currentDateTime().time();
-  speedLimitStr = curTime.toString("HH:mm:ss");
+  // 显示当前UTC时间
+  // auto curTime = QDateTime::currentDateTime().time();
+  // speedLimitStr = curTime.toString("HH:mm:ss");
   QString speedLimitOffsetStr = slcSpeedLimitOffset == 0 ? "–" : QString::number(slcSpeedLimitOffset, 'f', 0).prepend(slcSpeedLimitOffset > 0 ? "+" : "");
   // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
   // 显示整数部分
@@ -641,7 +642,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   }
   // speedStr = QString("%1,%2,%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
   // QString::number(onstar_gps_longitude, 'f', 0) + "," + QString::number(onstar_gps_latitude, 'f', 0) + ","
-  speedStr = QString("%1°").arg(onstar_gps_bearing, 0, 'f', 1) + "," + QString::number(current_gear_number) + "," + QString::number(next_gear_number); // ONSTAR_GPS_TEST
+  // QString("%1°").arg(onstar_gps_bearing, 0, 'f', 1) + "," + 
+  // speedStr = QString::number(current_gear_number) + "," + QString::number(next_gear_number); // ONSTAR_GPS_TEST
   
   //speedStr = "0,0," + QString::number(410136602.0, 'f', 0) + "," + QString::number(81047835.0, 'f', 0) + "," + QString::number(1619.0, 'f', 0); // ONSTAR_GPS_TEST
   // 用speedStr来显示speed的修正值
