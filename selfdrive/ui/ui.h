@@ -239,6 +239,7 @@ typedef struct UIScene {
   bool vtsc_controlling_curve;
   bool wheel_speed;
   bool cslc_enabled;
+  bool onstar_gps;
 
   float acceleration;
   float adjusted_cruise;

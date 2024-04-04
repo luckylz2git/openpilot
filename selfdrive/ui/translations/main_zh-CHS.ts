@@ -799,7 +799,7 @@
     </message>
     <message>
         <source>Use OnStar GPS Signal (incomplete)</source>
-        <translation>使用安吉星GPS信号(未实现)</translation>
+        <translation>使用安吉星GPS信号</translation>
     </message>
     <message>
         <source>SELECT</source>
