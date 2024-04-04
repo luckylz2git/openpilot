@@ -176,6 +176,7 @@ private:
   float onstar_gps_altitude;
   // float onstar_gps_bearing;
 
+  int gear_shifter;
   int current_gear_number;
   int next_gear_number;
 

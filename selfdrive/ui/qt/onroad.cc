@@ -570,6 +570,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   onstar_gps_altitude = car_state.getOnstarGpsAltitude(); // ONSTAR_GPS_TEST
   // onstar_gps_bearing = car_state.getOnstarGpsBearing(); // ONSTAR_GPS_TEST
 
+  gear_shifter = car_state.getGearShifter(); //GEAR_NUMBER_TEST
   current_gear_number = car_state.getCurrentGearNumber(); // ONSTAR_GPS_TEST
   next_gear_number = car_state.getNextGearNumber(); // ONSTAR_GPS_TEST
 
@@ -625,6 +626,17 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
 
   QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
+  if (gear_shifter == cereal::CarState::GearShifter::PARK) {
+    speedLimitStr = "P";
+  } else if (gear_shifter == cereal::CarState::GearShifter::REVERSE) {
+    speedLimitStr = "R";
+  } else if (gear_shifter == cereal::CarState::GearShifter::NEUTRAL) {
+    speedLimitStr = "N";
+  } else if (gear_shifter == cereal::CarState::GearShifter::UNKNOWN) {
+    speedLimitStr = "U";
+  } else {
+    speedLimitStr = QString::number(current_gear_number);
+  }
   // 显示当前UTC时间
   // auto curTime = QDateTime::currentDateTime().time();
   // speedLimitStr = curTime.toString("HH:mm:ss");
