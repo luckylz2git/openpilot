@@ -581,10 +581,14 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   speed *= s.scene.is_metric ? MS_TO_KPH : MS_TO_MPH;
 
   auto speed_limit_sign = nav_instruction.getSpeedLimitSign();
-  speedLimit = slcOverridden ? scene.speed_limit_overridden_speed : speedLimitController ? slcSpeedLimit : nav_alive ? nav_instruction.getSpeedLimit() : 0.0;
-  speedLimit *= (s.scene.is_metric ? MS_TO_KPH : MS_TO_MPH);
-  if (speedLimitController && !slcOverridden) {
-    speedLimit = speedLimit - (showSLCOffset ? slcSpeedLimitOffset : 0);
+  if (gearNumber) {
+    speedLimit = 0;
+  } else {
+    speedLimit = slcOverridden ? scene.speed_limit_overridden_speed : speedLimitController ? slcSpeedLimit : nav_alive ? nav_instruction.getSpeedLimit() : 0.0;
+    speedLimit *= (s.scene.is_metric ? MS_TO_KPH : MS_TO_MPH);
+    if (speedLimitController && !slcOverridden) {
+      speedLimit = speedLimit - (showSLCOffset ? slcSpeedLimitOffset : 0);
+    }
   }
 
   has_us_speed_limit = (nav_alive && speed_limit_sign == cereal::NavInstruction::SpeedLimitSign::MUTCD) || (speedLimitController && !useViennaSLCSign) || (gearNumber && !useViennaSLCSign); //GEAR_NUMBER_TEST
@@ -633,9 +637,9 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   QString speedLimitOffsetStr = slcSpeedLimitOffset == 0 ? "–" : QString::number(slcSpeedLimitOffset, 'f', 0).prepend(slcSpeedLimitOffset > 0 ? "+" : "");
   
   if (gearNumber) { //GEAR_NUMBER_TEST
-    if (gear_shifter == 1) {
+    if (gear_shifter == 1 || current_gear_number == 15) {
       speedLimitStr = "P";
-    } else if (gear_shifter == 4) {
+    } else if (gear_shifter == 4 || current_gear_number == 14) {
       speedLimitStr = "R";
     } else if (gear_shifter == 3 || current_gear_number == 13) {
       speedLimitStr = "N";
@@ -777,18 +781,18 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
 
       p.save();
       p.setOpacity(slcOverridden ? 0.25 : 1.0);
-      if (speedLimitController && showSLCOffset && !slcOverridden) {
+      if (gearNumber) { //GEAR_NUMBER_TEST
+        p.setFont(InterFont(28, QFont::DemiBold));
+        p.drawText(sign_rect.adjusted(0, 30, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("GEAR"));
+        p.setFont(InterFont(70, QFont::Bold));
+        p.drawText(sign_rect.adjusted(0, 80, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
+      } else if (speedLimitController && showSLCOffset && !slcOverridden) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));
         p.setFont(InterFont(70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
         p.setFont(InterFont(50, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 120, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
-      } else if (gearNumber) { //GEAR_NUMBER_TEST
-        p.setFont(InterFont(28, QFont::DemiBold));
-        p.drawText(sign_rect.adjusted(0, 30, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("GEAR"));
-        p.setFont(InterFont(70, QFont::Bold));
-        p.drawText(sign_rect.adjusted(0, 80, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       } else {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("SPEED"));
@@ -814,7 +818,10 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       p.save();
       p.setOpacity(slcOverridden ? 0.25 : 1.0);
       p.setPen(blackColor());
-      if (showSLCOffset) {
+      if (gearNumber) { //GEAR_NUMBER_TEST
+        p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
+        p.drawText(sign_rect, Qt::AlignCenter, speedLimitStr);
+      } else if (showSLCOffset) {
         p.setFont(InterFont((speedLimitStr.size() >= 3) ? 60 : 70, QFont::Bold));
         p.drawText(sign_rect.adjusted(0, -25, 0, 0), Qt::AlignCenter, speedLimitStr);
         p.setFont(InterFont(40, QFont::DemiBold));
