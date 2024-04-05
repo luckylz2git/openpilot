@@ -331,6 +331,7 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.camera_view = params.getInt("CameraView");
   scene.compass = params.getBool("Compass");
   scene.onstar_gps = params.getBool("OnStarGPS"); // ONSTAR_GPS_TEST
+  scene.gear_number = params.getBool("GearNumber");
 
   scene.conditional_experimental = params.getBool("ConditionalExperimental");
   scene.conditional_speed = scene.conditional_experimental ? params.getInt("CESpeed") : 0;

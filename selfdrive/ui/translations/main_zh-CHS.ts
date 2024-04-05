@@ -798,8 +798,12 @@
         <translation>CSLC:巡航限速控制</translation>
     </message>
     <message>
-        <source>Use OnStar GPS Signal (incomplete)</source>
+        <source>Use OnStar GPS Signal</source>
         <translation>使用安吉星GPS信号</translation>
+    </message>
+    <message>
+        <source>Show Gear Number</source>
+        <translation>显示车辆档位</translation>
     </message>
     <message>
         <source>SELECT</source>

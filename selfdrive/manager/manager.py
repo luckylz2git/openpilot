@@ -285,6 +285,7 @@ def manager_init() -> None:
     ("SpeedDecimal", "0"),
     ("CalibrationCycles", "1"), 
     ("OnStarGPS", "0"),    
+    ("GearNumber", "0"), #GEAR_NUMBER_TEST
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))

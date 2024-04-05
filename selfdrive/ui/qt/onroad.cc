@@ -587,8 +587,8 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
     speedLimit = speedLimit - (showSLCOffset ? slcSpeedLimitOffset : 0);
   }
 
-  has_us_speed_limit = (nav_alive && speed_limit_sign == cereal::NavInstruction::SpeedLimitSign::MUTCD) || (speedLimitController && !useViennaSLCSign);
-  has_eu_speed_limit = (nav_alive && speed_limit_sign == cereal::NavInstruction::SpeedLimitSign::VIENNA) || (speedLimitController && useViennaSLCSign);
+  has_us_speed_limit = (nav_alive && speed_limit_sign == cereal::NavInstruction::SpeedLimitSign::MUTCD) || (speedLimitController && !useViennaSLCSign) || (gearNumber && !useViennaSLCSign); //GEAR_NUMBER_TEST
+  has_eu_speed_limit = (nav_alive && speed_limit_sign == cereal::NavInstruction::SpeedLimitSign::VIENNA) || (speedLimitController && useViennaSLCSign) || (gearNumber && useViennaSLCSign); //GEAR_NUMBER_TEST
   is_metric = s.scene.is_metric;
   speedUnit =  s.scene.is_metric ? tr("km/h") : tr("mph");
   hideBottomIcons = (cs.getAlertSize() != cereal::ControlsState::AlertSize::NONE || customSignals && (turnSignalLeft || turnSignalRight)) || fullMapOpen || showDriverCamera;
@@ -626,22 +626,27 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
 
   QString speedLimitStr = (speedLimit > 1) ? QString::number(std::nearbyint(speedLimit)) : "–";
-  //GEAR_NUMBER_TEST
-  if (gear_shifter == 1) {
-    speedLimitStr = "P";
-  } else if (gear_shifter == 4) {
-    speedLimitStr = "R";
-  } else if (gear_shifter == 3) {
-    speedLimitStr = "N";
-  } else if (gear_shifter == 0) {
-    speedLimitStr = "U";
-  } else {
-    speedLimitStr = QString::number(current_gear_number);
-  }
+  
   // 显示当前UTC时间
   // auto curTime = QDateTime::currentDateTime().time();
   // speedLimitStr = curTime.toString("HH:mm:ss");
   QString speedLimitOffsetStr = slcSpeedLimitOffset == 0 ? "–" : QString::number(slcSpeedLimitOffset, 'f', 0).prepend(slcSpeedLimitOffset > 0 ? "+" : "");
+  
+  if (gearNumber) { //GEAR_NUMBER_TEST
+    if (gear_shifter == 1) {
+      speedLimitStr = "P";
+    } else if (gear_shifter == 4) {
+      speedLimitStr = "R";
+    } else if (gear_shifter == 3 || current_gear_number == 13) {
+      speedLimitStr = "N";
+    } else if (gear_shifter == 0) {
+      speedLimitStr = "";
+    } else {
+      speedLimitStr = QString::number(current_gear_number);
+    }
+    speedLimitOffsetStr = "";
+  }
+  
   // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
   // 显示整数部分
   QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio1));
@@ -779,6 +784,11 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         p.drawText(sign_rect.adjusted(0, 51, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
         p.setFont(InterFont(50, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 120, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitOffsetStr);
+      } else if (gearNumber) { //GEAR_NUMBER_TEST
+        p.setFont(InterFont(28, QFont::DemiBold));
+        p.drawText(sign_rect.adjusted(0, 30, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("GEAR"));
+        p.setFont(InterFont(70, QFont::Bold));
+        p.drawText(sign_rect.adjusted(0, 85, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       } else {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("SPEED"));
@@ -1420,6 +1430,7 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
 
   showDriverCamera = scene.show_driver_camera;
 
+  gearNumber = scene.gear_number;
   speedLimitController = scene.speed_limit_controller;
   showSLCOffset = speedLimitController && scene.show_slc_offset;
   slcOverridden = speedLimitController && scene.speed_limit_overridden;

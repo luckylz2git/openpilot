@@ -242,6 +242,7 @@ private:
   bool turnSignalRight;
   bool useViennaSLCSign;
   bool vtscControllingCurve;
+  bool gearNumber;
 
   float cruiseAdjustment;
   float distanceConversion;
