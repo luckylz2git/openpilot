@@ -806,7 +806,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       p.setBrush(whiteColor());
       p.drawEllipse(sign_rect);
       if (gearNumber) { //GEAR_NUMBER_TEST
-        p.setPen(QPen(Qt::lightseagreen, 20));
+        p.setPen(QPen(Qt::blue, 20));
       } else {
         p.setPen(QPen(Qt::red, 20));
       }
