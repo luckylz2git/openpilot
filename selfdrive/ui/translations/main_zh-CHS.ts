@@ -106,6 +106,10 @@
         <translation>最高定速</translation>
     </message>
     <message>
+        <source>GEAR</source>
+        <translation>档位</translation>
+    </message>
+    <message>
         <source>SPEED</source>
         <translation>SPEED</translation>
     </message>
