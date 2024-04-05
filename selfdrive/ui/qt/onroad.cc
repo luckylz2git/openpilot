@@ -644,6 +644,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     } else {
       speedLimitStr = QString::number(current_gear_number);
     }
+    speedLimitStr = "T";
     speedLimitOffsetStr = "";
   }
   
@@ -788,7 +789,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 30, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("GEAR"));
         p.setFont(InterFont(70, QFont::Bold));
-        p.drawText(sign_rect.adjusted(0, 85, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
+        p.drawText(sign_rect.adjusted(0, 80, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       } else {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("SPEED"));
@@ -804,7 +805,11 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       p.setPen(Qt::NoPen);
       p.setBrush(whiteColor());
       p.drawEllipse(sign_rect);
-      p.setPen(QPen(Qt::red, 20));
+      if (gearNumber) { //GEAR_NUMBER_TEST
+        p.setPen(QPen(Qt::lightseagreen, 20));
+      } else {
+        p.setPen(QPen(Qt::red, 20));
+      }
       p.drawEllipse(sign_rect.adjusted(16, 16, -16, -16));
 
       p.save();

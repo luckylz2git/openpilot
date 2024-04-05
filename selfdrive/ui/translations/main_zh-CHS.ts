@@ -107,7 +107,7 @@
     </message>
     <message>
         <source>GEAR</source>
-        <translation>档位</translation>
+        <translation>档 位</translation>
     </message>
     <message>
         <source>SPEED</source>
