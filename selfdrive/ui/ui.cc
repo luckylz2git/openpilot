@@ -422,7 +422,7 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.speed_limit_controller = params.getBool("SpeedLimitController");
   scene.show_slc_offset = scene.speed_limit_controller && params.getBool("ShowSLCOffset");
   scene.show_slc_offset_ui = scene.speed_limit_controller && params.getBool("ShowSLCOffsetUI");
-  scene.use_vienna_slc_sign = scene.speed_limit_controller && params.getBool("UseVienna");
+  scene.use_vienna_slc_sign = (scene.speed_limit_controller || scene.gear_number) && params.getBool("UseVienna");
 
   scene.wheel_icon = params.getInt("WheelIcon");
 }
