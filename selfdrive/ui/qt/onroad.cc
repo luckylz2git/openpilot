@@ -640,11 +640,10 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     } else if (gear_shifter == 3 || current_gear_number == 13) {
       speedLimitStr = "N";
     } else if (gear_shifter == 0) {
-      speedLimitStr = "";
+      speedLimitStr = "-";
     } else {
       speedLimitStr = QString::number(current_gear_number);
     }
-    speedLimitStr = "T";
     speedLimitOffsetStr = "";
   }
   
