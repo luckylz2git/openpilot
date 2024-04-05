@@ -236,9 +236,9 @@ void Sidebar::updateState(const UIState &s) {
       setProperty("memoryStatus", QVariant::fromValue(memoryStatus));
     } else {
       ItemStatus storageStatus = {{tr(isStorageLeft ? "LEFT" : "USED"), storage}, theme_color};
-      if (10 <= storage_left && storage_left < 25) {
+      if (5 <= storage_left && storage_left < 10) {
         storageStatus = {{tr(isStorageLeft ? "LEFT" : "USED"), storage}, warning_color};
-      } else if (storage_left < 10) {
+      } else if (storage_left < 5) {
         storageStatus = {{tr(isStorageLeft ? "LEFT" : "USED"), storage}, danger_color};
       }
       setProperty("storageStatus", QVariant::fromValue(storageStatus));
