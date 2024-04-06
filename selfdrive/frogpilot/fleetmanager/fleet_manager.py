@@ -89,9 +89,9 @@ def route(route):
   return render_template("route.html", route=route, query_type=query_type, links=links, segments=segments, query_segment=query_segment)
 
 @app.route("/qlog/<segment>")
-def qlog_file(segment):
+def qlog_downlod_file(segment):
   # return send_from_directory("/data/media/0/realdata/", segment + "/qlog", as_attachment=True)
-  return send_file(filename_or_fp="/data/media/0/realdata/"+segment+"/qlog", as_attachment=True, download_name=segment+".qlog")
+  return send_file("/data/media/0/realdata/"+segment+"/qlog", as_attachment=True, download_name=segment+".qlog")
 
 @app.route("/footage/")
 @app.route("/footage")
