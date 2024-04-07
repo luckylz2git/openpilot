@@ -646,7 +646,18 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     } else if (gear_shifter == 0) {
       speedLimitStr = "-";
     } else {
-      speedLimitStr = "D" + QString::number(current_gear_number);
+      if (gear_shifter == 5) {
+        speedLimitStr = "S";
+      } else if (gear_shifter == 6) {
+        speedLimitStr = "L";
+      } else if (gear_shifter == 8) {
+        speedLimitStr = "E";
+      } else if (gear_shifter == 9) {
+        speedLimitStr = "M";
+      } else {
+        speedLimitStr = "D";
+      }
+      speedLimitStr += QString::number(current_gear_number);
     }
     speedLimitOffsetStr = "";
   }
