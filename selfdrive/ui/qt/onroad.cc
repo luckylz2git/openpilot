@@ -477,7 +477,6 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
   // Custom steering wheel icon
   engage_img = wheelImages[wheelIcon];
   QPixmap img = wheelIcon ? engage_img : (experimental_mode ? experimental_img : engage_img);
-  img = experimental_img;
   QMovie *gif = wheelImagesGif[wheelIconGif];
 
   QColor background_color = wheelIcon != 0 && !isDown() && engageable ?
@@ -488,7 +487,7 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
     (scene.navigate_on_openpilot ? QColor(49, 161, 238, 255) : QColor(0, 0, 0, 166)))))) :
     QColor(0, 0, 0, 166);
   //TEST_STEER
-  if (!steeringPressed) {
+  if (steeringPressed) {
     background_color = QColor(145, 155, 149, 241);
   }
   if (!(scene.show_driver_camera || scene.map_open && scene.full_map)) {
