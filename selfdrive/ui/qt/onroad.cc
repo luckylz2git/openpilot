@@ -461,6 +461,11 @@ void ExperimentalButton::updateState(const UIState &s, bool leadInfo) {
       steeringAngleDeg = 0;
     }
   }
+  //TEST_STEER
+  if (steeringPressed != scene.steering_pressed) {
+    steeringPressed = scene.steering_pressed;
+    update();
+  }
 }
 
 void ExperimentalButton::paintEvent(QPaintEvent *event) {
@@ -472,7 +477,7 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
   // Custom steering wheel icon
   engage_img = wheelImages[wheelIcon];
   QPixmap img = wheelIcon ? engage_img : (experimental_mode ? experimental_img : engage_img);
-
+  img = experimental_img;
   QMovie *gif = wheelImagesGif[wheelIconGif];
 
   QColor background_color = wheelIcon != 0 && !isDown() && engageable ?
@@ -482,7 +487,10 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
     (scene.traffic_mode_active ? QColor(225, 0, 0, 255) :
     (scene.navigate_on_openpilot ? QColor(49, 161, 238, 255) : QColor(0, 0, 0, 166)))))) :
     QColor(0, 0, 0, 166);
-
+  //TEST_STEER
+  if (!steeringPressed) {
+    background_color = QColor(10, 186, 181, 255);
+  }
   if (!(scene.show_driver_camera || scene.map_open && scene.full_map)) {
     if (wheelIconGif != 0) {
       QBrush backgroundBrush(background_color);
