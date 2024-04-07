@@ -487,8 +487,8 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
     (scene.navigate_on_openpilot ? QColor(49, 161, 238, 255) : QColor(0, 0, 0, 166)))))) :
     QColor(0, 0, 0, 166);
   //TEST_STEER
-  if (steeringPressed) {
-    background_color = QColor(10, 186, 181, 255);
+  if (!steeringPressed) {
+    background_color = QColor(145, 155, 149, 241);
   }
   if (!(scene.show_driver_camera || scene.map_open && scene.full_map)) {
     if (wheelIconGif != 0) {
