@@ -853,6 +853,14 @@
         <translation>自动</translation>
     </message>
     <message>
+        <source>Screen Off</source>
+        <translation>熄屏</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>秒</translation>
+    </message>
+    <message>
         <source>Standard</source>
         <translation>标准</translation>
     </message>
