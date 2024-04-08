@@ -349,16 +349,16 @@ void FrogPilotVisualsPanel::updateMetric() {
     laneLinesWidthToggle->setDescription("Customize the lane line width.\n\nDefault matches the Vienna average of 10 centimeters.");
     roadEdgesWidthToggle->setDescription("Customize the road edges width.\n\nDefault is 1/2 of the Vienna average lane line width of 10 centimeters.");
 
-    laneLinesWidthToggle->updateControl(0, 60, " centimeters");
-    roadEdgesWidthToggle->updateControl(0, 60, " centimeters");
-    pathWidthToggle->updateControl(0, 30, " meters", 10);
+    laneLinesWidthToggle->updateControl(0, 60, tr(" centimeters"));
+    roadEdgesWidthToggle->updateControl(0, 60, tr(" centimeters"));
+    pathWidthToggle->updateControl(0, 30, tr(" meters"), 10);
   } else {
     laneLinesWidthToggle->setDescription("Customize the lane line width.\n\nDefault matches the MUTCD average of 4 inches.");
     roadEdgesWidthToggle->setDescription("Customize the road edges width.\n\nDefault is 1/2 of the MUTCD average lane line width of 4 inches.");
 
-    laneLinesWidthToggle->updateControl(0, 24, " inches");
-    roadEdgesWidthToggle->updateControl(0, 24, " inches");
-    pathWidthToggle->updateControl(0, 100, " feet", 10);
+    laneLinesWidthToggle->updateControl(0, 24, tr(" inches"));
+    roadEdgesWidthToggle->updateControl(0, 24, tr(" inches"));
+    pathWidthToggle->updateControl(0, 100, tr(" feet"), 10);
   }
 
   laneLinesWidthToggle->refresh();

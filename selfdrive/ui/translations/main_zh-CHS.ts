@@ -506,7 +506,7 @@
     </message>
     <message>
         <source>Always on Lateral</source>
-        <translation>持续车道居中</translation>
+        <translation>AOL:持续车道居中</translation>
     </message>
     <message>
         <source>Conditional Experimental Mode</source>
@@ -594,7 +594,19 @@
     </message>
     <message>
         <source>Nudgeless Lane Change</source>
-        <translation>打灯自动变道</translation>
+        <translation>NLC:打灯自动变道</translation>
+    </message>
+    <message>
+        <source> meters</source>
+        <translation>米</translation>
+    </message>
+    <message>
+        <source> feet</source>
+        <translation>英尺</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation>秒</translation>
     </message>
     <message>
         <source>Enable lane changes without manual steering input.</source>
@@ -855,6 +867,22 @@
     <message>
         <source>Screen Off</source>
         <translation>熄灭</translation>
+    </message>
+    <message>
+        <source> meters</source>
+        <translation>米</translation>
+    </message>
+    <message>
+        <source> feet</source>
+        <translation>英尺</translation>
+    </message>
+    <message>
+        <source> centimeters</source>
+        <translation>厘米</translation>
+    </message>
+    <message>
+        <source> inches</source>
+        <translation>英寸</translation>
     </message>
     <message>
         <source> seconds</source>

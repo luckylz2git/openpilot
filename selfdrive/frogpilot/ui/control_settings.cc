@@ -344,7 +344,7 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
     } else if (param == "LaneChangeTime") {
       std::map<int, QString> laneChangeTimeLabels;
       for (int i = 0; i <= 10; ++i) {
-        laneChangeTimeLabels[i] = i == 0 ? "Instant" : QString::number(i / 2.0) + " seconds";
+        laneChangeTimeLabels[i] = i == 0 ? "Instant" : QString::number(i / 2.0) + tr(" seconds");
       }
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 10, laneChangeTimeLabels, this, false);
     } else if (param == "LaneDetectionWidth") {
@@ -624,7 +624,7 @@ void FrogPilotControlsPanel::updateMetric() {
     offset3Toggle->setDescription("Set speed limit offset for limits between 61-90 kph.");
     offset4Toggle->setDescription("Set speed limit offset for limits above 90+ kph.");
 
-    laneWidthToggle->updateControl(0, 30, " meters", 10);
+    laneWidthToggle->updateControl(0, 30, tr(" meters"), 10);
 
     mtscLimitToggle->updateControl(0, 99, " kph");
 
@@ -638,7 +638,7 @@ void FrogPilotControlsPanel::updateMetric() {
     pauseLateralToggle->updateControl(0, 150, " kph");
     setSpeedOffsetToggle->updateControl(0, 150, " kph");
 
-    stoppingDistanceToggle->updateControl(0, 5, " meters");
+    stoppingDistanceToggle->updateControl(0, 5, tr(" meters"));
   } else {
     offset1Toggle->setTitle(tr("Speed Limit Offset (0-34 mph)"));
     offset2Toggle->setTitle(tr("Speed Limit Offset (35-54 mph)"));
@@ -650,7 +650,7 @@ void FrogPilotControlsPanel::updateMetric() {
     offset3Toggle->setDescription("Set speed limit offset for limits between 55-64 mph.");
     offset4Toggle->setDescription("Set speed limit offset for limits between 65-99 mph.");
 
-    laneWidthToggle->updateControl(0, 100, " feet", 10);
+    laneWidthToggle->updateControl(0, 100, tr(" feet"), 10);
 
     mtscLimitToggle->updateControl(0, 99, " mph");
 
@@ -664,7 +664,7 @@ void FrogPilotControlsPanel::updateMetric() {
     pauseLateralToggle->updateControl(0, 99, " mph");
     setSpeedOffsetToggle->updateControl(0, 99, " mph");
 
-    stoppingDistanceToggle->updateControl(0, 10, " feet");
+    stoppingDistanceToggle->updateControl(0, 10, tr(" feet"));
   }
 
   laneWidthToggle->refresh();
