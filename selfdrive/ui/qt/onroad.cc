@@ -488,7 +488,7 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
     QColor(0, 0, 0, 166);
   //TEST_STEER
   if (steeringPressed) {
-    background_color = QColor(145, 155, 149, 241);
+    background_color = QColor(100, 100, 100, 200); //QColor(145, 155, 149, 241);
   }
   if (!(scene.show_driver_camera || scene.map_open && scene.full_map)) {
     if (wheelIconGif != 0) {
@@ -653,18 +653,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     } else if (gear_shifter == 0) {
       speedLimitStr = "-";
     } else {
-      if (gear_shifter == 5) {
-        speedLimitStr = "S";
-      } else if (gear_shifter == 6) {
-        speedLimitStr = "L";
-      } else if (gear_shifter == 8) {
-        speedLimitStr = "E";
-      } else if (gear_shifter == 9) {
-        speedLimitStr = "M";
-      } else {
-        speedLimitStr = "D";
-      }
-      speedLimitStr += QString::number(current_gear_number);
+      speedLimitStr = "D" + QString::number(current_gear_number);
     }
     speedLimitOffsetStr = "";
   }
