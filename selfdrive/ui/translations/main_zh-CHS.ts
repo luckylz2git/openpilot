@@ -854,7 +854,7 @@
     </message>
     <message>
         <source>Screen Off</source>
-        <translation>熄屏</translation>
+        <translation>熄灭</translation>
     </message>
     <message>
         <source> seconds</source>
