@@ -125,12 +125,12 @@ private:
 
   UIScene &scene;
 
-  bool accelerating;
-  bool decelerating;
+  // bool accelerating;
+  // bool decelerating;
   bool gasPressed; //TEST_GAS_PEDAL
   bool brakePressed; //TEST_BRAKE_PEDAL
 
-  float acceleration;
+  // float acceleration;
 };
 
 class PersonalityButton : public QPushButton {
