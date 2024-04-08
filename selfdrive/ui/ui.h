@@ -242,6 +242,8 @@ typedef struct UIScene {
   bool onstar_gps;
   bool gear_number;
   bool steering_pressed; //TEST_STEER
+  bool gas_pressed; //TEST_GAS_PEDAL
+  bool brake_pressed; //TEST_BRAKE_PEDAL
 
   float acceleration;
   float adjusted_cruise;

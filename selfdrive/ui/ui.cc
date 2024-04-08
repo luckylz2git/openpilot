@@ -242,6 +242,8 @@ static void update_state(UIState *s) {
       scene.steering_angle_deg = carState.getSteeringAngleDeg();
     }
     scene.steering_pressed = carState.getSteeringPressed(); //TEST_STEER
+    scene.gas_pressed = carState.getGasPressed(); //TEST_GAS_PEDAL
+    scene.brake_pressed = carState.getBrakePressed(); //TEST_BRAKE_PEDAL
     scene.parked = carState.getGearShifter() == cereal::CarState::GearShifter::PARK;
 
     if (scene.compass && scene.onstar_gps) {

@@ -89,6 +89,8 @@ private:
   bool firefoxRandomEventTriggered;
   bool rotatingWheel;
   bool steeringPressed; //TEST_STEER
+  bool gasPressed; //TEST_GAS_PEDAL
+  bool brakePressed; //TEST_BRAKE_PEDAL
   bool weebRandomEventTriggered;
 
   int steeringAngleDeg;

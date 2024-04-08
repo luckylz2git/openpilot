@@ -1794,6 +1794,12 @@ void PedalIcons::updateState() {
   if (accelerating || decelerating) {
     update();
   }
+  //TEST_GAS_PEDAL || TEST_BRAKE_PEDAL
+  if (gasPressed != scene.gas_pressed || brakePressed != scene.brake_pressed) {
+    gasPressed = scene.gas_pressed;
+    brakePressed = scene.brake_pressed;
+    update();
+  }
 }
 
 void PedalIcons::paintEvent(QPaintEvent *event) {
@@ -1809,10 +1815,14 @@ void PedalIcons::paintEvent(QPaintEvent *event) {
   float brakeOpacity = scene.standstill ? 1.0f : decelerating ? std::max(0.25f, std::abs(acceleration)) : 0.25f;
   float gasOpacity = accelerating ? std::max(0.25f, acceleration) : 0.25f;
 
-  p.setOpacity(brakeOpacity);
+  //p.setOpacity(brakeOpacity);
+  //TEST_BRAKE_PEDAL
+  p.setOpacity(brakePressed ? 1.0f : 0.25f);
   p.drawPixmap(brakeX, (height() - img_size) / 2, brake_pedal_img);
 
-  p.setOpacity(gasOpacity);
+  //p.setOpacity(gasOpacity);
+  //TEST_GAS_PEDAL
+  p.setOpacity(gasPressed ? 1.0f : 0.25f);
   p.drawPixmap(gasX, (height() - img_size) / 2, gas_pedal_img);
 }
 
