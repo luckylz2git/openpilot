@@ -1327,11 +1327,11 @@ void AnnotatedCameraWidget::initializeFrogPilotWidgets() {
   personality_btn = new PersonalityButton(this);
   bottom_layout->addWidget(personality_btn);
 
-  QSpacerItem *spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
-  bottom_layout->addItem(spacer);
-
   recorder_btn = new ScreenRecorder(this);
   bottom_layout->addWidget(recorder_btn);
+
+  QSpacerItem *spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
+  bottom_layout->addItem(spacer);
 
   compass_img = new Compass(this);
   bottom_layout->addWidget(compass_img);
