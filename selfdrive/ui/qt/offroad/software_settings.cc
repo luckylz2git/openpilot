@@ -141,6 +141,17 @@ SoftwarePanel::SoftwarePanel(QWidget* parent) : ListWidget(parent), scene(uiStat
   });
   addItem(gitCheckoutBtn);
 
+  // FROGPILOT_PREBUILT_TEST
+  auto togglePrebuilt = new ParamControl(tr("Prebuilt FrogPilot"), tr("FrogPilotPrebuilt"), "Use prebuilt to speed up OpenPilot start time.", "", this);
+  connect(togglePrebuilt, &ToggleControl::toggleFlipped, [&]() {
+    if (params.getBool("FrogPilotPrebuilt")) {
+      std::system("[ ! -f /data/openpilot/prebuilt.frogpilot ] && touch /data/openpilot/prebuilt.frogpilot;[ ! -f /data/openpilot/prebuilt ] && touch /data/openpilot/prebuilt");
+    } else {
+      std::system("[ -f /data/openpilot/prebuilt.frogpilot ] && rm /data/openpilot/prebuilt && rm /data/openpilot/prebuilt.frogpilot");
+    }
+  });
+  addItem(togglePrebuilt);
+
   // error log button
   errorLogBtn = new ButtonControl(tr("Error Log"), tr("VIEW"), "View the error log for debugging purposes when openpilot crashes.");
   connect(errorLogBtn, &ButtonControl::clicked, [=]() {

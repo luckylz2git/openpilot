@@ -450,6 +450,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"CalibrationCycles", PERSISTENT},
     {"OnStarGPS", PERSISTENT},
     {"GearNumber", PERSISTENT}, //GEAR_NUMBER_TEST
+    {"GearNumber", PERSISTENT}, //GEAR_NUMBER_TEST
+    {"FrogPilotPrebuilt", PERSISTENT}, //FROGPILOT_PREBUILT_TEST
 };
 
 } // namespace

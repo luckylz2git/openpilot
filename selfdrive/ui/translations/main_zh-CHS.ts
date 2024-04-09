@@ -1757,6 +1757,10 @@ This may take up to a minute.</source>
         <translation>GitHub代码签出</translation>
     </message>
     <message>
+        <source>Prebuilt FrogPilot</source>
+        <translation>使用预编译加速</translation>
+    </message>
+    <message>
         <source>CHECKOUT</source>
         <translation>签出</translation>
     </message>
