@@ -16,8 +16,8 @@ ScreenRecorder::ScreenRecorder(QWidget *parent) : QPushButton(parent), image_que
 
   screen_height = 1080;
   screen_width = 2160;
-  recording_height = 720;
-  recording_width = (screen_width * recording_height) / screen_height + (recording_width % 2);
+  recording_height = 1080; //720;
+  recording_width = 2160; //(screen_width * recording_height) / screen_height + (recording_width % 2);
 
   rgb_scale_buffer = std::make_unique<uint8_t[]>(recording_width * recording_height * 4);
 
@@ -47,9 +47,9 @@ void ScreenRecorder::paintEvent(QPaintEvent *event) {
   p.setRenderHint(QPainter::Antialiasing);
 
   //QRect fullRect(0, 0, 192 / 2, 192 / 2);
-  QRect fullRect(192 / 4, 192 / 2 + 192 / 4 + 25, 192 / 4, 192 / 4);
+  QRect fullRect(192 / 4, 192 / 2 + 192 / 4 + 25 + 12, 192 / 4, 192 / 4);
   QColor outerColor = recording ? recording_color : QColor::fromRgbF(1, 1, 1, 1);
-  int outerRedWidth = fullRect.width() * 0.05;
+  int outerRedWidth = fullRect.width() * 0.2; //0.05;
 
   QRect outerRect = fullRect;
   p.setBrush(outerColor);
