@@ -11,7 +11,7 @@ static long long milliseconds() {
 
 ScreenRecorder::ScreenRecorder(QWidget *parent) : QPushButton(parent), image_queue(30), recording(false), started(0), frame(0) {
   //setFixedSize(192 / 2 + 25, 192 / 2);
-  setFixedSize(192 + 25 + 12, 192 + 25 + 12);
+  setFixedSize(192 /2 + 25, 192 + 25 + 25);
   setFocusPolicy(Qt::NoFocus);
 
   screen_height = 1080;
@@ -47,7 +47,7 @@ void ScreenRecorder::paintEvent(QPaintEvent *event) {
   p.setRenderHint(QPainter::Antialiasing);
 
   //QRect fullRect(0, 0, 192 / 2, 192 / 2);
-  QRect fullRect(25 + 12, 192 / 2 + 192 / 4 + 25 + 12, 192 / 4, 192 / 4);
+  QRect fullRect(0, 192 / 2 + 192 / 4 + 25 + 25, 192 / 4, 192 / 4);
   QColor outerColor = recording ? recording_color : QColor::fromRgbF(1, 1, 1, 1);
   int outerRedWidth = fullRect.width() * 0.1; //0.05;
 
