@@ -106,7 +106,7 @@ class CarState(CarStateBase):
     # TEST_BRAKE_PEDAL
     if self.CP.carFingerprint in SDGM_CAR:
       ret.brakePressed2 = ret.brakePressed or ret.brake >= 8
-    else
+    else:
       ret.brakePressed2 = ret.brakePressed
 
     # Regen braking is braking
