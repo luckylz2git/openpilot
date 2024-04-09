@@ -529,8 +529,8 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
   buttons_layout->setSpacing(0);
 
   // Neokii screen recorder
-  recorder_btn = new ScreenRecorder(this);
-  buttons_layout->addWidget(recorder_btn);
+  // recorder_btn = new ScreenRecorder(this);
+  // buttons_layout->addWidget(recorder_btn);
 
   experimental_btn = new ExperimentalButton(this);
   buttons_layout->addWidget(experimental_btn);
@@ -1330,6 +1330,9 @@ void AnnotatedCameraWidget::initializeFrogPilotWidgets() {
   QSpacerItem *spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
   bottom_layout->addItem(spacer);
 
+  recorder_btn = new ScreenRecorder(this);
+  bottom_layout->addWidget(recorder_btn);
+
   compass_img = new Compass(this);
   bottom_layout->addWidget(compass_img);
 
@@ -1825,8 +1828,8 @@ void PedalIcons::paintEvent(QPaintEvent *event) {
   p.setOpacity(gasPressed ? 1.0f : 0.1f);
   p.drawPixmap(gasX, (height() - img_size) / 2, gas_pedal_img);
 
-  p.setPen(QPen(Qt::red, 5));
-  p.drawLine(QPoint(0,0),QPoint(500,500));
+  p.setPen(QPen(Qt::red, 10));
+  p.drawLine(QPoint(0,0),QPoint(200,200));
 }
 
 void AnnotatedCameraWidget::drawSLCConfirmation(QPainter &p) {
