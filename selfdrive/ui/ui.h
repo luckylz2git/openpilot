@@ -63,7 +63,7 @@ struct Alert {
   static Alert get(const SubMaster &sm, uint64_t started_frame) {
     const cereal::ControlsState::Reader &cs = sm["controlsState"].getControlsState();
     const uint64_t controls_frame = sm.rcv_frame("controlsState");
-
+    return {};
     Alert alert = {};
     if (controls_frame >= started_frame) {  // Don't get old alert.
       alert = {cs.getAlertText1().cStr(), cs.getAlertText2().cStr(),

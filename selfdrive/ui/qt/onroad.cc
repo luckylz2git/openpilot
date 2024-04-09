@@ -1824,6 +1824,9 @@ void PedalIcons::paintEvent(QPaintEvent *event) {
   //TEST_GAS_PEDAL
   p.setOpacity(gasPressed ? 1.0f : 0.1f);
   p.drawPixmap(gasX, (height() - img_size) / 2, gas_pedal_img);
+
+  p.setPen(QPen(Qt::red, 5));
+  p.drawLine(QPoint(0,0),QPoint(500,500));
 }
 
 void AnnotatedCameraWidget::drawSLCConfirmation(QPainter &p) {
