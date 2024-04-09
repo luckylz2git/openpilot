@@ -46,7 +46,7 @@ void ScreenRecorder::paintEvent(QPaintEvent *event) {
   p.setRenderHint(QPainter::Antialiasing);
 
   //QRect fullRect(0, 0, 192 / 2, 192 / 2);
-  QRect fullRect(0, 192 / 2, 192 / 2, 192 / 2);
+  QRect fullRect(0, 50, 192 / 2, 192 / 2);
   QColor outerColor = recording ? recording_color : QColor::fromRgbF(1, 1, 1, 1);
   int outerRedWidth = fullRect.width() * 0.05;
 
