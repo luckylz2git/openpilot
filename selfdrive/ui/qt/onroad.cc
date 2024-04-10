@@ -1461,7 +1461,7 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
 
   trafficModeActive = scene.traffic_mode_active;
 
-  turnSignalLeft = scene.turn_signal_left;
+  turnSignalLeft = showRecordButton; //scene.turn_signal_left;
   turnSignalRight = scene.turn_signal_right;
 
   if (!(showDriverCamera || fullMapOpen)) {
