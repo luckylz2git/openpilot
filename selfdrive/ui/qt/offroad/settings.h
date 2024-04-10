@@ -111,6 +111,8 @@ private:
   ButtonControl *installBtn;
   ButtonControl *downloadBtn;
   ButtonControl *targetBranchBtn;
+  ButtonControl *gitCheckoutBtn;
+  ParamControl *togglePrebuilt;
 
   Params params;
   ParamWatcher *fs_watch;
