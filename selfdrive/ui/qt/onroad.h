@@ -246,6 +246,7 @@ private:
   bool useViennaSLCSign;
   bool vtscControllingCurve;
   bool gearNumber;
+  bool showRecordButton;
 
   float cruiseAdjustment;
   float distanceConversion;
@@ -308,6 +309,7 @@ public:
   OnroadWindow(QWidget* parent = 0);
   bool isMapVisible() const { return map && map->isVisible(); }
   void showMapPanel(bool show) { if (map) map->setVisible(show); }
+  void showSidebar(bool show) { showRecordButton=!show; }
 
 signals:
   void mapPanelRequested();

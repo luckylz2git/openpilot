@@ -52,6 +52,7 @@ HomeWindow::HomeWindow(QWidget* parent) : QWidget(parent) {
 
 void HomeWindow::showSidebar(bool show) {
   sidebar->setVisible(show);
+  onroad->showSidebar(show);
 }
 
 void HomeWindow::showMapPanel(bool show) {
