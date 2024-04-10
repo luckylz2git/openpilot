@@ -130,9 +130,8 @@ SoftwarePanel::SoftwarePanel(QWidget* parent) : ListWidget(parent), scene(uiStat
   });
   addItem(uninstallBtn);
 
-  QString curX = QString::fromStdString(params.get("UpdaterTargetBranch"));
   // git checkout button
-  auto gitCheckoutBtn = new ButtonControl(tr("GitHub Checkout"), tr("CHECKOUT"), "Git checkout the local compile changes.");
+  gitCheckoutBtn = new ButtonControl(tr("GitHub Checkout"), tr("CHECKOUT"), "Git checkout the local compile changes.");
   connect(gitCheckoutBtn, &ButtonControl::clicked, [&]() {
     if (ConfirmationDialog::confirm(tr("Are you sure you want to git checkout all of your local compile changes?"), tr("Checkout"), this)) {
       std::system("cd /data/openpilot && git checkout .");
@@ -143,7 +142,7 @@ SoftwarePanel::SoftwarePanel(QWidget* parent) : ListWidget(parent), scene(uiStat
   addItem(gitCheckoutBtn);
 
   // FROGPILOT_PREBUILT_TEST
-  auto togglePrebuilt = new ParamControl("FrogPilotPrebuilt", tr("Prebuilt FrogPilot"), "Use prebuilt to speed up OpenPilot start time.", "", this);
+  togglePrebuilt = new ParamControl("FrogPilotPrebuilt", tr("Prebuilt FrogPilot"), "Use prebuilt to speed up OpenPilot start time.", "", this);
   connect(togglePrebuilt, &ToggleControl::toggleFlipped, [&]() {
     if (params.getBool("FrogPilotPrebuilt")) {
       std::system("[ ! -f /data/openpilot/prebuilt.frogpilot ] && touch /data/openpilot/prebuilt.frogpilot;[ ! -f /data/openpilot/prebuilt ] && touch /data/openpilot/prebuilt");
