@@ -1464,8 +1464,6 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
   turnSignalLeft = scene.turn_signal_left;
   turnSignalRight = scene.turn_signal_right;
 
-  showRecordButton = !params.getBool("Sidebar");
-
   if (!(showDriverCamera || fullMapOpen)) {
     if (leadInfo) {
       drawLeadInfo(p);
@@ -1517,7 +1515,7 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
     bottom_layout->setAlignment(map_settings_btn_bottom, rightHandDM ? Qt::AlignLeft : Qt::AlignRight);
   }
 
-  recorder_btn->setVisible(scene.screen_recorder && !mapOpen && !hideBottomIcons && showRecordButton);
+  recorder_btn->setVisible(scene.screen_recorder && !mapOpen && !hideBottomIcons && params.getBool("Sidebar"));
 
   // Update the turn signal animation images upon toggle change
   if (customSignals != scene.custom_signals || currentHolidayTheme != scene.current_holiday_theme) {
