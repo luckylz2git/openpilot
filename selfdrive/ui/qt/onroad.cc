@@ -1464,7 +1464,7 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
   turnSignalLeft = scene.turn_signal_left;
   turnSignalRight = scene.turn_signal_right;
 
-  showRecordButton = params.getBool("Sidebar");
+  showRecordButton = !params.getBool("Sidebar");
 
   if (!(showDriverCamera || fullMapOpen)) {
     if (leadInfo) {
