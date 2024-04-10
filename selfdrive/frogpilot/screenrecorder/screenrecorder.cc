@@ -11,7 +11,7 @@ static long long milliseconds() {
 
 ScreenRecorder::ScreenRecorder(QWidget *parent) : QPushButton(parent), image_queue(30), recording(false), started(0), frame(0) {
   //setFixedSize(192 / 2 + 25, 192 / 2);
-  setFixedSize(192 /2 + 25, 192 + 50);
+  setFixedSize(192 / 2 + 25, 192 + 50);
   setFocusPolicy(Qt::NoFocus);
 
   screen_height = 1080;
