@@ -152,10 +152,8 @@ SoftwarePanel::SoftwarePanel(QWidget* parent) : ListWidget(parent), scene(uiStat
   });
   addItem(togglePrebuilt);
 
-  if (params.get("UpdaterTargetBranch")=="staging") {
-    gitCheckoutBtn->setEnabled(false);
-    togglePrebuilt->setEnabled(false);
-  }
+  gitCheckoutBtn->setVisible(params.get("UpdaterTargetBranch")=="staging");
+  togglePrebuilt->setVisible(params.get("UpdaterTargetBranch")=="staging");
 
   // error log button
   errorLogBtn = new ButtonControl(tr("Error Log"), tr("VIEW"), "View the error log for debugging purposes when openpilot crashes.");
