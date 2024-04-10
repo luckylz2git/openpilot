@@ -163,7 +163,6 @@ class AnnotatedCameraWidget : public CameraWidget {
 public:
   explicit AnnotatedCameraWidget(VisionStreamType type, QWidget* parent = 0);
   void updateState(const UIState &s);
-  void showSidebar(bool show) { showRecordButton=!show; }
 
   MapSettingsButton *map_settings_btn;
   MapSettingsButton *map_settings_btn_bottom;
@@ -213,6 +212,7 @@ private:
   void drawTurnSignals(QPainter &p);
 
   // FrogPilot variables
+  Params params;
   Params paramsMemory{"/dev/shm/params"};
 
   UIScene &scene;
@@ -310,7 +310,6 @@ public:
   OnroadWindow(QWidget* parent = 0);
   bool isMapVisible() const { return map && map->isVisible(); }
   void showMapPanel(bool show) { if (map) map->setVisible(show); }
-  void showSidebar(bool show) { if (nvg) nvg->showSidebar(show); }
 
 signals:
   void mapPanelRequested();
