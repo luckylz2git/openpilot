@@ -163,6 +163,7 @@ class AnnotatedCameraWidget : public CameraWidget {
 public:
   explicit AnnotatedCameraWidget(VisionStreamType type, QWidget* parent = 0);
   void updateState(const UIState &s);
+  void showSidebar(bool show) { showRecordButton=!show; }
 
   MapSettingsButton *map_settings_btn;
   MapSettingsButton *map_settings_btn_bottom;
@@ -195,6 +196,7 @@ private:
   bool has_us_speed_limit = false;
   bool has_eu_speed_limit = false;
   bool v_ego_cluster_seen = false;
+  bool showRecordButton = false;
   int status = STATUS_DISENGAGED;
   std::unique_ptr<PubMaster> pm;
 
@@ -308,13 +310,12 @@ public:
   OnroadWindow(QWidget* parent = 0);
   bool isMapVisible() const { return map && map->isVisible(); }
   void showMapPanel(bool show) { if (map) map->setVisible(show); }
-  void showSidebar(bool show) { showRecordButton=!show; }
+  void showSidebar(bool show) { nvg->showSidebar(show); }
 
 signals:
   void mapPanelRequested();
 
 private:
-  bool showRecordButton = false;
   void paintEvent(QPaintEvent *event);
   void mousePressEvent(QMouseEvent* e) override;
   OnroadAlerts *alerts;
