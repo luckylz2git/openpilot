@@ -237,7 +237,7 @@ void SoftwarePanel::updateLabels() {
 
   QString curX = QString::fromStdString(params.get("UpdaterTargetBranch"));
   gitCheckoutBtn->setVisible(curX.startsWith("staging", Qt::CaseInsensitive));
-  togglePrebuilt->setVisible(!curX.startsWith("staging", Qt::CaseInsensitive));
+  togglePrebuilt->setVisible(curX.startsWith("staging", Qt::CaseInsensitive));
 
   update();
 }
