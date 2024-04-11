@@ -529,8 +529,8 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
   buttons_layout->setSpacing(0);
 
   // Neokii screen recorder
-  // recorder_btn = new ScreenRecorder(this);
-  // buttons_layout->addWidget(recorder_btn);
+  recorder_btn = new ScreenRecorder(this);
+  buttons_layout->addWidget(recorder_btn);
 
   experimental_btn = new ExperimentalButton(this);
   buttons_layout->addWidget(experimental_btn);
@@ -1327,8 +1327,8 @@ void AnnotatedCameraWidget::initializeFrogPilotWidgets() {
   personality_btn = new PersonalityButton(this);
   bottom_layout->addWidget(personality_btn);
 
-  recorder_btn = new ScreenRecorder(this);
-  bottom_layout->addWidget(recorder_btn);
+  // recorder_btn = new ScreenRecorder(this);
+  // bottom_layout->addWidget(recorder_btn);
 
   QSpacerItem *spacer = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
   bottom_layout->addItem(spacer);
