@@ -43,13 +43,16 @@ private:
   int screen_height;
   int screen_width;
   long long started = 0;
+  int recording_image;
 
   std::unique_ptr<OmxEncoder> encoder;
   std::unique_ptr<uint8_t[]> rgb_scale_buffer;
   std::thread encoding_thread;
 
   BlockingQueue<QImage> image_queue;
-  QColor recording_color;
+  // QColor recording_color;
   QWidget *rootWidget;
+  QPixmap img_stop;
+  QPixmap img_start;
 #endif //NO_SR
 };

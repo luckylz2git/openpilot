@@ -10,8 +10,9 @@ static long long milliseconds() {
 }
 
 ScreenRecorder::ScreenRecorder(QWidget *parent) : QPushButton(parent), image_queue(30), recording(false), started(0), frame(0) {
-  setFixedSize(192 / 2 + 25, 192 / 2);
+  //setFixedSize(192 / 2 + 25, 192 / 2);
   //setFixedSize(192 / 2 + 25, 192 + 50);
+  setFixedSize(144, 96);
   setFocusPolicy(Qt::NoFocus);
 
   screen_height = 1080;
@@ -20,6 +21,9 @@ ScreenRecorder::ScreenRecorder(QWidget *parent) : QPushButton(parent), image_que
   recording_width = 2160; //(screen_width * recording_height) / screen_height + (recording_width % 2);
 
   rgb_scale_buffer = std::make_unique<uint8_t[]>(recording_width * recording_height * 4);
+
+  img_stop = loadPixmap("../assets/images/recorder_stop.png", {144, 96});
+  img_start = loadPixmap("../assets/images/recorder_start.png", {144, 96});
 
   connect(this, &QPushButton::released, this, &ScreenRecorder::toggle);
 
@@ -37,11 +41,13 @@ ScreenRecorder::~ScreenRecorder() {
 
 void ScreenRecorder::applyColor() {
   if (frame % (UI_FREQ / 2) == 0) {
-    recording_color = (frame % UI_FREQ < (UI_FREQ / 2)) ? QColor::fromRgbF(1, 1, 1, 1) : QColor::fromRgbF(0, 0, 0, 1);
+    // recording_color = (frame % UI_FREQ < (UI_FREQ / 2)) ? QColor::fromRgbF(1, 1, 1, 1) : QColor::fromRgbF(0, 0, 0, 1);
+    recording_image = (frame % UI_FREQ < (UI_FREQ / 2)) ? 0 : 1;
     update();
   }
 }
 
+/*
 void ScreenRecorder::paintEvent(QPaintEvent *event) {
   QPainter p(this);
   p.setRenderHint(QPainter::Antialiasing);
@@ -59,6 +65,14 @@ void ScreenRecorder::paintEvent(QPaintEvent *event) {
   QRect middleRect = fullRect.marginsRemoved(QMargins(outerRedWidth, outerRedWidth, outerRedWidth, outerRedWidth));
   p.setBrush(QColor::fromRgbF(1, 0, 0, 1));
   p.drawEllipse(middleRect);
+}
+*/
+void ScreenRecorder::paintEvent(QPaintEvent *event) {
+  QPixmap img = recording ? (recording_image == 0 ? img_stop : img_start) : img_stop;
+  QPainter p(this);
+  p.setRenderHint(QPainter::Antialiasing);
+  p.setOpacity(1.0);
+  p.drawPixmap(0, 0, img);
 }
 
 void ScreenRecorder::openEncoder(const char *filename) {
