@@ -84,8 +84,9 @@ def route(route):
   links = ""
   segments = ""
   for segment in fleet.segments_in_route(route):
-    links += "<a href='"+route+"?"+segment.split("--")[2]+","+query_type+"'>"+segment+"</a> | <a href='/qlog/"+segment+"'>qlog</a> | <a href='/rlog/"+segment+"'>rlog</a><br>"
-    links += "(<a href='/fcam/"+segment+"'>fcamera</a> | <a href='/ecam/"+segment+"'>ecamera</a> | <a href='/ecam/"+segment+"'>qcamera</a>)<br>"
+    links += "<a href='"+route+"?"+segment.split("--")[2]+","+query_type+"'>"+segment+"</a><br>"
+    links += "log files: ( <a href='/qlog/"+segment+"'>qlog</a> | <a href='/rlog/"+segment+"'>rlog</a> )<br>"
+    links += "raw videos: [ <a href='/fcam/"+segment+"'>fcamera</a> | <a href='/ecam/"+segment+"'>ecamera</a> | <a href='/ecam/"+segment+"'>qcamera</a> ]<br>"
     segments += "'"+segment+"',"
   return render_template("route.html", route=route, query_type=query_type, links=links, segments=segments, query_segment=query_segment)
 
