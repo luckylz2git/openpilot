@@ -102,11 +102,11 @@ def fcam_downlod_file(segment):
   return send_file("/data/media/0/realdata/"+segment+"/fcamera.hevc", as_attachment=True, download_name=segment+"_fcamera.hevc")
 
 @app.route("/ecam/<segment>")
-def fcam_downlod_file(segment):
+def ecam_downlod_file(segment):
   return send_file("/data/media/0/realdata/"+segment+"/ecamera.hevc", as_attachment=True, download_name=segment+"_ecamera.hevc")
 
 @app.route("/qcam/<segment>")
-def fcam_downlod_file(segment):
+def qcam_downlod_file(segment):
   return send_file("/data/media/0/realdata/"+segment+"/qcamera.ts", as_attachment=True, download_name=segment+"_qcamera.ts")
 
 @app.route("/footage/")
