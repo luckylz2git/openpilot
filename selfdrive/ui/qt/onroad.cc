@@ -1814,7 +1814,8 @@ void PedalIcons::paintEvent(QPaintEvent *event) {
   p.setRenderHint(QPainter::Antialiasing);
 
   int totalWidth = 2 * img_size;
-  int startX = (width() - totalWidth) / 2;
+  //+ btn_size / 2
+  int startX = (width() - totalWidth) / 2 + btn_size / 2;
 
   int brakeX = startX + img_size / 2;
   int gasX = startX + img_size;
@@ -1825,12 +1826,14 @@ void PedalIcons::paintEvent(QPaintEvent *event) {
   //p.setOpacity(brakeOpacity);
   //TEST_BRAKE_PEDAL
   p.setOpacity(brakePressed ? 1.0f : 0.1f);
-  p.drawPixmap(brakeX, (height() - img_size) / 2, brake_pedal_img);
+  //+ btn_size / 2
+  p.drawPixmap(brakeX, (height() - img_size) / 2 + btn_size / 2, brake_pedal_img);
 
   //p.setOpacity(gasOpacity);
   //TEST_GAS_PEDAL
   p.setOpacity(gasPressed ? 1.0f : 0.1f);
-  p.drawPixmap(gasX, (height() - img_size) / 2, gas_pedal_img);
+  //+ btn_size / 2
+  p.drawPixmap(gasX, (height() - img_size) / 2 + btn_size / 2, gas_pedal_img);
 
   // p.setPen(QPen(Qt::red, 10));
   // p.drawLine(QPoint(0,0),QPoint(200,200));
