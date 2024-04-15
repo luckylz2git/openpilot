@@ -17,8 +17,8 @@ ScreenRecorder::ScreenRecorder(QWidget *parent) : QPushButton(parent), image_que
 
   screen_height = 1080;
   screen_width = 2160;
-  recording_height = 1080; //720;
-  recording_width = 2160; //(screen_width * recording_height) / screen_height + (recording_width % 2);
+  recording_height = 720;
+  recording_width = (screen_width * recording_height) / screen_height + (recording_width % 2);
 
   rgb_scale_buffer = std::make_unique<uint8_t[]>(recording_width * recording_height * 4);
 

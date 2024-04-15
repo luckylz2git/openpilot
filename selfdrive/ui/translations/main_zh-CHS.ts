@@ -815,7 +815,7 @@
     </message>
     <message>
         <source>Use OnStar GPS Signal</source>
-        <translation>使用安吉星GPS信号</translation>
+        <translation>使用安吉星指南针</translation>
     </message>
     <message>
         <source>Show Gear Number</source>
