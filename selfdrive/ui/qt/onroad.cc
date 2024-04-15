@@ -540,8 +540,9 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
   top_right_layout->addLayout(buttons_layout);
 
   pedal_icons = new PedalIcons(this);
-  top_right_layout->addWidget(pedal_icons, 0, Qt::AlignRight);
-
+  if (compass) {
+    top_right_layout->addWidget(pedal_icons, 0, Qt::AlignRight);
+  }
   main_layout->addLayout(top_right_layout, 0);
   main_layout->setAlignment(top_right_layout, Qt::AlignTop | Qt::AlignRight);
 
@@ -1335,6 +1336,9 @@ void AnnotatedCameraWidget::initializeFrogPilotWidgets() {
 
   compass_img = new Compass(this);
   bottom_layout->addWidget(compass_img);
+  if (!compass) {
+    bottom_layout->addWidget(pedal_icons);
+  }
 
   map_settings_btn_bottom = new MapSettingsButton(this);
   bottom_layout->addWidget(map_settings_btn_bottom);
