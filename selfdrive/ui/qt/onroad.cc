@@ -1786,7 +1786,7 @@ void AnnotatedCameraWidget::drawLeadInfo(QPainter &p) {
 }
 
 PedalIcons::PedalIcons(QWidget *parent) : QWidget(parent), scene(uiState()->scene) {
-  setFixedSize(btn_size, btn_size);
+  setFixedSize(btn_size*1.5, btn_size*1.5);
 
   brake_pedal_img = loadPixmap("../frogpilot/assets/other_images/brake_pedal.png", QSize(img_size, img_size));
   gas_pedal_img = loadPixmap("../frogpilot/assets/other_images/gas_pedal.png", QSize(img_size, img_size));
