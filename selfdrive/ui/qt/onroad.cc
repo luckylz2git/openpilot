@@ -1826,13 +1826,13 @@ void PedalIcons::paintEvent(QPaintEvent *event) {
   //p.setOpacity(brakeOpacity);
   //TEST_BRAKE_PEDAL
   p.setOpacity(brakePressed ? 1.0f : 0.1f);
-  //+ btn_size / 3
+  //+ btn_size / 4
   p.drawPixmap(brakeX, (height() - img_size) / 2 + btn_size / 4, brake_pedal_img);
 
   //p.setOpacity(gasOpacity);
   //TEST_GAS_PEDAL
   p.setOpacity(gasPressed ? 1.0f : 0.1f);
-  //+ btn_size / 3
+  //+ btn_size / 4
   p.drawPixmap(gasX, (height() - img_size) / 2 + btn_size / 4, gas_pedal_img);
 
   // p.setPen(QPen(Qt::red, 10));
