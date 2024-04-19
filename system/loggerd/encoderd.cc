@@ -143,7 +143,7 @@ void encoderd_thread(const LogCameraInfo (&cameras)[N]) {
 int main(int argc, char* argv[]) {
   //Ignore DashCam Recording
   Params params;
-  if (params.getBool("NoLogging") && params.getBool("NoDashCam")) {
+  if (params.getBool("NoLogging") || params.getBool("NoDashCam")) {
     return 0;
   }
   if (!Hardware::PC()) {
