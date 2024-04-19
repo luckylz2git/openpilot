@@ -1,6 +1,7 @@
 #include <cassert>
 
 #include "system/loggerd/loggerd.h"
+#include "common/params.h"
 
 #ifdef QCOM2
 #include "system/loggerd/encoder/v4l_encoder.h"
@@ -140,6 +141,10 @@ void encoderd_thread(const LogCameraInfo (&cameras)[N]) {
 }
 
 int main(int argc, char* argv[]) {
+  //Ignore DashCam Recording
+  if (Params().getBool("NoDashCam") == 1) {
+    return 0;
+  }
   if (!Hardware::PC()) {
     int ret;
     ret = util::set_realtime_priority(52);

@@ -709,6 +709,10 @@
         <translation>禁用行车日志记录</translation>
     </message>
     <message>
+        <source>Disable Dashcam</source>
+        <translation>禁用行车视频录制</translation>
+    </message>
+    <message>
         <source>Disable Uploads</source>
         <translation>禁用行驶数据上传</translation>
     </message>

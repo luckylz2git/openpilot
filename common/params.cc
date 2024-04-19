@@ -343,6 +343,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"NNFFModelFuzzyMatch", PERSISTENT},
     {"NNFFModelName", PERSISTENT},
     {"NoLogging", PERSISTENT},
+    {"NoDashCam", PERSISTENT},
     {"NoUploads", PERSISTENT},
     {"NudgelessLaneChange", PERSISTENT},
     {"NumericalTemp", PERSISTENT},

@@ -27,6 +27,7 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
     {"FireTheBabysitter", tr("Fire the Babysitter"), "Deactivate some of openpilot's 'Babysitter' protocols for more user autonomy.", "../frogpilot/assets/toggle_icons/icon_babysitter.png"},
     {"MuteOverheated", tr("Bypass Thermal Safety Limits"), "Allow the device to run at any temperature even above comma's recommended thermal limits.", ""},
     {"NoLogging", tr("Disable Logging"), "Turn off all data tracking to enhance privacy or reduce thermal load.\n\nWARNING: This action will prevent drive recording and data cannot be recovered!", ""},
+    {"NoDashCam", tr("Disable Dashcam"), "Turn off dashcam recording to enhance privacy or reduce thermal load.\n\nWARNING: Only qlog and rlog will be logged!", ""},
     {"NoUploads", tr("Disable Uploads"), "Turn off all data uploads to comma's servers.\n\nWARNING: This action will prevent your drives from appearing on comma connect which may impact debugging and support!", ""},
     {"OfflineMode", tr("Offline Mode"), "Allow the device to be offline indefinitely.", ""},
 
