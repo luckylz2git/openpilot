@@ -649,6 +649,14 @@
         <translation>低于设定车速，打灯暂停居中</translation>
     </message>
     <message>
+        <source>Reverse Cruise Increase</source>
+        <translation>反转巡航速度长按、短按</translation>
+    </message>
+    <message>
+        <source>Control Via UI</source>
+        <translation>界面切换</translation>
+    </message>    
+    <message>
         <source>Speed Limit Controller</source>
         <translation>SLC:自动限速控制</translation>
     </message>
