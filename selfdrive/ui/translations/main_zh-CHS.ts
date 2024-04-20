@@ -650,7 +650,7 @@
     </message>
     <message>
         <source>Reverse Cruise Increase</source>
-        <translation>反转巡航速度长按、短按</translation>
+        <translation>巡航速度键(长按、短按)对调</translation>
     </message>
     <message>
         <source>Control Via UI</source>
