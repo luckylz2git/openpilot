@@ -125,6 +125,8 @@ class FrogPilotPlanner:
 
     self.v_cruise = self.update_v_cruise(carState, controlsState, controlsState.enabled, liveLocationKalman, modelData, road_curvature, v_cruise, v_ego)
 
+    self.params_memory.put_float("CSLCSpeed", self.v_cruise)
+
     if self.conditional_experimental_mode and self.CP.openpilotLongitudinalControl or self.green_light_alert:
       self.cem.update(carState, controlsState.enabled, frogpilotNavigation, self.lead_one, modelData, road_curvature, self.t_follow, v_ego)
 
@@ -172,7 +174,10 @@ class FrogPilotPlanner:
     v_cruise_diff = v_cruise_cluster - v_cruise
 
     v_ego_cluster = max(carState.vEgoCluster, v_ego)
-    v_ego_diff = v_ego_cluster - v_ego
+    if self.CSLC:
+      v_ego_diff = 0
+    else:
+      v_ego_diff = v_ego_cluster - v_ego
 
     # Pfeiferj's Map Turn Speed Controller
     if self.map_turn_speed_controller and v_ego > CRUISING_SPEED and enabled and gps_check:
@@ -269,6 +274,8 @@ class FrogPilotPlanner:
 
   def update_frogpilot_params(self):
     self.is_metric = self.params.get_bool("IsMetric")
+
+    self.CSLC = self.params.get_bool("CSLCEnabled")
 
     self.conditional_experimental_mode = self.CP.openpilotLongitudinalControl and self.params.get_bool("ConditionalExperimental")
     if self.conditional_experimental_mode:

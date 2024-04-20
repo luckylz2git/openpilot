@@ -851,7 +851,7 @@ void FrogPilotControlsPanel::updateCarToggles() {
     hasDashSpeedLimits = carName == "hyundai" || carName == "toyota";
     hasNNFFLog = checkNNFFLogFileExists(carFingerprint);
     hasOpenpilotLongitudinal = CP.getOpenpilotLongitudinalControl() && !params.getBool("DisableOpenpilotLongitudinal");
-    hasPCMCruise = CP.getPcmCruise();
+    hasPCMCruise = CP.getPcmCruise() and not params.getBool("CSLCEnabled");
     isToyota = carName == "toyota";
     steerRatioStock = CP.getSteerRatio();
 

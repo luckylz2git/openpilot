@@ -510,6 +510,13 @@ class Controls:
   def state_transition(self, CS):
     """Compute conditional state transitions and execute actions on state transitions"""
 
+    resume_pressed = any(be.type in (ButtonType.accelCruise, ButtonType.resumeCruise) for be in CS.buttonEvents)
+    set_pressed = any(be.type in (ButtonType.decelCruise, ButtonType.setCruise) for be in CS.buttonEvents)
+    if resume_pressed:
+      self.frogpilot_variables.prev_button = ButtonType.resumeCruise
+    elif set_pressed:
+      self.frogpilot_variables.prev_button = ButtonType.setCruise
+
     self.v_cruise_helper.update_v_cruise(CS, self.enabled, self.is_metric, self.FPCC.speedLimitChanged, self.frogpilot_variables)
 
     # decrement the soft disable timer at every step, as it's reset on
@@ -854,6 +861,7 @@ class Controls:
     controlsState.canErrorCounter = self.card.can_rcv_cum_timeout_counter
     controlsState.experimentalMode = self.experimental_mode
     controlsState.personality = self.personality
+    self.frogpilot_variables.experimentalMode = self.experimental_mode
 
     lat_tuning = self.CP.lateralTuning.which()
     if self.joystick_mode:
@@ -1138,6 +1146,7 @@ class Controls:
 
   def update_frogpilot_params(self):
     self.frogpilot_variables.conditional_experimental_mode = self.CP.openpilotLongitudinalControl and self.params.get_bool("ConditionalExperimental")
+    self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
 
     custom_alerts = self.params.get_bool("CustomAlerts")
     self.green_light_alert = custom_alerts and self.params.get_bool("GreenLightAlert")
@@ -1196,6 +1205,7 @@ class Controls:
     self.frogpilot_variables.unlock_doors = toyota_doors and self.params.get_bool("UnlockDoors")
 
     self.frogpilot_variables.use_ev_tables = self.params.get_bool("EVTable")
+    self.frogpilot_variables.is_metric = self.is_metric
 
 def main():
   config_realtime_process(4, Priority.CTRL_HIGH)

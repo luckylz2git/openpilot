@@ -107,6 +107,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     {"EVTable", tr("EV Lookup Tables"), tr("Smoothen out the gas and brake controls for EV vehicles."), ""},
     {"LongPitch", tr("Long Pitch Compensation"), tr("Smoothen out the gas and pedal controls."), ""},
     {"GasRegenCmd", tr("Truck Tune"), tr("Increase the acceleration and smoothen out the brake control when coming to a stop. For use on Silverado/Sierra only."), ""},
+    {"CSLCEnabled", tr("GM SDGM CSLC"), tr("Set cars cruise speed based on SLC, MTSC, VTSC and/or CEM."), ""},
 
     {"CrosstrekTorque", tr("Subaru Crosstrek Torque Increase"), tr("Increases the maximum allowed torque for the Subaru Crosstrek."), ""},
 
@@ -157,7 +158,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     });
   }
 
-  std::set<QString> rebootKeys = {"CrosstrekTorque", "GasRegenCmd"};
+  std::set<QString> rebootKeys = {"CrosstrekTorque", "GasRegenCmd", "CSLCEnabled"};
   for (const QString &key : rebootKeys) {
     QObject::connect(toggles[key.toStdString().c_str()], &ToggleControl::toggleFlipped, [this]() {
       if (started) {
