@@ -654,7 +654,7 @@
     </message>
     <message>
         <source>Control Via UI</source>
-        <translation>界面切换</translation>
+        <translation>点击"最高定速"调整</translation>
     </message>    
     <message>
         <source>Speed Limit Controller</source>
