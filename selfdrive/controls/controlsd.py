@@ -178,6 +178,9 @@ class Controls:
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
 
+    #self.frogpilot_variables.reverse_cruise_increase
+    self.params_memory.put_bool("ReverseCruiseRunTime", self.params.get_bool("ReverseCruise"))
+
     self.frogpilot_variables = SimpleNamespace()
 
     self.driving_gear = False

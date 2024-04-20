@@ -145,7 +145,8 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
       bool currentReverseCruise = scene.reverse_cruise;
 
       uiState()->scene.reverse_cruise = !currentReverseCruise;
-      params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
+      //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
+      paramsMemory.putBool("ReverseCruiseRunTime", !currentReverseCruise);
 
     } else if (isSpeedClicked && scene.hide_speed_ui) {
       bool currentHideSpeed = scene.hide_speed;
