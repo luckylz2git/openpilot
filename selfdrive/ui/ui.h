@@ -214,6 +214,7 @@ typedef struct UIScene {
   bool personalities_via_screen;
   bool random_events;
   bool reverse_cruise;
+  bool reverse_cruise_runtime;
   bool reverse_cruise_ui;
   bool right_hand_drive;
   bool road_name_ui;

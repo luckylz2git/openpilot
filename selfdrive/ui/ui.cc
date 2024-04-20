@@ -380,6 +380,7 @@ void ui_update_frogpilot_params(UIState *s) {
 
   bool quality_of_life_controls = params.getBool("QOLControls");
   scene.reverse_cruise = quality_of_life_controls && params.getBool("ReverseCruise");
+  scene.reverse_cruise_runtime = scene.reverse_cruise;
   scene.reverse_cruise_ui = scene.reverse_cruise && params.getBool("ReverseCruiseUI");
 
   bool quality_of_life_visuals = params.getBool("QOLVisuals");

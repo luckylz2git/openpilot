@@ -142,9 +142,11 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
 
   if (isMaxSpeedClicked || isSpeedClicked || isSpeedLimitClicked) {
     if (isMaxSpeedClicked && scene.reverse_cruise_ui) {
-      bool currentReverseCruise = scene.reverse_cruise;
+      //bool currentReverseCruise = scene.reverse_cruise;
+      bool currentReverseCruise = paramsMemory.getBool("ReverseCruiseRunTime");
 
-      uiState()->scene.reverse_cruise = !currentReverseCruise;
+      //uiState()->scene.reverse_cruise = !currentReverseCruise;
+      uiState()->scene.reverse_cruise_runtime = !currentReverseCruise;
       //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
       paramsMemory.putBool("ReverseCruiseRunTime", !currentReverseCruise);
 
@@ -742,7 +744,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         min.greenF() + transition * (max.greenF() - min.greenF()),
         min.blueF()  + transition * (max.blueF()  - min.blueF())
       ), 6));
-    } else if (scene.reverse_cruise) {
+    } else if (scene.reverse_cruise_runtime) {
       p.setPen(QPen(QColor(0, 150, 255), 6));
     } else if (trafficModeActive) {
       p.setPen(QPen(QColor(225, 0, 0), 6));
