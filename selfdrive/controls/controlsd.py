@@ -82,6 +82,8 @@ class CarD:
 
     self.params = Params()
 
+    self.ignore_controls_mismatch = False
+
     if CI is None:
       # wait for one pandaState and one CAN packet
       print("Waiting for CAN messages...")
@@ -482,8 +484,9 @@ class Controls:
       if (safety_mismatch and self.sm.frame*DT_CTRL > 10.) or pandaState.safetyRxChecksInvalid or self.mismatch_counter >= 200:
         if self.random_events: #Show Controls Mismatch Error
           self.events.add(EventName.controlsMismatch)
-        else: #Shown as GPS alert
+        elif not self.ignore_controls_mismatch: #Shown as GPS alert
           self.events.add(EventName.noGps)
+          self.ignore_controls_mismatch = True
 
       if log.PandaState.FaultType.relayMalfunction in pandaState.faults:
         self.events.add(EventName.relayMalfunction)
