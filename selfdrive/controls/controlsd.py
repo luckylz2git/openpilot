@@ -82,8 +82,6 @@ class CarD:
 
     self.params = Params()
 
-    self.ignore_controls_mismatch = False
-
     if CI is None:
       # wait for one pandaState and one CAN packet
       print("Waiting for CAN messages...")
@@ -182,6 +180,8 @@ class Controls:
 
     #self.frogpilot_variables.reverse_cruise_increase
     self.params_memory.put_bool("ReverseCruiseRunTime", self.params.get_bool("ReverseCruise"))
+
+    self.ignore_controls_mismatch = False
 
     self.frogpilot_variables = SimpleNamespace()
 
