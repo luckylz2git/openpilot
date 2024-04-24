@@ -583,7 +583,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   gear_shifter = (int)car_state.getGearShifter(); //GEAR_NUMBER_TEST
   current_gear_number = car_state.getCurrentGearNumber(); // ONSTAR_GPS_TEST
   next_gear_number = car_state.getNextGearNumber(); // ONSTAR_GPS_TEST
-  user_brake_value = carState.getBrake(); //TEST_USER_BRAKE
+  user_brake_value = car_state.getBrake(); //TEST_USER_BRAKE
 
   // Handle older routes where vEgoCluster is not set
   v_ego_cluster_seen = v_ego_cluster_seen || car_state.getVEgoCluster() != 0.0;
