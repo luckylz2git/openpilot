@@ -8,7 +8,7 @@ from openpilot.system.version import get_short_branch
 
 from openpilot.selfdrive.frogpilot.controls.lib.frogpilot_functions import STAGING_BRANCHES
 
-VERSION = 'v2' if get_short_branch() in STAGING_BRANCHES else 'v1'
+VERSION = 'v2'
 REPOSITORY_URL = 'https://github.com/FrogAi/FrogPilot-Resources/releases/download'
 
 DEFAULT_MODEL = "wd-40"
