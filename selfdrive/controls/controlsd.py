@@ -484,8 +484,8 @@ class Controls:
       if (safety_mismatch and self.sm.frame*DT_CTRL > 10.) or pandaState.safetyRxChecksInvalid or self.mismatch_counter >= 200:
         if self.random_events: #Show Controls Mismatch Error
           self.events.add(EventName.controlsMismatch)
-        elif not self.ignore_controls_mismatch: #Shown as GPS alert
-          self.events.add(EventName.noGps)
+        elif not self.ignore_controls_mismatch: #Show Controls Mismatch Error 2
+          self.events.add(EventName.controlsMismatch2)
           self.ignore_controls_mismatch = True
 
       if log.PandaState.FaultType.relayMalfunction in pandaState.faults:
