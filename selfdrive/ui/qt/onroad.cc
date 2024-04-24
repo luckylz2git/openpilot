@@ -583,6 +583,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   gear_shifter = (int)car_state.getGearShifter(); //GEAR_NUMBER_TEST
   current_gear_number = car_state.getCurrentGearNumber(); // ONSTAR_GPS_TEST
   next_gear_number = car_state.getNextGearNumber(); // ONSTAR_GPS_TEST
+  user_brake_value = carState.getBrake(); //TEST_USER_BRAKE
 
   // Handle older routes where vEgoCluster is not set
   v_ego_cluster_seen = v_ego_cluster_seen || car_state.getVEgoCluster() != 0.0;
@@ -658,6 +659,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     } else {
       speedLimitStr = "D" + QString::number(current_gear_number);
     }
+    speedLimitStr = QString::number(user_brake_value, 'f', 2);
     speedLimitOffsetStr = "";
   }
   
@@ -795,7 +797,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 30, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("GEAR"));
         p.setFont(InterFont(70, QFont::Bold));
-        p.drawText(sign_rect.adjusted(0, 80, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
+        //TEST_USER_BRAKE 80->60
+        p.drawText(sign_rect.adjusted(0, 60, 0, 0), Qt::AlignTop | Qt::AlignHCenter, speedLimitStr);
       } else if (speedLimitController && showSLCOffset && !slcOverridden) {
         p.setFont(InterFont(28, QFont::DemiBold));
         p.drawText(sign_rect.adjusted(0, 22, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("LIMIT"));

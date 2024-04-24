@@ -178,6 +178,7 @@ private:
   float onstar_gps_latitude;
   float onstar_gps_altitude;
   // float onstar_gps_bearing;
+  float user_brake_value; //TEST_USER_BRAKE
 
   int gear_shifter;
   int current_gear_number;
