@@ -119,9 +119,7 @@ void ScreenRecorder::start() {
 
   // 开启录屏后，自动打开对应信息
   Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBoolNonBlocking("PedalsOnUI", recording);
-  paramsMemory.putBoolNonBlocking("LeadInfo", recording);
-  paramsMemory.putBoolNonBlocking("RotatingWheel", recording);
+  paramsMemory.putBoolNonBlocking("ScreenRecorderUpdated", recording);
   paramsMemory.putBoolNonBlocking("FrogPilotTogglesUpdated", true);
 }
 
@@ -156,9 +154,7 @@ void ScreenRecorder::stop() {
 
   // 开启录屏后，自动打开对应信息
   Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBoolNonBlocking("PedalsOnUI", recording);
-  paramsMemory.putBoolNonBlocking("LeadInfo", recording);
-  paramsMemory.putBoolNonBlocking("RotatingWheel", recording);
+  paramsMemory.putBoolNonBlocking("ScreenRecorderUpdated", recording);
   paramsMemory.putBoolNonBlocking("FrogPilotTogglesUpdated", true);
 }
 

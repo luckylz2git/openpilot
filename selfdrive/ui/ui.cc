@@ -350,11 +350,11 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.blind_spot_path = custom_onroad_ui && params.getBool("BlindSpotPath");
   scene.fps_counter = custom_onroad_ui && params.getBool("FPSCounter");
   // 录屏切换信息
-  scene.lead_info = custom_onroad_ui && params.getBool("LeadInfo") || paramsMemory.getBool("LeadInfo");
+  bool screenRecorderUpdated = paramsMemory.getBool("ScreenRecorderUpdated");
+  scene.lead_info = custom_onroad_ui && params.getBool("LeadInfo") || screenRecorderUpdated;
+  scene.pedals_on_ui = custom_onroad_ui && params.getBool("PedalsOnUI") || screenRecorderUpdated;
+
   scene.use_si = scene.lead_info && params.getBool("UseSI");
-  // 录屏切换信息
-  bool memory_PedalsOnUI = paramsMemory.getBool("PedalsOnUI");
-  scene.pedals_on_ui = custom_onroad_ui && params.getBool("PedalsOnUI") || memory_PedalsOnUI;
   scene.road_name_ui = custom_onroad_ui && params.getBool("RoadNameUI");
 
   bool custom_theme = params.getBool("CustomTheme");
@@ -415,7 +415,7 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.personalities_via_screen = params.getBool("PersonalitiesViaScreen") && params.getBool("AdjustablePersonalities");
   scene.random_events = params.getBool("RandomEvents");
   // 录屏切换信息
-  scene.rotating_wheel = params.getBool("RotatingWheel") || paramsMemory.getBool("RotatingWheel");
+  scene.rotating_wheel = params.getBool("RotatingWheel") || screenRecorderUpdated;
 
   bool screen_management = params.getBool("ScreenManagement");
   bool hide_ui_elements = screen_management && params.getBool("HideUIElements");
@@ -436,9 +436,9 @@ void ui_update_frogpilot_params(UIState *s) {
 
   scene.wheel_icon = params.getInt("WheelIcon");
   // 录屏切换信息
-  if (memory_PedalsOnUI != scene.screen_recorder_updated && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
+  if (screenRecorderUpdated != scene.screen_recorder_updated && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
     paramsMemory.putBoolNonBlocking("FrogPilotTogglesUpdated", false);
-    scene.screen_recorder_updated = memory_PedalsOnUI;
+    scene.screen_recorder_updated = screenRecorderUpdated;
   }
 }
 
