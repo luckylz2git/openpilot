@@ -406,8 +406,8 @@ public:
     if (state != toggle.on) {
       toggle.togglePosition();
     }
-
-    refreshButtons(key=="ReverseCruise" ? true : state);
+    // 一直显示：Control Via UI
+    refreshButtons(key=="ReverseCruise" || state);
     updateButtonStates();
   }
 
