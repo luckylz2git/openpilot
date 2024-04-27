@@ -376,6 +376,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"ReverseCruise", PERSISTENT},
     {"ReverseCruiseRunTime", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"ReverseCruiseUI", PERSISTENT},
+    {"CustomCruise", PERSISTENT},
+    {"CustomCruiseLong", PERSISTENT},
     {"RoadEdgesWidth", PERSISTENT},
     {"RoadName", PERSISTENT},
     {"RoadNameUI", PERSISTENT},
