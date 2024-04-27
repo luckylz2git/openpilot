@@ -653,6 +653,14 @@
         <translation>巡航速度键(长按、短按)对调</translation>
     </message>
     <message>
+        <source>Cruise Increase Interval</source>
+        <translation>巡航速度增量(短按)</translation>
+    </message>
+    <message>
+        <source>Cruise Increase Interval (Long Press)</source>
+        <translation>巡航速度增量(长按)</translation>
+    </message>
+    <message>
         <source>Control Via UI</source>
         <translation>点击"最高定速"调整</translation>
     </message>    
