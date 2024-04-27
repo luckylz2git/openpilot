@@ -353,7 +353,8 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.lead_info = custom_onroad_ui && params.getBool("LeadInfo") || paramsMemory.getBool("LeadInfo");
   scene.use_si = scene.lead_info && params.getBool("UseSI");
   // 录屏切换信息
-  scene.pedals_on_ui = custom_onroad_ui && params.getBool("PedalsOnUI") || paramsMemory.getBool("PedalsOnUI");
+  bool memory_PedalsOnUI = paramsMemory.getBool("PedalsOnUI");
+  scene.pedals_on_ui = custom_onroad_ui && params.getBool("PedalsOnUI") || memory_PedalsOnUI;
   scene.road_name_ui = custom_onroad_ui && params.getBool("RoadNameUI");
 
   bool custom_theme = params.getBool("CustomTheme");
@@ -434,6 +435,11 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.use_vienna_slc_sign = (scene.speed_limit_controller || scene.gear_number) && params.getBool("UseVienna");
 
   scene.wheel_icon = params.getInt("WheelIcon");
+  // 录屏切换信息
+  if (memory_PedalsOnUI != scene.screen_recorder_updated && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
+    paramsMemory.putBoolNonBlocking("FrogPilotTogglesUpdated", false);
+    scene.screen_recorder_updated = memory_PedalsOnUI;
+  }
 }
 
 void UIState::updateStatus() {
