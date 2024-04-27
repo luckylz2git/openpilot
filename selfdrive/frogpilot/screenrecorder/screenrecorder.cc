@@ -122,6 +122,7 @@ void ScreenRecorder::start() {
   paramsMemory.putBool("PedalsOnUI", true);
   paramsMemory.putBool("LeadInfo", true);
   paramsMemory.putBool("RotatingWheel", true);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
 }
 
 void ScreenRecorder::encoding_thread_func() {
@@ -158,6 +159,7 @@ void ScreenRecorder::stop() {
   paramsMemory.putBool("PedalsOnUI", false);
   paramsMemory.putBool("LeadInfo", false);
   paramsMemory.putBool("RotatingWheel", false);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
 }
 
 void ScreenRecorder::update_screen() {
