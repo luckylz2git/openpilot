@@ -117,18 +117,12 @@ void ScreenRecorder::start() {
   update();
   started = milliseconds();
 
-  std::thread(&ScreenRecorder::update_onroad_ui, this);
-}
-
-void ScreenRecorder::update_onroad_ui() {
-    // 开启录屏后，自动打开对应信息
+  // 开启录屏后，自动打开对应信息
   Params paramsMemory = Params("/dev/shm/params");
   paramsMemory.putBool("PedalsOnUI", recording);
   paramsMemory.putBool("LeadInfo", recording);
   paramsMemory.putBool("RotatingWheel", recording);
   paramsMemory.putBool("FrogPilotTogglesUpdated", true);
-  std::this_thread::sleep_for(std::chrono::seconds(1));
-  paramsMemory.putBool("FrogPilotTogglesUpdated", false);
 }
 
 void ScreenRecorder::encoding_thread_func() {
@@ -161,6 +155,13 @@ void ScreenRecorder::stop() {
   image_queue.clear();
 
   std::thread(&ScreenRecorder::update_onroad_ui, this);
+
+  // 开启录屏后，自动打开对应信息
+  Params paramsMemory = Params("/dev/shm/params");
+  paramsMemory.putBool("PedalsOnUI", recording);
+  paramsMemory.putBool("LeadInfo", recording);
+  paramsMemory.putBool("RotatingWheel", recording);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
 }
 
 void ScreenRecorder::update_screen() {

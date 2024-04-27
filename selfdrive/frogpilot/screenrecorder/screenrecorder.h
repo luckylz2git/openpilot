@@ -30,7 +30,6 @@ protected:
 private:
   void applyColor();
   void closeEncoder();
-  void update_onroad_ui();
   void encoding_thread_func();
   void initializeEncoder();
   void openEncoder(const char *filename);
