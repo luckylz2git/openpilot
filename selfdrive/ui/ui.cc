@@ -326,6 +326,8 @@ void ui_update_frogpilot_params(UIState *s) {
   ui_update_params(s);
 
   Params params = Params();
+  // 录屏切换信息
+  Params paramsMemory = Params("/dev/shm/params");
   UIScene &scene = s->scene;
 
   scene.always_on_lateral = params.getBool("AlwaysOnLateral");
@@ -347,9 +349,11 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.adjacent_path_metrics = scene.adjacent_path && params.getBool("AdjacentPathMetrics");
   scene.blind_spot_path = custom_onroad_ui && params.getBool("BlindSpotPath");
   scene.fps_counter = custom_onroad_ui && params.getBool("FPSCounter");
-  scene.lead_info = custom_onroad_ui && params.getBool("LeadInfo");
+  // 录屏切换信息
+  scene.lead_info = custom_onroad_ui && params.getBool("LeadInfo") || paramsMemory.getBool("LeadInfo");
   scene.use_si = scene.lead_info && params.getBool("UseSI");
-  scene.pedals_on_ui = custom_onroad_ui && params.getBool("PedalsOnUI");
+  // 录屏切换信息
+  scene.pedals_on_ui = custom_onroad_ui && params.getBool("PedalsOnUI") || paramsMemory.getBool("PedalsOnUI");
   scene.road_name_ui = custom_onroad_ui && params.getBool("RoadNameUI");
 
   bool custom_theme = params.getBool("CustomTheme");
@@ -409,7 +413,8 @@ void ui_update_frogpilot_params(UIState *s) {
 
   scene.personalities_via_screen = params.getBool("PersonalitiesViaScreen") && params.getBool("AdjustablePersonalities");
   scene.random_events = params.getBool("RandomEvents");
-  scene.rotating_wheel = params.getBool("RotatingWheel");
+  // 录屏切换信息
+  scene.rotating_wheel = params.getBool("RotatingWheel") || paramsMemory.getBool("RotatingWheel");
 
   bool screen_management = params.getBool("ScreenManagement");
   bool hide_ui_elements = screen_management && params.getBool("HideUIElements");

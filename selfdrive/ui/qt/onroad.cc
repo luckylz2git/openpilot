@@ -659,7 +659,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     } else {
       speedLimitStr = "D" + QString::number(current_gear_number);
     }
-    speedLimitStr = QString::number(user_brake_value, 'f', 2);
+    // 显示刹车力度
+    // speedLimitStr = QString::number(user_brake_value, 'f', 2);
     speedLimitOffsetStr = "";
   }
   
