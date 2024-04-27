@@ -97,6 +97,13 @@ void ScreenRecorder::toggle() {
 void ScreenRecorder::start() {
   if (recording) return;
 
+  // 开启录屏后，自动打开对应信息
+  Params paramsMemory = Params("/dev/shm/params");
+  paramsMemory.putBool("PedalsOnUI", true);
+  paramsMemory.putBool("LeadInfo", true);
+  paramsMemory.putBool("RotatingWheel", true);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+
   char filename[64];
   const time_t t = time(NULL);
   const struct tm tm = *localtime(&t);
@@ -117,12 +124,7 @@ void ScreenRecorder::start() {
   update();
   started = milliseconds();
 
-  // 开启录屏后，自动打开对应信息
-  Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBool("PedalsOnUI", true);
-  paramsMemory.putBool("LeadInfo", true);
-  paramsMemory.putBool("RotatingWheel", true);
-  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", false);
 }
 
 void ScreenRecorder::encoding_thread_func() {
@@ -145,6 +147,13 @@ void ScreenRecorder::encoding_thread_func() {
 void ScreenRecorder::stop() {
   if (!recording) return;
 
+  // 结束录屏后，自动关闭对应信息
+  Params paramsMemory = Params("/dev/shm/params");
+  paramsMemory.putBool("PedalsOnUI", false);
+  paramsMemory.putBool("LeadInfo", false);
+  paramsMemory.putBool("RotatingWheel", false);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+
   recording = false;
   update();
 
@@ -154,12 +163,7 @@ void ScreenRecorder::stop() {
   closeEncoder();
   image_queue.clear();
 
-  // 结束录屏后，自动关闭对应信息
-  Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBool("PedalsOnUI", false);
-  paramsMemory.putBool("LeadInfo", false);
-  paramsMemory.putBool("RotatingWheel", false);
-  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", false);
 }
 
 void ScreenRecorder::update_screen() {
