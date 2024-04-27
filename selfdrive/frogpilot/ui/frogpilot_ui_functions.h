@@ -413,7 +413,7 @@ public:
 
   void refreshButtons(bool state) {
     for (QAbstractButton *button : button_group->buttons()) {
-      if (button.text()=="点击"最高定速"调整" || button.text()=="Control Via UI") {
+      if (button.text()=="点击""最高定速""调整" || button.text()=="Control Via UI") {
         button->setVisible(true);
       } else {
         button->setVisible(state);
