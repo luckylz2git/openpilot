@@ -364,9 +364,9 @@ def screen_recorder_button_route():
     msg = ""
     if toggle == 1: #start
       msg = "Started"
-    else if toggle == 2: #stop
+    elif toggle == 2: #stop
       msg = "Stopped"
-    else if toggle == 3: #toggle
+    elif toggle == 3: #toggle
       msg = "Toggled"
     else:
       return "Screen Recorder Wrong Value", 400
