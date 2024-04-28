@@ -356,7 +356,8 @@ public:
     key = param.toStdString();
 
     connect(this, &ToggleControl::toggleFlipped, this, [this](bool state) {
-      refreshButtons(state);
+      // 一直显示：Control Via UI
+      refreshButtons(key=="ReverseCruise" || state);
     });
 
     const QString style = R"(
@@ -407,7 +408,7 @@ public:
       toggle.togglePosition();
     }
     // 一直显示：Control Via UI
-    refreshButtons((key=="ReverseCruise" || state));
+    refreshButtons(key=="ReverseCruise" || state);
     updateButtonStates();
   }
 
