@@ -362,11 +362,11 @@ def screen_recorder_button_route():
   try:
     toggle = request.args.get('toggle')
     msg = ""
-    if toggle == 1: #start
+    if toggle == "1": #start
       msg = "Started"
-    elif toggle == 2: #stop
+    elif toggle == "2": #stop
       msg = "Stopped"
-    elif toggle == 3: #toggle
+    elif toggle == "3": #toggle
       msg = "Toggled"
     else:
       return "Screen Recorder Wrong Value", 400
