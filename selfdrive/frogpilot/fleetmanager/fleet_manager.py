@@ -360,17 +360,17 @@ def store_toggle_values_route():
 @app.route("/screen_recorder_button", methods=['POST'])
 def screen_recorder_button_route():
   try:
-    toggle = request.args.get('toggle')
+    toggle = int(request.args.get('toggle'))
     msg = ""
-    if toggle == "1": #start
+    if toggle == 1: #start
       msg = "Started"
-    elif toggle == "2": #stop
+    elif toggle == 2: #stop
       msg = "Stopped"
-    elif toggle == "3": #toggle
+    elif toggle == 3: #toggle
       msg = "Toggled"
     else:
       return "Screen Recorder Wrong Value", 400
-    fleet.screen_recorder_toggle(toggle)
+    fleet.screen_recorder_button(toggle)
     return "Screen Recorder "+ msg +" successfully", 200
   except Exception as e:
     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
