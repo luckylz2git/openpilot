@@ -148,7 +148,7 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
       //uiState()->scene.reverse_cruise = !currentReverseCruise;
       uiState()->scene.reverse_cruise_runtime = !currentReverseCruise;
       //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
-      paramsMemory.putBoolNonBlocking("ReverseCruiseRunTime", !currentReverseCruise);
+      paramsMemory.putBool("ReverseCruiseRunTime", !currentReverseCruise);
 
     } else if (isSpeedClicked && scene.hide_speed_ui) {
       bool currentHideSpeed = scene.hide_speed;
@@ -1527,7 +1527,11 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
   }
 
   recorder_btn->setVisible(scene.screen_recorder && !mapOpen && !hideBottomIcons && params.getBool("Sidebar"));
-
+  if (recorder_btn && scene.screen_recorder_toggle) {
+    scene.screen_recorder_toggle = false;
+    paramsMemory.putBool("ScreenRecorderToggle", false);
+    recorder_btn->toggle();
+  }
   // Update the turn signal animation images upon toggle change
   if (customSignals != scene.custom_signals || currentHolidayTheme != scene.current_holiday_theme) {
     currentHolidayTheme = scene.current_holiday_theme;

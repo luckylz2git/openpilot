@@ -426,6 +426,8 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.screen_brightness = screen_management ? params.getInt("ScreenBrightness") : 101;
   scene.screen_brightness_onroad = screen_management ? params.getInt("ScreenBrightnessOnroad") : 101;
   scene.screen_recorder = screen_management && params.getBool("ScreenRecorder");
+  // Siri控制录屏
+  scene.screen_recorder_toggle = paramsMemory.getBool("ScreenRecorderToggle");
   scene.screen_timeout = screen_management ? params.getInt("ScreenTimeout") : 30;
   scene.screen_timeout_onroad = screen_management ? params.getInt("ScreenTimeoutOnroad") : 10;
   scene.standby_mode = screen_management && params.getBool("StandbyMode");
@@ -438,7 +440,7 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.wheel_icon = params.getInt("WheelIcon");
   // 录屏切换信息
   if (screenRecorderUpdated != scene.screen_recorder_updated && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
-    paramsMemory.putBoolNonBlocking("FrogPilotTogglesUpdated", false);
+    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
     scene.screen_recorder_updated = screenRecorderUpdated;
   }
 }

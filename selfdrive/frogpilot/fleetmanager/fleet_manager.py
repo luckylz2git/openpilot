@@ -357,6 +357,11 @@ def store_toggle_values_route():
   except Exception as e:
     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
 
+@app.route("/screen_recorder_toggle", methods=['GET'])
+def screen_recorder_toggle_route():
+  fleet.screen_recorder_toggle()
+  return jsonify({"message": "Screen Recorder Toggle successfully"}), 200
+
 def main():
   try:
     set_core_affinity([0, 1, 2, 3])

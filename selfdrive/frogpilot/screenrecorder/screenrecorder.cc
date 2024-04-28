@@ -119,8 +119,8 @@ void ScreenRecorder::start() {
 
   // 开启录屏后，自动打开对应信息
   Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBoolNonBlocking("ScreenRecorderUpdated", recording);
-  paramsMemory.putBoolNonBlocking("FrogPilotTogglesUpdated", true);
+  paramsMemory.putBool("ScreenRecorderUpdated", recording);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
 }
 
 void ScreenRecorder::encoding_thread_func() {
@@ -154,8 +154,8 @@ void ScreenRecorder::stop() {
 
   // 开启录屏后，自动打开对应信息
   Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBoolNonBlocking("ScreenRecorderUpdated", recording);
-  paramsMemory.putBoolNonBlocking("FrogPilotTogglesUpdated", true);
+  paramsMemory.putBool("ScreenRecorderUpdated", recording);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
 }
 
 void ScreenRecorder::update_screen() {
