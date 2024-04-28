@@ -502,3 +502,15 @@ def screen_recorder_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", True)
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
+
+def toggle_sidebar(toggle):
+  if toggle == 2:
+    visible = not params.get_bool("Sidebar")
+  else:
+    visible = (True if toggle == 1 else False)
+  params.put_bool("Sidebar", visible)
+
+  params_memory.put_bool("FrogPilotTogglesUpdated", True)
+  time.sleep(1)
+  params_memory.put_bool("FrogPilotTogglesUpdated", False)
+  

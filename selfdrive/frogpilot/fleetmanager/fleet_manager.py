@@ -375,6 +375,24 @@ def screen_recorder_button_route():
   except Exception as e:
     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
 
+@app.route("/sidebar", methods=['POST'])
+def toggle_sidebar_route():
+  try:
+    toggle = int(request.args.get('toggle'))
+    msg = ""
+    if toggle == 1: #show
+      msg = "Shown"
+    elif toggle == 2: #hide
+      msg = "Hidden"
+    elif toggle == 3: #toggle
+      msg = "Toggled"
+    else:
+      return "Sidebar Wrong Value", 400
+    fleet.toggle_sidebar(toggle)
+    return "Sidebar "+ msg +" successfully", 200
+  except Exception as e:
+    return jsonify({"error": "Failed to update values", "details": str(e)}), 400
+
 def main():
   try:
     set_core_affinity([0, 1, 2, 3])
