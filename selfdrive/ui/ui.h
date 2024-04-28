@@ -221,7 +221,7 @@ typedef struct UIScene {
   bool rotating_wheel;
   bool screen_recorder;
   bool screen_recorder_updated; // 录屏切换信息
-  bool screen_recorder_toggle; // Siri控制录屏
+  int screen_recorder_toggle; // Siri控制录屏
   bool show_driver_camera;
   bool show_slc_offset;
   bool show_slc_offset_ui;

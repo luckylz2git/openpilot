@@ -1528,9 +1528,15 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
 
   recorder_btn->setVisible(scene.screen_recorder && !mapOpen && !hideBottomIcons && params.getBool("Sidebar"));
   if (recorder_btn && scene.screen_recorder_toggle) {
-    scene.screen_recorder_toggle = false;
-    paramsMemory.putBool("ScreenRecorderToggle", false);
-    recorder_btn->toggle();
+    paramsMemory.putInt("ScreenRecorderToggle", 0);
+    if (scene.screen_recorder_toggle==3) { //toggle
+      recorder_btn->toggle();
+    } else if (scene.screen_recorder_toggle==2) { //stop
+      recorder_btn->stop();
+    } else if (scene.screen_recorder_toggle==1) { //start
+      recorder_btn->start();
+    }
+    scene.screen_recorder_toggle = 0;
   }
   // Update the turn signal animation images upon toggle change
   if (customSignals != scene.custom_signals || currentHolidayTheme != scene.current_holiday_theme) {

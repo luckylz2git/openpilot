@@ -14,6 +14,8 @@ class ScreenRecorder : public QPushButton {
 
     void update_screen(){}
     void toggle(){}
+    void start(){}
+    void stop(){}
 #else
   Q_OBJECT
 
@@ -23,6 +25,8 @@ public:
 
   void update_screen();
   void toggle();
+  void start();
+  void stop();
 
 protected:
   void paintEvent(QPaintEvent *event) override;
@@ -33,8 +37,8 @@ private:
   void encoding_thread_func();
   void initializeEncoder();
   void openEncoder(const char *filename);
-  void start();
-  void stop();
+  // void start();
+  // void stop();
 
   bool recording;
   int frame;
