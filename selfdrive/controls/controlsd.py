@@ -1223,7 +1223,25 @@ class Controls:
   def update_frogpilot_params(self):
     self.frogpilot_variables.conditional_experimental_mode = self.params.get_bool("ConditionalExperimental")
     self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
-
+    # 最高定速偏移量KPH
+    quality_of_life_visuals = self.params.get_bool("QOLVisuals")
+    if self.frogpilot_variables.CSLC and quality_of_life_visuals:
+      if self.is_metric:
+        self.frogpilot_variables.CSLC_offset1 = self.params.get_int("Offset1")
+        self.frogpilot_variables.CSLC_offset2 = self.params.get_int("Offset2")
+        self.frogpilot_variables.CSLC_offset3 = self.params.get_int("Offset3")
+        self.frogpilot_variables.CSLC_offset4 = self.params.get_int("Offset4")
+      else:
+        self.frogpilot_variables.CSLC_offset1 = int(self.params.get_int("Offset1") * 1.609344)
+        self.frogpilot_variables.CSLC_offset2 = int(self.params.get_int("Offset2") * 1.609344)
+        self.frogpilot_variables.CSLC_offset3 = int(self.params.get_int("Offset3") * 1.609344)
+        self.frogpilot_variables.CSLC_offset4 = int(self.params.get_int("Offset4") * 1.609344)
+    else:
+      self.frogpilot_variables.CSLC_offset1 = 0
+      self.frogpilot_variables.CSLC_offset2 = 0
+      self.frogpilot_variables.CSLC_offset3 = 0
+      self.frogpilot_variables.CSLC_offset4 = 0
+    
     custom_alerts = self.params.get_bool("CustomAlerts")
     self.green_light_alert = custom_alerts and self.params.get_bool("GreenLightAlert")
     self.lead_departing_alert = custom_alerts and self.params.get_bool("LeadDepartingAlert")

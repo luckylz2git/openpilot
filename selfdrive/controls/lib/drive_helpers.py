@@ -135,6 +135,16 @@ class VCruiseHelper:
       v_cruise_offset = frogpilot_variables.set_speed_offset - v_cruise_delta
     self.v_cruise_kph += v_cruise_offset
 
+    # Apply CSLC offset
+    if self.v_cruise_kph < 25:
+      self.v_cruise_kph -= frogpilot_variables.CSLC_offset1
+    elif self.v_cruise_kph >= 25 and self.v_cruise_kph <= 60:
+      self.v_cruise_kph -= frogpilot_variables.CSLC_offset2
+    elif self.v_cruise_kph > 60 and self.v_cruise_kph <= 90:
+      self.v_cruise_kph -= frogpilot_variables.CSLC_offset3
+    else:
+      self.v_cruise_kph -= frogpilot_variables.CSLC_offset4
+
     # If set is pressed while overriding, clip cruise speed to minimum of vEgo
     if CS.gasPressed and button_type in (ButtonType.decelCruise, ButtonType.setCruise):
       self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
