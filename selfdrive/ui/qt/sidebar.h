@@ -67,6 +67,7 @@ private:
 
   // FrogPilot variables
   Params params;
+  Params paramsMemory{"/dev/shm/params"};
   UIScene &scene;
 
   ItemStatus cpu_status, memory_status, storage_status;
