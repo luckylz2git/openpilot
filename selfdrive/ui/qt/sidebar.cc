@@ -173,14 +173,12 @@ void Sidebar::updateState(const UIState &s) {
       paramsMemory.putInt("SidebarToggle", 0);
       if (!isVisible() && sidebarToggle == 1) {
         setVisible(true);
-        // params.putBoolNonBlocking("Sidebar", true);
       } else if (isVisible() && sidebarToggle == 2) {
         setVisible(false);
-        // params.putBoolNonBlocking("Sidebar", false);
       } else if (sidebarToggle == 3) { //sidebarToggle == 3
         setVisible(!isVisible());
-        // params.putBoolNonBlocking("Sidebar", isVisible());
       }
+      params.putBoolNonBlocking("Sidebar", isVisible());
     }
   }
   if (!isVisible()) return;
