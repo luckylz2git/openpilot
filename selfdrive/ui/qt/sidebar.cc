@@ -169,16 +169,18 @@ void Sidebar::offroadTransition(bool offroad) {
 void Sidebar::updateState(const UIState &s) {
   if (onroad) {
     int sidebarToggle = paramsMemory.getInt("SidebarToggle");
-    if (sidebarToggle > 0) {
+    if (sidebarToggle) {
       if (!isVisible() && sidebarToggle == 1) {
         setVisible(true);
+        params.putBoolNonBlocking("Sidebar", true);
       } else if (isVisible() && sidebarToggle == 2) {
         setVisible(false);
-      } else {
+        params.putBoolNonBlocking("Sidebar", false);
+      } else { //sidebarToggle == 3
         setVisible(!isVisible());
+        params.putBoolNonBlocking("Sidebar", isVisible());
       }
       paramsMemory.putInt("SidebarToggle", 0);
-      params.putBoolNonBlocking("Sidebar", isVisible());
     }
   }
   if (!isVisible()) return;
