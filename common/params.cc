@@ -403,6 +403,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"ShowStorageLeft", PERSISTENT},
     {"ShowStorageUsed", PERSISTENT},
     {"Sidebar", PERSISTENT},
+    {"SidebarToggle", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"SLCConfirmation", PERSISTENT},
     {"SLCConfirmationLower", PERSISTENT},
     {"SLCConfirmationHigher", PERSISTENT},
