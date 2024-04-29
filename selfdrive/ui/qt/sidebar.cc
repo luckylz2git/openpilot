@@ -170,17 +170,17 @@ void Sidebar::updateState(const UIState &s) {
   if (onroad) {
     int sidebarToggle = paramsMemory.getInt("SidebarToggle");
     if (sidebarToggle) {
+      paramsMemory.putInt("SidebarToggle", 0);
       if (!isVisible() && sidebarToggle == 1) {
         setVisible(true);
         // params.putBoolNonBlocking("Sidebar", true);
       } else if (isVisible() && sidebarToggle == 2) {
         setVisible(false);
         // params.putBoolNonBlocking("Sidebar", false);
-      } else { //sidebarToggle == 3
+      } else if (sidebarToggle == 3) { //sidebarToggle == 3
         setVisible(!isVisible());
         // params.putBoolNonBlocking("Sidebar", isVisible());
       }
-      paramsMemory.putInt("SidebarToggle", 0);
     }
   }
   if (!isVisible()) return;
