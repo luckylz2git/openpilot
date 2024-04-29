@@ -225,6 +225,7 @@ OffroadHome::OffroadHome(QWidget* parent) : QFrame(parent) {
     {"certified-herbalist", "Certified Herbalist"},
     {"duck-amigo", "Duck Amigo"},
     {"recertified-herbalist", "Recertified Herbalist"},
+    {"north-dakota", "North Dakota"},
   };
 }
 
