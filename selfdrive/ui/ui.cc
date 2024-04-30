@@ -393,7 +393,8 @@ void ui_update_frogpilot_params(UIState *s) {
     bool reverseCruiseRuntimeUpdated = quality_of_life_controls && reverseCruiseRunTime==2;
     // 巡航按键对调
     if (reverseCruiseRuntimeUpdated != scene.reverse_cruise_runtime && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
-      paramsMemory.putBool("FrogPilotTogglesUpdated", false);
+      //不撤销
+      //paramsMemory.putBool("FrogPilotTogglesUpdated", false);
       scene.reverse_cruise_runtime = reverseCruiseRuntimeUpdated;
     }
   }
