@@ -147,6 +147,7 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
 
       //uiState()->scene.reverse_cruise = !currentReverseCruise;
       uiState()->scene.reverse_cruise_runtime = !currentReverseCruise;
+      scene.reverse_cruise_runtime = !currentReverseCruise;
       //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
       paramsMemory.putBool("ReverseCruiseRunTime", !currentReverseCruise);
       paramsMemory.putBool("FrogPilotTogglesUpdated", true);
