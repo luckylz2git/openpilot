@@ -146,9 +146,9 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
       //bool currentReverseCruise = paramsMemory.getBool("ReverseCruiseRunTime");
       //uiState()->scene.reverse_cruise_runtime = !currentReverseCruise;
       //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
-      paramsMemory.putInt("ReverseCruiseRunTime", paramsMemory.getInt("ReverseCruiseRunTime")==2 ? 1 : 2);
-      paramsMemory.putBool("FrogPilotTogglesUpdated", true);
       std::thread([=]() {
+        paramsMemory.putInt("ReverseCruiseRunTime", paramsMemory.getInt("ReverseCruiseRunTime")==2 ? 1 : 2);
+        paramsMemory.putBool("FrogPilotTogglesUpdated", true);
         std::this_thread::sleep_for(std::chrono::seconds(1));
         paramsMemory.putBool("FrogPilotTogglesUpdated", false);
       }).detach();

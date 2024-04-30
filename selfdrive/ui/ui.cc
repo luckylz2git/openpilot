@@ -450,11 +450,6 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.use_vienna_slc_sign = (scene.speed_limit_controller || scene.gear_number) && params.getBool("UseVienna");
 
   scene.wheel_icon = params.getInt("WheelIcon");
-  // 录屏切换信息
-  if (screenRecorderUpdated != scene.screen_recorder_updated && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
-    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
-    scene.screen_recorder_updated = screenRecorderUpdated;
-  }
 }
 
 void UIState::updateStatus() {

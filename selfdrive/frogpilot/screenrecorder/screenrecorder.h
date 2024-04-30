@@ -39,6 +39,7 @@ private:
   void openEncoder(const char *filename);
   // void start();
   // void stop();
+  void update_thread_func();
 
   bool recording;
   int frame;

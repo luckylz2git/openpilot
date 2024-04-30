@@ -118,16 +118,17 @@ void ScreenRecorder::start() {
   started = milliseconds();
 
   // 开启录屏后，自动打开对应信息
-  Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBool("ScreenRecorderUpdated", recording);
-  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+  update_thread_func();
+}
+void ScreenRecorder::update_thread_func() {
   std::thread([=]() {
     Params paramsMemory = Params("/dev/shm/params");
+    paramsMemory.putBool("ScreenRecorderUpdated", recording);
+    paramsMemory.putBool("FrogPilotTogglesUpdated", true);
     std::this_thread::sleep_for(std::chrono::seconds(1));
     paramsMemory.putBool("FrogPilotTogglesUpdated", false);
   }).detach();
 }
-
 void ScreenRecorder::encoding_thread_func() {
   const uint64_t start_time = nanos_since_boot();
   while (recording && encoder) {
@@ -158,14 +159,7 @@ void ScreenRecorder::stop() {
   image_queue.clear();
 
   // 开启录屏后，自动打开对应信息
-  Params paramsMemory = Params("/dev/shm/params");
-  paramsMemory.putBool("ScreenRecorderUpdated", recording);
-  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
-  std::thread([=]() {
-    Params paramsMemory = Params("/dev/shm/params");
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
-  }).detach();
+  update_thread_func();
 }
 
 void ScreenRecorder::update_screen() {
