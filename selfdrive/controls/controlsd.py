@@ -178,15 +178,11 @@ class Controls:
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
 
-    #self.frogpilot_variables.reverse_cruise_increase
-    #reverse_cruise = self.params.get_bool("ReverseCruise")
-    #0-没有初值，1-false, 2-true
-    #self.params_memory.put_int("ReverseCruiseRunTime", 2 if reverse_cruise else 1)
-
     self.ignore_controls_mismatch = False
 
     self.frogpilot_variables = SimpleNamespace()
-    #self.frogpilot_variables.reverse_cruise_increase = reverse_cruise
+    #self.frogpilot_variables.reverse_cruise_increase
+    self.frogpilot_variables.reverse_cruise_increase = self.params.get_bool("QOLControls") and self.params.get_bool("ReverseCruise")
 
     self.driving_gear = False
     self.fcw_random_event_triggered = False
