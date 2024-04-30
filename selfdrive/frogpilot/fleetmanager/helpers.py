@@ -518,7 +518,6 @@ def reverse_cruise_button(toggle):
   else: #toggled
     params_memory.put_int("ReverseCruiseRunTime", 1 if params_memory.get_int("ReverseCruiseRunTime")==2 else 2)
 
-  if value == 10:
-    params_memory.put_bool("FrogPilotTogglesUpdated", True)
-    time.sleep(1)
-    params_memory.put_bool("FrogPilotTogglesUpdated", False)  
+  params_memory.put_bool("FrogPilotTogglesUpdated", True)
+  time.sleep(1)
+  params_memory.put_bool("FrogPilotTogglesUpdated", False)  
