@@ -393,6 +393,24 @@ def sidebar_button_route():
   except Exception as e:
     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
 
+@app.route("/reverse_cruise_button", methods=['POST'])
+def reverse_cruise_button_route():
+  try:
+    toggle = int(request.args.get('toggle'))
+    msg = ""
+    if toggle == 1: #show
+      msg = "Enabled"
+    elif toggle == 2: #hide
+      msg = "Disabled"
+    elif toggle == 3: #toggle
+      msg = "Toggled"
+    else:
+      return "Reverse Cruise Wrong Value", 400
+    fleet.reverse_cruise_button(toggle)
+    return "Reverse Cruise "+ msg +" successfully", 200
+  except Exception as e:
+    return jsonify({"error": "Failed to update values", "details": str(e)}), 400
+
 def main():
   try:
     set_core_affinity([0, 1, 2, 3])

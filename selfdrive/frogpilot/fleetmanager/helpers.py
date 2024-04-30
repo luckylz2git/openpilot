@@ -509,3 +509,20 @@ def sidebar_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", True)
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)  
+
+def reverse_cruise_button(toggle):
+  value = params_memory.get_int("ReverseCruiseRunTime")
+  if toggle==1 and value!=2: #enabled
+    params_memory.put_int("ReverseCruiseRunTime", 2)
+    value = 10
+  elif toggle==2 and value==2: #disabled
+    params_memory.put_int("ReverseCruiseRunTime", 1)
+    value = 10
+  else: #toggled
+    params_memory.put_int("ReverseCruiseRunTime", 1 if value==2 else 2)
+    value = 10
+
+  if value == 10:
+    params_memory.put_bool("FrogPilotTogglesUpdated", True)
+    time.sleep(1)
+    params_memory.put_bool("FrogPilotTogglesUpdated", False)  
