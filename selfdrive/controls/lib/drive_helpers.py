@@ -120,12 +120,22 @@ class VCruiseHelper:
     if not self.button_change_states[button_type]["enabled"]:
       return
 
+    # Apply CSLC offset
+    if self.v_cruise_kph < 25:
+      cruise_os = frogpilot_variables.CSLC_offset1
+    elif self.v_cruise_kph >= 25 and self.v_cruise_kph <= 60:
+      cruise_os = frogpilot_variables.CSLC_offset2
+    elif self.v_cruise_kph > 60 and self.v_cruise_kph <= 90:
+      cruise_os = frogpilot_variables.CSLC_offset3
+    else:
+      cruise_os = frogpilot_variables.CSLC_offset4
+
     v_cruise_delta_interval = frogpilot_variables.custom_cruise_increase_long if long_press else frogpilot_variables.custom_cruise_increase
     # v_cruise_delta = v_cruise_delta * (5 if long_press else 1)
     v_cruise_delta = v_cruise_delta * v_cruise_delta_interval
     # if long_press and self.v_cruise_kph % v_cruise_delta != 0:  # partial interval
-    if v_cruise_delta_interval % 5 == 0 and self.v_cruise_kph % v_cruise_delta != 0:  # partial interval
-      self.v_cruise_kph = CRUISE_NEAREST_FUNC[button_type](self.v_cruise_kph / v_cruise_delta) * v_cruise_delta
+    if v_cruise_delta_interval % 5 == 0 and (self.v_cruise_kph + cruise_os) % v_cruise_delta != 0:  # partial interval
+      self.v_cruise_kph = CRUISE_NEAREST_FUNC[button_type]((self.v_cruise_kph + cruise_os) / v_cruise_delta) * v_cruise_delta
     else:
       self.v_cruise_kph += v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type]
 
@@ -134,16 +144,6 @@ class VCruiseHelper:
     if v_cruise_offset < 0:
       v_cruise_offset = frogpilot_variables.set_speed_offset - v_cruise_delta
     self.v_cruise_kph += v_cruise_offset
-
-    # Apply CSLC offset
-    if self.v_cruise_kph < 25:
-      self.v_cruise_kph -= frogpilot_variables.CSLC_offset1
-    elif self.v_cruise_kph >= 25 and self.v_cruise_kph <= 60:
-      self.v_cruise_kph -= frogpilot_variables.CSLC_offset2
-    elif self.v_cruise_kph > 60 and self.v_cruise_kph <= 90:
-      self.v_cruise_kph -= frogpilot_variables.CSLC_offset3
-    else:
-      self.v_cruise_kph -= frogpilot_variables.CSLC_offset4
 
     # If set is pressed while overriding, clip cruise speed to minimum of vEgo
     if CS.gasPressed and button_type in (ButtonType.decelCruise, ButtonType.setCruise):
