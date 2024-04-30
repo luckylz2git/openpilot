@@ -385,7 +385,7 @@ void ui_update_frogpilot_params(UIState *s) {
 
   bool quality_of_life_controls = params.getBool("QOLControls");
   scene.reverse_cruise = quality_of_life_controls && params.getBool("ReverseCruise");
-  scene.reverse_cruise_runtime = scene.reverse_cruise;
+  bool reverseCruiseRuntimeUpdated = quality_of_life_controls && paramsMemory.getBool("ReverseCruiseRunTime");
   // scene.reverse_cruise_ui = scene.reverse_cruise && params.getBool("ReverseCruiseUI");
   scene.reverse_cruise_ui = quality_of_life_controls && params.getBool("ReverseCruiseUI");
 
@@ -442,6 +442,11 @@ void ui_update_frogpilot_params(UIState *s) {
   if (screenRecorderUpdated != scene.screen_recorder_updated && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
     paramsMemory.putBool("FrogPilotTogglesUpdated", false);
     scene.screen_recorder_updated = screenRecorderUpdated;
+  }
+  // 巡航按键对调
+  if (reverseCruiseRuntimeUpdated != scene.reverse_cruise_runtime && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
+    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
+    scene.reverse_cruise_runtime = reverseCruiseRuntimeUpdated;
   }
 }
 

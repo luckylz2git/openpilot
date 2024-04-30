@@ -145,7 +145,6 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
       //bool currentReverseCruise = scene.reverse_cruise;
       bool currentReverseCruise = paramsMemory.getBool("ReverseCruiseRunTime");
 
-      uiState()->scene.reverse_cruise = !currentReverseCruise;
       uiState()->scene.reverse_cruise_runtime = !currentReverseCruise;
       
       //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
