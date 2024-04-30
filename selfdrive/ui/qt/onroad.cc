@@ -148,6 +148,10 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
       //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
       paramsMemory.putInt("ReverseCruiseRunTime", paramsMemory.getInt("ReverseCruiseRunTime")==2 ? 1 : 2);
       paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+      std::thread([=]() {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        paramsMemory.putBool("FrogPilotTogglesUpdated", false);
+      }).detach();
     } else if (isSpeedClicked && scene.hide_speed_ui) {
       bool currentHideSpeed = scene.hide_speed;
 

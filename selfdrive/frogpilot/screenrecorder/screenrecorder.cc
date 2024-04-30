@@ -121,6 +121,10 @@ void ScreenRecorder::start() {
   Params paramsMemory = Params("/dev/shm/params");
   paramsMemory.putBool("ScreenRecorderUpdated", recording);
   paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+  std::thread([=]() {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
+  }).detach();
 }
 
 void ScreenRecorder::encoding_thread_func() {
@@ -156,6 +160,10 @@ void ScreenRecorder::stop() {
   Params paramsMemory = Params("/dev/shm/params");
   paramsMemory.putBool("ScreenRecorderUpdated", recording);
   paramsMemory.putBool("FrogPilotTogglesUpdated", true);
+  std::thread([=]() {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
+  }).detach();
 }
 
 void ScreenRecorder::update_screen() {
