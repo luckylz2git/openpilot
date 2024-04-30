@@ -95,7 +95,8 @@ class VCruiseHelper:
 
     # Reverse the long press value for reverse cruise increase
     # 0-没有初值，1-false, 2-true
-    if frogpilot_variables.reverse_cruise_increase and self.params_memory.get_int("ReverseCruiseRunTime")==2:
+    intReverseCruiseRunTime = self.params_memory.get_int("ReverseCruiseRunTime")
+    if (frogpilot_variables.reverse_cruise_increase and intReverseCruiseRunTime==0) or intReverseCruiseRunTime==2:
       long_press = not long_press
 
     if button_type is None:
