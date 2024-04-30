@@ -143,12 +143,10 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
   if (isMaxSpeedClicked || isSpeedClicked || isSpeedLimitClicked) {
     if (isMaxSpeedClicked && scene.reverse_cruise_ui) {
       //bool currentReverseCruise = scene.reverse_cruise;
-      bool currentReverseCruise = paramsMemory.getBool("ReverseCruiseRunTime");
-
-      uiState()->scene.reverse_cruise_runtime = !currentReverseCruise;
-      
+      //bool currentReverseCruise = paramsMemory.getBool("ReverseCruiseRunTime");
+      //uiState()->scene.reverse_cruise_runtime = !currentReverseCruise;
       //params.putBoolNonBlocking("ReverseCruise", !currentReverseCruise);
-      paramsMemory.putBool("ReverseCruiseRunTime", !currentReverseCruise);
+      paramsMemory.putBool("ReverseCruiseRunTime", !paramsMemory.getBool("ReverseCruiseRunTime"));
       paramsMemory.putBool("FrogPilotTogglesUpdated", true);
     } else if (isSpeedClicked && scene.hide_speed_ui) {
       bool currentHideSpeed = scene.hide_speed;
