@@ -1264,6 +1264,7 @@ class Controls:
       intReverseCruiseRunTime = self.params_memory.get_int("ReverseCruiseRunTime")
       if intReverseCruiseRunTime==0:
         self.frogpilot_variables.reverse_cruise_increase = self.params.get_bool("ReverseCruise")
+        self.params_memory.put_int("ReverseCruiseRunTime", 2 if self.params.get_bool("ReverseCruise") else 1)
       else:
         self.frogpilot_variables.reverse_cruise_increase = (intReverseCruiseRunTime==2)
     else:

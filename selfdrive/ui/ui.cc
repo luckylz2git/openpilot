@@ -389,6 +389,7 @@ void ui_update_frogpilot_params(UIState *s) {
   // 0-没有初值，1-false, 2-true
   if (reverseCruiseRunTime==0) {
     scene.reverse_cruise_runtime = scene.reverse_cruise;
+    paramsMemory.putInt("ReverseCruiseRunTime", scene.reverse_cruise ? 2: 1);
   } else {
     bool reverseCruiseRuntimeUpdated = quality_of_life_controls && reverseCruiseRunTime==2;
     // 巡航按键对调
