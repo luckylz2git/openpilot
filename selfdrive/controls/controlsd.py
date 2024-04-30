@@ -180,7 +180,8 @@ class Controls:
 
     #self.frogpilot_variables.reverse_cruise_increase
     reverse_cruise = self.params.get_bool("ReverseCruise")
-    self.params_memory.put_bool("ReverseCruiseRunTime", reverse_cruise)
+    #0-没有初值，1-false, 2-true
+    self.params_memory.put_int("ReverseCruiseRunTime", 2 if reverse_cruise else 1)
 
     self.ignore_controls_mismatch = False
 
@@ -1262,7 +1263,8 @@ class Controls:
     self.pause_lateral_on_signal = self.params.get_int("PauseLateralOnSignal") * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
     # drive_helpers.py改用ReverseCruiseRunTime控制
     # if frogpilot_variables.reverse_cruise_increase and self.params_memory.get_bool("ReverseCruiseRunTime"):
-    reverse_cruise_increase = quality_of_life and self.params_memory.get_bool("ReverseCruiseRunTime")
+    # 0-没有初值，1-false, 2-true
+    reverse_cruise_increase = quality_of_life and (self.params_memory.get_int("ReverseCruiseRunTime")==2)
     if self.frogpilot_variables.reverse_cruise_increase != reverse_cruise_increase and self.params_memory.get_bool("FrogPilotTogglesUpdated"):
       self.params_memory.put_bool("FrogPilotTogglesUpdated", False)
     self.frogpilot_variables.reverse_cruise_increase = reverse_cruise_increase

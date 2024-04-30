@@ -385,7 +385,18 @@ void ui_update_frogpilot_params(UIState *s) {
 
   bool quality_of_life_controls = params.getBool("QOLControls");
   scene.reverse_cruise = quality_of_life_controls && params.getBool("ReverseCruise");
-  bool reverseCruiseRuntimeUpdated = quality_of_life_controls && paramsMemory.getBool("ReverseCruiseRunTime");
+  int reverseCruiseRunTime = paramsMemory.getInt("ReverseCruiseRunTime");
+  // 0-没有初值，1-false, 2-true
+  if (reverseCruiseRunTime==0) {
+    scene.reverse_cruise_runtime = scene.reverse_cruise;
+  } else {
+    bool reverseCruiseRuntimeUpdated = quality_of_life_controls && reverseCruiseRunTime==2;
+    // 巡航按键对调
+    if (reverseCruiseRuntimeUpdated != scene.reverse_cruise_runtime && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
+      paramsMemory.putBool("FrogPilotTogglesUpdated", false);
+      scene.reverse_cruise_runtime = reverseCruiseRuntimeUpdated;
+    }
+  }
   // scene.reverse_cruise_ui = scene.reverse_cruise && params.getBool("ReverseCruiseUI");
   scene.reverse_cruise_ui = quality_of_life_controls && params.getBool("ReverseCruiseUI");
 
@@ -442,11 +453,6 @@ void ui_update_frogpilot_params(UIState *s) {
   if (screenRecorderUpdated != scene.screen_recorder_updated && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
     paramsMemory.putBool("FrogPilotTogglesUpdated", false);
     scene.screen_recorder_updated = screenRecorderUpdated;
-  }
-  // 巡航按键对调
-  if (reverseCruiseRuntimeUpdated != scene.reverse_cruise_runtime && paramsMemory.getBool("FrogPilotTogglesUpdated")) {
-    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
-    scene.reverse_cruise_runtime = reverseCruiseRuntimeUpdated;
   }
 }
 
