@@ -179,14 +179,14 @@ class Controls:
     self.params_memory = Params("/dev/shm/params")
 
     #self.frogpilot_variables.reverse_cruise_increase
-    reverse_cruise = self.params.get_bool("ReverseCruise")
+    #reverse_cruise = self.params.get_bool("ReverseCruise")
     #0-没有初值，1-false, 2-true
-    self.params_memory.put_int("ReverseCruiseRunTime", 2 if reverse_cruise else 1)
+    #self.params_memory.put_int("ReverseCruiseRunTime", 2 if reverse_cruise else 1)
 
     self.ignore_controls_mismatch = False
 
     self.frogpilot_variables = SimpleNamespace()
-    self.frogpilot_variables.reverse_cruise_increase = reverse_cruise
+    #self.frogpilot_variables.reverse_cruise_increase = reverse_cruise
 
     self.driving_gear = False
     self.fcw_random_event_triggered = False
@@ -1264,11 +1264,15 @@ class Controls:
     # drive_helpers.py改用ReverseCruiseRunTime控制
     # if frogpilot_variables.reverse_cruise_increase and self.params_memory.get_bool("ReverseCruiseRunTime"):
     # 0-没有初值，1-false, 2-true
-    reverse_cruise_increase = quality_of_life and (self.params_memory.get_int("ReverseCruiseRunTime")==2)
-    if self.frogpilot_variables.reverse_cruise_increase != reverse_cruise_increase and self.params_memory.get_bool("FrogPilotTogglesUpdated"):
-      self.params_memory.put_bool("FrogPilotTogglesUpdated", False)
-    self.frogpilot_variables.reverse_cruise_increase = reverse_cruise_increase
-    
+    if quality_of_life:
+      intReverseCruiseRunTime = self.params_memory.get_int("ReverseCruiseRunTime")
+      if intReverseCruiseRunTime==0:
+        self.frogpilot_variables.reverse_cruise_increase = params.get_bool("ReverseCruise")
+      else:
+        self.frogpilot_variables.reverse_cruise_increase = (intReverseCruiseRunTime==2)
+    else:
+      self.frogpilot_variables.reverse_cruise_increase = False
+
     self.frogpilot_variables.custom_cruise_increase = self.params.get_int("CustomCruise") if quality_of_life else 1
     self.frogpilot_variables.custom_cruise_increase_long = self.params.get_int("CustomCruiseLong") if quality_of_life else 5
     self.frogpilot_variables.set_speed_offset = self.params.get_int("SetSpeedOffset") * (1 if self.is_metric else CV.MPH_TO_KPH) if quality_of_life else 0
