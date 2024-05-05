@@ -531,8 +531,8 @@ def nudgeless_button(toggle):
     params.put_bool_nonblocking("NudgelessLaneChange", False)
   else: #toggled
     nudgeless = params.get_bool("NudgelessLaneChange")
-    params_memory.put_int("PauseLateralOnSignalRunTime", 0 if nudgeless else 200)
     params.put_bool_nonblocking("NudgelessLaneChange", not nudgeless)
+    params_memory.put_int("PauseLateralOnSignalRunTime", 0 if not nudgeless else 200)
 
   params_memory.put_bool("FrogPilotTogglesUpdated", True)
   time.sleep(1)
