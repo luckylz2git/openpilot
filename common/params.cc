@@ -312,6 +312,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"LaneLinesWidth", PERSISTENT},
     {"LastMapsUpdate", PERSISTENT},
     {"LateralTune", PERSISTENT},
+    //运行时开启、关闭横向控制
+    {"LateralDisableRunTime", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"LeadDepartingAlert", PERSISTENT},
     {"LeadInfo", PERSISTENT},
     {"LockDoors", PERSISTENT},

@@ -537,3 +537,15 @@ def nudgeless_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", True)
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
+
+def lateral_control_button(toggle):
+  if toggle==1: #enabled
+    params_memory.put_bool("LateralDisableRunTime", False)
+  elif toggle==2: #disabled
+    params_memory.put_bool("LateralDisableRunTime", True)
+  else: #toggled
+    params_memory.put_int("LateralDisableRunTime", not params_memory.get_bool("LateralDisableRunTime"))
+
+  params_memory.put_bool("FrogPilotTogglesUpdated", True)
+  time.sleep(1)
+  params_memory.put_bool("FrogPilotTogglesUpdated", False)

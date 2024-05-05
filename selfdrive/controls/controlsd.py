@@ -907,7 +907,8 @@ class Controls:
     standstill = CS.vEgo <= max(self.CP.minSteerSpeed, MIN_LATERAL_CONTROL_SPEED) or CS.standstill
     CC.latActive = (self.active or self.FPCC.alwaysOnLateral) and signal_check and not CS.steerFaultTemporary and not CS.steerFaultPermanent and \
                    (not standstill or self.joystick_mode) and not self.openpilot_crashed and \
-                   min_steer_speed_check
+                   min_steer_speed_check and \
+                   (not self.lateral_disable_runtime)
     CC.longActive = self.enabled and not self.events.contains(ET.OVERRIDE_LONGITUDINAL) and self.CP.openpilotLongitudinalControl and not self.openpilot_crashed
 
     actuators = CC.actuators
@@ -1278,6 +1279,8 @@ class Controls:
     self.min_steer_speed_standard = self.params.get_int("MinSteerSpeedStandard") * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
     #MinSteerSpeedEngage, convert to MS
     self.min_steer_speed_engage = self.params.get_int("MinSteerSpeedEngage") * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
+    #运行时开启、关闭横向控制
+    self.lateral_disable_runtime = self.params_memory.get_bool("LateralDisableRunTime")
 
     self.random_events = self.params.get_bool("RandomEvents")
     self.frogpilot_variables.use_ev_tables = self.params.get_bool("EVTable")
