@@ -521,3 +521,19 @@ def reverse_cruise_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", True)
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)  
+
+def nudgeless_button(toggle):
+  if toggle==1: #enabled
+    params_memory.put_int("PauseLateralOnSignalRunTime", 0)
+    params.put_bool_nonblocking("NudgelessLaneChange", True)
+  elif toggle==2: #disabled
+    params_memory.put_int("PauseLateralOnSignalRunTime", 200)
+    params.put_bool_nonblocking("NudgelessLaneChange", False)
+  else: #toggled
+    nudgeless = params.get_bool("NudgelessLaneChange")
+    params_memory.put_int("PauseLateralOnSignalRunTime", 0 if nudgeless else 200)
+    params.put_bool_nonblocking("NudgelessLaneChange", not nudgeless)
+
+  params_memory.put_bool("FrogPilotTogglesUpdated", True)
+  time.sleep(1)
+  params_memory.put_bool("FrogPilotTogglesUpdated", False)
