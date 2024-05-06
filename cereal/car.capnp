@@ -117,8 +117,6 @@ struct CarEvent @0x9b1657f34caf3ad3 {
     locationdPermanentError @118;
     paramsdTemporaryError @50;
     paramsdPermanentError @119;
-    nudgelessLaneChangeEnabled @138;
-    nudgelessLaneChangeDisabled @139;
 
     # FrogPilot events
     accel30 @120;

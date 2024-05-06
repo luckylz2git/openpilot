@@ -1910,6 +1910,13 @@ PersonalityButton::PersonalityButton(QWidget *parent) : QPushButton(parent), sce
     {QPixmap("../frogpilot/assets/other_images/relaxed_new.png"), "Relaxed"}
   };
 
+  //禁用自动变道
+  profile_data1 = {
+    {QPixmap("../frogpilot/assets/other_images/aggressive_new1.png"), "Aggressive"},
+    {QPixmap("../frogpilot/assets/other_images/standard_new1.png"), "Standard"},
+    {QPixmap("../frogpilot/assets/other_images/relaxed_new1.png"), "Relaxed"}
+  };
+
   personalityProfile = params.getInt("LongitudinalPersonality");
 
   transitionTimer.start();
@@ -1965,7 +1972,12 @@ void PersonalityButton::paintEvent(QPaintEvent *) {
   p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
   // Configure the button
-  auto &[profile_image, profile_text] = profile_data[personalityProfile];
+  if (scene.pause_lateral_onsignal_runtime == 0) {
+    auto &[profile_image, profile_text] = profile_data[personalityProfile];
+  } else { //禁用自动变道
+    auto &[profile_image, profile_text] = profile_data1[personalityProfile];
+  }
+  
   QRect rect(0, 0, width(), height() + 95);
 
   // Draw the profile text with the calculated opacity
