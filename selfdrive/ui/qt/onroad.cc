@@ -495,6 +495,10 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
   if (steeringPressed) {
     background_color = QColor(100, 100, 100, 200); //QColor(145, 155, 149, 241);
   }
+  //禁用横向
+  if (scene.lateral_disable_runtime) {
+    background_color = QColor(255, 0, 0, 200);
+  }
   if (!(scene.show_driver_camera || scene.map_open && scene.full_map)) {
     if (wheelIconGif != 0) {
       QBrush backgroundBrush(background_color);

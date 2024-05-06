@@ -354,6 +354,9 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.lead_info = custom_onroad_ui && params.getBool("LeadInfo") || screenRecorderUpdated;
   scene.pedals_on_ui = custom_onroad_ui && params.getBool("PedalsOnUI") || screenRecorderUpdated;
 
+  //禁用横向
+  scene.lateral_disable_runtime = paramsMemory.getBool("LateralDisableRunTime");
+
   scene.use_si = scene.lead_info && params.getBool("UseSI");
   scene.road_name_ui = custom_onroad_ui && params.getBool("RoadNameUI");
 

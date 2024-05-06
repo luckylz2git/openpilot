@@ -246,6 +246,7 @@ typedef struct UIScene {
   bool steering_pressed; //TEST_STEER
   bool gas_pressed; //TEST_GAS_PEDAL
   bool brake_pressed; //TEST_BRAKE_PEDAL
+  bool lateral_disable_runtime; //禁用横向
 
   float acceleration;
   float adjusted_cruise;
