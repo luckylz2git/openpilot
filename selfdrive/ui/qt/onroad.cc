@@ -1972,11 +1972,9 @@ void PersonalityButton::paintEvent(QPaintEvent *) {
   p.setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
 
   // Configure the button
-  if (scene.pause_lateral_onsignal_runtime == 0) {
-    auto &[profile_image, profile_text] = profile_data[personalityProfile];
-  } else { //禁用自动变道
-    auto &[profile_image, profile_text] = profile_data1[personalityProfile];
-  }
+  auto &[profile_image, profile_text] = profile_data[personalityProfile];
+  //禁用自动变道
+  auto &[profile_image1, profile_text1] = profile_data1[personalityProfile];
   
   QRect rect(0, 0, width(), height() + 95);
 
@@ -1985,12 +1983,12 @@ void PersonalityButton::paintEvent(QPaintEvent *) {
     p.setOpacity(textOpacity);
     p.setFont(InterFont(40, QFont::Bold));
     p.setPen(Qt::white);
-    p.drawText(rect, Qt::AlignCenter, profile_text);
+    p.drawText(rect, Qt::AlignCenter, scene.pause_lateral_onsignal_runtime == 0 ? profile_text : profile_text1);
   }
 
   // Draw the profile image with the calculated opacity
   if (imageOpacity > 0.0) {
-    drawIcon(p, QPoint((btn_size / 2) * 1.25, btn_size / 2 + 95), profile_image, Qt::transparent, imageOpacity);
+    drawIcon(p, QPoint((btn_size / 2) * 1.25, btn_size / 2 + 95), scene.pause_lateral_onsignal_runtime == 0 ? profile_image : profile_image1, Qt::transparent, imageOpacity);
   }
 }
 
