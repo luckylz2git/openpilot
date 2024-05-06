@@ -1919,7 +1919,7 @@ PersonalityButton::PersonalityButton(QWidget *parent) : QPushButton(parent), sce
 
   personalityProfile = params.getInt("LongitudinalPersonality");
 
-  transitionTimer.start();
+  // transitionTimer.start();
 
   connect(this, &QPushButton::clicked, this, &PersonalityButton::handleClick);
 }
@@ -1927,7 +1927,7 @@ PersonalityButton::PersonalityButton(QWidget *parent) : QPushButton(parent), sce
 void PersonalityButton::checkUpdate() {
   // Sync with the steering wheel button
   personalityProfile = params.getInt("LongitudinalPersonality");
-  updateState();
+  update(); //updateState();
   paramsMemory.putBool("PersonalityChangedViaWheel", false);
 }
 
@@ -1938,12 +1938,12 @@ void PersonalityButton::handleClick() {
   params.putInt("LongitudinalPersonality", personalityProfile);
   paramsMemory.putBool("PersonalityChangedViaUI", true);
 
-  updateState();
+  update(); //updateState();
 }
 
 void PersonalityButton::updateState() {
   // Start the transition
-  transitionTimer.restart();
+  // transitionTimer.restart();
   //重绘5次
   std::thread([=]() {
     update();
@@ -1964,7 +1964,8 @@ void PersonalityButton::paintEvent(QPaintEvent *) {
   constexpr qreal textDuration = 3000.0;  // 3 seconds
 
   QPainter p(this);
-  int elapsed = transitionTimer.elapsed();
+  // int elapsed = transitionTimer.elapsed();
+  int elapsed = 5000;
   qreal textOpacity = qBound(0.0, 1.0 - ((elapsed - textDuration) / fadeDuration), 1.0);
   qreal imageOpacity = qBound(0.0, (elapsed - textDuration) / fadeDuration, 1.0);
 
