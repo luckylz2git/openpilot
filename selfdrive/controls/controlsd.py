@@ -1263,9 +1263,9 @@ class Controls:
     if self.pause_lateral_on_signal_runtime != self.params_memory.get_int("PauseLateralOnSignalRunTime"):
       self.pause_lateral_on_signal_runtime = self.params_memory.get_int("PauseLateralOnSignalRunTime")
       if self.pause_lateral_on_signal_runtime == 0:
-        self.events.add()
+        self.events.add(EventName.nudgelessLaneChangeEnabled)
       else:
-        self.events.add()
+        self.events.add(EventName.nudgelessLaneChangeDisabled)
 
     # 行车调整NudgelessLaneChange后，设置PauseLateralOnSignalRunTime=200KPH
     self.pause_lateral_on_signal = (self.params.get_int("PauseLateralOnSignal") + self.pause_lateral_on_signal_runtime) * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
