@@ -1922,10 +1922,6 @@ void PersonalityButton::checkUpdate() {
   personalityProfile = params.getInt("LongitudinalPersonality");
   updateState();
   paramsMemory.putBool("PersonalityChangedViaWheel", false);
-  std::thread([=]() {
-    std::this_thread::sleep_for(std::chrono::seconds(5));
-    update();
-  }).detach();
 }
 
 void PersonalityButton::handleClick() {
@@ -1941,6 +1937,10 @@ void PersonalityButton::handleClick() {
 void PersonalityButton::updateState() {
   // Start the transition
   transitionTimer.restart();
+  std::thread([=]() {
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    update();
+  }).detach();
 }
 
 void PersonalityButton::paintEvent(QPaintEvent *) {
