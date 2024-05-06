@@ -1922,6 +1922,10 @@ void PersonalityButton::checkUpdate() {
   personalityProfile = params.getInt("LongitudinalPersonality");
   updateState();
   paramsMemory.putBool("PersonalityChangedViaWheel", false);
+  std::thread([=]() {
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    update();
+  }).detach();
 }
 
 void PersonalityButton::handleClick() {

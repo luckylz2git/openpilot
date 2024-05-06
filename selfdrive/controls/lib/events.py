@@ -917,7 +917,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.nudgelessLaneChangeEnabled: {
     ET.PERMANENT: Alert(
       "Nudgeless Enabled",
-      "Nudgeless Lane Change",
+      "Automatic Lane Change Enabled On Runtime",
       AlertStatus.normal, AlertSize.small,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 1.),
     ET.NO_ENTRY: NoEntryAlert("Nudgeless Enabled"),
@@ -925,7 +925,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   EventName.nudgelessLaneChangeDisabled: {
     ET.PERMANENT: Alert(
       "Nudgeless Disabled",
-      "Nudgeless Lane Change",
+      "Manual Steering to Proceed Lane Change",
       AlertStatus.normal, AlertSize.small,
       Priority.LOWER, VisualAlert.none, AudibleAlert.none, 1.),
     ET.NO_ENTRY: NoEntryAlert("Nudgeless Disabled"),
