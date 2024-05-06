@@ -471,6 +471,11 @@ void ExperimentalButton::updateState(const UIState &s, bool leadInfo) {
     steeringPressed = scene.steering_pressed;
     update();
   }
+  //禁用横向
+  if (lateralDisableRuntime != scene.lateral_disable_runtime) {
+    lateralDisableRuntime = scene.lateral_disable_runtime;
+    update();
+  }
 }
 
 void ExperimentalButton::paintEvent(QPaintEvent *event) {
@@ -496,7 +501,7 @@ void ExperimentalButton::paintEvent(QPaintEvent *event) {
     background_color = QColor(100, 100, 100, 200); //QColor(145, 155, 149, 241);
   }
   //禁用横向
-  if (scene.lateral_disable_runtime) {
+  if (lateralDisableRuntime) {
     background_color = QColor(255, 0, 0, 200);
   }
   if (!(scene.show_driver_camera || scene.map_open && scene.full_map)) {

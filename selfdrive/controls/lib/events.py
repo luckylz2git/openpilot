@@ -913,6 +913,24 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
     ET.NO_ENTRY: NoEntryAlert("Controls Mismatch 2"),
   },
 
+  #禁用打灯变道
+  EventName.nudgelessLaneChangeEnabled: {
+    ET.PERMANENT: Alert(
+      "Nudgeless Enabled",
+      "Nudgeless Lane Change",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOWER, VisualAlert.none, AudibleAlert.none, 1.),
+    ET.NO_ENTRY: NoEntryAlert("Nudgeless Enabled"),
+  },
+  EventName.nudgelessLaneChangeDisabled: {
+    ET.PERMANENT: Alert(
+      "Nudgeless Disabled",
+      "Nudgeless Lane Change",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOWER, VisualAlert.none, AudibleAlert.none, 1.),
+    ET.NO_ENTRY: NoEntryAlert("Nudgeless Disabled"),
+  },
+
   EventName.roadCameraError: {
     ET.PERMANENT: NormalPermanentAlert("Camera CRC Error - Road",
                                        duration=1.,

@@ -89,6 +89,7 @@ private:
   bool firefoxRandomEventTriggered;
   bool rotatingWheel;
   bool steeringPressed; //TEST_STEER
+  bool lateralDisableRuntime; //禁用横向
   bool weebRandomEventTriggered;
 
   int steeringAngleDeg;

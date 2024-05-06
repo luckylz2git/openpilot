@@ -191,6 +191,8 @@ class Controls:
     self.random_event_triggered = False
     self.stopped_for_light_previously = False
 
+    self.pause_lateral_on_signal_runtime = 0 #禁用打灯变道
+
     self.drive_distance = 0
     self.max_acceleration = 0
     self.previous_drive_distance = 0
@@ -1257,8 +1259,16 @@ class Controls:
     self.frogpilot_variables.sng_hack = self.params.get_bool("SNGHack")
 
     quality_of_life = self.params.get_bool("QOLControls")
+    #禁用打灯变道
+    if self.pause_lateral_on_signal_runtime != self.params_memory.get_int("PauseLateralOnSignalRunTime"):
+      self.pause_lateral_on_signal_runtime = self.params_memory.get_int("PauseLateralOnSignalRunTime")
+      if self.pause_lateral_on_signal_runtime == 0:
+        self.events.add()
+      else:
+        self.events.add()
+
     # 行车调整NudgelessLaneChange后，设置PauseLateralOnSignalRunTime=200KPH
-    self.pause_lateral_on_signal = (self.params.get_int("PauseLateralOnSignal") + self.params_memory.get_int("PauseLateralOnSignalRunTime")) * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
+    self.pause_lateral_on_signal = (self.params.get_int("PauseLateralOnSignal") + self.pause_lateral_on_signal_runtime) * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
     # drive_helpers.py改用ReverseCruiseRunTime控制
     # if frogpilot_variables.reverse_cruise_increase and self.params_memory.get_bool("ReverseCruiseRunTime"):
     # 0-没有初值，1-false, 2-true
