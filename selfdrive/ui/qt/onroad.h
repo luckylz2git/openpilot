@@ -140,7 +140,7 @@ public:
 
   void checkUpdate();
   void handleClick();
-  void updateState();
+  // void updateState();
 
 private:
   void paintEvent(QPaintEvent *event) override;
@@ -152,7 +152,7 @@ private:
 
   int personalityProfile = 0;
 
-  QElapsedTimer transitionTimer;
+  // QElapsedTimer transitionTimer;
 
   QVector<std::pair<QPixmap, QString>> profile_data;
   QVector<std::pair<QPixmap, QString>> profile_data1;

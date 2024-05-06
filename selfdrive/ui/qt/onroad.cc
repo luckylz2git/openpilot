@@ -1940,7 +1940,7 @@ void PersonalityButton::handleClick() {
 
   update(); //updateState();
 }
-
+/*
 void PersonalityButton::updateState() {
   // Start the transition
   // transitionTimer.restart();
@@ -1957,7 +1957,7 @@ void PersonalityButton::updateState() {
     update();
   }).detach();
 }
-
+*/
 void PersonalityButton::paintEvent(QPaintEvent *) {
   // Declare the constants
   constexpr qreal fadeDuration = 1000.0;  // 1 second
