@@ -357,8 +357,8 @@ void ui_update_frogpilot_params(UIState *s) {
   //禁用横向
   scene.lateral_disable_runtime = paramsMemory.getBool("LateralDisableRunTime");
   //禁用自动变道
-  if (scene.pause_lateral_onsignal_runtime != paramsMemory.getInt("PauseLateralOnSignalRunTime")) {
-    scene.pause_lateral_onsignal_runtime = paramsMemory.getInt("PauseLateralOnSignalRunTime");
+  if (scene.nudgeless_lane_change != params.getBool("NudgelessLaneChange")) {
+    scene.nudgeless_lane_change = params.getBool("NudgelessLaneChange");
     paramsMemory.putBool("PersonalityChangedViaWheel", true);
   }
 

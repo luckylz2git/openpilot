@@ -1258,8 +1258,7 @@ class Controls:
 
     quality_of_life = self.params.get_bool("QOLControls")
 
-    # 行车调整NudgelessLaneChange后，设置PauseLateralOnSignalRunTime=200KPH
-    self.pause_lateral_on_signal = (self.params.get_int("PauseLateralOnSignal") + self.params_memory.get_int("PauseLateralOnSignalRunTime")) * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
+    self.pause_lateral_on_signal = self.params.get_int("PauseLateralOnSignal") * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
     # drive_helpers.py改用ReverseCruiseRunTime控制
     # if frogpilot_variables.reverse_cruise_increase and self.params_memory.get_bool("ReverseCruiseRunTime"):
     # 0-没有初值，1-false, 2-true

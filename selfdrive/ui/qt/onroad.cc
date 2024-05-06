@@ -1983,12 +1983,12 @@ void PersonalityButton::paintEvent(QPaintEvent *) {
     p.setOpacity(textOpacity);
     p.setFont(InterFont(40, QFont::Bold));
     p.setPen(Qt::white);
-    p.drawText(rect, Qt::AlignCenter, scene.pause_lateral_onsignal_runtime == 0 ? profile_text : profile_text1);
+    p.drawText(rect, Qt::AlignCenter, scene.nudgeless_lane_change ? profile_text : profile_text1);
   }
 
   // Draw the profile image with the calculated opacity
   if (imageOpacity > 0.0) {
-    drawIcon(p, QPoint((btn_size / 2) * 1.25, btn_size / 2 + 95), scene.pause_lateral_onsignal_runtime == 0 ? profile_image : profile_image1, Qt::transparent, imageOpacity);
+    drawIcon(p, QPoint((btn_size / 2) * 1.25, btn_size / 2 + 95), scene.nudgeless_lane_change ? profile_image : profile_image1, Qt::transparent, imageOpacity);
   }
 }
 

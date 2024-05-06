@@ -360,8 +360,6 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"PathEdgeWidth", PERSISTENT},
     {"PathWidth", PERSISTENT},
     {"PauseLateralOnSignal", PERSISTENT},
-    //0-没有初值，200-临时关闭
-    {"PauseLateralOnSignalRunTime", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"PedalsOnUI", PERSISTENT},
     {"PersonalitiesViaScreen", PERSISTENT},
     {"PersonalitiesViaWheel", PERSISTENT},
