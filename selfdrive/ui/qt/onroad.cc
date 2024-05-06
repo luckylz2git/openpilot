@@ -1937,8 +1937,16 @@ void PersonalityButton::handleClick() {
 void PersonalityButton::updateState() {
   // Start the transition
   transitionTimer.restart();
+  //重绘5次
   std::thread([=]() {
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    update();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    update();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    update();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    update();
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     update();
   }).detach();
 }
