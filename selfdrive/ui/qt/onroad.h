@@ -155,6 +155,7 @@ private:
   QElapsedTimer transitionTimer;
 
   QVector<std::pair<QPixmap, QString>> profile_data;
+  QVector<std::pair<QPixmap, QString>> profile_data1;
 };
 
 // container window for the NVG UI
