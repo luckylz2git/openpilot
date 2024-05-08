@@ -26,6 +26,7 @@ import os
 import requests
 import subprocess
 import time
+import socket #UDP测试
 # otisserv conversion
 from common.params import Params
 from flask import render_template, request, session
@@ -55,6 +56,9 @@ PRESERVE_ATTR_NAME = 'user.preserve'
 PRESERVE_ATTR_VALUE = b'1'
 PRESERVE_COUNT = 5
 
+#UDP测试
+UDP_IP = "0.0.0.0"
+UDP_PORT = 6499
 
 # path to openpilot screen recordings and error logs
 if PC:
@@ -64,6 +68,19 @@ else:
   SCREENRECORD_PATH = "/data/media/0/videos/"
   ERROR_LOGS_PATH = "/data/community/crashes/"
 
+#UDP测试
+def udp_send_message():
+  try:
+    UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    while True:
+      message = b"OpenPilot, UDP!"
+      UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
+      time.sleep(1)
+
+    UDP_SOCKET.close()
+  except Exception:
+    pass
 
 def list_files(path): # still used for footage
   return sorted(listdir_by_creation(path), reverse=True)
