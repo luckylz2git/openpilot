@@ -70,17 +70,14 @@ else:
 
 #UDP测试
 def udp_send_message():
-  try:
-    UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-    while True:
-      message = b"OpenPilot, UDP!"
-      UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
-      time.sleep(1)
+  while True:
+    message = b"UDP OpenPilot Comma 3!"
+    UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
+    time.sleep(1)
 
-    UDP_SOCKET.close()
-  except Exception:
-    pass
+  UDP_SOCKET.close()
 
 def list_files(path): # still used for footage
   return sorted(listdir_by_creation(path), reverse=True)
