@@ -46,109 +46,109 @@ from openpilot.system.loggerd.xattr_cache import getxattr
 from urllib.parse import parse_qs, quote
 
 class CanMsg:
-    GEARS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15]
+  GEARS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15]
 
-    def __init__(self):
-        self.length = 31
-        self.version = 1
-        self.steeringWheelAngle = random.randint(-540, 540)
-        self.currentGearNum = random.choice(self.GEARS)
-        self.driverMode = 0
-        self.brakePressure = 0
-        self.turnSignals = 0
-        self.brakePressed = 0
-        self.hazardLights = 0
-        self.rpm = 0
-        self.engineCoolantTemp = 0
-        self.accSpeed = 0
-        self.accGapLevel = 0
-        self.leftBSM = 0
-        self.rightBSM = 0
-        self.flDoor = 0
-        self.frDoor = 0
-        self.rlDoor = 0
-        self.rrDoor = 0
-        self.gasPedal = 0
-        self.distance = 0
+  def __init__(self):
+    self.length = 31
+    self.version = 1
+    self.steeringWheelAngle = random.randint(-540, 540)
+    self.currentGearNum = random.choice(self.GEARS)
+    self.driverMode = 0
+    self.brakePressure = 0
+    self.turnSignals = 0
+    self.brakePressed = 0
+    self.hazardLights = 0
+    self.rpm = 0
+    self.engineCoolantTemp = 0
+    self.accSpeed = 0
+    self.accGapLevel = 0
+    self.leftBSM = 0
+    self.rightBSM = 0
+    self.flDoor = 0
+    self.frDoor = 0
+    self.rlDoor = 0
+    self.rrDoor = 0
+    self.gasPedal = 0
+    self.distance = 0
 
-        self.speed = 0
-        self.flSpeed = 0
-        self.frSpeed = 0
-        self.rlSpeed = 0
-        self.rrSpeed = 0
-        self.nextGearNum = 0
+    self.speed = 0
+    self.flSpeed = 0
+    self.frSpeed = 0
+    self.rlSpeed = 0
+    self.rrSpeed = 0
+    self.nextGearNum = 0
 
-    def pack(self):
-        data = bytearray(32)
-        data[0] = ((self.length - 1) << 3) | (self.version >> 5)
-        tmpSteeringWheelAngle = self.steeringWheelAngle + 720
-        data[1] = ((self.version & 0x1F) << 3) | (tmpSteeringWheelAngle >> 8)
-        data[2] = tmpSteeringWheelAngle & 0xFF
-        data[3] = (self.currentGearNum << 4) | self.driverMode
-        data[4] = self.brakePressure & 0xFF
-        tmpRpm = self.rpm
-        data[5] = (self.turnSignals << 6) | (self.brakePressed << 5) | (self.hazardLights << 4) | (tmpRpm >> 8)
-        data[6] = tmpRpm & 0xFF
-        data[7] = (self.engineCoolantTemp + 40) & 0xFF
-        data[8] = self.accSpeed & 0xFF
-        data[9] = (self.accGapLevel << 6) | (self.leftBSM << 5) | (self.rightBSM << 4) | (self.flDoor << 3) | (self.frDoor << 2) | (self.rlDoor << 1) | self.rrDoor
-        data[10] = self.gasPedal & 0xFF
-        tmpDistance = self.distance
-        data[11] = (tmpDistance >> 32) & 0xFF
-        data[12] = (tmpDistance >> 24) & 0xFF
-        data[13] = (tmpDistance >> 16) & 0xFF
-        data[14] = (tmpDistance >> 8) & 0xFF
-        data[15] = tmpDistance & 0xFF
+  def pack(self):
+    data = bytearray(32)
+    data[0] = ((self.length - 1) << 3) | (self.version >> 5)
+    tmpSteeringWheelAngle = self.steeringWheelAngle + 720
+    data[1] = ((self.version & 0x1F) << 3) | (tmpSteeringWheelAngle >> 8)
+    data[2] = tmpSteeringWheelAngle & 0xFF
+    data[3] = (self.currentGearNum << 4) | self.driverMode
+    data[4] = self.brakePressure & 0xFF
+    tmpRpm = self.rpm
+    data[5] = (self.turnSignals << 6) | (self.brakePressed << 5) | (self.hazardLights << 4) | (tmpRpm >> 8)
+    data[6] = tmpRpm & 0xFF
+    data[7] = (self.engineCoolantTemp + 40) & 0xFF
+    data[8] = self.accSpeed & 0xFF
+    data[9] = (self.accGapLevel << 6) | (self.leftBSM << 5) | (self.rightBSM << 4) | (self.flDoor << 3) | (self.frDoor << 2) | (self.rlDoor << 1) | self.rrDoor
+    data[10] = self.gasPedal & 0xFF
+    tmpDistance = self.distance
+    data[11] = (tmpDistance >> 32) & 0xFF
+    data[12] = (tmpDistance >> 24) & 0xFF
+    data[13] = (tmpDistance >> 16) & 0xFF
+    data[14] = (tmpDistance >> 8) & 0xFF
+    data[15] = tmpDistance & 0xFF
 
-        data[16] = (self.speed >> 4) & 0xFF
-        data[17] = ((self.speed & 0xF) << 4) & 0xFF
+    data[16] = (self.speed >> 4) & 0xFF
+    data[17] = ((self.speed & 0xF) << 4) & 0xFF
 
-        data[17] += ((self.flSpeed >> 8) & 0xF)
-        data[18] = self.flSpeed & 0xFF
+    data[17] += ((self.flSpeed >> 8) & 0xF)
+    data[18] = self.flSpeed & 0xFF
 
-        data[19] = (self.frSpeed >> 4) & 0xFF
-        data[20] = ((self.frSpeed & 0xF) << 4) & 0xFF
+    data[19] = (self.frSpeed >> 4) & 0xFF
+    data[20] = ((self.frSpeed & 0xF) << 4) & 0xFF
 
-        data[20] += ((self.rlSpeed >> 8) & 0xF)
-        data[21] = self.rlSpeed & 0xFF
+    data[20] += ((self.rlSpeed >> 8) & 0xF)
+    data[21] = self.rlSpeed & 0xFF
 
-        data[22] = (self.rrSpeed >> 4) & 0xFF
-        data[23] = ((self.rrSpeed & 0xF) << 4) & 0xFF
+    data[22] = (self.rrSpeed >> 4) & 0xFF
+    data[23] = ((self.rrSpeed & 0xF) << 4) & 0xFF
 
-        data[23] += (self.nextGearNum & 0xF)
+    data[23] += (self.nextGearNum & 0xF)
 
-        return bytes(data)
+    return bytes(data)
 
-    def randomize(self):
-        self.length = 31
-        self.steeringWheelAngle = random.randint(-540, 540)
-        self.currentGearNum = random.choice(self.GEARS)
-        self.driverMode = random.randint(0, 3)
-        self.brakePressure = random.randint(0, 100)
-        self.turnSignals = random.randint(0, 2)
-        self.brakePressed = 1 if self.brakePressure != 0 else 0
-        self.hazardLights = random.randint(0, 1)
-        self.rpm = 600 + random.randint(0, 5000)
-        self.engineCoolantTemp = 60 + random.randint(0, 100)
-        self.accSpeed = 20 + random.randint(0, 150)
-        self.accGapLevel = 1 + random.randint(0, 2)
-        self.leftBSM = random.randint(0, 1)
-        self.rightBSM = random.randint(0, 1)
-        self.flDoor = random.randint(0, 1)
-        self.frDoor = random.randint(0, 1)
-        self.rlDoor = random.randint(0, 1)
-        self.rrDoor = random.randint(0, 1)
-        self.gasPedal = random.randint(0, 100)
-        self.distance = 0xffffffffff
-        self.speed = random.randint(0, 180) * 10 + random.randint(0, 10)
-        self.flSpeed = self.speed + random.randint(0, 30)
-        self.frSpeed = self.speed + random.randint(0, 30)
-        self.rrSpeed = self.speed + random.randint(0, 30)
-        self.rlSpeed = self.speed + random.randint(0, 30)
-        self.nextGearNum = random.choice(self.GEARS)
+  def randomize(self):
+    self.length = 31
+    self.steeringWheelAngle = random.randint(-540, 540)
+    self.currentGearNum = random.choice(self.GEARS)
+    self.driverMode = random.randint(0, 3)
+    self.brakePressure = random.randint(0, 100)
+    self.turnSignals = random.randint(0, 2)
+    self.brakePressed = 1 if self.brakePressure != 0 else 0
+    self.hazardLights = random.randint(0, 1)
+    self.rpm = 600 + random.randint(0, 5000)
+    self.engineCoolantTemp = 60 + random.randint(0, 100)
+    self.accSpeed = 20 + random.randint(0, 150)
+    self.accGapLevel = 1 + random.randint(0, 2)
+    self.leftBSM = random.randint(0, 1)
+    self.rightBSM = random.randint(0, 1)
+    self.flDoor = random.randint(0, 1)
+    self.frDoor = random.randint(0, 1)
+    self.rlDoor = random.randint(0, 1)
+    self.rrDoor = random.randint(0, 1)
+    self.gasPedal = random.randint(0, 100)
+    self.distance = 0xffffffffff
+    self.speed = random.randint(0, 180) * 10 + random.randint(0, 10)
+    self.flSpeed = self.speed + random.randint(0, 30)
+    self.frSpeed = self.speed + random.randint(0, 30)
+    self.rrSpeed = self.speed + random.randint(0, 30)
+    self.rlSpeed = self.speed + random.randint(0, 30)
+    self.nextGearNum = random.choice(self.GEARS)
 
-        packed_data = self.pack()
-        print(list(packed_data))
+    packed_data = self.pack()
+    print(list(packed_data))
 
 pi = 3.1415926535897932384626
 x_pi = 3.14159265358979324 * 3000.0 / 180.0
