@@ -177,18 +177,21 @@ UDP_PORT = 6499
 
 #UDP测试
 def udp_send_message():
-  can_msg = CanMsg()
+  try:
+    can_msg = CanMsg()
 
-  UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-  while True:
-    # message = b"UDP OpenPilot Comma 3!"
-    # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
-    can_msg.randomize()
-    UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
-    time.sleep(1)
+    while True:
+      # message = b"UDP OpenPilot Comma 3!"
+      # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
+      can_msg.randomize()
+      UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
+      time.sleep(1)
 
-  UDP_SOCKET.close()
+    UDP_SOCKET.close()
+  except Exception:
+    pass
 
 def list_files(path): # still used for footage
   return sorted(listdir_by_creation(path), reverse=True)
