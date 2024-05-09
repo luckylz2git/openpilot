@@ -148,7 +148,7 @@ class CanMsg:
     self.nextGearNum = random.choice(self.GEARS)
 
     packed_data = self.pack()
-    print(list(packed_data))
+    # print(list(packed_data))
 
 pi = 3.1415926535897932384626
 x_pi = 3.14159265358979324 * 3000.0 / 180.0
