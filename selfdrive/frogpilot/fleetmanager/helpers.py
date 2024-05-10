@@ -172,13 +172,13 @@ else:
   ERROR_LOGS_PATH = "/data/community/crashes/"
 
 #UDP测试
+UDP_IP = "" #"192.168.170.74"
 UDP_PORT = 6499
 
 def udp_send_message():
   try:
     can_msg = CanMsg()
 
-    UDP_IP = "" #"192.168.170.74"
     UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     while True:
@@ -681,3 +681,4 @@ def udp_broadcast_ip(ipaddr):
   params_memory.put_bool("FrogPilotTogglesUpdated", True)
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
+  UDP_IP = ""
