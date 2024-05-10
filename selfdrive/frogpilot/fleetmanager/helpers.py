@@ -173,23 +173,23 @@ else:
   ERROR_LOGS_PATH = "/data/community/crashes/"
 
 #UDP测试
-UDP_IP = "" #"192.168.170.74"
 UDP_PORT = 6499
 can_msg = CanMsg()
 
 def udp_send_message():
-  try:
-    UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-    while True:
+  while True:
+    try:
       if can_msg.ipaddr:
         can_msg.randomize()
         UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       time.sleep(1)
-      
-    UDP_SOCKET.close()
-  except Exception:
-    pass
+    except Exception:
+      pass
+    continue
+    
+  UDP_SOCKET.close()
   
 def list_files(path): # still used for footage
   return sorted(listdir_by_creation(path), reverse=True)
