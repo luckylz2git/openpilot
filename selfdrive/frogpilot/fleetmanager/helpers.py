@@ -176,12 +176,12 @@ UDP_IP = "" #"192.168.170.74"
 UDP_PORT = 6499
 
 def udp_send_message():
-  try:
-    can_msg = CanMsg()
+  can_msg = CanMsg()
 
-    UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-    while True:
+  while True:
+    try:
       # if UDP_IP == "":
       #   UDP_IP = params_memory.get("UDPBroadcastIP", encoding='utf-8') if params_memory.get("UDPBroadcastIP", encoding='utf-8') else ""
       #   # message = b"UDP OpenPilot Comma 3!"
@@ -191,10 +191,12 @@ def udp_send_message():
         can_msg.randomize()
         UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
       time.sleep(1)
+    except Exception:
+      pass
+    continue
 
-    UDP_SOCKET.close()
-  except Exception:
-    pass
+  UDP_SOCKET.close()
+  
 
 def list_files(path): # still used for footage
   return sorted(listdir_by_creation(path), reverse=True)
