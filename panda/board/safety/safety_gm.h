@@ -129,7 +129,7 @@ static void handle_gm_wheel_buttons(const CANPacket_t *to_push) {
 
 static void gm_rx_hook(const CANPacket_t *to_push) {
   // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-  if ((GET_BUS(to_push) == 6U) && (GET_ADDR(to_push) == 0x1E1) && (gm_hw == GM_SDGM))
+  if ((GET_BUS(to_push) == 6U) && (GET_ADDR(to_push) == 0x1E1) && (gm_hw == GM_SDGM)) {
   // Internal Panda Config BUS 0/1/2/3
   // if ((GET_BUS(to_push) == 2U) && (GET_ADDR(to_push) == 0x1E1) && (gm_hw == GM_SDGM)) {
     // SDGM buttons are on bus 2
