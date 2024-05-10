@@ -187,7 +187,7 @@ def udp_send_message():
       #   # message = b"UDP OpenPilot Comma 3!"
       #   # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
       # else:
-      if len(UDP_IP) > 0:
+      if UDP_IP:
         can_msg.randomize()
         UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
       time.sleep(1)
