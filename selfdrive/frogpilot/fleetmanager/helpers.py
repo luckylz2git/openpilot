@@ -46,6 +46,7 @@ from openpilot.system.loggerd.xattr_cache import getxattr
 from urllib.parse import parse_qs, quote
 
 class CanMsg:
+  ipaddr = ""
   GEARS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15]
 
   def __init__(self):
@@ -174,10 +175,9 @@ else:
 #UDP测试
 UDP_IP = "" #"192.168.170.74"
 UDP_PORT = 6499
+can_msg = CanMsg()
 
 def udp_send_message():
-  can_msg = CanMsg()
-
   UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
   while True:
@@ -187,9 +187,9 @@ def udp_send_message():
       #   # message = b"UDP OpenPilot Comma 3!"
       #   # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
       # else:
-      if UDP_IP:
+      if can_msg.ipaddr:
         can_msg.randomize()
-        UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
+        UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       time.sleep(1)
     except Exception:
       pass
@@ -680,7 +680,7 @@ def lateral_control_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
 
 def udp_broadcast_ip(ipaddr):
-  UDP_IP = ipaddr
+  can_msg.ipaddr = ipaddr if ipaddr else ""
   # params_memory.put("UDPBroadcastIP", ipaddr)
   # params_memory.put_bool("FrogPilotTogglesUpdated", True)
   # time.sleep(1)
