@@ -378,8 +378,6 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"ReverseCruise", PERSISTENT},
     //0-没有初值，1-false, 2-true
     {"ReverseCruiseRunTime", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
-    //UDP广播地址
-    {"UDPBroadcastIP", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"ReverseCruiseUI", PERSISTENT},
     {"CustomCruise", PERSISTENT},
     {"CustomCruiseLong", PERSISTENT},

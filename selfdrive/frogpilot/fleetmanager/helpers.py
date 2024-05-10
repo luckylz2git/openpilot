@@ -178,26 +178,19 @@ UDP_PORT = 6499
 can_msg = CanMsg()
 
 def udp_send_message():
-  UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+  try:
+    UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-  while True:
-    try:
-      # if UDP_IP == "":
-      #   UDP_IP = params_memory.get("UDPBroadcastIP", encoding='utf-8') if params_memory.get("UDPBroadcastIP", encoding='utf-8') else ""
-      #   # message = b"UDP OpenPilot Comma 3!"
-      #   # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
-      # else:
+    while True:
       if can_msg.ipaddr:
         can_msg.randomize()
         UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       time.sleep(1)
-    except Exception:
-      pass
-    continue
-
-  UDP_SOCKET.close()
+      
+    UDP_SOCKET.close()
+  except Exception:
+    pass
   
-
 def list_files(path): # still used for footage
   return sorted(listdir_by_creation(path), reverse=True)
 
@@ -681,8 +674,3 @@ def lateral_control_button(toggle):
 
 def udp_broadcast_ip(ipaddr):
   can_msg.ipaddr = ipaddr if ipaddr else ""
-  # params_memory.put("UDPBroadcastIP", ipaddr)
-  # params_memory.put_bool("FrogPilotTogglesUpdated", True)
-  # time.sleep(1)
-  # params_memory.put_bool("FrogPilotTogglesUpdated", False)
-  # UDP_IP = ""
