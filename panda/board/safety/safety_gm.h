@@ -299,9 +299,9 @@ static int gm_fwd_hook(int bus_num, int addr) {
       bool is_pscm_msg = (addr == 0x184);
       if (!is_pscm_msg) {
         // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-        bus_fwd = 6;
+        // bus_fwd = 6;
         // Internal Panda Config BUS 0/1/2/3
-        // bus_fwd = 2;
+        bus_fwd = 2;
       }
     }
 
@@ -315,9 +315,9 @@ static int gm_fwd_hook(int bus_num, int addr) {
       bool block_msg = is_lkas_msg || (is_acc_msg && gm_cam_long);
       if (!block_msg) {
         // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-        bus_fwd = 4;
+        // bus_fwd = 4;
         // Internal Panda Config BUS 0/1/2/3
-        // bus_fwd = 0;
+        bus_fwd = 0;
       }
     }
   }
