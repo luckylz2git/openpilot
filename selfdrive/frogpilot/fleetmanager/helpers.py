@@ -182,11 +182,12 @@ def udp_send_message():
     UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     while True:
-      if UDP_IP == "":
-        UDP_IP = params_memory.get("UDPBroadcastIP", encoding='utf-8') if params_memory.get("UDPBroadcastIP", encoding='utf-8') else ""
-        # message = b"UDP OpenPilot Comma 3!"
-        # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
-      else:
+      # if UDP_IP == "":
+      #   UDP_IP = params_memory.get("UDPBroadcastIP", encoding='utf-8') if params_memory.get("UDPBroadcastIP", encoding='utf-8') else ""
+      #   # message = b"UDP OpenPilot Comma 3!"
+      #   # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
+      # else:
+      if len(UDP_IP) > 0:
         can_msg.randomize()
         UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
       time.sleep(1)
@@ -677,8 +678,9 @@ def lateral_control_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
 
 def udp_broadcast_ip(ipaddr):
-  params_memory.put("UDPBroadcastIP", ipaddr)
-  params_memory.put_bool("FrogPilotTogglesUpdated", True)
-  time.sleep(1)
-  params_memory.put_bool("FrogPilotTogglesUpdated", False)
-  UDP_IP = ""
+  UDP_IP = ipaddr
+  # params_memory.put("UDPBroadcastIP", ipaddr)
+  # params_memory.put_bool("FrogPilotTogglesUpdated", True)
+  # time.sleep(1)
+  # params_memory.put_bool("FrogPilotTogglesUpdated", False)
+  # UDP_IP = ""
