@@ -115,7 +115,7 @@ Red Panda Config: BUS 0/1/2/3 -> 4/5/6/7
 
 * panda/board/safety/safety_gm.h
   * #L61
-  * #L68
+  * #L72
   * #L132
   * #L140
   * #L295

@@ -64,14 +64,22 @@ const CanMsg GM_CAM_LONG_TX_MSGS[] = {{0x180, 0, 4}, {0x315, 0, 5}, {0x2CB, 0, 8
 const CanMsg GM_SDGM_TX_MSGS[] = {{0x180, 0, 4}, {0x1E1, 0, 7},  // pt bus
                                   {0x184, 2, 8}, {0x1E1, 2, 7}};  // camera bus
 
-// Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-// const CanMsg GM_CC_LONG_TX_MSGS[] = {{0x180, 4, 4}, {0x1E1, 4, 7},  // pt bus
-//                                      {0x184, 6, 8}, {0x1E1, 6, 7}};  // camera bus
-// Internal Panda Config BUS 0/1/2/3
 const CanMsg GM_CC_LONG_TX_MSGS[] = {{0x180, 0, 4}, {0x1E1, 0, 7},  // pt bus
                                      {0x184, 2, 8}, {0x1E1, 2, 7}};  // camera bus
 
 // TODO: do checksum and counter checks. Add correct timestep, 0.1s for now.
+// Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
+// RxCheck gm_rx_checks[] = {
+//   {.msg = {{0x184, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
+//   {.msg = {{0x34A, 4, 5, .frequency = 10U}, { 0 }, { 0 }}},
+//   {.msg = {{0x1E1, 4, 7, .frequency = 10U},   // Non-SDGM Car
+//            {0x1E1, 6, 7, .frequency = 100000U}}}, // SDGM Car
+//   {.msg = {{0xF1, 4, 6, .frequency = 10U},   // Non-SDGM Car
+//            {0xF1, 6, 6, .frequency = 100000U}}}, // SDGM Car
+//   {.msg = {{0x1C4, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
+//   {.msg = {{0xC9, 6, 8, .frequency = 10U}, { 0 }, { 0 }}},
+// };
+// Internal Panda Config BUS 0/1/2/3
 RxCheck gm_rx_checks[] = {
   {.msg = {{0x184, 0, 8, .frequency = 10U}, { 0 }, { 0 }}},
   {.msg = {{0x34A, 0, 5, .frequency = 10U}, { 0 }, { 0 }}},
