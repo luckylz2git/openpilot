@@ -100,3 +100,25 @@ Use OnStar GPS Signal
   * #L127
 * selfdrive/frogpilot/ui/vehicle_settings.h
   * #L31
+
+Red Panda Config: BUS 0/1/2/3 -> 4/5/6/7
+========================
+* selfdrive/car/gm/values.py
+  * #L201
+  class CanBus:
+    POWERTRAIN = 4 #0
+    OBSTACLE = 5 #1
+    CAMERA = 6 #2
+    CHASSIS = 6 #2
+    LOOPBACK = 128
+    DROPPED = 192
+
+* panda/board/safety/safety_gm.h
+  * #L61
+  * #L68
+  * #L132
+  * #L140
+  * #L295
+  * #L302
+  * #L309
+  * #L318
