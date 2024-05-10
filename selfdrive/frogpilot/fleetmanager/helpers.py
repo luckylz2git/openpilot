@@ -678,3 +678,6 @@ def lateral_control_button(toggle):
 
 def udp_broadcast_ip(ipaddr):
   params_memory.put("UDPBroadcastIP", ipaddr)
+  params_memory.put_bool("FrogPilotTogglesUpdated", True)
+  time.sleep(1)
+  params_memory.put_bool("FrogPilotTogglesUpdated", False)
