@@ -172,21 +172,23 @@ else:
   ERROR_LOGS_PATH = "/data/community/crashes/"
 
 #UDP测试
-UDP_IP = "192.168.170.74"
 UDP_PORT = 6499
 
-#UDP测试
 def udp_send_message():
   try:
     can_msg = CanMsg()
 
+    UDP_IP = "" #"192.168.170.74"
     UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     while True:
-      # message = b"UDP OpenPilot Comma 3!"
-      # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
-      can_msg.randomize()
-      UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
+      if UDP_IP == "":
+        UDP_IP = params_memory.get("UDPBroadcastIP", encoding='utf-8')
+      else:
+        # message = b"UDP OpenPilot Comma 3!"
+        # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
+        can_msg.randomize()
+        UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
       time.sleep(1)
 
     UDP_SOCKET.close()
@@ -673,3 +675,6 @@ def lateral_control_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", True)
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
+
+def udp_broadcast_ip(ipaddr):
+  params_memory.put("UDPBroadcastIP", ipaddr)
