@@ -183,6 +183,8 @@ class Controls:
     self.frogpilot_variables = SimpleNamespace()
     #self.frogpilot_variables.reverse_cruise_increase
     self.frogpilot_variables.reverse_cruise_increase = self.params.get_bool("QOLControls") and self.params.get_bool("ReverseCruise")
+    #Smoother Nudgeless Lane Change
+    self.frogpilot_variables.smoother_lane_change = 0
 
     self.driving_gear = False
     self.fcw_random_event_triggered = False
@@ -459,8 +461,18 @@ class Controls:
           self.events.add(EventName.preLaneChangeLeft)
         else:
           self.events.add(EventName.preLaneChangeRight)
-    elif self.sm['modelV2'].meta.laneChangeState in (LaneChangeState.laneChangeStarting,
-                                                    LaneChangeState.laneChangeFinishing):
+    # elif self.sm['modelV2'].meta.laneChangeState in (LaneChangeState.laneChangeStarting,
+    #                                                 LaneChangeState.laneChangeFinishing):
+    #   self.events.add(EventName.laneChange)
+    #Smoother Nudgeless Lane Change
+    elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeStarting:
+      self.events.add(EventName.laneChange)
+      if self.frogpilot_variables.smoother_lane_change <= 0:
+        if self.params.get_int("LongitudinalPersonality") == 2: #relaxed
+          self.frogpilot_variables.smoother_lane_change = 66 #34%
+        elif self.params.get_int("LongitudinalPersonality") == 1: #standard
+          self.frogpilot_variables.smoother_lane_change = 33 #67%
+    elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeFinishing:
       self.events.add(EventName.laneChange)
 
     # Handle turning

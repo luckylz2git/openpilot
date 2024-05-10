@@ -122,3 +122,12 @@ Red Panda Config: BUS 0/1/2/3 -> 4/5/6/7
   * #L302
   * #L309
   * #L318
+
+Smoother Nudgeless Lane Change
+========================
+* selfdrive/controls/controlsd.py
+  * #L187
+  * #L468
+
+* selfdrive/car/gm/carcontroller.py
+  * #L118
