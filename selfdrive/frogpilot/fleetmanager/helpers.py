@@ -183,11 +183,12 @@ def udp_send_message():
 
     while True:
       if UDP_IP == "":
-        UDP_IP = params_memory.get("UDPBroadcastIP", encoding='utf-8')
+        UDP_IP = params_memory.get("UDPBroadcastIP", encoding='utf-8') if params_memory.get("UDPBroadcastIP", encoding='utf-8') else ""
         # message = b"UDP OpenPilot Comma 3!"
         # UDP_SOCKET.sendto(message, (UDP_IP, UDP_PORT))
-      can_msg.randomize()
-      UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP if UDP != "" else "0.0.0.0", UDP_PORT))
+      else:
+        can_msg.randomize()
+        UDP_SOCKET.sendto(can_msg.pack(), (UDP_IP, UDP_PORT))
       time.sleep(1)
 
     UDP_SOCKET.close()
