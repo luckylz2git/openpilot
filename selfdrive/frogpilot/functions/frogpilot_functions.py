@@ -1,5 +1,5 @@
 import numpy as np
-
+import time
 from openpilot.common.numpy_fast import interp
 from openpilot.common.params import Params
 from openpilot.system.hardware import HARDWARE
@@ -88,6 +88,10 @@ class FrogPilotFunctions:
   def distance_button_function(self, new_personality):
     self.params.put_int("LongitudinalPersonality", new_personality)
     self.params_memory.put_bool("PersonalityChangedViaWheel", True)
+    # Smoother Nudgeless Lane Change
+    self.params_memory.put_bool("FrogPilotTogglesUpdated", True)
+    time.sleep(1)
+    self.params_memory.put_bool("FrogPilotTogglesUpdated", False) 
 
   @property
   def personality_changed_via_ui(self):

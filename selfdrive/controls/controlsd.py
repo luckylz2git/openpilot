@@ -185,6 +185,7 @@ class Controls:
     self.frogpilot_variables.reverse_cruise_increase = self.params.get_bool("QOLControls") and self.params.get_bool("ReverseCruise")
     #Smoother Nudgeless Lane Change
     self.frogpilot_variables.smoother_lane_change = 0
+    self.frogpilot_variables.longitudinal_personality = 2
 
     self.driving_gear = False
     self.fcw_random_event_triggered = False
@@ -468,11 +469,10 @@ class Controls:
     elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeStarting:
       self.events.add(EventName.laneChange)
       if self.frogpilot_variables.smoother_lane_change <= 0:
-        if self.params.get_int("LongitudinalPersonality") == 2: #relaxed
-          self.frogpilot_variables.smoother_lane_change = 66 #34%
-        elif self.params.get_int("LongitudinalPersonality") == 1: #standard
-          self.frogpilot_variables.smoother_lane_change = 33 #67%
+        if self.frogpilot_variables.longitudinal_personality > 0:
+          self.frogpilot_variables.smoother_lane_change = 5 * self.frogpilot_variables.longitudinal_personality # 5/10 frames
     elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeFinishing:
+      self.frogpilot_variables.smoother_lane_change = 0
       self.events.add(EventName.laneChange)
 
     # Handle turning
@@ -1231,6 +1231,9 @@ class Controls:
       t.join()
 
   def update_frogpilot_params(self):
+    # Smoother Nudgeless Lane Change
+    self.frogpilot_variables.longitudinal_personality = self.params.get_bool("LongitudinalPersonality")
+
     self.frogpilot_variables.conditional_experimental_mode = self.params.get_bool("ConditionalExperimental")
     self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
     

@@ -116,7 +116,9 @@ class CarController:
       self.last_steer_frame = self.frame
       #Smoother Nudgeless Lane Change
       if frogpilot_variables.smoother_lane_change > 0:
-        apply_steer = int(apply_steer * (1 - frogpilot_variables.smoother_lane_change / 100))
+        # relaxed: 10 frames -> 50% 55% 60% 65% 70% 75% 80% 85% 90% 95%
+        # standard: 5 frames -> 75% 80% 85% 90% 95%
+        apply_steer = int(apply_steer * (1 - frogpilot_variables.smoother_lane_change * 5 / 100))
         frogpilot_variables.smoother_lane_change -= 1
       self.apply_steer_last = apply_steer
       idx = self.lka_steering_cmd_counter % 4

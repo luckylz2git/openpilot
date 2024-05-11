@@ -1937,8 +1937,14 @@ void PersonalityButton::handleClick() {
 
   params.putInt("LongitudinalPersonality", personalityProfile);
   paramsMemory.putBool("PersonalityChangedViaUI", true);
+  paramsMemory.putBool("FrogPilotTogglesUpdated", true);
 
   update(); //updateState();
+  // Smoother Nudgeless Lane Change
+  std::thread([=]() {
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    paramsMemory.putBool("FrogPilotTogglesUpdated", false);
+  }).detach();
 }
 /*
 void PersonalityButton::updateState() {
