@@ -73,9 +73,9 @@ const CanMsg GM_CC_LONG_TX_MSGS[] = {{0x180, 0, 4}, {0x1E1, 0, 7},  // pt bus
 //   {.msg = {{0x184, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
 //   {.msg = {{0x34A, 4, 5, .frequency = 10U}, { 0 }, { 0 }}},
 //   {.msg = {{0x1E1, 4, 7, .frequency = 10U},   // Non-SDGM Car
-//            {0x1E1, 6, 7, .frequency = 100000U}}}, // SDGM Car
+//            {0x1E1, 6, 7, .frequency = 33U}}}, // SDGM Car 100000U
 //   {.msg = {{0xF1, 4, 6, .frequency = 10U},   // Non-SDGM Car
-//            {0xF1, 6, 6, .frequency = 100000U}}}, // SDGM Car
+//            {0xF1, 6, 6, .frequency = 100U}}}, // SDGM Car 100000U
 //   {.msg = {{0x1C4, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
 //   {.msg = {{0xC9, 6, 8, .frequency = 10U}, { 0 }, { 0 }}},
 // };
