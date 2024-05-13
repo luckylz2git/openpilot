@@ -203,8 +203,8 @@ class AccState:
 #   OBSTACLE = 5 #1
 #   CAMERA = 6 #2
 #   CHASSIS = 6 #2
-#   LOOPBACK = 128
-#   DROPPED = 192
+#   LOOPBACK = 132 #128
+#   DROPPED = 196 #192
 # Internal Panda Config BUS 0/1/2/3
 class CanBus:
   POWERTRAIN = 0
