@@ -58,38 +58,38 @@ const CanMsg GM_CAM_LONG_TX_MSGS[] = {{0x180, 0, 4}, {0x315, 0, 5}, {0x2CB, 0, 8
                                       {0x1E1, 2, 7}, {0x184, 2, 8}};  // camera bus
 
 // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-const CanMsg GM_SDGM_TX_MSGS[] = {{0x180, 4, 4}, {0x1E1, 4, 7},  // pt bus
-                                  {0x184, 6, 8}, {0x1E1, 6, 7}};  // camera bus
+// const CanMsg GM_SDGM_TX_MSGS[] = {{0x180, 4, 4}, {0x1E1, 4, 7},  // pt bus
+//                                   {0x184, 6, 8}, {0x1E1, 6, 7}};  // camera bus
 // Internal Panda Config BUS 0/1/2/3
-// const CanMsg GM_SDGM_TX_MSGS[] = {{0x180, 0, 4}, {0x1E1, 0, 7},  // pt bus
-//                                   {0x184, 2, 8}, {0x1E1, 2, 7}};  // camera bus
+const CanMsg GM_SDGM_TX_MSGS[] = {{0x180, 0, 4}, {0x1E1, 0, 7},  // pt bus
+                                  {0x184, 2, 8}, {0x1E1, 2, 7}};  // camera bus
 
 const CanMsg GM_CC_LONG_TX_MSGS[] = {{0x180, 0, 4}, {0x1E1, 0, 7},  // pt bus
                                      {0x184, 2, 8}, {0x1E1, 2, 7}};  // camera bus
 
 // TODO: do checksum and counter checks. Add correct timestep, 0.1s for now.
 // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-RxCheck gm_rx_checks[] = {
-  {.msg = {{0x184, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
-  {.msg = {{0x34A, 4, 5, .frequency = 10U}, { 0 }, { 0 }}},
-  {.msg = {{0x1E1, 4, 7, .frequency = 10U},   // Non-SDGM Car
-           {0x1E1, 6, 7, .frequency = 100000U}}}, // SDGM Car
-  {.msg = {{0xF1, 4, 6, .frequency = 10U},   // Non-SDGM Car
-           {0xF1, 6, 6, .frequency = 100000U}}}, // SDGM Car
-  {.msg = {{0x1C4, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
-  {.msg = {{0xC9, 6, 8, .frequency = 10U}, { 0 }, { 0 }}},
-};
-// Internal Panda Config BUS 0/1/2/3
 // RxCheck gm_rx_checks[] = {
-//   {.msg = {{0x184, 0, 8, .frequency = 10U}, { 0 }, { 0 }}}, //BO_ 388 PSCMStatus: 8 K43_PSCM
-//   {.msg = {{0x34A, 0, 5, .frequency = 20U}, { 0 }, { 0 }}}, //10U BO_ 842 EBCMWheelSpdRear: 5 K17_EBCM
-//   {.msg = {{0x1E1, 0, 7, .frequency = 10U},   // Non-SDGM Car BO_ 481 ASCMSteeringButton: 7 K124_ASCM
-//            {0x1E1, 2, 7, .frequency = 33U}}}, // SDGM Car 100000U
-//   {.msg = {{0xF1, 0, 6, .frequency = 10U},   // Non-SDGM Car BO_ 241 EBCMBrakePedalPosition: 6 K17_EBCM
-//            {0xF1, 2, 6, .frequency = 100U}}}, // SDGM Car 100000U
-//   {.msg = {{0x1C4, 0, 8, .frequency = 40U}, { 0 }, { 0 }}}, //10U BO_ 452 AcceleratorPedal2: 8 XXX
-//   {.msg = {{0xC9, 0, 8, .frequency = 80U}, { 0 }, { 0 }}}, //10U BO_ 201 ECMEngineStatus: 8 K20_ECM
+//   {.msg = {{0x184, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
+//   {.msg = {{0x34A, 4, 5, .frequency = 10U}, { 0 }, { 0 }}},
+//   {.msg = {{0x1E1, 4, 7, .frequency = 10U},   // Non-SDGM Car
+//            {0x1E1, 6, 7, .frequency = 100000U}}}, // SDGM Car
+//   {.msg = {{0xF1, 4, 6, .frequency = 10U},   // Non-SDGM Car
+//            {0xF1, 6, 6, .frequency = 100000U}}}, // SDGM Car
+//   {.msg = {{0x1C4, 4, 8, .frequency = 10U}, { 0 }, { 0 }}},
+//   {.msg = {{0xC9, 6, 8, .frequency = 10U}, { 0 }, { 0 }}},
 // };
+// Internal Panda Config BUS 0/1/2/3
+RxCheck gm_rx_checks[] = {
+  {.msg = {{0x184, 0, 8, .frequency = 10U}, { 0 }, { 0 }}}, //BO_ 388 PSCMStatus: 8 K43_PSCM
+  {.msg = {{0x34A, 0, 5, .frequency = 20U}, { 0 }, { 0 }}}, //10U BO_ 842 EBCMWheelSpdRear: 5 K17_EBCM
+  {.msg = {{0x1E1, 0, 7, .frequency = 10U},   // Non-SDGM Car BO_ 481 ASCMSteeringButton: 7 K124_ASCM
+           {0x1E1, 2, 7, .frequency = 33U}}}, // SDGM Car 100000U
+  {.msg = {{0xF1, 0, 6, .frequency = 10U},   // Non-SDGM Car BO_ 241 EBCMBrakePedalPosition: 6 K17_EBCM
+           {0xF1, 2, 6, .frequency = 100U}}}, // SDGM Car 100000U
+  {.msg = {{0x1C4, 0, 8, .frequency = 40U}, { 0 }, { 0 }}}, //10U BO_ 452 AcceleratorPedal2: 8 XXX
+  {.msg = {{0xC9, 0, 8, .frequency = 80U}, { 0 }, { 0 }}}, //10U BO_ 201 ECMEngineStatus: 8 K20_ECM
+};
 
 const uint16_t GM_PARAM_HW_CAM = 1;
 const uint16_t GM_PARAM_HW_CAM_LONG = 2;
@@ -137,17 +137,17 @@ static void handle_gm_wheel_buttons(const CANPacket_t *to_push) {
 
 static void gm_rx_hook(const CANPacket_t *to_push) {
   // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-  if ((GET_BUS(to_push) == 6U) && (GET_ADDR(to_push) == 0x1E1) && (gm_hw == GM_SDGM)) {
+  // if ((GET_BUS(to_push) == 6U) && (GET_ADDR(to_push) == 0x1E1) && (gm_hw == GM_SDGM)) {
   // Internal Panda Config BUS 0/1/2/3
-  // if ((GET_BUS(to_push) == 2U) && (GET_ADDR(to_push) == 0x1E1) && (gm_hw == GM_SDGM)) {
+  if ((GET_BUS(to_push) == 2U) && (GET_ADDR(to_push) == 0x1E1) && (gm_hw == GM_SDGM)) {
     // SDGM buttons are on bus 2
     handle_gm_wheel_buttons(to_push);
   }
 
   // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-  if (GET_BUS(to_push) == 4U) {
+  // if (GET_BUS(to_push) == 4U) {
   // Internal Panda Config BUS 0/1/2/3
-  // if (GET_BUS(to_push) == 0U) {
+  if (GET_BUS(to_push) == 0U) {
     int addr = GET_ADDR(to_push);
 
     if (addr == 0x184) {
@@ -300,32 +300,32 @@ static int gm_fwd_hook(int bus_num, int addr) {
 
   if ((gm_hw == GM_CAM) || (gm_hw == GM_SDGM)) {
     // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-    if (bus_num == 4) {
+    // if (bus_num == 4) {
     // Internal Panda Config BUS 0/1/2/3
-    // if (bus_num == 0) {
+    if (bus_num == 0) {
       // block PSCMStatus; forwarded through openpilot to hide an alert from the camera
       bool is_pscm_msg = (addr == 0x184);
       if (!is_pscm_msg) {
         // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-        bus_fwd = 6;
+        // bus_fwd = 6;
         // Internal Panda Config BUS 0/1/2/3
-        // bus_fwd = 2;
+        bus_fwd = 2;
       }
     }
 
     // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-    if (bus_num == 6) {
+    // if (bus_num == 6) {
     // Internal Panda Config BUS 0/1/2/3
-    // if (bus_num == 2) {
+    if (bus_num == 2) {
       // block lkas message and acc messages if gm_cam_long, forward all others
       bool is_lkas_msg = (addr == 0x180);
       bool is_acc_msg = (addr == 0x315) || (addr == 0x2CB) || (addr == 0x370);
       bool block_msg = is_lkas_msg || (is_acc_msg && gm_cam_long);
       if (!block_msg) {
         // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-        bus_fwd = 4;
+        // bus_fwd = 4;
         // Internal Panda Config BUS 0/1/2/3
-        // bus_fwd = 0;
+        bus_fwd = 0;
       }
     }
   }

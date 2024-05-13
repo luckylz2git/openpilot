@@ -206,9 +206,9 @@ void ignition_can_hook(CANPacket_t *to_push) {
   int addr = GET_ADDR(to_push);
   int len = GET_LEN(to_push);
   // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-  if (bus == 4) {
+  // if (bus == 4) {
   // Internal Panda Config BUS 0/1/2/3
-  // if (bus == 0) {
+  if (bus == 0) {
     // GM exception
     if ((addr == 0x1F1) && (len == 8)) {
       // SystemPowerMode (2=Run, 3=Crank Request)
@@ -229,9 +229,9 @@ void ignition_can_hook(CANPacket_t *to_push) {
       ignition_can_cnt = 0U;
     }
   // Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-  } else if (bus == 6) {
+  // } else if (bus == 6) {
   // Internal Panda Config BUS 0/1/2/3
-  // } else if (bus == 2) {
+  } else if (bus == 2) {
     // GM exception, SDGM cars have this message on bus 2
     if ((addr == 0x1F1) && (len == 8)) {
       // SystemPowerMode (2=Run, 3=Crank Request)

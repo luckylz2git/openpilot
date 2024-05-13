@@ -198,21 +198,21 @@ class AccState:
   STANDSTILL = 4
 
 # Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
-class CanBus:
-  POWERTRAIN = 4 #0
-  OBSTACLE = 5 #1
-  CAMERA = 6 #2
-  CHASSIS = 6 #2
-  LOOPBACK = 128
-  DROPPED = 192
-# Internal Panda Config BUS 0/1/2/3
 # class CanBus:
-#   POWERTRAIN = 0
-#   OBSTACLE = 1
-#   CAMERA = 2
-#   CHASSIS = 2
+#   POWERTRAIN = 4 #0
+#   OBSTACLE = 5 #1
+#   CAMERA = 6 #2
+#   CHASSIS = 6 #2
 #   LOOPBACK = 128
 #   DROPPED = 192
+# Internal Panda Config BUS 0/1/2/3
+class CanBus:
+  POWERTRAIN = 0
+  OBSTACLE = 1
+  CAMERA = 2
+  CHASSIS = 2
+  LOOPBACK = 128
+  DROPPED = 192
 
 class GMFlags(IntFlag):
   PEDAL_LONG = 1
