@@ -447,7 +447,7 @@ class Controls:
       direction = self.sm['modelV2'].meta.laneChangeDirection
       desired_lane = frogpilot_plan.laneWidthLeft if direction == LaneChangeDirection.left else frogpilot_plan.laneWidthRight
       lane_available = desired_lane >= self.lane_detection_width
-
+      self.frogpilot_variables.smoother_lane_change = 0 # clear pre-value
       if (CS.leftBlindspot and direction == LaneChangeDirection.left) or \
          (CS.rightBlindspot and direction == LaneChangeDirection.right):
         if self.loud_blindspot_alert:
@@ -469,11 +469,11 @@ class Controls:
       self.events.add(EventName.laneChange)
       if self.frogpilot_variables.smoother_lane_change <= 0:
         if self.params.get_int("LongitudinalPersonality") == 2: #relaxed
-          self.frogpilot_variables.smoother_lane_change = 10 #90%
-        elif self.params.get_int("LongitudinalPersonality") == 1: #standard
           self.frogpilot_variables.smoother_lane_change = 5 #95%
+        elif self.params.get_int("LongitudinalPersonality") == 1: #standard
+          self.frogpilot_variables.smoother_lane_change = 2.5 #97.5%
     elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeFinishing:
-      self.frogpilot_variables.smoother_lane_change = 0
+      self.frogpilot_variables.smoother_lane_change = 0 # clear pre-value
       self.events.add(EventName.laneChange)
 
     # Handle turning
