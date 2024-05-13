@@ -81,14 +81,14 @@ const CanMsg GM_CC_LONG_TX_MSGS[] = {{0x180, 0, 4}, {0x1E1, 0, 7},  // pt bus
 // };
 // Internal Panda Config BUS 0/1/2/3
 RxCheck gm_rx_checks[] = {
-  {.msg = {{0x184, 0, 8, .frequency = 10U}, { 0 }, { 0 }}},
-  {.msg = {{0x34A, 0, 5, .frequency = 10U}, { 0 }, { 0 }}},
-  {.msg = {{0x1E1, 0, 7, .frequency = 10U},   // Non-SDGM Car
+  {.msg = {{0x184, 0, 8, .frequency = 10U}, { 0 }, { 0 }}}, //BO_ 388 PSCMStatus: 8 K43_PSCM
+  {.msg = {{0x34A, 0, 5, .frequency = 20U}, { 0 }, { 0 }}}, //10U BO_ 842 EBCMWheelSpdRear: 5 K17_EBCM
+  {.msg = {{0x1E1, 0, 7, .frequency = 10U},   // Non-SDGM Car BO_ 481 ASCMSteeringButton: 7 K124_ASCM
            {0x1E1, 2, 7, .frequency = 33U}}}, // SDGM Car 100000U
-  {.msg = {{0xF1, 0, 6, .frequency = 10U},   // Non-SDGM Car
+  {.msg = {{0xF1, 0, 6, .frequency = 10U},   // Non-SDGM Car BO_ 241 EBCMBrakePedalPosition: 6 K17_EBCM
            {0xF1, 2, 6, .frequency = 100U}}}, // SDGM Car 100000U
-  {.msg = {{0x1C4, 0, 8, .frequency = 10U}, { 0 }, { 0 }}},
-  {.msg = {{0xC9, 0, 8, .frequency = 10U}, { 0 }, { 0 }}},
+  {.msg = {{0x1C4, 0, 8, .frequency = 40U}, { 0 }, { 0 }}}, //10U BO_ 452 AcceleratorPedal2: 8 XXX
+  {.msg = {{0xC9, 0, 8, .frequency = 80U}, { 0 }, { 0 }}}, //10U BO_ 201 ECMEngineStatus: 8 K20_ECM
 };
 
 const uint16_t GM_PARAM_HW_CAM = 1;
