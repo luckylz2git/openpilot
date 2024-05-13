@@ -469,10 +469,11 @@ class Controls:
       self.events.add(EventName.laneChange)
       if self.frogpilot_variables.smoother_lane_change <= 0:
         if self.params.get_int("LongitudinalPersonality") == 2: #relaxed
-          self.frogpilot_variables.smoother_lane_change = 66 #34%
+          self.frogpilot_variables.smoother_lane_change = 50 #50%
         elif self.params.get_int("LongitudinalPersonality") == 1: #standard
-          self.frogpilot_variables.smoother_lane_change = 33 #67%
+          self.frogpilot_variables.smoother_lane_change = 30 #30%
     elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeFinishing:
+      self.frogpilot_variables.smoother_lane_change = 0
       self.events.add(EventName.laneChange)
 
     # Handle turning
