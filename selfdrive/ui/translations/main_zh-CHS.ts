@@ -633,6 +633,14 @@
         <translation>仅变更一条车道</translation>
     </message>
     <message>
+        <source>Smoother Lane Change</source>
+        <translation>轻柔变道(测试)</translation>
+    </message>
+    <message>
+        <source>Smoother lane change on start, beware of understeer.</source>
+        <translation>使用更轻柔的自动变道。注意：特定条件下，可能会引起转向不足！</translation>
+    </message>
+    <message>
         <source>Quality of Life</source>
         <translation>改善驾驶体验</translation>
     </message>

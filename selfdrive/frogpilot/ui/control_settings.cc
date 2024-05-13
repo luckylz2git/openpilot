@@ -54,11 +54,12 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
     {"MTSCLimit", tr("Speed Change Hard Cap"), "Set a hard cap for MTSC. If MTSC requests a speed decrease greater than this value, it ignores the requested speed from MTSC. Purely used as a failsafe to prevent false positives. Leave this off if you never experience false positives.", ""},
     {"MTSCAggressiveness", tr("Turn Speed Aggressiveness"), "Set turn speed aggressiveness. Higher values result in faster turns, lower values yield gentler turns.\n\nA change of +- 1% results in the velocity being raised or lowered by about 1 mph.", ""},
 
-    {"NudgelessLaneChange", tr("Nudgeless Lane Change"), "Enable lane changes without manual steering input.", "../frogpilot/assets/toggle_icons/icon_lane.png"},
+    {"NudgelessLaneChange", tr("Nudgeless Lane Change"), tr("Enable lane changes without manual steering input."), "../frogpilot/assets/toggle_icons/icon_lane.png"},
     {"LaneChangeTime", tr("Lane Change Timer"), "Specify a delay before executing a nudgeless lane change.", ""},
     {"LaneDetection", tr("Lane Detection"), "Block nudgeless lane changes when a lane isn't detected.", ""},
     {"LaneDetectionWidth", tr("Lane Detection Threshold"), "Set the required lane width to be qualified as a lane.", ""},
     {"OneLaneChange", tr("One Lane Change Per Signal"), "Limit to one nudgeless lane change per turn signal activation.", ""},
+    {"NudgelessSmooth", tr("Smoother Lane Change"), tr("Smoother lane change on start, beware of understeer."), ""},
 
     {"QOLControls", tr("Quality of Life"), "Miscellaneous quality of life changes to improve your overall openpilot experience.", "../frogpilot/assets/toggle_icons/quality_of_life.png"},
     {"DisableOnroadUploads", tr("Disable Onroad Uploads"), "Prevent large data uploads when onroad.", ""},

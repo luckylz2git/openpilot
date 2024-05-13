@@ -199,6 +199,7 @@ def manager_init() -> None:
     ("NoDashCam", "0"),
     ("NoUploads", "0"),
     ("NudgelessLaneChange", "1"),
+    ("NudgelessSmooth", "0"), # Smoother Nudgeless Lane Change
     ("NumericalTemp", "0"),
     ("OfflineMode", "0"),
     ("Offset1", "8"), #5mph -> 8kph
