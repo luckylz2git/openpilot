@@ -12,6 +12,7 @@ from openpilot.common.realtime import DT_CTRL
 from openpilot.selfdrive.locationd.calibrationd import MIN_SPEED_FILTER
 from openpilot.system.version import get_short_branch
 
+params = Params()
 params_memory = Params("/dev/shm/params")
 
 AlertSize = log.ControlsState.AlertSize
@@ -272,6 +273,21 @@ def no_gps_alert(CP: car.CarParams, CS: car.CarState, sm: messaging.SubMaster, m
   #     "请谨慎驾驶，人工接管方向盘",
   #     AlertStatus.normal, AlertSize.mid,
   #     Priority.LOWER, VisualAlert.none, AudibleAlert.none, .2, creation_delay=300.)
+
+#Smoother Nudgeless Lane Change
+def smoother_lane_change(CP: car.CarParams, CS: car.CarState, sm: messaging.SubMaster, metric: bool, soft_disable_time: int) -> Alert:
+  if params.get_bool("NudgelessSmooth"):
+    return Alert(
+      "Smoother Changing Lanes",
+      "",
+      AlertStatus.frogpilot, AlertSize.small,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1)
+  else:
+    return Alert(
+      "Changing Lanes",
+      "",
+      AlertStatus.normal, AlertSize.small,
+      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1)
 
 def torque_nn_load_alert(CP: car.CarParams, CS: car.CarState, sm: messaging.SubMaster, metric: bool, soft_disable_time: int) -> Alert:
   model_name = params_memory.get("NNFFModelName")
@@ -588,11 +604,12 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   EventName.laneChange: {
-    ET.WARNING: Alert(
-      "Changing Lanes",
-      "",
-      AlertStatus.normal, AlertSize.small,
-      Priority.LOW, VisualAlert.none, AudibleAlert.none, .1),
+    # ET.WARNING: Alert(
+    #   "Changing Lanes",
+    #   "",
+    #   AlertStatus.normal, AlertSize.small,
+    #   Priority.LOW, VisualAlert.none, AudibleAlert.none, .1),
+    ET.WARNING: smoother_lane_change,
   },
 
   EventName.steerSaturated: {
