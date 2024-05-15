@@ -277,8 +277,15 @@ def no_gps_alert(CP: car.CarParams, CS: car.CarState, sm: messaging.SubMaster, m
 #Smoother Nudgeless Lane Change
 def smoother_lane_change(CP: car.CarParams, CS: car.CarState, sm: messaging.SubMaster, metric: bool, soft_disable_time: int) -> Alert:
   if params.get_bool("NudgelessSmooth"):
+    long_personality = params.get_int("LongitudinalPersonality")
+    if long_personality == 2:
+      msg = "Smoother Changing Lanes"
+    elif long_personality == 1:
+      msg = "Smooth Changing Lanes"
+    else:
+      msg = "Changing Lanes"
     return Alert(
-      "Smoother Changing Lanes",
+      msg,
       "",
       AlertStatus.frogpilot, AlertSize.small,
       Priority.LOW, VisualAlert.none, AudibleAlert.none, .1)
