@@ -468,9 +468,10 @@ class Controls:
     elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeStarting:
       self.events.add(EventName.laneChange)
       if self.nudgeless_smooth and self.frogpilot_variables.smoother_lane_change <= 0:
-        if self.params.get_int("LongitudinalPersonality") == 2: #relaxed
+        long_personality = self.params.get_int("LongitudinalPersonality")
+        if long_personality == 2: #relaxed
           self.frogpilot_variables.smoother_lane_change = 5 #95%
-        elif self.params.get_int("LongitudinalPersonality") == 1: #standard
+        elif long_personality == 1: #standard
           self.frogpilot_variables.smoother_lane_change = 2.5 #97.5%
     elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeFinishing:
       self.frogpilot_variables.smoother_lane_change = 0 # clear pre-value
