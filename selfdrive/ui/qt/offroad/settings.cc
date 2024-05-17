@@ -206,6 +206,42 @@ void TogglesPanel::updateToggles() {
 
 DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
   setSpacing(50);
+
+  // power buttons
+  QHBoxLayout *power_layout = new QHBoxLayout();
+  power_layout->setSpacing(30);
+
+  QPushButton *reboot_btn = new QPushButton(tr("Reboot"));
+  reboot_btn->setObjectName("reboot_btn");
+  power_layout->addWidget(reboot_btn);
+  QObject::connect(reboot_btn, &QPushButton::clicked, this, &DevicePanel::reboot);
+
+  QPushButton *softreboot_btn = new QPushButton(tr("Soft Reboot"));
+  softreboot_btn->setObjectName("softreboot_btn");
+  power_layout->addWidget(softreboot_btn);
+  QObject::connect(softreboot_btn, &QPushButton::clicked, this, &DevicePanel::softreboot);
+
+  QPushButton *poweroff_btn = new QPushButton(tr("Power Off"));
+  poweroff_btn->setObjectName("poweroff_btn");
+  power_layout->addWidget(poweroff_btn);
+  QObject::connect(poweroff_btn, &QPushButton::clicked, this, &DevicePanel::poweroff);
+
+  if (!Hardware::PC()) {
+    connect(uiState(), &UIState::offroadTransition, poweroff_btn, &QPushButton::setVisible);
+  }
+
+  setStyleSheet(R"(
+    #softreboot_btn { height: 120px; border-radius: 15px; background-color: #e2e22c; }
+    #softreboot_btn:pressed { background-color: #ffe224; }
+    #reboot_btn { height: 120px; border-radius: 15px; background-color: #e2872c; }
+    #reboot_btn:pressed { background-color: #ff9724; }
+    #poweroff_btn { height: 120px; border-radius: 15px; background-color: #E22C2C; }
+    #poweroff_btn:pressed { background-color: #FF2424; }
+  )");
+  addItem(power_layout);
+
+  setSpacing(50);
+
   addItem(new LabelControl(tr("Dongle ID"), getDongleId().value_or(tr("N/A"))));
   addItem(new LabelControl(tr("Serial"), params.get("HardwareSerial").c_str()));
 
@@ -507,7 +543,7 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
       btn->setEnabled(offroad);
     }
   });
-
+/*
   // power buttons
   QHBoxLayout *power_layout = new QHBoxLayout();
   power_layout->setSpacing(30);
@@ -540,6 +576,7 @@ DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
     #poweroff_btn:pressed { background-color: #FF2424; }
   )");
   addItem(power_layout);
+*/
 }
 
 void DevicePanel::updateCalibDescription() {
