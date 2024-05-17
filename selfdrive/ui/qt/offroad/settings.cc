@@ -207,7 +207,7 @@ void TogglesPanel::updateToggles() {
 DevicePanel::DevicePanel(SettingsWindow *parent) : ListWidget(parent) {
   // power buttons
   QHBoxLayout *power_layout = new QHBoxLayout();
-  power_layout->setSpacing(100);
+  power_layout->setSpacing(30);
 
   QPushButton *reboot_btn = new QPushButton(tr("Reboot"));
   reboot_btn->setObjectName("reboot_btn");
