@@ -850,6 +850,14 @@
         <translation>显示车辆档位</translation>
     </message>
     <message>
+        <source>Use External Red Panda</source>
+        <translation>使用外置Red Panda(慎用)</translation>
+    </message>
+    <message>
+        <source>Use external red panda to connect can bus.</source>
+        <translation>使用外置Red Panda连接CAN总线</translation>
+    </message>
+    <message>
         <source>SELECT</source>
         <translation>选择</translation>
     </message>
