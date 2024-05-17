@@ -290,7 +290,8 @@ def manager_init() -> None:
     ("CalibrationCycles", "1"), 
     ("OnStarGPS", "0"),    
     ("GearNumber", "0"), #GEAR_NUMBER_TEST
-    ("GearNumber", "0"), #FROGPILOT_PREBUILT_TEST
+    ("FrogPilotPrebuilt", "0"), #FROGPILOT_PREBUILT_TEST
+    ("UseRedPanda", "0"), #Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))

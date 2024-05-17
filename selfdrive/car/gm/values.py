@@ -214,6 +214,25 @@ class CanBus:
   LOOPBACK = 128
   DROPPED = 192
 
+  @staticmethod
+  def checkPanda():
+    if Params().get_bool("UseRedPanda"):
+      CanBus.POWERTRAIN = 0 + 4
+      CanBus.OBSTACLE = 1 + 4
+      CanBus.CAMERA = 2 + 4
+      CanBus.CHASSIS = 2 + 4
+      CanBus.LOOPBACK = 128 + 4
+      CanBus.DROPPED = 192 + 4
+    else:
+      CanBus.POWERTRAIN = 0
+      CanBus.OBSTACLE = 1
+      CanBus.CAMERA = 2
+      CanBus.CHASSIS = 2
+      CanBus.LOOPBACK = 128
+      CanBus.DROPPED = 192
+
+CanBus.checkPanda()
+
 class GMFlags(IntFlag):
   PEDAL_LONG = 1
   CC_LONG = 2

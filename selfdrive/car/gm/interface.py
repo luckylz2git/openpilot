@@ -101,7 +101,11 @@ class CarInterface(CarInterfaceBase):
     # Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
     # ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.noOutput),get_safety_config(car.CarParams.SafetyModel.gm)]
     # Internal Panda Config BUS 0/1/2/3
-    ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.gm)]
+    # ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.gm)]
+    if params.get_bool("UseRedPanda"):
+      ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.noOutput),get_safety_config(car.CarParams.SafetyModel.gm)]
+    else:
+      ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.gm)]
     ret.autoResumeSng = False
     ret.enableBsm = 0x142 in fingerprint[CanBus.POWERTRAIN]
 
@@ -157,7 +161,11 @@ class CarInterface(CarInterfaceBase):
       # Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
       # ret.safetyConfigs[-1].safetyParam |= Panda.FLAG_GM_HW_SDGM
       # Internal Panda Config BUS 0/1/2/3
-      ret.safetyConfigs[0].safetyParam |= Panda.FLAG_GM_HW_SDGM
+      # ret.safetyConfigs[0].safetyParam |= Panda.FLAG_GM_HW_SDGM
+      if params.get_bool("UseRedPanda"):
+        ret.safetyConfigs[-1].safetyParam |= Panda.FLAG_GM_HW_SDGM
+      else:
+        ret.safetyConfigs[0].safetyParam |= Panda.FLAG_GM_HW_SDGM
 
       # Used for CEM with CSLC
       ret.openpilotLongitudinalControl = params.get_bool("CSLCEnabled") #True 
