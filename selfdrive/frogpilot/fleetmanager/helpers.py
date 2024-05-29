@@ -178,7 +178,7 @@ def udp_send_message():
   while True:
     try:
       if can_msg.ipaddr:
-        can_msg.randomize()
+        # can_msg.randomize()
         can_msg.readparams()
         UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       time.sleep(1)
