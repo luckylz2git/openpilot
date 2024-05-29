@@ -45,6 +45,10 @@ from openpilot.system.loggerd.xattr_cache import getxattr
 # otisserv conversion
 from urllib.parse import parse_qs, quote
 
+params = Params()
+params_memory = Params("/dev/shm/params")
+params_storage = Params("/persist/comma/params")
+
 class CanMsg:
   ipaddr = ""
   GEARS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 13, 14, 15]
@@ -79,6 +83,9 @@ class CanMsg:
     self.rrSpeed = 0
     self.nextGearNum = 0
 
+  def readparams(self):
+    self.turnSignals = params_memory.get_int("UDP_TurnSignals")
+
   def pack(self):
     data = bytearray(32)
     data[0] = ((self.length - 1) << 3) | (self.version >> 5)
@@ -101,22 +108,15 @@ class CanMsg:
     data[14] = (tmpDistance >> 8) & 0xFF
     data[15] = tmpDistance & 0xFF
 
-    data[16] = (self.speed >> 4) & 0xFF
-    data[17] = ((self.speed & 0xF) << 4) & 0xFF
-
-    data[17] += ((self.flSpeed >> 8) & 0xF)
-    data[18] = self.flSpeed & 0xFF
-
-    data[19] = (self.frSpeed >> 4) & 0xFF
-    data[20] = ((self.frSpeed & 0xF) << 4) & 0xFF
-
-    data[20] += ((self.rlSpeed >> 8) & 0xF)
-    data[21] = self.rlSpeed & 0xFF
-
-    data[22] = (self.rrSpeed >> 4) & 0xFF
-    data[23] = ((self.rrSpeed & 0xF) << 4) & 0xFF
-
-    data[23] += (self.nextGearNum & 0xF)
+    # IP Address
+    # data[16]=ipAddress & 0xff;
+    # data[17]=(ipAddress >> 8) & 0xff;
+    # data[18]=(ipAddress >> 16) & 0xff;
+    # data[19]=(ipAddress >> 24) & 0xff;
+    data[16] = 0
+    data[17] = 0
+    data[18] = 0
+    data[19] = 0
 
     return bytes(data)
 
@@ -148,17 +148,13 @@ class CanMsg:
     self.rlSpeed = self.speed + random.randint(0, 30)
     self.nextGearNum = random.choice(self.GEARS)
 
-    packed_data = self.pack()
+    # packed_data = self.pack()
     # print(list(packed_data))
 
 pi = 3.1415926535897932384626
 x_pi = 3.14159265358979324 * 3000.0 / 180.0
 a = 6378245.0
 ee = 0.00669342162296594323
-
-params = Params()
-params_memory = Params("/dev/shm/params")
-params_storage = Params("/persist/comma/params")
 
 PRESERVE_ATTR_NAME = 'user.preserve'
 PRESERVE_ATTR_VALUE = b'1'
@@ -183,6 +179,7 @@ def udp_send_message():
     try:
       if can_msg.ipaddr:
         can_msg.randomize()
+        can_msg.readparams()
         UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       time.sleep(1)
     except Exception:

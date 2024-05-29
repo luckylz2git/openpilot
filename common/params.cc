@@ -462,6 +462,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"GearNumber", PERSISTENT}, //GEAR_NUMBER_TEST
     {"FrogPilotPrebuilt", PERSISTENT}, //FROGPILOT_PREBUILT_TEST
     {"UseRedPanda", PERSISTENT}, //Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
+    // UDP Broadcast Params
+    {"UDP_TurnSignals", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
 };
 
 } // namespace

@@ -10,6 +10,7 @@ from openpilot.selfdrive.controls.lib.drive_helpers import CRUISE_LONG_PRESS
 
 from openpilot.common.params import Params #Fixed XT5 OnStar CAN Errors
 params = Params()
+params_memory = Params("/dev/shm/params") # UDP Broadcast Params
 
 TransmissionType = car.CarParams.TransmissionType
 NetworkLocation = car.CarParams.NetworkLocation
@@ -154,6 +155,8 @@ class CarState(CarStateBase):
       ret.seatbeltUnlatched = pt_cp.vl["BCMDoorBeltStatus"]["LeftSeatBelt"] == 0
       ret.leftBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 1
       ret.rightBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 2
+      # UDP Broadcast Params
+      params_memory.put_int("UDP_TurnSignals", pt_cp.vl["BCMTurnSignals"]["TurnSignals"])
 
       ret.parkingBrake = pt_cp.vl["BCMGeneralPlatformStatus"]["ParkBrakeSwActive"] == 1
     else:
