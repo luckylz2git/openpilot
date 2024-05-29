@@ -57,7 +57,7 @@ class CanMsg:
     self.length = 31
     self.version = 1
     self.steeringWheelAngle = 0
-    self.currentGearNum = 15
+    self.currentGearNum = 0
     self.driverMode = 0
     self.brakePressure = 0
     self.turnSignals = 0
@@ -85,6 +85,7 @@ class CanMsg:
 
   def readparams(self):
     self.turnSignals = params_memory.get_int("UDP_TurnSignals")
+    self.currentGearNum = params_memory.get_int("UDP_CurrentGearNumber")
 
   def pack(self):
     data = bytearray(32)
