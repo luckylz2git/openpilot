@@ -56,8 +56,8 @@ class CanMsg:
   def __init__(self):
     self.length = 31
     self.version = 1
-    self.steeringWheelAngle = random.randint(-540, 540)
-    self.currentGearNum = random.choice(self.GEARS)
+    self.steeringWheelAngle = 0
+    self.currentGearNum = 15
     self.driverMode = 0
     self.brakePressure = 0
     self.turnSignals = 0
