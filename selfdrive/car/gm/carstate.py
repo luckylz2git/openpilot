@@ -158,8 +158,6 @@ class CarState(CarStateBase):
       ret.seatbeltUnlatched = pt_cp.vl["BCMDoorBeltStatus"]["LeftSeatBelt"] == 0
       ret.leftBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 1
       ret.rightBlinker = pt_cp.vl["BCMTurnSignals"]["TurnSignals"] == 2
-      # UDP Broadcast Params
-      params_memory.put_int("UDP_TurnSignals", pt_cp.vl["BCMTurnSignals"]["TurnSignals"])
 
       ret.parkingBrake = pt_cp.vl["BCMGeneralPlatformStatus"]["ParkBrakeSwActive"] == 1
     else:
@@ -175,6 +173,15 @@ class CarState(CarStateBase):
       ret.rightBlinker = cam_cp.vl["BCMTurnSignals"]["TurnSignals"] == 2
 
       ret.parkingBrake = cam_cp.vl["BCMGeneralPlatformStatus"]["ParkBrakeSwActive"] == 1
+
+    # UDP Broadcast Params
+    if ret.leftBlinker:
+      params_memory.put_int("UDP_TurnSignals", 1)
+    elif ret.rightBlinker:
+      params_memory.put_int("UDP_TurnSignals", 2)
+    else:
+      params_memory.put_int("UDP_TurnSignals", 0)
+
     ret.cruiseState.available = pt_cp.vl["ECMEngineStatus"]["CruiseMainOn"] != 0
     ret.espDisabled = pt_cp.vl["ESPStatus"]["TractionControlOn"] != 1
     ret.accFaulted = (pt_cp.vl["AcceleratorPedal2"]["CruiseState"] == AccState.FAULTED or
