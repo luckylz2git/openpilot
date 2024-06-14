@@ -28,11 +28,20 @@ def register(show_spinner=False) -> Optional[str]:
   params = Params()
 
   IMEI = params.get("IMEI", encoding='utf8')
+  if IMEI in (None, ""):
+    IMEI = HARDWARE.get_imei(0)
+    params.put("IMEI", IMEI)
+    
   HardwareSerial = params.get("HardwareSerial", encoding='utf8')
-  if HardwareSerial=="":
-    params.put("HardwareSerial", HARDWARE.get_serial())
+  if HardwareSerial in (None, ""):
+    HardwareSerial = HARDWARE.get_serial()
+    params.put("HardwareSerial", HardwareSerial)
     
   dongle_id: Optional[str] = params.get("DongleId", encoding='utf8')
+  if dongle_id in (None, ""):
+    dongle_id = IMEI
+    params.put("DongleId", dongle_id)
+
   needs_registration = None in (IMEI, HardwareSerial, dongle_id)
   # 不检查dongle_id
   return UNREGISTERED_DONGLE_ID
