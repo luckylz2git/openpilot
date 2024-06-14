@@ -33,6 +33,7 @@ def local_register():
     except Exception:
       time.sleep(1)
 
+  params = Params()
   params.put("IMEI", imei1)
   params.put("HardwareSerial", serial)
 
