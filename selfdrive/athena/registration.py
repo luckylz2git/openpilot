@@ -23,19 +23,28 @@ def is_registered_device() -> bool:
   dongle = Params().get("DongleId", encoding='utf-8')
   return dongle not in (None, UNREGISTERED_DONGLE_ID)
 
+def local_register():
+  serial = HARDWARE.get_serial()
+  imei1: Optional[str] = None
+  imei2: Optional[str] = None
+  while imei1 is None and imei2 is None:
+    try:
+      imei1, imei2 = HARDWARE.get_imei(0), HARDWARE.get_imei(1)
+    except Exception:
+      time.sleep(1)
+
+  params.put("IMEI", imei1)
+  params.put("HardwareSerial", serial)
+
+  return serial, imei1
 
 def register(show_spinner=False) -> Optional[str]:
   params = Params()
 
   IMEI = params.get("IMEI", encoding='utf8')
-  if IMEI in (None, ""):
-    IMEI = HARDWARE.get_imei(0)
-    params.put("IMEI", IMEI)
-    
   HardwareSerial = params.get("HardwareSerial", encoding='utf8')
-  if HardwareSerial in (None, ""):
-    HardwareSerial = HARDWARE.get_serial()
-    params.put("HardwareSerial", HardwareSerial)
+  if None in (IMEI, HardwareSerial):
+    HardwareSerial, IMEI = local_register()
     
   dongle_id: Optional[str] = params.get("DongleId", encoding='utf8')
   if dongle_id in (None, ""):
