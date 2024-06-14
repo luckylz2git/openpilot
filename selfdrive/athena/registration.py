@@ -49,7 +49,7 @@ def register(show_spinner=False) -> Optional[str]:
     
   dongle_id: Optional[str] = params.get("DongleId", encoding='utf8')
   if dongle_id in (None, ""):
-    dongle_id = IMEI
+    dongle_id = IMEI[0:8]
     params.put("DongleId", dongle_id)
 
   needs_registration = None in (IMEI, HardwareSerial, dongle_id)
