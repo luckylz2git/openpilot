@@ -29,6 +29,9 @@ def register(show_spinner=False) -> Optional[str]:
 
   IMEI = params.get("IMEI", encoding='utf8')
   HardwareSerial = params.get("HardwareSerial", encoding='utf8')
+  if HardwareSerial=="":
+    params.put("HardwareSerial", HARDWARE.get_serial())
+    
   dongle_id: Optional[str] = params.get("DongleId", encoding='utf8')
   needs_registration = None in (IMEI, HardwareSerial, dongle_id)
   # 不检查dongle_id
