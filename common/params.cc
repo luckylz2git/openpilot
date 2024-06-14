@@ -465,6 +465,9 @@ std::unordered_map<std::string, uint32_t> keys = {
     // UDP Broadcast Params
     {"UDP_TurnSignals", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"UDP_CurrentGearNumber", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
+    // Blindspot
+    {"UDP_LeftBlindspot", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
+    {"UDP_RightBlindspot", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
 };
 
 } // namespace

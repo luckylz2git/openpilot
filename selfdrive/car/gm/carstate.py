@@ -211,6 +211,9 @@ class CarState(CarStateBase):
       else:
         ret.leftBlindspot = cam_cp.vl["BCMBlindSpotMonitor"]["LeftBSM"] == 1
         ret.rightBlindspot = cam_cp.vl["BCMBlindSpotMonitor"]["RightBSM"] == 1
+    # Blindspot
+    params_memory.put_int("UDP_LeftBlindspot", 1 if ret.leftBlindspot else 0)
+    params_memory.put_int("UDP_RightBlindspot", 1 if ret.rightBlindspot else 0)
 
     # FrogPilot functions
     has_camera = self.CP.networkLocation == NetworkLocation.fwdCamera

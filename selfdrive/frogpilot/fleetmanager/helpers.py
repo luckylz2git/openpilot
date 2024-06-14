@@ -86,6 +86,9 @@ class CanMsg:
   def readparams(self):
     self.turnSignals = params_memory.get_int("UDP_TurnSignals")
     self.currentGearNum = params_memory.get_int("UDP_CurrentGearNumber")
+    # Blindspot
+    self.leftBSM = params_memory.get_int("UDP_LeftBlindspot")
+    self.rightBSM = params_memory.get_int("UDP_RightBlindspot")
 
   def pack(self):
     data = bytearray(32)
