@@ -89,6 +89,8 @@ class CanMsg:
     # Blindspot
     self.leftBSM = params_memory.get_int("UDP_LeftBlindspot")
     self.rightBSM = params_memory.get_int("UDP_RightBlindspot")
+    # HazardLights
+    self.hazardLights = params_memory.get_int("UDP_HazardLights")
 
   def pack(self):
     data = bytearray(32)

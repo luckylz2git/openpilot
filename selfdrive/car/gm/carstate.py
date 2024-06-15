@@ -147,6 +147,7 @@ class CarState(CarStateBase):
     ret.steerFaultTemporary = self.lkas_status == 2
     ret.steerFaultPermanent = self.lkas_status == 3
 
+    hazardLights = 0
     if self.CP.carFingerprint not in SDGM_CAR:
       # 1 - open, 0 - closed
       ret.doorOpen = (pt_cp.vl["BCMDoorBeltStatus"]["FrontLeftDoor"] == 1 or
@@ -171,6 +172,8 @@ class CarState(CarStateBase):
       ret.seatbeltUnlatched = cam_cp.vl["BCMDoorBeltStatus"]["LeftSeatBelt"] == 0
       ret.leftBlinker = cam_cp.vl["BCMTurnSignals"]["TurnSignals"] == 1
       ret.rightBlinker = cam_cp.vl["BCMTurnSignals"]["TurnSignals"] == 2
+      # HazardLights
+      hazardLights = cam_cp.vl["BCMTurnSignals"]["HazardLights"]
 
       ret.parkingBrake = cam_cp.vl["BCMGeneralPlatformStatus"]["ParkBrakeSwActive"] == 1
 
@@ -181,6 +184,8 @@ class CarState(CarStateBase):
       params_memory.put_int("UDP_TurnSignals", 2)
     else:
       params_memory.put_int("UDP_TurnSignals", 0)
+    # HazardLights
+    params_memory.put_int("UDP_HazardLights", hazardLights)
 
     ret.cruiseState.available = pt_cp.vl["ECMEngineStatus"]["CruiseMainOn"] != 0
     ret.espDisabled = pt_cp.vl["ESPStatus"]["TractionControlOn"] != 1

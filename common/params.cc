@@ -468,6 +468,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     // Blindspot
     {"UDP_LeftBlindspot", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"UDP_RightBlindspot", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
+    // HazardLights
+    {"UDP_HazardLights", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
 };
 
 } // namespace
