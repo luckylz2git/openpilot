@@ -443,6 +443,7 @@ class Controls:
         self.events.add(EventName.calibrationInvalid)
 
     # Handle lane change
+    long_personality = -1 # auto_resume: default value for lead_departing
     if self.sm['modelV2'].meta.laneChangeState == LaneChangeState.preLaneChange:
       direction = self.sm['modelV2'].meta.laneChangeDirection
       desired_lane = frogpilot_plan.laneWidthLeft if direction == LaneChangeDirection.left else frogpilot_plan.laneWidthRight
@@ -660,7 +661,10 @@ class Controls:
       lead_departing &= lead.vLead > 1
       lead_departing &= self.driving_gear
 
-      if lead_departing:
+      # auto_resume
+      if lead_departing and CS.cruiseState.standstill and long_personality == 0 and self.v_cruise_helper.v_cruise_cluster_kph < 24:
+        self.events.add(EventName.autoResumeEvent)
+      elif lead_departing:
         self.events.add(EventName.leadDeparting)
 
     # Speed limit changed alert
