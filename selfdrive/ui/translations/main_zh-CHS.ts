@@ -858,6 +858,14 @@
         <translation>使用外置Red Panda连接CAN总线</translation>
     </message>
     <message>
+        <source>Cruise Auto Resume</source>
+        <translation>巡航自动跟车起步</translation>
+    </message>
+    <message>
+        <source>Enable Auto Resume when Adapted Cruise Control On, Set Speed 25 kph and Aggressive following distance.</source>
+        <translation>自适应巡航开启时，自动跟车起步。启用条件：设定车速 25 kph，跟车距离 1 格。</translation>
+    </message>
+    <message>
         <source>SELECT</source>
         <translation>选择</translation>
     </message>

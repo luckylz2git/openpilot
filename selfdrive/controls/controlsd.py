@@ -662,7 +662,7 @@ class Controls:
       lead_departing &= self.driving_gear
 
       # auto_resume
-      if lead_departing and CS.cruiseState.standstill and not CS.brakePressed and long_personality == 0 and self.v_cruise_helper.v_cruise_cluster_kph < 24:
+      if self.cruise_auto_resume and lead_departing and CS.cruiseState.standstill and not CS.brakePressed and long_personality == 0 and self.v_cruise_helper.v_cruise_cluster_kph < 24:
         self.events.add(EventName.autoResumeEvent)
       elif lead_departing:
         self.events.add(EventName.leadDeparting)
@@ -1238,6 +1238,7 @@ class Controls:
 
   def update_frogpilot_params(self):
     self.nudgeless_smooth = self.params.get_bool("NudgelessSmooth")
+    self.cruise_auto_resume = self.params.get_bool("CruiseAutoResume") #auto_resume
 
     self.frogpilot_variables.conditional_experimental_mode = self.params.get_bool("ConditionalExperimental")
     self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
