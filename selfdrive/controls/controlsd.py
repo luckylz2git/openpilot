@@ -661,7 +661,7 @@ class Controls:
       lead_departing &= self.driving_gear
 
       # auto_resume
-      if self.cruise_auto_resume and lead_departing and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 30.0:
+      if self.cruise_auto_resume and lead_departing and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
         # read param only when lead_departing = true
         long_personality = self.params.get_int("LongitudinalPersonality")
         if long_personality == 0:
