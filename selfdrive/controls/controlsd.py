@@ -662,7 +662,7 @@ class Controls:
       lead_departing &= self.driving_gear
 
       # auto_resume
-      if self.cruise_auto_resume and lead_departing and CS.cruiseState.standstill and not CS.brakePressed and long_personality == 0 and self.v_cruise_helper.v_cruise_cluster_kph < 24:
+      if self.cruise_auto_resume and lead_departing and self.state == State.enabled and not CS.brakePressed and long_personality == 0 and self.v_cruise_helper.v_cruise_cluster_kph < 30.0:
         self.events.add(EventName.autoResumeEvent)
       elif lead_departing:
         self.events.add(EventName.leadDeparting)
