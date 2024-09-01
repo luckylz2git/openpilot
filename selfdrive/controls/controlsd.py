@@ -443,7 +443,6 @@ class Controls:
         self.events.add(EventName.calibrationInvalid)
 
     # Handle lane change
-    long_personality = -1 # auto_resume: default value for lead_departing
     if self.sm['modelV2'].meta.laneChangeState == LaneChangeState.preLaneChange:
       direction = self.sm['modelV2'].meta.laneChangeDirection
       desired_lane = frogpilot_plan.laneWidthLeft if direction == LaneChangeDirection.left else frogpilot_plan.laneWidthRight
@@ -662,8 +661,11 @@ class Controls:
       lead_departing &= self.driving_gear
 
       # auto_resume
-      if self.cruise_auto_resume and lead_departing and self.state == State.enabled and not CS.brakePressed and long_personality == 0 and self.v_cruise_helper.v_cruise_cluster_kph < 30.0:
-        self.events.add(EventName.autoResumeEvent)
+      if self.cruise_auto_resume and lead_departing and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 30.0:
+        # read param only when lead_departing = true
+        long_personality = self.params.get_int("LongitudinalPersonality")
+        if long_personality == 0:
+          self.events.add(EventName.autoResumeEvent)
       elif lead_departing:
         self.events.add(EventName.leadDeparting)
 
