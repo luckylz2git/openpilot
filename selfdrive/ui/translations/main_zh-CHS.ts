@@ -863,7 +863,7 @@
     </message>
     <message>
         <source>Enable Auto Resume when Adapted Cruise Control On, Set Speed 25 kph and Aggressive following distance.</source>
-        <translation>自适应巡航开启时，自动跟车起步。启用条件：设定车速 25 kph，跟车距离 1 格。</translation>
+        <translation>自动跟车起步，启用条件：自适应巡航已开启，未踩下油门或刹车，巡航车速设定为 25 kph，跟车距离设定为 1 格。</translation>
     </message>
     <message>
         <source>SELECT</source>
