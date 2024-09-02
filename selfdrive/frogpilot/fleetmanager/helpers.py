@@ -181,7 +181,7 @@ can_msg = CanMsg()
 # auto_resume
 def on_auto_resume():
   try:
-    url = "http://192.168.170.114/admin?CMD=104&Type=2"
+    url = "http://192.168.2.15/admin?CMD=104&Type=2"
     res = requests.get(url)
     return True
   except Exception as e:
