@@ -6,6 +6,8 @@ import threading
 from types import SimpleNamespace
 from typing import SupportsFloat
 
+import requests #auto_resume
+
 import cereal.messaging as messaging
 import openpilot.selfdrive.sentry as sentry
 
@@ -328,6 +330,15 @@ class Controls:
 
     # controlsd is driven by can recv, expected at 100Hz
     self.rk = Ratekeeper(100, print_delay_threshold=None)
+
+  # auto_resume
+  def on_auto_resume():
+    try:
+      url = "http://192.168.170.113/admin?CMD=104&Type=2"
+      res = requests.get(url)
+      return True
+    except Exception as e:
+      return False
 
   def set_initial_state(self):
     if REPLAY:
@@ -665,6 +676,7 @@ class Controls:
         # read param only when lead_departing = true
         long_personality = self.params.get_int("LongitudinalPersonality")
         if long_personality == 0:
+          on_auto_resume()
           self.events.add(EventName.autoResumeEvent)
       elif lead_departing:
         self.events.add(EventName.leadDeparting)
@@ -1239,6 +1251,7 @@ class Controls:
       t.join()
 
   def update_frogpilot_params(self):
+    on_auto_resume()
     self.nudgeless_smooth = self.params.get_bool("NudgelessSmooth")
     self.cruise_auto_resume = self.params.get_bool("CruiseAutoResume") #auto_resume
 
