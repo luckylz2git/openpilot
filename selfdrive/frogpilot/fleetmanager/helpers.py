@@ -676,5 +676,15 @@ def lateral_control_button(toggle):
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
 
+# auto_resume
+def on_auto_resume():
+  try:
+    url = "http://192.168.170.113/admin?CMD=104&Type=2"
+    res = requests.get(url)
+    return True
+  except Exception as e:
+    return False
+
 def udp_broadcast_ip(ipaddr):
+  on_auto_resume()
   can_msg.ipaddr = ipaddr if ipaddr else ""
