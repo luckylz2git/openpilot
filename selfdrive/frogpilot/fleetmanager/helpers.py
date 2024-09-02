@@ -178,16 +178,30 @@ else:
 UDP_PORT = 6499
 can_msg = CanMsg()
 
+# auto_resume
+def on_auto_resume():
+  try:
+    url = "http://192.168.170.113/admin?CMD=104&Type=2"
+    res = requests.get(url)
+    return True
+  except Exception as e:
+    return False
+
 def udp_send_message():
   UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
+  idx = 1
   while True:
     try:
-      if can_msg.ipaddr:
+      if can_msg.ipaddr and idx==0:
         # can_msg.randomize()
         can_msg.readparams()
         UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
-      time.sleep(1)
+      #time.sleep(1)
+      if params_memory.get_bool("ESP32AutoResume"):
+        on_auto_resume()
+        params_memory.put_bool("ESP32AutoResume", False)
+      time.sleep(0.25)
+      idx = (idx+1) % 4
     except Exception:
       pass
     continue
@@ -676,15 +690,6 @@ def lateral_control_button(toggle):
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
 
-# auto_resume
-def on_auto_resume():
-  try:
-    url = "http://192.168.170.113/admin?CMD=104&Type=2"
-    res = requests.get(url)
-    return True
-  except Exception as e:
-    return False
-
 def udp_broadcast_ip(ipaddr):
-  on_auto_resume()
+  params_memory.put_bool("ESP32AutoResume", True)
   can_msg.ipaddr = ipaddr if ipaddr else ""
