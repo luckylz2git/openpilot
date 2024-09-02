@@ -667,6 +667,7 @@ class Controls:
         # read param only when lead_departing = true
         long_personality = self.params.get_int("LongitudinalPersonality")
         if long_personality == 0:
+          self.params_memory.put_bool("ESP32AutoResume", True)
           self.events.add(EventName.autoResumeEvent)
       elif lead_departing:
         self.events.add(EventName.leadDeparting)
