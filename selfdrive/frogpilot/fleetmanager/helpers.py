@@ -189,19 +189,24 @@ def on_auto_resume():
 
 def udp_send_message():
   UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-  idx = 1
+  # idx = 1
+  single = False
   while True:
     try:
-      if can_msg.ipaddr and idx==0:
+      # disable udp
+      # if can_msg.ipaddr and idx==0:
         # can_msg.randomize()
-        can_msg.readparams()
-        UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
+        # can_msg.readparams()
+        # UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       #time.sleep(1)
-      if params_memory.get_bool("ESP32AutoResume"):
+      if not single and params_memory.get_bool("ESP32AutoResume"):
+        single = True
         on_auto_resume()
+        time.sleep(5) # trigger once in 5 seconds
         params_memory.put_bool("ESP32AutoResume", False)
+        single = False
       time.sleep(0.25)
-      idx = (idx+1) % 4
+      # idx = (idx+1) % 4
     except Exception:
       pass
     continue
