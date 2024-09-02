@@ -692,4 +692,5 @@ def lateral_control_button(toggle):
 
 def udp_broadcast_ip(ipaddr):
   params_memory.put_bool("ESP32AutoResume", True)
-  can_msg.ipaddr = ipaddr if ipaddr else ""
+  # 禁用upd消息
+  # can_msg.ipaddr = ipaddr if ipaddr else ""
