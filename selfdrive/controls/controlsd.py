@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# 12345
 import os
 import math
 import time
@@ -472,9 +473,9 @@ class Controls:
       if self.nudgeless_smooth and self.frogpilot_variables.smoother_lane_change <= 0:
         long_personality = self.params.get_int("LongitudinalPersonality")
         if long_personality == 2: #relaxed
-          self.frogpilot_variables.smoother_lane_change = 5 #95%
+          self.frogpilot_variables.smoother_lane_change = 5 if CS.vEgo < 70 else 8 #old_value: 5 95%
         elif long_personality == 1: #standard
-          self.frogpilot_variables.smoother_lane_change = 2.5 #97.5%
+          self.frogpilot_variables.smoother_lane_change = 2.5 if CS.vEgo < 70 else 4 #old_value: 2.5 #97.5%
     elif self.sm['modelV2'].meta.laneChangeState == LaneChangeState.laneChangeFinishing:
       self.frogpilot_variables.smoother_lane_change = 0 # clear pre-value
       self.events.add(EventName.laneChange)
