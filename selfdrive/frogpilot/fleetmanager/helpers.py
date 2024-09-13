@@ -177,13 +177,18 @@ else:
 #UDP测试
 UDP_PORT = 6499
 can_msg = CanMsg()
-
+#ESP32 ip地址
+ESP32_IP = ""
 # auto_resume
 def on_auto_resume():
   try:
-    url = "http://192.168.2.15/admin?CMD=104&Type=2"
-    res = requests.get(url)
-    return True
+    if ESP32_IP != "":
+      #"http://192.168.2.15/admin?CMD=104&Type=2"
+      url = "http://" + ESP32_IP + "/admin?CMD=104&Type=2"
+      res = requests.get(url)
+      return True
+    else:
+      return True
   except Exception as e:
     return False
 
@@ -696,6 +701,9 @@ def lateral_control_button(toggle):
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
 
 def udp_broadcast_ip(ipaddr):
-  params_memory.put_bool("ESP32AutoResume", True)
+  # params_memory.put_bool("ESP32AutoResume", True)
   # 禁用upd消息
   # can_msg.ipaddr = ipaddr if ipaddr else ""
+
+def esp32_ipaddr(ipaddr):
+  ESP32_IP = ipaddr if ipaddr else ""

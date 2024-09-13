@@ -456,6 +456,15 @@ def udp_broadcast_ip_route():
   except Exception as e:
     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
 
+@app.route("/esp32_ipaddr", methods=['POST'])
+def esp32_ipaddr_route():
+  try:
+    ipaddr = request.args.get('ipaddr')
+    fleet.esp32_ipaddr(ipaddr)
+    return "ESP32 IP Address set to " + ipaddr + " successfully", 200
+  except Exception as e:
+    return jsonify({"error": "Failed to update values", "details": str(e)}), 400
+
 def main():
   try:
     set_core_affinity([0, 1, 2, 3])
