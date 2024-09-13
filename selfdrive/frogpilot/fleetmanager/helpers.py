@@ -179,6 +179,13 @@ UDP_PORT = 6499
 can_msg = CanMsg()
 #ESP32 ip地址
 ESP32_IP = ""
+def esp32_ipaddr(ipaddr):
+  ESP32_IP = ipaddr if ipaddr else ""
+
+def get_esp32_ipaddr():
+  url = "http://" + ESP32_IP + "/admin?CMD=104&Type=2"
+  return url
+  
 # auto_resume
 def on_auto_resume():
   try:
@@ -188,7 +195,7 @@ def on_auto_resume():
       res = requests.get(url)
       return True
     else:
-      return True
+      return False
   except Exception as e:
     return False
 
@@ -705,5 +712,3 @@ def lateral_control_button(toggle):
   # 禁用upd消息
   # can_msg.ipaddr = ipaddr if ipaddr else ""
 
-def esp32_ipaddr(ipaddr):
-  ESP32_IP = ipaddr if ipaddr else ""

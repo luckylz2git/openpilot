@@ -455,6 +455,10 @@ def lateral_control_button_route():
 #     return "UPD Broadcast IP set to " + ipaddr + " successfully", 200
 #   except Exception as e:
 #     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
+@app.route("/get_esp32_ipaddr", methods=['GET'])
+def get_esp32_ipaddr_route():
+  ipaddr = fleet.get_esp32_ipaddr()
+  return ipaddr
 
 @app.route("/esp32_ipaddr", methods=['POST'])
 def esp32_ipaddr_route():
