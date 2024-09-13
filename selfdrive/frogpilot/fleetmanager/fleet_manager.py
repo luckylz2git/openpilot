@@ -447,14 +447,14 @@ def lateral_control_button_route():
   except Exception as e:
     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
 
-@app.route("/udp_broadcast_ip", methods=['POST'])
-def udp_broadcast_ip_route():
-  try:
-    ipaddr = request.args.get('ipaddr')
-    fleet.udp_broadcast_ip(ipaddr)
-    return "UPD Broadcast IP set to " + ipaddr + " successfully", 200
-  except Exception as e:
-    return jsonify({"error": "Failed to update values", "details": str(e)}), 400
+# @app.route("/udp_broadcast_ip", methods=['POST'])
+# def udp_broadcast_ip_route():
+#   try:
+#     ipaddr = request.args.get('ipaddr')
+#     fleet.udp_broadcast_ip(ipaddr)
+#     return "UPD Broadcast IP set to " + ipaddr + " successfully", 200
+#   except Exception as e:
+#     return jsonify({"error": "Failed to update values", "details": str(e)}), 400
 
 @app.route("/esp32_ipaddr", methods=['POST'])
 def esp32_ipaddr_route():

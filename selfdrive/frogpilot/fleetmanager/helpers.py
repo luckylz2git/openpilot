@@ -700,7 +700,7 @@ def lateral_control_button(toggle):
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
 
-def udp_broadcast_ip(ipaddr):
+# def udp_broadcast_ip(ipaddr):
   # params_memory.put_bool("ESP32AutoResume", True)
   # 禁用upd消息
   # can_msg.ipaddr = ipaddr if ipaddr else ""
