@@ -157,6 +157,9 @@ class CanMsg:
     # packed_data = self.pack()
     # print(list(packed_data))
 
+class ESP32:
+  ipaddr = ""
+
 pi = 3.1415926535897932384626
 x_pi = 3.14159265358979324 * 3000.0 / 180.0
 a = 6378245.0
@@ -177,15 +180,17 @@ else:
 #UDP测试
 UDP_PORT = 6499
 can_msg = CanMsg()
+esp32 = ESP32()
 #ESP32 ip地址
 ESP32_IP = ""
 def esp32_ipaddr(ipaddr):
   ESP32_IP = ipaddr if ipaddr else ""
+  esp32.ipaddr = ipaddr if ipaddr else ""
 
 def get_esp32_ipaddr():
-  url = "http://" + ESP32_IP + "/admin?CMD=104&Type=2"
+  url = "http://" + esp32.ipaddr + "/admin?CMD=104&Type=2"
   return url
-  
+
 # auto_resume
 def on_auto_resume():
   try:
