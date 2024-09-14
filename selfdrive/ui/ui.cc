@@ -330,6 +330,8 @@ void ui_update_frogpilot_params(UIState *s) {
   Params paramsMemory = Params("/dev/shm/params");
   UIScene &scene = s->scene;
 
+  scene.cruise_auto_resume = params.getBool("CruiseAutoResume") //auto_resume
+
   scene.always_on_lateral = params.getBool("AlwaysOnLateral");
   scene.hide_aol_status_bar = scene.always_on_lateral && params.getBool("HideAOLStatusBar");
 
@@ -472,7 +474,15 @@ void UIState::updateStatus() {
     } else {
       status = controls_state.getEnabled() ? STATUS_ENGAGED : STATUS_DISENGAGED;
     }
-
+    //自动跟车激活
+    if (status == STATUS_ENGAGED || status == STATUS_OVERRIDE) {
+      if (scene.cruise_auto_resume) {
+        Params paramsMemory = Params("/dev/shm/params");
+        if (paramsMemory.getBool("ESP32HasIP")) {
+          scene.cruise_auto_resume_activated = true;
+        }
+      }
+    }
     // Trigger standby mode on alerts and status changes
     scene.active_alert = controls_state.getAlertStatus() != cereal::ControlsState::AlertStatus::NORMAL;
     scene.status_changed = status != previous_status;

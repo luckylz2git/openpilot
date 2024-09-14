@@ -184,7 +184,12 @@ can_msg = CanMsg()
 esp32 = ESP32() #ESP32 ip地址
 
 def esp32_ipaddr(ipaddr):
-  esp32.ipaddr = ipaddr if ipaddr else ""
+  if ipaddr:
+    esp32.ipaddr = ipaddr
+    params_memory.put_bool("ESP32HasIP", True)
+  else:
+    esp32.ipaddr = ""
+    params_memory.put_bool("ESP32HasIP", False)
 
 def get_esp32_ipaddr():
   url = "http://" + esp32.ipaddr + "/admin?CMD=104&Type=2"

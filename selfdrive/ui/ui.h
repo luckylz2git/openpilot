@@ -248,6 +248,8 @@ typedef struct UIScene {
   bool brake_pressed; //TEST_BRAKE_PEDAL
   bool lateral_disable_runtime; //禁用横向
   bool nudgeless_lane_change; //禁用自动变道
+  bool cruise_auto_resume; //自动跟车启用
+  bool cruise_auto_resume_activated; //自动跟车激活
 
   float acceleration;
   float adjusted_cruise;

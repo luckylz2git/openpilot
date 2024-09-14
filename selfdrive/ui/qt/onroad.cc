@@ -1905,8 +1905,7 @@ PersonalityButton::PersonalityButton(QWidget *parent) : QPushButton(parent), sce
 
   // Configure the profile vector
   profile_data = {
-    //{QPixmap("../frogpilot/assets/other_images/aggressive_new.png"), "Aggressive"},
-    {QPixmap("../frogpilot/assets/other_images/aggressive_new2.png"), "Aggressive"},
+    {QPixmap("../frogpilot/assets/other_images/aggressive_new.png"), "Aggressive"},
     {QPixmap("../frogpilot/assets/other_images/standard_new.png"), "Standard"},
     {QPixmap("../frogpilot/assets/other_images/relaxed_new.png"), "Relaxed"}
   };
@@ -1914,6 +1913,20 @@ PersonalityButton::PersonalityButton(QWidget *parent) : QPushButton(parent), sce
   //禁用自动变道
   profile_data1 = {
     {QPixmap("../frogpilot/assets/other_images/aggressive_new1.png"), "Aggressive"},
+    {QPixmap("../frogpilot/assets/other_images/standard_new1.png"), "Standard"},
+    {QPixmap("../frogpilot/assets/other_images/relaxed_new1.png"), "Relaxed"}
+  };
+
+  //普通+自动跟车
+  profile_data2 = {
+    {QPixmap("../frogpilot/assets/other_images/aggressive_new2.png"), "Aggressive"},
+    {QPixmap("../frogpilot/assets/other_images/standard_new.png"), "Standard"},
+    {QPixmap("../frogpilot/assets/other_images/relaxed_new.png"), "Relaxed"}
+  };
+
+  //禁用自动变道+自动跟车
+  profile_data3 = {
+    {QPixmap("../frogpilot/assets/other_images/aggressive_new3.png"), "Aggressive"},
     {QPixmap("../frogpilot/assets/other_images/standard_new1.png"), "Standard"},
     {QPixmap("../frogpilot/assets/other_images/relaxed_new1.png"), "Relaxed"}
   };
@@ -1977,7 +1990,11 @@ void PersonalityButton::paintEvent(QPaintEvent *) {
   auto &[profile_image, profile_text] = profile_data[personalityProfile];
   //禁用自动变道
   auto &[profile_image1, profile_text1] = profile_data1[personalityProfile];
-  
+  //普通+自动跟车
+  auto &[profile_image2, profile_text2] = profile_data2[personalityProfile];
+  //禁用自动变道+自动跟车
+  auto &[profile_image3, profile_text3] = profile_data3[personalityProfile];
+
   QRect rect(0, 0, width(), height() + 95);
 
   // Draw the profile text with the calculated opacity
@@ -1985,12 +2002,23 @@ void PersonalityButton::paintEvent(QPaintEvent *) {
     p.setOpacity(textOpacity);
     p.setFont(InterFont(40, QFont::Bold));
     p.setPen(Qt::white);
-    p.drawText(rect, Qt::AlignCenter, scene.nudgeless_lane_change ? profile_text : profile_text1);
+    if (scene.cruise_auto_resume_activated) {
+      p.drawText(rect, Qt::AlignCenter, scene.nudgeless_lane_change ? profile_text2 : profile_text3);
+    }
+    else {
+      p.drawText(rect, Qt::AlignCenter, scene.nudgeless_lane_change ? profile_text : profile_text1);
+    }    
   }
 
   // Draw the profile image with the calculated opacity
   if (imageOpacity > 0.0) {
-    drawIcon(p, QPoint((btn_size / 2) * 1.25, btn_size / 2 + 95), scene.nudgeless_lane_change ? profile_image : profile_image1, Qt::transparent, imageOpacity);
+    if (scene.cruise_auto_resume_activated) {
+      drawIcon(p, QPoint((btn_size / 2) * 1.25, btn_size / 2 + 95), scene.nudgeless_lane_change ? profile_image2 : profile_image3, Qt::transparent, imageOpacity);
+    }
+    else {
+      drawIcon(p, QPoint((btn_size / 2) * 1.25, btn_size / 2 + 95), scene.nudgeless_lane_change ? profile_image : profile_image1, Qt::transparent, imageOpacity);
+    }
+    
   }
 }
 
