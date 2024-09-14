@@ -1905,7 +1905,8 @@ PersonalityButton::PersonalityButton(QWidget *parent) : QPushButton(parent), sce
 
   // Configure the profile vector
   profile_data = {
-    {QPixmap("../frogpilot/assets/other_images/aggressive_new.png"), "Aggressive"},
+    //{QPixmap("../frogpilot/assets/other_images/aggressive_new.png"), "Aggressive"},
+    {QPixmap("../frogpilot/assets/other_images/aggressive_new2.png"), "Aggressive"},
     {QPixmap("../frogpilot/assets/other_images/standard_new.png"), "Standard"},
     {QPixmap("../frogpilot/assets/other_images/relaxed_new.png"), "Relaxed"}
   };
