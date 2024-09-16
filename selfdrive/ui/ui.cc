@@ -475,14 +475,19 @@ void UIState::updateStatus() {
       status = controls_state.getEnabled() ? STATUS_ENGAGED : STATUS_DISENGAGED;
     }
     //自动跟车激活
+    bool bActivated = false;
     if (status == STATUS_ENGAGED || status == STATUS_OVERRIDE) {
       if (scene.cruise_auto_resume) {
         Params paramsMemory = Params("/dev/shm/params");
         if (paramsMemory.getBool("ESP32HasIP")) {
-          scene.cruise_auto_resume_activated = true;
+          float v_cruise = controls_state.getVCruiseCluster() == 0.0 ? controls_state.getVCruise() : controls_state.getVCruiseCluster();
+          if (v_cruise > 0 && v_cruise < 24) {
+            bActivated = true;
+          }
         }
       }
     }
+    scene.cruise_auto_resume_activated = bActivated;
     // Trigger standby mode on alerts and status changes
     scene.active_alert = controls_state.getAlertStatus() != cereal::ControlsState::AlertStatus::NORMAL;
     scene.status_changed = status != previous_status;
