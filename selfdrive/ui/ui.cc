@@ -330,7 +330,7 @@ void ui_update_frogpilot_params(UIState *s) {
   Params paramsMemory = Params("/dev/shm/params");
   UIScene &scene = s->scene;
 
-  scene.cruise_auto_resume = params.getBool("CruiseAutoResume") //auto_resume
+  scene.cruise_auto_resume = params.getBool("CruiseAutoResume"); //auto_resume
 
   scene.always_on_lateral = params.getBool("AlwaysOnLateral");
   scene.hide_aol_status_bar = scene.always_on_lateral && params.getBool("HideAOLStatusBar");
