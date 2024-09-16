@@ -465,8 +465,8 @@ void ui_update_frogpilot_params(UIState *s) {
 
 void UIState::updateStatus() {
   bool a = scene.cruise_auto_resume_activated;
-  if (scene.cruise_auto_resume) {
-    Params paramsMemory = Params("/dev/shm/params");
+  Params paramsMemory = Params("/dev/shm/params");
+  if (scene.cruise_auto_resume) {    
     if (paramsMemory.getBool("ESP32HasIP")) {
       scene.cruise_auto_resume_activated = true;
     } else {
@@ -500,7 +500,11 @@ void UIState::updateStatus() {
         }
       }
     }
-    scene.cruise_auto_resume_activated = bActivated;
+    //强制更新UI
+    if (scene.cruise_auto_resume_activated != bActivated) {
+      scene.cruise_auto_resume_activated = bActivated;
+      paramsMemory.putBool("PersonalityChangedViaWheel", true);
+    }
     // Trigger standby mode on alerts and status changes
     scene.active_alert = controls_state.getAlertStatus() != cereal::ControlsState::AlertStatus::NORMAL;
     scene.status_changed = status != previous_status;
