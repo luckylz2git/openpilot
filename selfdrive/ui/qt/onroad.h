@@ -156,6 +156,8 @@ private:
 
   QVector<std::pair<QPixmap, QString>> profile_data;
   QVector<std::pair<QPixmap, QString>> profile_data1;
+  QVector<std::pair<QPixmap, QString>> profile_data2;
+  QVector<std::pair<QPixmap, QString>> profile_data3;
 };
 
 // container window for the NVG UI
