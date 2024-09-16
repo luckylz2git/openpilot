@@ -464,6 +464,16 @@ void ui_update_frogpilot_params(UIState *s) {
 }
 
 void UIState::updateStatus() {
+  if (scene.cruise_auto_resume) {
+    Params paramsMemory = Params("/dev/shm/params");
+    if (paramsMemory.getBool("ESP32HasIP")) {
+      scene.cruise_auto_resume_activated = true;
+    } else {
+      scene.cruise_auto_resume_activated = false;
+    }
+  } else {
+    scene.cruise_auto_resume_activated = false;
+  }
   if (scene.started && sm->updated("controlsState")) {
     auto controls_state = (*sm)["controlsState"].getControlsState();
     auto state = controls_state.getState();
@@ -476,12 +486,6 @@ void UIState::updateStatus() {
     }
     //自动跟车激活
     bool bActivated = false;
-    if (scene.cruise_auto_resume) {
-      Params paramsMemory = Params("/dev/shm/params");
-      if (paramsMemory.getBool("ESP32HasIP")) {
-        bActivated = true;
-      }
-    }
     if (status == STATUS_ENGAGED || status == STATUS_OVERRIDE) {
       if (scene.cruise_auto_resume) {
         Params paramsMemory = Params("/dev/shm/params");
