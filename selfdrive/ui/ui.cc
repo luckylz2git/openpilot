@@ -464,6 +464,7 @@ void ui_update_frogpilot_params(UIState *s) {
 }
 
 void UIState::updateStatus() {
+/*
   bool a = scene.cruise_auto_resume_activated;
   Params paramsMemory = Params("/dev/shm/params");
   if (scene.cruise_auto_resume) {    
@@ -477,6 +478,7 @@ void UIState::updateStatus() {
   }
   //force update ui
   paramsMemory.putBool("PersonalityChangedViaWheel", a != scene.cruise_auto_resume_activated);
+*/
   if (scene.started && sm->updated("controlsState")) {
     auto controls_state = (*sm)["controlsState"].getControlsState();
     auto state = controls_state.getState();
@@ -489,9 +491,9 @@ void UIState::updateStatus() {
     }
     //自动跟车激活
     bool bActivated = false;
+    Params paramsMemory = Params("/dev/shm/params");
     if (status == STATUS_ENGAGED || status == STATUS_OVERRIDE) {
       if (scene.cruise_auto_resume) {
-        //Params paramsMemory = Params("/dev/shm/params");
         if (paramsMemory.getBool("ESP32HasIP")) {
           float v_cruise = controls_state.getVCruiseCluster() == 0.0 ? controls_state.getVCruise() : controls_state.getVCruiseCluster();
           if (v_cruise > 0 && v_cruise < 24) {
