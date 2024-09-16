@@ -464,17 +464,19 @@ void ui_update_frogpilot_params(UIState *s) {
 }
 
 void UIState::updateStatus() {
+  bool a = scene.cruise_auto_resume_activated;
   if (scene.cruise_auto_resume) {
     Params paramsMemory = Params("/dev/shm/params");
     if (paramsMemory.getBool("ESP32HasIP")) {
       scene.cruise_auto_resume_activated = true;
-      paramsMemory.putBool("PersonalityChangedViaWheel", true);
     } else {
       scene.cruise_auto_resume_activated = false;
     }
   } else {
     scene.cruise_auto_resume_activated = false;
   }
+  //force update ui
+  paramsMemory.putBool("PersonalityChangedViaWheel", a != scene.cruise_auto_resume_activated);
   if (scene.started && sm->updated("controlsState")) {
     auto controls_state = (*sm)["controlsState"].getControlsState();
     auto state = controls_state.getState();
