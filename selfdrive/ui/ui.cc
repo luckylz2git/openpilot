@@ -468,6 +468,7 @@ void UIState::updateStatus() {
     Params paramsMemory = Params("/dev/shm/params");
     if (paramsMemory.getBool("ESP32HasIP")) {
       scene.cruise_auto_resume_activated = true;
+      paramsMemory.putBool("PersonalityChangedViaWheel", true);
     } else {
       scene.cruise_auto_resume_activated = false;
     }
