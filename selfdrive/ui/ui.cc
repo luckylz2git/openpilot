@@ -480,6 +480,7 @@ void UIState::updateStatus() {
       if (scene.cruise_auto_resume) {
         Params paramsMemory = Params("/dev/shm/params");
         if (paramsMemory.getBool("ESP32HasIP")) {
+          bActivated = true;
           float v_cruise = controls_state.getVCruiseCluster() == 0.0 ? controls_state.getVCruise() : controls_state.getVCruiseCluster();
           if (v_cruise > 0 && v_cruise < 24) {
             bActivated = true;
