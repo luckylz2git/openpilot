@@ -664,6 +664,7 @@ class Controls:
       lead_departing &= self.driving_gear
 
       # auto_resume
+      self.cruise_auto_resume = self.params.get_bool("CruiseAutoResume") and self.params_memory.get_bool("ESP32HasIP") #auto_resume
       if self.cruise_auto_resume and lead_departing and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
         # read param only when lead_departing = true
         long_personality = self.params.get_int("LongitudinalPersonality")
@@ -1244,7 +1245,6 @@ class Controls:
 
   def update_frogpilot_params(self):
     self.nudgeless_smooth = self.params.get_bool("NudgelessSmooth")
-    self.cruise_auto_resume = self.params.get_bool("CruiseAutoResume") #auto_resume
 
     self.frogpilot_variables.conditional_experimental_mode = self.params.get_bool("ConditionalExperimental")
     self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
