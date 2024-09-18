@@ -1094,7 +1094,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
     ET.PERMANENT: Alert(
       "Pay Attention",
       "Vehicle Cruise Auto Resume",
-      AlertStatus.frogpilot, AlertSize.small,
+      AlertStatus.frogpilot, AlertSize.mid,
       Priority.MID, VisualAlert.none, AudibleAlert.engage, 3.),
   },
 
