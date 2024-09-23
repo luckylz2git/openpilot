@@ -180,6 +180,8 @@ class Controls:
     # FrogPilot variables
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
+    # auto_resume
+    self.standstill_time = 0
 
     self.ignore_controls_mismatch = False
 
@@ -652,6 +654,12 @@ class Controls:
       if green_light:
         self.events.add(EventName.greenLight)
 
+    # auto_resume
+    if CS.standstill and self.standstill_time == 0:
+      self.standstill_time = int(time.time())
+    elif not CS.standstill and self.standstill_time != 0:
+      self.standstill_time = 0
+
     # Lead departing alert
     if self.lead_departing_alert and self.sm.frame % 50 == 0:
       lead = self.sm['radarState'].leadOne
@@ -662,17 +670,21 @@ class Controls:
       lead_departing &= not CS.gasPressed
       lead_departing &= lead.vLead > 1
       lead_departing &= self.driving_gear
-
+      
       # auto_resume
-      self.cruise_auto_resume = self.params.get_bool("CruiseAutoResume") and self.params_memory.get_bool("ESP32HasIP") #auto_resume
-      if self.cruise_auto_resume and lead_departing and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
-        # read param only when lead_departing = true
-        long_personality = self.params.get_int("LongitudinalPersonality")
-        if long_personality == 0:
-          self.params_memory.put_bool("ESP32AutoResume", True)
-          self.events.add(EventName.autoResumeEvent)
-      elif lead_departing:
-        self.events.add(EventName.leadDeparting)
+      if lead_departing:
+        # wait time 3 seconds
+        if (int(time.time()) - self.standstill_time) >= 3:
+          # read param only when lead_departing = true
+          cruise_auto_resume = self.params.get_bool("CruiseAutoResume") and self.params_memory.get_bool("ESP32HasIP") #auto_resume
+          long_personality = self.params.get_int("LongitudinalPersonality") == 0
+          if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
+            self.params_memory.put_bool("ESP32AutoResume", True)
+            self.events.add(EventName.autoResumeEvent)
+          else:
+            self.events.add(EventName.leadDeparting)
+        else:
+          self.events.add(EventName.leadDeparting)
 
     # Speed limit changed alert
     if self.speed_limit_alert or self.speed_limit_confirmation:
