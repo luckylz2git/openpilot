@@ -217,7 +217,7 @@ def udp_send_message():
       # disable udp
       if can_msg.ipaddr and idx==0:
         # can_msg.randomize()
-        can_msg.readparams()
+        # can_msg.readparams()
         UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       #time.sleep(1)
       if not single and params_memory.get_bool("ESP32AutoResume"):
@@ -718,6 +718,6 @@ def lateral_control_button(toggle):
 
 def udp_broadcast_ip(ipaddr):
   params_memory.put_bool("ESP32AutoResume", True)
-  禁用upd消息
+  # 禁用upd消息
   can_msg.ipaddr = ipaddr if ipaddr else ""
 
