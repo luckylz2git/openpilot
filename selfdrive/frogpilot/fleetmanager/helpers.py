@@ -191,6 +191,10 @@ def esp32_ipaddr(ipaddr):
     esp32.ipaddr = ""
     params_memory.put_bool("ESP32HasIP", False)
 
+def get_broadcast_ip():
+  url = "UPD Broadcast IP is: " + can_msg.ipaddr
+  return url
+
 def get_esp32_ipaddr():
   url = "http://" + esp32.ipaddr + "/admin?CMD=104&Type=2"
   return url
