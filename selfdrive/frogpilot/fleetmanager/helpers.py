@@ -210,15 +210,15 @@ def on_auto_resume():
 
 def udp_send_message():
   UDP_SOCKET = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-  # idx = 1
+  idx = 1
   single = False
   while True:
     try:
       # disable udp
-      # if can_msg.ipaddr and idx==0:
+      if can_msg.ipaddr and idx==0:
         # can_msg.randomize()
-        # can_msg.readparams()
-        # UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
+        can_msg.readparams()
+        UDP_SOCKET.sendto(can_msg.pack(), (can_msg.ipaddr, UDP_PORT))
       #time.sleep(1)
       if not single and params_memory.get_bool("ESP32AutoResume"):
         single = True
@@ -227,7 +227,7 @@ def udp_send_message():
         params_memory.put_bool("ESP32AutoResume", False)
         single = False
       time.sleep(0.25)
-      # idx = (idx+1) % 4
+      idx = (idx+1) % 4
     except Exception:
       pass
     continue
@@ -716,8 +716,8 @@ def lateral_control_button(toggle):
   time.sleep(1)
   params_memory.put_bool("FrogPilotTogglesUpdated", False)
 
-# def udp_broadcast_ip(ipaddr):
-  # params_memory.put_bool("ESP32AutoResume", True)
-  # 禁用upd消息
-  # can_msg.ipaddr = ipaddr if ipaddr else ""
+def udp_broadcast_ip(ipaddr):
+  params_memory.put_bool("ESP32AutoResume", True)
+  禁用upd消息
+  can_msg.ipaddr = ipaddr if ipaddr else ""
 
