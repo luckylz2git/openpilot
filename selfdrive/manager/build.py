@@ -20,7 +20,7 @@ MAX_BUILD_PROGRESS = 100
 
 def build(spinner: Spinner, dirty: bool = False, minimal: bool = False) -> None:
   # test scons_cache
-  os.system("sudo rm -rf /data/scons_cache/*")
+  # os.system("sudo rm -rf /data/scons_cache/*")
   env = os.environ.copy()
   env['SCONS_PROGRESS'] = "1"
   nproc = os.cpu_count()
