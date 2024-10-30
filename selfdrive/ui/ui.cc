@@ -414,7 +414,7 @@ void ui_update_frogpilot_params(UIState *s) {
 
   bool quality_of_life_visuals = params.getBool("QOLVisuals");
   scene.full_map = quality_of_life_visuals && params.getBool("FullMap");
-  scene.hide_speed = quality_of_life_visuals && params.getBool("HideSpeed") || screenRecorderUpdated;
+  scene.hide_speed = screenRecorderUpdated ? false : quality_of_life_visuals && params.getBool("HideSpeed");
   scene.hide_speed_ui = scene.hide_speed && params.getBool("HideSpeedUI");
   scene.map_style = quality_of_life_visuals ? params.getInt("MapStyle") : 0;
   scene.wheel_speed = quality_of_life_visuals && params.getBool("WheelSpeed");
