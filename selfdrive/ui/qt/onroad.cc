@@ -5,7 +5,7 @@
 #include <map>
 #include <memory>
 #include <sstream>
-btn_size
+
 #include <QApplication>
 #include <QDebug>
 #include <QMouseEvent>
@@ -379,7 +379,7 @@ void OnroadAlerts::paintEvent(QPaintEvent *event) {
 
 // WheelSpacerButton
 WheelSpacerButton::WheelSpacerButton(QWidget *parent) : QPushButton(parent) {
-  setFixedSize(1, 202);
+  setFixedSize(1, btn_size + 10);
   // hidden by default, made visible if map is created (has prime or mapbox token)
   setVisible(false);
   setEnabled(false);
