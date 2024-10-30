@@ -98,6 +98,15 @@ private:
   int y_offset;
 };
 
+class WheelSpacerButton : public QPushButton {
+  Q_OBJECT
+
+public:
+  explicit WheelSpacerButton(QWidget *parent = 0);
+
+private:
+  void paintEvent(QPaintEvent *event) override;
+};
 
 class MapSettingsButton : public QPushButton {
   Q_OBJECT
@@ -175,6 +184,7 @@ private:
   void drawText(QPainter &p, int x, int y, const QString &text, int alpha = 255);
 
   QVBoxLayout *main_layout;
+  WheelSpacerButton *wheelspacer_btn;
   ExperimentalButton *experimental_btn;
   QPixmap dm_img;
   float speed;

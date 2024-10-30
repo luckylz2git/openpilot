@@ -5,7 +5,7 @@
 #include <map>
 #include <memory>
 #include <sstream>
-
+btn_size
 #include <QApplication>
 #include <QDebug>
 #include <QMouseEvent>
@@ -377,6 +377,18 @@ void OnroadAlerts::paintEvent(QPaintEvent *event) {
   }
 }
 
+// WheelSpacerButton
+WheelSpacerButton::WheelSpacerButton(QWidget *parent) : QPushButton(parent) {
+  setFixedSize(1, btn_size + 10);
+  // hidden by default, made visible if map is created (has prime or mapbox token)
+  setVisible(false);
+  setEnabled(false);
+}
+
+void WheelSpacerButton::paintEvent(QPaintEvent *event) {
+  QPainter p(this);
+}
+
 // ExperimentalButton
 ExperimentalButton::ExperimentalButton(QWidget *parent) : experimental_mode(false), engageable(false), QPushButton(parent), scene(uiState()->scene) {
   setFixedSize(btn_size, btn_size + 10);
@@ -545,6 +557,9 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
   // Neokii screen recorder
   recorder_btn = new ScreenRecorder(this);
   buttons_layout->addWidget(recorder_btn);
+
+  wheelspacer_btn = new WheelSpacerButton(this);
+  buttons_layout->addWidget(wheelspacer_btn);
 
   experimental_btn = new ExperimentalButton(this);
   buttons_layout->addWidget(experimental_btn);
@@ -1553,6 +1568,7 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
     scene.screen_recorder_toggle = 0;
   }
 
+  wheelspacer_btn->setVisible(scene.hide_speed);
   experimental_btn->setVisible(!scene.hide_speed);
 
   // Update the turn signal animation images upon toggle change
