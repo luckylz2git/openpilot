@@ -176,6 +176,7 @@ private:
 
   QVBoxLayout *main_layout;
   ExperimentalButton *experimental_btn;
+  QSpacerItem *wheel_spacer;
   QPixmap dm_img;
   float speed;
   float onstar_gps_longitude;
