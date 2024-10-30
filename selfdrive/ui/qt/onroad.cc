@@ -379,7 +379,7 @@ void OnroadAlerts::paintEvent(QPaintEvent *event) {
 
 // WheelSpacerButton
 WheelSpacerButton::WheelSpacerButton(QWidget *parent) : QPushButton(parent) {
-  setFixedSize(1, btn_size + 10);
+  setFixedSize(1, 202);
   // hidden by default, made visible if map is created (has prime or mapbox token)
   setVisible(false);
   setEnabled(false);
