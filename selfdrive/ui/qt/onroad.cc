@@ -1549,6 +1549,9 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
     }
     scene.screen_recorder_toggle = 0;
   }
+
+  experimental_btn->setVisible(!scene.hide_speed || scene.screen_recorder);
+
   // Update the turn signal animation images upon toggle change
   if (customSignals != scene.custom_signals || currentHolidayTheme != scene.current_holiday_theme) {
     currentHolidayTheme = scene.current_holiday_theme;
