@@ -550,8 +550,7 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
   buttons_layout->addWidget(experimental_btn);
 
   // blank spacer
-  wheel_spacer = new QSpacerItem(0, 266 + 135*2);
-  buttons_layout->addItem(wheel_spacer);
+  buttons_layout->addItem(new QSpacerItem(0, 266 + 135*2));
 
   QVBoxLayout *top_right_layout = new QVBoxLayout();
   top_right_layout->setSpacing(0);
@@ -1555,7 +1554,6 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
   }
 
   experimental_btn->setVisible(!scene.hide_speed);
-  wheel_spacer->setVisible(scene.hide_speed);
 
   // Update the turn signal animation images upon toggle change
   if (customSignals != scene.custom_signals || currentHolidayTheme != scene.current_holiday_theme) {
