@@ -60,6 +60,16 @@ private:
   QPixmap staticElements;
 };
 
+class WheelSpacerButton : public QPushButton {
+  Q_OBJECT
+
+public:
+  explicit WheelSpacerButton(QWidget *parent = 0);
+
+private:
+  void paintEvent(QPaintEvent *event) override;
+};
+
 class ExperimentalButton : public QPushButton {
   Q_OBJECT
 
@@ -96,16 +106,6 @@ private:
   int wheelIcon;
   int wheelIconGif;
   int y_offset;
-};
-
-class WheelSpacerButton : public QPushButton {
-  Q_OBJECT
-
-public:
-  explicit WheelSpacerButton(QWidget *parent = 0);
-
-private:
-  void paintEvent(QPaintEvent *event) override;
 };
 
 class MapSettingsButton : public QPushButton {
