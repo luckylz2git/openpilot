@@ -387,6 +387,8 @@ WheelSpacerButton::WheelSpacerButton(QWidget *parent) : QPushButton(parent) {
 
 void WheelSpacerButton::paintEvent(QPaintEvent *event) {
   QPainter p(this);
+  p.setPen(QColor(225, 0, 0, 255));
+  p.drawRect(0,0,1,btn_size + 10);
 }
 
 // ExperimentalButton
