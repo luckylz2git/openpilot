@@ -1570,7 +1570,7 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
     scene.screen_recorder_toggle = 0;
   }
 
-  wheelspacer_btn->setVisible(scene.hide_speed);
+  // wheelspacer_btn->setVisible(scene.hide_speed);
   experimental_btn->setVisible(!scene.hide_speed);
 
   // Update the turn signal animation images upon toggle change
