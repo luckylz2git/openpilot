@@ -549,6 +549,9 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
   experimental_btn = new ExperimentalButton(this);
   buttons_layout->addWidget(experimental_btn);
 
+  // blank spacer
+  buttons_layout->addWidget(new QSpacerItem(0, 266));
+
   QVBoxLayout *top_right_layout = new QVBoxLayout();
   top_right_layout->setSpacing(0);
   top_right_layout->addLayout(buttons_layout);
