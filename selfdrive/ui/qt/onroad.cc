@@ -386,9 +386,9 @@ WheelSpacerButton::WheelSpacerButton(QWidget *parent) : QPushButton(parent) {
 }
 
 void WheelSpacerButton::paintEvent(QPaintEvent *event) {
-  QPainter p(this);
-  p.setPen(QColor(225, 0, 0, 255));
-  p.drawRect(0,0,1,btn_size + 10);
+  // QPainter p(this);
+  // p.setPen(QColor(225, 0, 0, 255));
+  // p.drawRect(0,0,1,btn_size + 10);
 }
 
 // ExperimentalButton
@@ -567,7 +567,7 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
   buttons_layout->addWidget(experimental_btn);
 
   // blank spacer
-  buttons_layout->addItem(new QSpacerItem(0, 266 + 135*2));
+  // buttons_layout->addItem(new QSpacerItem(0, 266 + 135*2));
 
   QVBoxLayout *top_right_layout = new QVBoxLayout();
   top_right_layout->setSpacing(0);
@@ -1570,7 +1570,7 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
     scene.screen_recorder_toggle = 0;
   }
 
-  // wheelspacer_btn->setVisible(scene.hide_speed);
+  wheelspacer_btn->setVisible(scene.hide_speed);
   experimental_btn->setVisible(!scene.hide_speed);
 
   // Update the turn signal animation images upon toggle change
