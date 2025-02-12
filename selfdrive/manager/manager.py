@@ -4,6 +4,7 @@ import os
 import signal
 import subprocess
 import sys
+import json
 import threading
 import traceback
 from pathlib import Path
@@ -395,8 +396,10 @@ def manager_thread() -> None:
   ignore += [x for x in os.getenv("BLOCK", "").split(",") if len(x) > 0]
 
   sm = messaging.SubMaster(['deviceState', 'carParams'], poll='deviceState')
-  pm = messaging.PubMaster(['managerState'])
+  pm = messaging.PubMaster(['managerState','lqrtxDeviceState'])
 
+  #create new shared memory paramters
+  params_memory.put_bool("LqrtxOnRoad",False)
   write_onroad_params(False, params)
   ensure_running(managed_processes.values(), False, params=params, params_memory=params_memory, CP=sm['carParams'], not_run=ignore)
 
@@ -437,6 +440,15 @@ def manager_thread() -> None:
     # update onroad params, which drives boardd's safety setter thread
     if started != started_prev:
       write_onroad_params(started, params)
+      # Update Lqrtx status
+      params_memory.put_bool("LqrtxOnRoad",started)
+      msgLqrtx = messaging.new_message('lqrtxDeviceState', valid=True)
+      msgLqrtx.lqrtxDeviceState.eventType = 1
+      jsonMsg = {}
+      jsonMsg["msg"]="OnroadStatusChanged"
+      jsonMsg["updateTime"]=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
+      msgLqrtx.lqrtxDeviceState.eventJson = json.dumps(jsonMsg)
+      pm.send('lqrtxDeviceState', msgLqrtx)
 
     started_prev = started
 

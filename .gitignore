@@ -88,3 +88,15 @@ build/
 
 poetry.toml
 Pipfile
+
+#Terrys Dev Env Adding start
+poetry.lock
+selfdrive/frogpilot/navigation/ui/moc_navigation_settings.cc
+selfdrive/frogpilot/ui/moc_control_settings.cc
+selfdrive/frogpilot/ui/moc_frogpilot_ui_functions.cc
+selfdrive/frogpilot/ui/moc_vehicle_settings.cc
+selfdrive/frogpilot/ui/moc_visual_settings.cc
+third_party/acados/aarch64
+
+#Terrys Dev Env Adding end
+
