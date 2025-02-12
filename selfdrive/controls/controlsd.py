@@ -171,7 +171,7 @@ class Controls:
     self.branch = get_short_branch()
 
     # Setup sockets
-    self.pm = messaging.PubMaster(['controlsState', 'carControl', 'onroadEvents', 'frogpilotCarControl', 'lqrtxDeviceState'])
+    self.pm = messaging.PubMaster(['controlsState', 'carControl', 'onroadEvents', 'frogpilotCarControl'])
 
     self.sensor_packets = ["accelerometer", "gyroscope"]
     self.camera_packets = ["roadCameraState", "driverCameraState", "wideRoadCameraState"]
@@ -344,15 +344,6 @@ class Controls:
 
       if any(ps.controlsAllowed for ps in self.sm['pandaStates']):
         self.state = State.enabled
-
-  def notify_lqrtx(self,eventType,msgText):
-    """ notifiy to lqrtx core """
-    msgLqrtx = messaging.new_message('lqrtxDeviceState', valid=True)
-    msgLqrtx.lqrtxDeviceState.eventType = eventType
-    jsonMsg = {}
-    jsonMsg["msg"]=msgText
-    msgLqrtx.lqrtxDeviceState.eventJson = json.dumps(jsonMsg)
-    self.pm.send('lqrtxDeviceState', msgLqrtx)
 
   def update_events(self, CS):
     """Compute onroadEvents from carState"""
@@ -691,7 +682,6 @@ class Controls:
           if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
             self.params_memory.put_bool("ESP32AutoResume", True)
             self.events.add(EventName.autoResumeEvent)
-            self.notify_lqrtx(2,"leadDeparting, need to resume Cruise")
           else:
             self.events.add(EventName.leadDeparting)
         else:

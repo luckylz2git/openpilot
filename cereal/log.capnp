@@ -2227,12 +2227,6 @@ struct Microphone {
   filteredSoundPressureWeightedDb @2 :Float32;
 }
 
-# Lqrtx State Message.
-struct LqrtxDeviceState {
-  eventType @0 :UInt32 = 0;
-  eventJson @1 : Text = "{}";
-}
-
 struct Event {
   logMonoTime @0 :UInt64;  # nanoseconds
   valid @67 :Bool = true;
@@ -2335,9 +2329,6 @@ struct Event {
     customReservedRawData0 @124 :Data;
     customReservedRawData1 @125 :Data;
     customReservedRawData2 @126 :Data;
-
-    # Adding Lqrtx Devices State Message.
-    lqrtxDeviceState @127 :LqrtxDeviceState;
 
 
     # *********** Custom: reserved for forks ***********

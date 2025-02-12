@@ -211,14 +211,15 @@ def main():
     esp32Helper.start()
     c3UDPSendHelper = C3UDPSendHelper()
     c3UDPSendHelper.start()
-    sm = messaging.SubMaster(['lqrtxDeviceState'], poll='lqrtxDeviceState')
     while True:
-        sm.update(100) # waiting for max 100ms. 
-        if sm.updated['lqrtxDeviceState']:
+        try:
             # Need to do nessary operator if there has need state changes
             #print("recevied message from manager ",sm['lqrtxDeviceState'].eventType,sm['lqrtxDeviceState'].eventJson)
             # Do not care what is the envet type and event json. just do the check.
             esp32Helper.processAutResumeInAdvance() # check if need to auto resume or not.
+        except:
+            None
+        time.sleep(0.2)
 
 
 if __name__ == "__main__":

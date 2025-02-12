@@ -87,9 +87,6 @@ services: dict[str, tuple] = {
   "frogpilotNavigation": (True, 1., 10),
   "frogpilotPlan": (True, 20., 5),
 
-  # Lqrtx devices state update 10 times per seconds.
-  "lqrtxDeviceState": (True, 10., 1),
-
   # debug
   "uiDebug": (True, 0., 1),
   "testJoystick": (True, 0.),
