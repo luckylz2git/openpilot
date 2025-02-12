@@ -209,8 +209,8 @@ class ESP32Helper(threading.Thread):
 def main():
     esp32Helper = ESP32Helper()
     esp32Helper.start()
-    c3UDPSendHelper = C3UDPSendHelper()
-    c3UDPSendHelper.start()
+    #c3UDPSendHelper = C3UDPSendHelper()
+    #c3UDPSendHelper.start()
     while True:
         try:
             # Need to do nessary operator if there has need state changes
