@@ -15,10 +15,6 @@
         <source>Reboot and Update</source>
         <translation>إعادة التشغيل والتحديث</translation>
     </message>
-    <message>
-        <source>Disable Internet Check</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>AdvancedNetworking</name>
@@ -112,10 +108,6 @@
     <message>
         <source>LIMIT</source>
         <translation>LIMIT</translation>
-    </message>
-    <message>
-        <source>GEAR</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -301,137 +293,6 @@
         <source>Review</source>
         <translation>مراجعة</translation>
     </message>
-    <message>
-        <source>Soft Reboot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Backup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Restore</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FrogPilot Backups</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Name your backup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select a backup to delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete this backup?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select a restore point</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to restore this version of FrogPilot?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Toggle Backups</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to restore this toggle backup?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Screen Recordings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Driving Data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Deep Storage Toggles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete Data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to permanently delete all of your screen recordings?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to permanently delete all of your long term toggle settings storage?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to permanently delete all of your driving footage and data?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flash Panda</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FLASH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to flash the Panda?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Flash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to soft reboot?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disengage to Soft Reboot</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DriveStats</name>
-    <message>
-        <source>Drives</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Hours</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ALL TIME</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PAST WEEK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>FROGPILOT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>KM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Miles</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>DriverViewWindow</name>
@@ -500,10 +361,6 @@
     <message>
         <source>Manage at connect.comma.ai</source>
         <translation>الإدارة في connect.comma.ai</translation>
-    </message>
-    <message>
-        <source>Manage at %1</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -707,7 +564,7 @@
     </message>
     <message>
         <source>openpilot</source>
-        <translation type="vanished">openpilot</translation>
+        <translation>openpilot</translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s) ago</source>
@@ -758,10 +615,6 @@
         <source>ft</source>
         <translation>قدم</translation>
     </message>
-    <message>
-        <source>FrogPilot</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Reset</name>
@@ -808,7 +661,7 @@ This may take up to a minute.</source>
     <name>SettingsWindow</name>
     <message>
         <source>×</source>
-        <translation type="vanished">×</translation>
+        <translation>×</translation>
     </message>
     <message>
         <source>Device</source>
@@ -825,26 +678,6 @@ This may take up to a minute.</source>
     <message>
         <source>Software</source>
         <translation>البرنامج</translation>
-    </message>
-    <message>
-        <source>← Back</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Controls</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Navigation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Vehicles</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Visuals</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1027,10 +860,6 @@ This may take up to a minute.</source>
         <source>5G</source>
         <translation>5G</translation>
     </message>
-    <message>
-        <source>MEMORY</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SoftwarePanel</name>
@@ -1105,66 +934,6 @@ This may take up to a minute.</source>
     <message>
         <source>up to date, last checked %1</source>
         <translation>أحدث نسخة، آخر تحقق %1</translation>
-    </message>
-    <message>
-        <source>Manually</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Daily</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Weekly</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update Scheduler</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Choose the frequency to automatically update FrogPilot.
-
-This feature will handle the download, installation, and device reboot for a seamless &apos;Set and Forget&apos; update experience.
-
-Weekly updates start at midnight every Sunday.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Update Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select a time to automatically update</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>GitHub Checkout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CHECKOUT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Are you sure you want to git checkout all of your local compile changes?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Checkout</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Prebuilt FrogPilot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error Log</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>VIEW</source>
-        <translation type="unfinished">عرض</translation>
     </message>
 </context>
 <context>
@@ -1427,14 +1196,6 @@ Weekly updates start at midnight every Sunday.</source>
     <message>
         <source>Training data will be pulled periodically while your device is on Wi-Fi</source>
         <translation>سيتم سحب بيانات التدريب دورياً عندما يكون جهازك متصل بشبكة واي فاي</translation>
-    </message>
-    <message>
-        <source>Uploading disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Training data wont be pulled periodically until you disable the &apos;Disable Uploading&apos; toggle</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
