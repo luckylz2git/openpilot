@@ -465,7 +465,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"CruiseAutoResume", PERSISTENT}, //auto_resume
     {"ESP32AutoResume", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //auto_resume default value=0
     {"ESP32HasIP", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //got ESP32 ip default value=0
-    {"LqrtxOnRoad",CLEAR_ON_MANAGER_START}, // used for lqrtx core to check if is on road status
+    {"ESP32IPAddress", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //ESP32 ip address
+    {"LqrtxOnRoad",CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // used for lqrtx core to check if is on road status
     // UDP Broadcast Params
     {"UDP_TurnSignals", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"UDP_CurrentGearNumber", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},

@@ -181,6 +181,7 @@ class ESP32Helper(threading.Thread):
                         if(msg['ESP32IPAddress'] is not None and msg['ESP32IPAddress'] != self.__esp32IPAddress):
                             # get and set ESP32 IP Address and add to shared memory. 
                             self.__esp32IPAddress = msg['ESP32IPAddress']
+                            params_memory.put("ESP32IPAddress",self.__esp32IPAddress)
                             params_memory.put_bool("ESP32HasIP",True)
                             print(f"Received message: {msg} from {addr} {msg['ESP32IPAddress']}")
 
