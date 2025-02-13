@@ -130,7 +130,7 @@ class ESP32Helper(threading.Thread):
         """
         try:
             if params_memory.get_bool("ESP32AutoResume"):
-                if self.__esp32IPAddress is not None and ( self.__lastResPlusClickTime is None or time.monotonic() - self.checkNeedAutResumeOrNot >= 5) :
+                if self.__esp32IPAddress is not None and ( self.__lastResPlusClickTime is None or time.monotonic() - self.__lastResPlusClickTime >= 5) :
                     self.__sendResPlusClicked()
                     self.__lastResPlusClickTime=time.monotonic()
                 params_memory.put_bool("ESP32AutoResume",False)
