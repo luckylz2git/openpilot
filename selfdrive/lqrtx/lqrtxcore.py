@@ -181,7 +181,7 @@ class ESP32Helper(threading.Thread):
                     params_memory.put_bool("ESP32AutoResume",False)
                     msg = {
                         "ACT":OPMessageActionType.AUTO_RESUME_CRUISE.value, # ACT is integer type, need to add .value get the Enum is value. 
-                        "a":"Cruise resumed, be careful." # Notification message. 
+                        "a":"Vehicle Cruise Auto Resume" # Notification message. 
                     }
                     self.notifyMsg(msg)
                 else:
