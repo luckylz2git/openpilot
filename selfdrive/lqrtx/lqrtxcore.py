@@ -5,12 +5,23 @@ import subprocess
 import time
 import threading
 import time
+import json
 from common.params import Params
 import cereal.messaging as messaging
+from enum import Enum
 
 params = Params()
 params_memory = Params("/dev/shm/params")
 params_storage = Params("/persist/comma/params")
+
+
+# 定义一个枚举类型
+class OPMessageActionType(Enum):
+    """ All the action type defined here for reference """
+    DEVICE_STATUS = 0 #OpenPilot Device status message
+    AUTO_RESUME_CRUISE = 1 #OpenPilot using ESP auto resume cruise
+    C3_AUTO_RESTART = 2 # OpenPilot auto restart event, used by informe user why it is restart, for now just used for tracing restart event when OP is not in ONROAD status
+
 
 class C3UDPSendHelper(threading.Thread):
     ''' 负责发送C3的消息类 '''
@@ -36,6 +47,13 @@ class C3UDPSendHelper(threading.Thread):
         except Exception :
             return None
 
+    def sendMsg(self,msg):
+        try:
+            if self.__udpSocket is not None:
+                self.__udpSocket.sendto(json.dumps(msg).encode(), ("255.255.255.255", self.__c3UDPPort))
+        except:
+            pass
+
     def run(self):
         while True:
             try:
@@ -60,14 +78,27 @@ class C3UDPSendHelper(threading.Thread):
              
                 while True:
                     try:
-                        # 发送广播数据包到 255.255.255.255（全网广播）或 192.168.1.255（子网广播）
-                        self.__udpSocket.sendto("Send from C3".encode(), ("255.255.255.255", self.__c3UDPPort))
-                        time.sleep(0.5)
+                        # 发送广播数据包到 255.255.255.255（全网广播）或 192.168.X.255（子网广播）
+                        msg = {
+                            "ACT":OPMessageActionType.DEVICE_STATUS.value, # ACT is integer type, need to add .value get the Enum is value. 
+                            "a":params_memory.get_bool("CruiseAutoResumeActivated"), #CruiseAutoResumeActivated
+                            "b":params_memory.get_bool("ESP32HasIP"), # has ESP32 or not.
+                            "c":params_memory.get_bool("LqrtxOnRoad"), # OnRoad status
+                            "a1":"", #C3 IP Address
+                            "a2":""  #ESP32 IP Address
+                        }
+                        if params_memory.get_bool("ESP32HasIP"):
+                            msg["a2"] = params_memory.get("ESP32IPAddress").decode()
+                        if self.__opLocalIP is not None:
+                            msg["a1"] = self.__opLocalIP
+                        self.__udpSocket.sendto(json.dumps(msg).encode(), ("255.255.255.255", self.__c3UDPPort))
+                        time.sleep(1)
                     except Exception as e:
-                        print("error",e)
+                        #print("error",e)
                         break
             except Exception as e:
-                print(f" catched excepiton: {e}")
+                None
+                #print(f" catched excepiton: {e}")
             time.sleep(5)
   
 
@@ -81,13 +112,15 @@ class ESP32Helper(threading.Thread):
     __isEnginePowerOn=False
     __enginePowerOnTime=None
     __isOnRoadEver=False
-    def __init__(self, port=6499, buffer_size=1024):
+    __udpSender=None
+    def __init__(self, udpSender=None, port=6499, buffer_size=1024):
         '''
         初始化ESP32Helper
         '''
         super().__init__(daemon=True)  # 设置为守护线程
         if port is not None:
             self.__esp32UDPPort=port
+        self.__udpSender = udpSender
 
     def getOPLocalIP(self):
         ''' get OpenPolit C3 local IPv4 IP Address '''
@@ -118,10 +151,22 @@ class ESP32Helper(threading.Thread):
                 self.__isOnRoadEver = True
             if not self.__isOnRoadEver and self.__isEnginePowerOn: 
                 # Engine is power on and not on road will reboot
+                msg = {
+                    "ACT":OPMessageActionType.C3_AUTO_RESTART.value, # ACT is integer type, need to add .value get the Enum is value. 
+                    "a":"Engine is power on but C3 not in ONROAD status after 60 seconds." # Notification message. 
+                }
+                self.notifyMsg(msg)
                 subprocess.check_output(["sudo", "reboot"]) # need to reboot.
 
         except:
             None
+
+    def notifyMsg(self,msg):
+        try:
+            if self.__udpSender is not None:
+                self.__udpSender.sendMsg(msg)
+        except Exception as e:
+            pass
 
     def processAutResumeInAdvance(self):
         """ 
@@ -133,7 +178,15 @@ class ESP32Helper(threading.Thread):
                 if self.__esp32IPAddress is not None and ( self.__lastResPlusClickTime is None or time.monotonic() - self.__lastResPlusClickTime >= 5) :
                     self.__sendResPlusClicked()
                     self.__lastResPlusClickTime=time.monotonic()
-                params_memory.put_bool("ESP32AutoResume",False)
+                    params_memory.put_bool("ESP32AutoResume",False)
+                    msg = {
+                        "ACT":OPMessageActionType.AUTO_RESUME_CRUISE.value, # ACT is integer type, need to add .value get the Enum is value. 
+                        "a":"Cruise resumed, be careful." # Notification message. 
+                    }
+                    self.notifyMsg(msg)
+                else:
+                    params_memory.put_bool("ESP32AutoResume",False)
+                
         except:
             None
 
@@ -183,7 +236,7 @@ class ESP32Helper(threading.Thread):
                             self.__esp32IPAddress = msg['ESP32IPAddress']
                             params_memory.put("ESP32IPAddress",self.__esp32IPAddress)
                             params_memory.put_bool("ESP32HasIP",True)
-                            print(f"Received message: {msg} from {addr} {msg['ESP32IPAddress']}")
+                            #print(f"Received message: {msg} from {addr} {msg['ESP32IPAddress']}")
 
                         if msg['rpm'] is not None :
                             if msg["rpm"] > 100:
@@ -208,10 +261,10 @@ class ESP32Helper(threading.Thread):
             time.sleep(5)
 
 def main():
-    esp32Helper = ESP32Helper()
+    c3UDPSendHelper = C3UDPSendHelper()
+    c3UDPSendHelper.start()
+    esp32Helper = ESP32Helper(c3UDPSendHelper)
     esp32Helper.start()
-    #c3UDPSendHelper = C3UDPSendHelper()
-    #c3UDPSendHelper.start()
     while True:
         try:
             # Need to do nessary operator if there has need state changes

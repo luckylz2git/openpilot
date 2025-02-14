@@ -502,10 +502,12 @@ void UIState::updateStatus() {
         }
       }
     }
+    
     //强制更新UI
     if (scene.cruise_auto_resume_activated != bActivated) {
       scene.cruise_auto_resume_activated = bActivated;
       paramsMemory.putBool("PersonalityChangedViaWheel", true);
+      paramsMemory.putBool("CruiseAutoResumeActivated",bActivated); // Save status in memory let lqrtx core send out to HUD
     }
     // Trigger standby mode on alerts and status changes
     scene.active_alert = controls_state.getAlertStatus() != cereal::ControlsState::AlertStatus::NORMAL;

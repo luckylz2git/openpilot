@@ -400,6 +400,7 @@ def manager_thread() -> None:
 
   #create new shared memory paramters
   params_memory.put_bool("LqrtxOnRoad",False)
+  params_memory.put_bool("CruiseAutoResumeActivated",False)
   write_onroad_params(False, params)
   ensure_running(managed_processes.values(), False, params=params, params_memory=params_memory, CP=sm['carParams'], not_run=ignore)
 
