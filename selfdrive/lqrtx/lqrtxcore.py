@@ -156,7 +156,8 @@ class ESP32Helper(threading.Thread):
                     "a":"Engine is power on but C3 not in ONROAD status after 60 seconds." # Notification message. 
                 }
                 self.notifyMsg(msg)
-                subprocess.check_output(["sudo", "reboot"]) # need to reboot.
+                # subprocess.check_output(["sudo", "reboot"]) # need to reboot.
+                params.put_bool("DoReboot", True)
 
         except:
             None
