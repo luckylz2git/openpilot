@@ -149,7 +149,8 @@ class ESP32Helper(threading.Thread):
             if not self.__isOnRoadEver and params_memory.get_bool("LqrtxOnRoad"):
                 # save if it on road ever or not, if is on road, it will not reboot in any case.
                 self.__isOnRoadEver = True
-            if not self.__isOnRoadEver and self.__isEnginePowerOn: 
+            #if not self.__isOnRoadEver and self.__isEnginePowerOn: 
+            if not params_memory.get_bool("LqrtxOnRoad") and self.__isEnginePowerOn: 
                 # Engine is power on and not on road will reboot
                 msg = {
                     "ACT":OPMessageActionType.C3_AUTO_RESTART.value, # ACT is integer type, need to add .value get the Enum is value. 
@@ -246,7 +247,9 @@ class ESP32Helper(threading.Thread):
                                     # just set it at the first time RPM is larger than 100 
                                     self.__enginePowerOnTime = time.monotonic()
                                 self.__isEnginePowerOn = True
-                                if time.monotonic() - self.__enginePowerOnTime >= 60:
+                                powerOnTimePast = time.monotonic() - self.__enginePowerOnTime
+                                #Only check for Engine Power between 60 and 300 seconds. out of range, will not checking.
+                                if  powerOnTimePast > 60 and powerOnTimePast < 300:
                                     #check if need to reboot or not.
                                     self.__processOnRoadInAdvance()
                             else:
