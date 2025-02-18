@@ -4,7 +4,6 @@ import requests
 import subprocess
 import time
 import threading
-import time
 import json
 from common.params import Params
 import cereal.messaging as messaging
@@ -146,11 +145,12 @@ class ESP32Helper(threading.Thread):
     
     def __processOnRoadInAdvance(self):
         try:
-            if not self.__isOnRoadEver and params_memory.get_bool("LqrtxOnRoad"):
+            LqrtxOnRoad = params_memory.get_bool("LqrtxOnRoad")
+            if not self.__isOnRoadEver and LqrtxOnRoad:
                 # save if it on road ever or not, if is on road, it will not reboot in any case.
                 self.__isOnRoadEver = True
             #if not self.__isOnRoadEver and self.__isEnginePowerOn: 
-            if not params_memory.get_bool("LqrtxOnRoad") and self.__isEnginePowerOn: 
+            if not LqrtxOnRoad and self.__isEnginePowerOn: 
                 # Engine is power on and not on road will reboot
                 msg = {
                     "ACT":OPMessageActionType.C3_AUTO_RESTART.value, # ACT is integer type, need to add .value get the Enum is value. 
