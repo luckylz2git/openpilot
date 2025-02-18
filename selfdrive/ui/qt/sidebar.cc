@@ -162,6 +162,9 @@ void Sidebar::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 void Sidebar::offroadTransition(bool offroad) {
+  if (onroad && offroad) {
+    paramsMemory.putBool("ESP32EngineOn", false);
+  }
   onroad = !offroad;
   update();
 }
