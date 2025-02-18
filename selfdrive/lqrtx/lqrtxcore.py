@@ -246,7 +246,7 @@ class ESP32Helper(threading.Thread):
                                 if self.__enginePowerOnTime is None:
                                     # just set it at the first time RPM is larger than 100 
                                     self.__enginePowerOnTime = time.monotonic()
-                                self.__isEnginePowerOn = True
+                                self.__isEnginePowerOn = True                                
                                 powerOnTimePast = time.monotonic() - self.__enginePowerOnTime
                                 #Only check for Engine Power between 60 and 300 seconds. out of range, will not checking.
                                 if  powerOnTimePast > 60 and powerOnTimePast < 300:
@@ -255,6 +255,8 @@ class ESP32Helper(threading.Thread):
                             else:
                                 self.__enginePowerOnTime = None
                                 self.__isEnginePowerOn = False
+                        
+                            params_memory.put_bool("ESP32EngineOn",self.__isEnginePowerOn)
 
                     except socket.timeout:
                         #print("Timeout! No message received.")
