@@ -256,7 +256,7 @@ class ESP32Helper(threading.Thread):
                                 self.__enginePowerOnTime = None
                                 self.__isEnginePowerOn = False
                         
-                            params_memory.put_bool("ESP32EngineOn",self.__isEnginePowerOn)
+                        params_memory.put_bool("ESP32EngineOn",self.__isEnginePowerOn)
 
                     except socket.timeout:
                         #print("Timeout! No message received.")
