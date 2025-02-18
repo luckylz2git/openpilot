@@ -249,7 +249,7 @@ class ESP32Helper(threading.Thread):
                                 self.__isEnginePowerOn = True                                
                                 powerOnTimePast = time.monotonic() - self.__enginePowerOnTime
                                 #Only check for Engine Power between 60 and 300 seconds. out of range, will not checking.
-                                if  powerOnTimePast > 60 and powerOnTimePast < 300:
+                                if  powerOnTimePast > 30 and powerOnTimePast < 300:
                                     #check if need to reboot or not.
                                     self.__processOnRoadInAdvance()
                             else:
