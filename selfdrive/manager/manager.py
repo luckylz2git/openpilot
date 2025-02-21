@@ -289,7 +289,8 @@ def manager_init() -> None:
     ("SetSpeedRatio3", "1.045"),
     ("SpeedDecimal", "0"),
     ("CalibrationCycles", "1"), 
-    ("OnStarGPS", "0"),    
+    ("OnStarGPS", "0"),
+    ("QueitFan", "0"), # 风扇静音
     ("GearNumber", "0"), #GEAR_NUMBER_TEST
     ("FrogPilotPrebuilt", "0"), #FROGPILOT_PREBUILT_TEST
     ("UseRedPanda", "0"), #Red Panda Config BUS 0/1/2/3 -> 4/5/6/7

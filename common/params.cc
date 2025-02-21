@@ -459,6 +459,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"SpeedDecimal", PERSISTENT},
     {"CalibrationCycles", PERSISTENT},
     {"OnStarGPS", PERSISTENT},
+    {"QueitFan", PERSISTENT}, //风扇静音
     {"GearNumber", PERSISTENT}, //GEAR_NUMBER_TEST
     {"FrogPilotPrebuilt", PERSISTENT}, //FROGPILOT_PREBUILT_TEST
     {"UseRedPanda", PERSISTENT}, //Red Panda Config BUS 0/1/2/3 -> 4/5/6/7

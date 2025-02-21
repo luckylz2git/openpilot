@@ -745,6 +745,10 @@
         <translation>忽略设备高温警报</translation>
     </message>
     <message>
+        <source>Enable Queit Fan Mode</source>
+        <translation>风扇低速运行模式</translation>
+    </message>
+    <message>
         <source>LKAS Button</source>
         <translation>车道辅助按键</translation>
     </message>
