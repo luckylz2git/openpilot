@@ -24,7 +24,10 @@ class TiciFanController(BaseFanController):
 
     # 风扇静音
     params = Params()
-    self.queit_fan = params.get_bool("QueitFan")
+    self.queit_fan = False
+    fire_the_baby_sitter = params.get_bool("FireTheBabysitter")
+    if fire_the_baby_sitter:
+      self.queit_fan = params.get_bool("QueitFan")
 
   def update(self, cur_temp: float, ignition: bool) -> int:
     self.controller.neg_limit = -(100 if ignition else 30)
