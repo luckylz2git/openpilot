@@ -34,8 +34,8 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
 
     {"LateralTune", tr("Lateral Tuning"), "Modify openpilot's steering behavior.", "../frogpilot/assets/toggle_icons/icon_lateral_tune.png"},
     {"ForceAutoTune", tr("Force Auto Tune"), "Forces comma's auto lateral tuning for unsupported vehicles.", ""},
-    {"NNFF", tr("NNFF - Neural Network Feedforward"), "Use Twilsonco's Neural Network Feedforward for enhanced precision in lateral control.", ""},
     {"SteerRatio", steerRatioStock != 0 ? QString(tr("Steer Ratio (Default: %1)")).arg(steerRatioStock, 0, 'f', 2) : tr("Steer Ratio"), "Set a custom steer ratio for your vehicle controls.", ""},
+    {"NNFF", tr("NNFF - Neural Network Feedforward"), "Use Twilsonco's Neural Network Feedforward for enhanced precision in lateral control.", ""},
     {"UseLateralJerk", tr("Use Lateral Jerk"), "Include steer torque necessary to achieve desired steer rate (lateral jerk).", ""},
 
     {"LongitudinalTune", tr("Longitudinal Tuning"), "Modify openpilot's acceleration and braking behavior.", "../frogpilot/assets/toggle_icons/icon_longitudinal_tune.png"},

@@ -565,6 +565,10 @@
         <translation>NNFF:启用前馈神经网络</translation>
     </message>
     <message>
+        <source>Force Auto Tune</source>
+        <translation>指定转向参数</translation>
+    </message>
+    <message>
         <source>Steer Ratio</source>
         <translation>转向比</translation>
     </message>
