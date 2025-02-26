@@ -871,7 +871,7 @@
     </message>
     <message>
         <source>Auto Resume Distance</source>
-        <translation>跟车起步距离</translation>
+        <translation>跟车起步距离小于</translation>
     </message>
     <message>
         <source> meters</source>

@@ -161,7 +161,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
         }
       });
     } else if (param == "AutoResumeDistance") {
-      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 1, 50, std::map<int, QString>(), this, false, " feet", 1);
+      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 50, std::map<int, QString>(), this, false, " feet", 1);
     } else {
       toggle = new ParamControl(param, title, desc, icon, this);
     }
@@ -236,9 +236,9 @@ void FrogPilotVehiclesPanel::updateMetric() {
   FrogPilotParamValueControl *arDistanceToggle = static_cast<FrogPilotParamValueControl*>(toggles["AutoResumeDistance"]);
 
   if (isMetric) {
-    arDistanceToggle->updateControl(1, 15, tr(" meters"), 1);
+    arDistanceToggle->updateControl(0, 15, tr(" meters"), 1);
   } else {
-    arDistanceToggle->updateControl(1, 50, tr(" feet"), 1);
+    arDistanceToggle->updateControl(0, 50, tr(" feet"), 1);
   }
   previousIsMetric = isMetric;
 }
