@@ -678,6 +678,8 @@ class Controls:
         if (int(time.time()) - self.standstill_time) >= 3:
           # read param only when lead_departing = true
           cruise_auto_resume = self.params.get_bool("CruiseAutoResume") and self.params_memory.get_bool("ESP32HasIP") #auto_resume
+          conversion = 1 if self.is_metric else CV.FOOT_TO_METER
+          cruise_auto_resume &= lead_distance <= self.params.get_int("AutoResumeDistance")*conversion
           long_personality = self.params.get_int("LongitudinalPersonality") == 0
           if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
             self.params_memory.put_bool("ESP32AutoResume", True)
