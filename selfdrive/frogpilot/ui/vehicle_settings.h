@@ -29,9 +29,9 @@ private:
 
   std::map<std::string, ParamControl*> toggles;
 
-  std::set<QString> gmKeys = {"CSLCEnabled", "EVTable", "GasRegenCmd", "LongPitch", "LowerVolt", "OnStarGPS", "GearNumber", "UseRedPanda", "CruiseAutoResume"};
+  std::set<QString> gmKeys = {"CSLCEnabled", "EVTable", "GasRegenCmd", "LongPitch", "LowerVolt", "OnStarGPS", "GearNumber", "UseRedPanda", "CruiseAutoResume", "AutoResumeDistance"};
   std::set<QString> subaruKeys = {"CrosstrekTorque"};
-  std::set<QString> toyotaKeys = {"LockDoors", "LongitudinalTune", "SNGHack", "SNGDistance"};
+  std::set<QString> toyotaKeys = {"LockDoors", "LongitudinalTune", "SNGDistance"};
 
   Params params;
   Params paramsMemory{"/dev/shm/params"};

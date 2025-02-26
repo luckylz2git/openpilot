@@ -128,6 +128,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     {"GearNumber", tr("Show Gear Number"), "Use speed limit widget to show current gear number.", ""},
     {"UseRedPanda", tr("Use External Red Panda"), tr("Use external red panda to connect can bus."), ""},
     {"CruiseAutoResume", tr("Cruise Auto Resume"), tr("Enable Auto Resume when Adapted Cruise Control On, Set Speed 25 kph and Aggressive following distance."), ""},
+    {"AutoResumeDistance", tr("Auto Resume Distance"), "Trigger Auto Resume when lead car below the setup distance.", ""},
     {"EVTable", tr("EV Lookup Tables"), "Smoothen out the gas and brake controls for EV vehicles.", ""},
     {"GasRegenCmd", tr("GM Truck Gas Tune"), "Increase acceleration and smoothen brake to stop. For use on Silverado/Sierra only.", ""},
     {"LongPitch", tr("Long Pitch Compensation"), "Reduce speed and acceleration error for greater passenger comfort and improved vehicle efficiency.", ""},
@@ -138,7 +139,6 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     {"LockDoors", tr("Lock Doors In Drive"), "Automatically lock the doors when in drive and unlock when in park.", ""},
     {"LongitudinalTune", tr("Longitudinal Tune"), "Use a custom Toyota longitudinal tune.\n\nCydia = More focused on TSS-P vehicles but works for all Toyotas\n\nDragonPilot = Focused on TSS2 vehicles\n\nFrogPilot = Takes the best of both worlds with some personal tweaks focused around my 2019 Lexus ES 350", ""},
     {"SNGHack", tr("Stop and Go Hack"), "Enable the 'Stop and Go' hack for vehicles without stock stop and go functionality.", ""},
-    {"SNGDistance", tr("Stop and Go Distance"), "Trigger the 'Stop and Go' when lead car below the setup distance.", ""},
   };
 
   for (const auto &[param, title, desc, icon] : vehicleToggles) {
@@ -160,7 +160,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
           }
         }
       });
-    } else if (param == "SNGDistance") {
+    } else if (param == "AutoResumeDistance") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 5, 15, std::map<int, QString>(), this, false, " meters", 5, 1);
     } else {
       toggle = new ParamControl(param, title, desc, icon, this);
@@ -230,15 +230,15 @@ void FrogPilotVehiclesPanel::updateMetric() {
 
   if (isMetric != previousIsMetric) {
     double speedConversion = isMetric ? FOOT_TO_METER : METER_TO_FOOT;
-    params.putIntNonBlocking("SNGDistance", std::nearbyint(params.getInt("SNGDistance") * speedConversion));
+    params.putIntNonBlocking("AutoResumeDistance", std::nearbyint(params.getInt("AutoResumeDistance") * speedConversion));
   }
 
-  FrogPilotParamValueControl *sngDistanceToggle = static_cast<FrogPilotParamValueControl*>(toggles["SNGDistance"]);
+  FrogPilotParamValueControl *arDistanceToggle = static_cast<FrogPilotParamValueControl*>(toggles["AutoResumeDistance"]);
 
   if (isMetric) {
-    sngDistanceToggle->updateControl(5, 15, tr(" meters"), 5);
+    arDistanceToggle->updateControl(5, 15, tr(" meters"), 5);
   } else {
-    sngDistanceToggle->updateControl(15, 50, tr(" feet"), 15);
+    arDistanceToggle->updateControl(15, 50, tr(" feet"), 15);
   }
   previousIsMetric = isMetric;
 }
