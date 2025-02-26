@@ -37,4 +37,5 @@ private:
   Params paramsMemory{"/dev/shm/params"};
 
   bool started = false;
+  bool isMetric = params.getBool("IsMetric");
 };

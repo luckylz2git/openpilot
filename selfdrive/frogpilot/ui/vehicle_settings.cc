@@ -208,6 +208,8 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
   if (!carMake.isEmpty()) {
     setModels();
   }
+
+  updateMetric();
 }
 
 void FrogPilotVehiclesPanel::updateState(const UIState &s) {
