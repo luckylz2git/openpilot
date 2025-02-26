@@ -128,7 +128,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     {"GearNumber", tr("Show Gear Number"), "Use speed limit widget to show current gear number.", ""},
     {"UseRedPanda", tr("Use External Red Panda"), tr("Use external red panda to connect can bus."), ""},
     {"CruiseAutoResume", tr("Cruise Auto Resume"), tr("Enable Auto Resume when Adapted Cruise Control On, Set Speed 25 kph and Aggressive following distance."), ""},
-    {"AutoResumeDistance", tr("Auto Resume Distance"), "Trigger Auto Resume when lead car below the setup distance.", ""},
+    {"AutoResumeDistance", tr("Auto Resume Distance"), "Cruise Auto Resume will be triggered, only when lead car below the setup distance.", ""},
     {"EVTable", tr("EV Lookup Tables"), "Smoothen out the gas and brake controls for EV vehicles.", ""},
     {"GasRegenCmd", tr("GM Truck Gas Tune"), "Increase acceleration and smoothen brake to stop. For use on Silverado/Sierra only.", ""},
     {"LongPitch", tr("Long Pitch Compensation"), "Reduce speed and acceleration error for greater passenger comfort and improved vehicle efficiency.", ""},
