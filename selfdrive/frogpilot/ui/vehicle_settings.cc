@@ -224,7 +224,7 @@ void FrogPilotVehiclesPanel::updateToggles() {
   }).detach();
 }
 
-void FrogPilotVisualsPanel::updateMetric() {
+void FrogPilotVehiclesPanel::updateMetric() {
   bool previousIsMetric = isMetric;
   isMetric = params.getBool("IsMetric");
 
