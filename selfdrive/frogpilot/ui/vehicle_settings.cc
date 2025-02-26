@@ -138,6 +138,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     {"LockDoors", tr("Lock Doors In Drive"), "Automatically lock the doors when in drive and unlock when in park.", ""},
     {"LongitudinalTune", tr("Longitudinal Tune"), "Use a custom Toyota longitudinal tune.\n\nCydia = More focused on TSS-P vehicles but works for all Toyotas\n\nDragonPilot = Focused on TSS2 vehicles\n\nFrogPilot = Takes the best of both worlds with some personal tweaks focused around my 2019 Lexus ES 350", ""},
     {"SNGHack", tr("Stop and Go Hack"), "Enable the 'Stop and Go' hack for vehicles without stock stop and go functionality.", ""},
+    {"SNGDistance", tr("Stop and Go Distance"), "Trigger the 'Stop and Go' when lead car below the setup distance.", ""},
   };
 
   for (const auto &[param, title, desc, icon] : vehicleToggles) {
@@ -159,7 +160,8 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
           }
         }
       });
-
+    } else if (param == "SNGDistance") {
+      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 5, 15, std::map<int, QString>(), this, false, " meters", 5, 1);
     } else {
       toggle = new ParamControl(param, title, desc, icon, this);
     }
@@ -218,6 +220,25 @@ void FrogPilotVehiclesPanel::updateToggles() {
     std::this_thread::sleep_for(std::chrono::seconds(1));
     paramsMemory.putBool("FrogPilotTogglesUpdated", false);
   }).detach();
+}
+
+void FrogPilotVisualsPanel::updateMetric() {
+  bool previousIsMetric = isMetric;
+  isMetric = params.getBool("IsMetric");
+
+  if (isMetric != previousIsMetric) {
+    double speedConversion = isMetric ? FOOT_TO_METER : METER_TO_FOOT;
+    params.putIntNonBlocking("SNGDistance", std::nearbyint(params.getInt("SNGDistance") * speedConversion));
+  }
+
+  FrogPilotParamValueControl *sngDistanceToggle = static_cast<FrogPilotParamValueControl*>(toggles["SNGDistance"]);
+
+  if (isMetric) {
+    sngDistanceToggle->updateControl(5, 15, tr(" meters"), 5);
+  } else {
+    sngDistanceToggle->updateControl(15, 50, tr(" feet"), 15);
+  }
+  previousIsMetric = isMetric;
 }
 
 void FrogPilotVehiclesPanel::setModels() {

@@ -19,6 +19,7 @@ private:
   void setToggles();
   void updateState(const UIState &s);
   void updateToggles();
+  void updateMetric();
 
   ButtonControl *selectMakeButton;
   ButtonControl *selectModelButton;
@@ -30,7 +31,7 @@ private:
 
   std::set<QString> gmKeys = {"CSLCEnabled", "EVTable", "GasRegenCmd", "LongPitch", "LowerVolt", "OnStarGPS", "GearNumber", "UseRedPanda", "CruiseAutoResume"};
   std::set<QString> subaruKeys = {"CrosstrekTorque"};
-  std::set<QString> toyotaKeys = {"LockDoors", "LongitudinalTune", "SNGHack"};
+  std::set<QString> toyotaKeys = {"LockDoors", "LongitudinalTune", "SNGHack", "SNGDistance"};
 
   Params params;
   Params paramsMemory{"/dev/shm/params"};
