@@ -248,8 +248,8 @@ def below_steer_speed_alert(CP: car.CarParams, CS: car.CarState, sm: messaging.S
     Priority.LOW, VisualAlert.steerRequired, AudibleAlert.prompt, 0.4)
 
 def lead_departing_alert(CP: car.CarParams, CS: car.CarState, sm: messaging.SubMaster, metric: bool, soft_disable_time: int) -> Alert:
-  params = Params()
-  dis = params.get_int("AutoResumeDistance")
+  params_memory = Params("/dev/shm/params")
+  dis = params_memory.get_int("LeadDepartDistance") / 10
   return Alert(
       f"Lead departed {dis} meters",
       "",

@@ -674,6 +674,7 @@ class Controls:
       
       # auto_resume
       if lead_departing:
+        self.params_memory.put_int("LeadDepartDistance", self.previous_lead_distance * 10)
         # wait time 3 seconds
         if (int(time.time()) - self.standstill_time) >= 3:
           # read param only when lead_departing = true
