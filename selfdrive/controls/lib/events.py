@@ -21,9 +21,6 @@ VisualAlert = car.CarControl.HUDControl.VisualAlert
 AudibleAlert = car.CarControl.HUDControl.AudibleAlert
 EventName = car.CarEvent.EventName
 
-AutoResumeDistance = params.get_int("params")
-LeadDepartedMsg = "AutoResumeDistance {} meters".format(AutoResumeDistance)
-
 # Alert priorities
 class Priority(IntEnum):
   LOWEST = 0
@@ -1086,7 +1083,7 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
 
   EventName.leadDeparting: {
     ET.PERMANENT: Alert(
-      LeadDepartedMsg, #"Lead departed {} meters".format(AutoResumeDistance),
+      "Lead departed",
       "",
       AlertStatus.frogpilot, AlertSize.small,
       Priority.MID, VisualAlert.none, AudibleAlert.prompt, 3.),
