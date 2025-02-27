@@ -295,7 +295,7 @@ def manager_init() -> None:
     ("FrogPilotPrebuilt", "0"), #FROGPILOT_PREBUILT_TEST
     ("UseRedPanda", "0"), #Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
     ("CruiseAutoResume", "0"), #auto_resume
-    ("AutoResumeDistance", "7"),
+    ("AutoResumeDistance", "10"),
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))
