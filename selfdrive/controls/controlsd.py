@@ -665,7 +665,9 @@ class Controls:
     if self.lead_departing_alert and self.sm.frame % 50 == 0:
       lead = self.sm['radarState'].leadOne
       lead_distance = lead.dRel
-      lead_departing = lead_distance - self.previous_lead_distance > 0.5 and self.previous_lead_distance != 0 and CS.standstill
+      lead_departing = lead_distance - self.previous_lead_distance > 0.5 and CS.standstill #and self.previous_lead_distance != 0
+      # below 15 meters
+      lead_departing = self.previous_lead_distance > 0 and self.previous_lead_distance <= 15 
       # self.previous_lead_distance = lead_distance
 
       lead_departing &= not CS.gasPressed
@@ -690,8 +692,8 @@ class Controls:
             self.events.add(EventName.leadDeparting)
         else:
           self.events.add(EventName.leadDeparting)
-      
-      self.previous_lead_distance = lead_distance
+      # move to last line
+      self.previous_lead_distance = lead_distance 
 
     # Speed limit changed alert
     if self.speed_limit_alert or self.speed_limit_confirmation:
