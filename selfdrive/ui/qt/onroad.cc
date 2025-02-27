@@ -1944,15 +1944,15 @@ PersonalityButton::PersonalityButton(QWidget *parent) : QPushButton(parent), sce
   //普通+自动跟车
   profile_data2 = {
     {QPixmap("../frogpilot/assets/other_images/aggressive_new2.png"), "Aggressive"},
-    {QPixmap("../frogpilot/assets/other_images/standard_new.png"), "Standard"},
-    {QPixmap("../frogpilot/assets/other_images/relaxed_new.png"), "Relaxed"}
+    {QPixmap("../frogpilot/assets/other_images/standard_new2.png"), "Standard"},
+    {QPixmap("../frogpilot/assets/other_images/relaxed_new2.png"), "Relaxed"}
   };
 
   //禁用自动变道+自动跟车
   profile_data3 = {
     {QPixmap("../frogpilot/assets/other_images/aggressive_new3.png"), "Aggressive"},
-    {QPixmap("../frogpilot/assets/other_images/standard_new1.png"), "Standard"},
-    {QPixmap("../frogpilot/assets/other_images/relaxed_new1.png"), "Relaxed"}
+    {QPixmap("../frogpilot/assets/other_images/standard_new3.png"), "Standard"},
+    {QPixmap("../frogpilot/assets/other_images/relaxed_new3.png"), "Relaxed"}
   };
 
   personalityProfile = params.getInt("LongitudinalPersonality");
