@@ -677,17 +677,17 @@ class Controls:
       
       # auto_resume
       if lead_departing:
-        self.params_memory.put_int("LeadDepartDistance", self.previous_lead * 10)
+        self.params_memory.put_int("LeadDepartDistance", previous_lead * 10)
         # wait time 3 seconds
         if (int(time.time()) - self.standstill_time) >= 3:
           # read param only when lead_departing = true
           cruise_auto_resume = self.params.get_bool("CruiseAutoResume") and self.params_memory.get_bool("ESP32HasIP") #auto_resume
           conversion = 1 if self.is_metric else CV.FOOT_TO_METER
-          cruise_auto_resume &= self.previous_lead <= self.params.get_int("AutoResumeDistance")*conversion
+          cruise_auto_resume &= previous_lead <= self.params.get_int("AutoResumeDistance")*conversion
           # long_personality = self.params.get_int("LongitudinalPersonality") == 0
           # if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
           if cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
-            self.previous_lead_distance += 3
+            self.previous_lead_distance += 3 # no show leadDeparting
             self.params_memory.put_bool("ESP32AutoResume", True)
             self.events.add(EventName.autoResumeEvent)
           else:
