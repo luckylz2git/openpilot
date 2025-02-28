@@ -668,7 +668,8 @@ class Controls:
       lead_departing = lead_distance - self.previous_lead_distance > 0.5 and CS.standstill #and self.previous_lead_distance != 0
       # below 15 meters
       lead_departing = self.previous_lead_distance > 0 and self.previous_lead_distance <= 15 
-      # self.previous_lead_distance = lead_distance
+      previous_lead = self.previous_lead_distance
+      self.previous_lead_distance = lead_distance
 
       lead_departing &= not CS.gasPressed
       lead_departing &= lead.vLead > 1
@@ -676,24 +677,23 @@ class Controls:
       
       # auto_resume
       if lead_departing:
-        self.params_memory.put_int("LeadDepartDistance", self.previous_lead_distance * 10)
+        self.params_memory.put_int("LeadDepartDistance", self.previous_lead * 10)
         # wait time 3 seconds
         if (int(time.time()) - self.standstill_time) >= 3:
           # read param only when lead_departing = true
           cruise_auto_resume = self.params.get_bool("CruiseAutoResume") and self.params_memory.get_bool("ESP32HasIP") #auto_resume
           conversion = 1 if self.is_metric else CV.FOOT_TO_METER
-          cruise_auto_resume &= self.previous_lead_distance <= self.params.get_int("AutoResumeDistance")*conversion
+          cruise_auto_resume &= self.previous_lead <= self.params.get_int("AutoResumeDistance")*conversion
           # long_personality = self.params.get_int("LongitudinalPersonality") == 0
           # if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
           if cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
+            self.previous_lead_distance += 3
             self.params_memory.put_bool("ESP32AutoResume", True)
             self.events.add(EventName.autoResumeEvent)
           else:
             self.events.add(EventName.leadDeparting)
         else:
           self.events.add(EventName.leadDeparting)
-      # move to last line
-      self.previous_lead_distance = lead_distance 
 
     # Speed limit changed alert
     if self.speed_limit_alert or self.speed_limit_confirmation:
