@@ -667,7 +667,7 @@ class Controls:
       lead_distance = lead.dRel
       lead_departing = lead_distance - self.previous_lead_distance > 0.5 and CS.standstill #and self.previous_lead_distance != 0
       # below 15 meters
-      lead_departing = self.previous_lead_distance > 0 and self.previous_lead_distance <= 15 
+      lead_departing &= self.previous_lead_distance > 0 and self.previous_lead_distance <= 15 
       previous_lead = self.previous_lead_distance
       self.previous_lead_distance = lead_distance
 
@@ -687,7 +687,7 @@ class Controls:
           # long_personality = self.params.get_int("LongitudinalPersonality") == 0
           # if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
           if cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
-            self.previous_lead_distance += 3 # no show leadDeparting
+            self.previous_lead_distance = 0
             self.params_memory.put_bool("ESP32AutoResume", True)
             self.events.add(EventName.autoResumeEvent)
           else:
