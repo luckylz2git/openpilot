@@ -691,11 +691,12 @@ class Controls:
             self.params_memory.put_bool("ESP32AutoResume", True)
             self.events.add(EventName.autoResumeEvent)
             self.previous_lead_distance = 0
-            self.standstill_time = int(time.time())
-          elif (int(time.time()) - self.leaddepart_time) > 3:
+            self.standstill_time = int(time.time()) + 10
+            self.leaddepart_time = int(time.time()) + 10
+          elif (int(time.time()) - self.leaddepart_time) > 10:
             self.events.add(EventName.leadDeparting)
             self.leaddepart_time = int(time.time())
-        elif (int(time.time()) - self.leaddepart_time) > 3:
+        elif (int(time.time()) - self.leaddepart_time) > 10:
           self.events.add(EventName.leadDeparting)
           self.leaddepart_time = int(time.time())
 
