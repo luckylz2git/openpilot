@@ -183,6 +183,7 @@ class Controls:
     self.params_memory = Params("/dev/shm/params")
     # auto_resume
     self.standstill_time = 0
+    self.leaddepart_time = 0
 
     self.ignore_controls_mismatch = False
 
@@ -687,13 +688,16 @@ class Controls:
           # long_personality = self.params.get_int("LongitudinalPersonality") == 0
           # if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
           if cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
-            self.previous_lead_distance = 0
             self.params_memory.put_bool("ESP32AutoResume", True)
             self.events.add(EventName.autoResumeEvent)
-          else:
+            self.previous_lead_distance = 0
+            self.standstill_time = int(time.time())
+          elif (int(time.time()) - self.leaddepart_time) > 3:
             self.events.add(EventName.leadDeparting)
-        else:
+            self.leaddepart_time = int(time.time())
+        elif (int(time.time()) - self.leaddepart_time) > 3:
           self.events.add(EventName.leadDeparting)
+          self.leaddepart_time = int(time.time())
 
     # Speed limit changed alert
     if self.speed_limit_alert or self.speed_limit_confirmation:
