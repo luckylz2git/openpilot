@@ -284,7 +284,7 @@ class CarState(CarStateBase):
       self.distance_previously_pressed = distance_pressed
 
     # Override FrogPilot Personality Profile Bug for Enclave
-    if distance_pressed and has_camera:
+    if has_camera:
       pp = cam_cp.vl["ASCMActiveCruiseControlStatus"]["ACCGapLevel"] - 1
       if self.personality_profile != pp:
         self.personality_profile = pp
