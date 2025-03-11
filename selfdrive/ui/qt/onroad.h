@@ -292,9 +292,12 @@ private:
 
   std::unordered_map<int, std::tuple<QString, int, QColor, std::map<double, QBrush>>> holidayThemeConfiguration;
   std::unordered_map<int, std::tuple<QString, int, QColor, std::map<double, QBrush>>> themeConfiguration;
+  std::vector<QPixmap> signalImgVector;
+
   //SpeedMap
   std::map<int, float> accSpeedMaps;
-  std::vector<QPixmap> signalImgVector;
+  int getAccSpeedDisplay(float accSpeed);
+  float getAccSpeedActual(int disSpeed);
 
   QTimer *animationTimer;
 
