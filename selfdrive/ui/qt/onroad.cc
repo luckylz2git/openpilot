@@ -749,7 +749,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       if (is_cruise_set && setSpeed >= 91) setSpeedStr = QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio3));
     }
   }
-  setSpeedStr = QString::number(getAccSpeedDisplay(23.87));
+  //setSpeedStr = QString::number(getAccSpeedDisplay(23.87));
+  setSpeedStr = QString::number(getAccSpeedActual(25),'f',2);
   if (!(scene.hide_max_speed)) {
     // Draw outer box + border to contain set speed and speed limit
     const int sign_margin = 12;
@@ -1394,7 +1395,13 @@ int AnnotatedCameraWidget::getAccSpeedDisplay(float accSpeed) {
 }
 //SpeedMap
 float AnnotatedCameraWidget::getAccSpeedActual(int disSpeed) {
-  return 123.45;
+  float r = disSpeed;
+  for (const auto &[key, value] : accSpeedMaps) {
+    if (key == disSpeed) {
+      return value;
+    }
+  }
+  return r;
 }
 
 // FrogPilot widgets
