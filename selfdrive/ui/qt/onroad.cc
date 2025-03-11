@@ -1378,10 +1378,10 @@ int AnnotatedCameraWidget::getAccSpeedDisplay(float accSpeed) {
   }
   float mid = 0.5;
   if (minValue > 0 && maxValue > 0) {
-    mid = (maxValue - minValue) / 2
+    mid = (maxValue - minValue) / 2;
   }
   if (mid > 0.5) {
-    mid = 0.5
+    mid = 0.5;
   }
 
   if (minValue > 0 && (accSpeed - minValue) < mid) {
