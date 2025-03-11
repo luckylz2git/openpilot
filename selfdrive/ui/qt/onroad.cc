@@ -749,7 +749,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
       if (is_cruise_set && setSpeed >= 91) setSpeedStr = QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio3));
     }
   }
-  setSpeedStr = QString::number(getAccSpeedDisplay(23));
+  setSpeedStr = QString::number(getAccSpeedDisplay(23.87));
   if (!(scene.hide_max_speed)) {
     // Draw outer box + border to contain set speed and speed limit
     const int sign_margin = 12;
@@ -1360,7 +1360,37 @@ void AnnotatedCameraWidget::showEvent(QShowEvent *event) {
 
 //SpeedMap
 int AnnotatedCameraWidget::getAccSpeedDisplay(float accSpeed) {
-  return 999;
+  int r = int(accSpeed);
+  int minKey = 0;
+  int maxKey = 0;
+  float minValue = 0;
+  float maxValue = 0;
+  for (const auto &[key, value] : accSpeedMaps) {
+    if (value == accSpeed) {
+      return key;
+    } else if (value < accSpeed && value > minValue) {
+      minKey = key;
+      minValue = value;
+    } else if (value > accSpeed && (value < maxValue || maxValue == 0)) {
+      maxKey = key;
+      maxValue = value;
+    }
+  }
+  float mid = 0.5;
+  if (minValue > 0 && maxValue > 0) {
+    mid = (maxValue - minValue) / 2
+  }
+  if (mid > 0.5) {
+    mid = 0.5
+  }
+
+  if (minValue > 0 && (accSpeed - minValue) < mid) {
+    return minKey;
+  }
+  if (maxValue > 0 && (maxValue - accSpeed) < mid) {
+    return maxKey;
+  }
+  return r;
 }
 //SpeedMap
 float AnnotatedCameraWidget::getAccSpeedActual(int disSpeed) {

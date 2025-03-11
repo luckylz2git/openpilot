@@ -5,7 +5,6 @@ class SpeedMap:
   
   #acc实际速度 -> 显示速度
   def get_acc_speed_display(self, acc_speed: float) -> int:
-    acc_speed = int(acc_speed * 100) / 100
     r = int(acc_speed)
     min_key = 0
     max_key = 0
