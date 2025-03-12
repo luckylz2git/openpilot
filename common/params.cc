@@ -456,6 +456,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"SetSpeedRatio1", PERSISTENT},
     {"SetSpeedRatio2", PERSISTENT},
     {"SetSpeedRatio3", PERSISTENT},
+    {"UseAccSpeedMaps", PERSISTENT}, //SpeedMap
     {"SpeedDecimal", PERSISTENT},
     {"CalibrationCycles", PERSISTENT},
     {"OnStarGPS", PERSISTENT},

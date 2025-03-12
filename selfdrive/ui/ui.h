@@ -250,6 +250,7 @@ typedef struct UIScene {
   bool nudgeless_lane_change; //禁用自动变道
   bool cruise_auto_resume; //自动跟车启用
   bool cruise_auto_resume_activated; //自动跟车激活
+  bool use_acc_speed_maps; //使用巡航车速系数
 
   float acceleration;
   float adjusted_cruise;

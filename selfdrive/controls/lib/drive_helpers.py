@@ -124,6 +124,8 @@ class VCruiseHelper:
     if not self.button_change_states[button_type]["enabled"]:
       return
 
+    self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
+
     v_cruise_delta_interval = frogpilot_variables.custom_cruise_increase_long if long_press else frogpilot_variables.custom_cruise_increase
     # v_cruise_delta = v_cruise_delta * (5 if long_press else 1)
     v_cruise_delta = v_cruise_delta * v_cruise_delta_interval
@@ -146,7 +148,8 @@ class VCruiseHelper:
 
     # If set is pressed while overriding, clip cruise speed to minimum of vEgo
     if CS.gasPressed and button_type in (ButtonType.decelCruise, ButtonType.setCruise):
-      self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
+      #self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
+      self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
 
     #保留2位小数
     self.v_cruise_kph = clip(round(self.v_cruise_kph, 2), V_CRUISE_MIN, V_CRUISE_MAX)
@@ -173,6 +176,7 @@ class VCruiseHelper:
     else:
       initial = V_CRUISE_INITIAL_EXPERIMENTAL_MODE if experimental_mode else V_CRUISE_INITIAL
 
+    self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
     # CSLC resume/set logic
     if frogpilot_variables.CSLC:
       if frogpilot_variables.prev_button == ButtonType.resumeCruise and self.v_cruise_kph_last < 250:

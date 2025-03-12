@@ -287,6 +287,7 @@ def manager_init() -> None:
     ("SetSpeedRatio1", "1.065"),
     ("SetSpeedRatio2", "1.055"),
     ("SetSpeedRatio3", "1.045"),
+    ("UseAccSpeedMaps", "0"), #SpeedMap    
     ("SpeedDecimal", "0"),
     ("CalibrationCycles", "1"), 
     ("OnStarGPS", "0"),

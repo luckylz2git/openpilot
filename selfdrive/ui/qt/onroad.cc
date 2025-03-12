@@ -1368,6 +1368,9 @@ void AnnotatedCameraWidget::showEvent(QShowEvent *event) {
 //SpeedMap
 int AnnotatedCameraWidget::getAccSpeedDisplay(float accSpeed) {
   int r = int(accSpeed);
+  if (!scene.use_acc_speed_maps) {
+    return r;
+  }
   int minKey = 0;
   int maxKey = 0;
   float minValue = 0;
@@ -1402,6 +1405,9 @@ int AnnotatedCameraWidget::getAccSpeedDisplay(float accSpeed) {
 //SpeedMap
 float AnnotatedCameraWidget::getAccSpeedActual(int disSpeed) {
   float r = disSpeed;
+  if (!scene.use_acc_speed_maps) {
+    return r;
+  }
   for (const auto &[key, value] : accSpeedMaps) {
     if (key == disSpeed) {
       return value;
