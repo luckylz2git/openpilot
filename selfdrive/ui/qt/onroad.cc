@@ -753,7 +753,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   //setSpeedStr = QString::number(getAccSpeedActual(25),'f',2);
   if (is_metric) {
     //测试
-    speedStr = is_cruise_set ? QString::number(setSpeed, 'f', 2) + " | " + QString::number(cruiseAdjustment, 'f', 2) : "-";
+    //speedStr = is_cruise_set ? QString::number(setSpeed, 'f', 2) + " | " + QString::number(cruiseAdjustment, 'f', 2) : "-";
     setSpeedStr = is_cruise_set ? QString::number(getAccSpeedDisplay(setSpeed - cruiseAdjustment)) : "–";
   } else {
     setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
