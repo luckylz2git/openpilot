@@ -1175,19 +1175,7 @@
     <message>
         <source>Use Cruise Speed Maps</source>
         <translation>使用巡航车速系数</translation>
-    </message>
-    <message>
-        <source>Set Speed Ratio L</source>
-        <translation>巡航低速系数</translation>
-    </message>
-    <message>
-        <source>Set Speed Ratio M</source>
-        <translation>巡航中速系数</translation>
-    </message>
-    <message>
-        <source>Set Speed Ratio H</source>
-        <translation>巡航高速系数</translation>
-    </message>    
+    </message>  
 </context>
 <context>
     <name>InputDialog</name>
