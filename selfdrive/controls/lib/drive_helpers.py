@@ -56,7 +56,10 @@ class VCruiseHelper:
     return self.v_cruise_kph != V_CRUISE_UNSET
 
   def update_v_cruise(self, CS, enabled, is_metric, speed_limit_changed, frogpilot_variables):
-    self.v_cruise_kph_last = self.v_cruise_kph
+    #SpeedMap
+    self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
+    self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(self.v_cruise_kph))
+    self.v_cruise_kph_last = self.v_cruise_kph    
 
     if CS.cruiseState.available:
       if not self.CP.pcmCruise or frogpilot_variables.CSLC:
@@ -123,8 +126,6 @@ class VCruiseHelper:
     # Don't adjust speed if we've enabled since the button was depressed (some ports enable on rising edge)
     if not self.button_change_states[button_type]["enabled"]:
       return
-
-    self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
 
     v_cruise_delta_interval = frogpilot_variables.custom_cruise_increase_long if long_press else frogpilot_variables.custom_cruise_increase
     # v_cruise_delta = v_cruise_delta * (5 if long_press else 1)
