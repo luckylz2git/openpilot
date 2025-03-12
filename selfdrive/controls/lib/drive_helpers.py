@@ -5,14 +5,15 @@ from openpilot.common.conversions import Conversions as CV
 from openpilot.common.numpy_fast import clip, interp
 from openpilot.common.params import Params
 from openpilot.common.realtime import DT_CTRL
+from openpilot.selfdrive.lqrtx.speed import SpeedMap
 
 # WARNING: this value was determined based on the model's training distribution,
 #          model predictions above this speed can be unpredictable
 # V_CRUISE's are in kph
-V_CRUISE_MIN = 23 #For Baby Enclave 8
-V_CRUISE_MAX = 146 #For Baby Enclave 145
+V_CRUISE_MIN = 23.87 #For Baby Enclave 25-23.87
+V_CRUISE_MAX = 153.56 #For Baby Enclave 160-153.56
 V_CRUISE_UNSET = 255
-V_CRUISE_INITIAL = 23 #For Baby Enclave 40
+V_CRUISE_INITIAL = 23.87 #For Baby Enclave 25-23.87
 V_CRUISE_INITIAL_EXPERIMENTAL_MODE = 105
 IMPERIAL_INCREMENT = 1.6  # should be CV.MPH_TO_KPH, but this causes rounding errors
 
@@ -131,9 +132,12 @@ class VCruiseHelper:
     #   self.v_cruise_kph = CRUISE_NEAREST_FUNC[button_type](self.v_cruise_kph / v_cruise_delta) * v_cruise_delta
     # else:
     #   self.v_cruise_kph += v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type]
-    self.v_cruise_kph += v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type]
 
-    # Apply offset
+    #self.v_cruise_kph += v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type]
+    #先获取整数倍的kph，再转换成实际kph
+    self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(self.v_cruise_kph) + v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type])
+
+    # Apply offset 不要用set_speed_offset
     v_cruise_offset = (frogpilot_variables.set_speed_offset * CRUISE_INTERVAL_SIGN[button_type]) if long_press else 0
     if v_cruise_offset < 0:
       v_cruise_offset = frogpilot_variables.set_speed_offset - v_cruise_delta
@@ -143,7 +147,8 @@ class VCruiseHelper:
     if CS.gasPressed and button_type in (ButtonType.decelCruise, ButtonType.setCruise):
       self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
 
-    self.v_cruise_kph = clip(round(self.v_cruise_kph, 1), V_CRUISE_MIN, V_CRUISE_MAX)
+    #保留2位小数
+    self.v_cruise_kph = clip(round(self.v_cruise_kph, 2), V_CRUISE_MIN, V_CRUISE_MAX)
 
   def update_button_timers(self, CS, enabled):
     # increment timer for buttons still pressed
@@ -175,10 +180,12 @@ class VCruiseHelper:
         # Initial set speed
         if desired_speed_limit != 0 and frogpilot_variables.set_speed_limit:
           # If there's a known speed limit and the corresponding FP toggle is set, push it to the car
-          self.v_cruise_kph = int(round(desired_speed_limit * CV.MS_TO_KPH))
+          #self.v_cruise_kph = int(round(desired_speed_limit * CV.MS_TO_KPH))
+          self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(desired_speed_limit * CV.MS_TO_KPH))
         else:
           # Use fixed initial set speed from mode etc.
-          self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
+          #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
+          self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
       self.v_cruise_cluster_kph = self.v_cruise_kph
       return
 
@@ -189,10 +196,12 @@ class VCruiseHelper:
       # Initial set speed
       if desired_speed_limit != 0 and frogpilot_variables.set_speed_limit:
         # If there's a known speed limit and the corresponding FP toggle is set, push it to the car
-        self.v_cruise_kph = int(round(desired_speed_limit * CV.MS_TO_KPH))
+        #self.v_cruise_kph = int(round(desired_speed_limit * CV.MS_TO_KPH))
+        self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(desired_speed_limit * CV.MS_TO_KPH))
       else:
         # Use fixed initial set speed from mode etc.
-        self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
+        #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
+        self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
 
     self.v_cruise_cluster_kph = self.v_cruise_kph
 
