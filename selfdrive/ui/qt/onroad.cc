@@ -717,38 +717,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', 2);
   // if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', 2);
   // QString setSpeedStr = is_cruise_set ? QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.dash_speed_ratio)) : "–";
+  
   QString setSpeedStr = "";
-  if (scene.cslc_enabled) {
-    if (scene.speed_decimal > 0) { // 显示小数部分
-      //0-24kph
-      setSpeedStr = is_cruise_set ? QString::number(setSpeed - cruiseAdjustment + scene.cslc_offset1, 'f', scene.speed_decimal) : "–";
-      //25-60kph
-      if (is_cruise_set && setSpeed >= 25 && setSpeed <= 60) setSpeedStr = QString::number(setSpeed - cruiseAdjustment + scene.cslc_offset2, 'f', scene.speed_decimal);
-      //61-90kph
-      if (is_cruise_set && setSpeed > 60 && setSpeed <= 90) setSpeedStr = QString::number(setSpeed - cruiseAdjustment + scene.cslc_offset3, 'f', scene.speed_decimal);
-      //90+kph
-      if (is_cruise_set && setSpeed > 90) setSpeedStr = QString::number(setSpeed - cruiseAdjustment + scene.cslc_offset4, 'f', scene.speed_decimal);
-    } else { // 显示整数部分
-      //0-24kph
-      setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment + scene.cslc_offset1)) : "–";
-      //25-60kph
-      if (is_cruise_set && setSpeed > 24 && setSpeed <= 60) setSpeedStr = QString::number(std::nearbyint(setSpeed - cruiseAdjustment + scene.cslc_offset2));
-      //61-90kph
-      if (is_cruise_set && setSpeed > 60 && setSpeed <= 90) setSpeedStr = QString::number(std::nearbyint(setSpeed - cruiseAdjustment + scene.cslc_offset3));
-      //90+kph
-      if (is_cruise_set && setSpeed > 90) setSpeedStr = QString::number(std::nearbyint(setSpeed - cruiseAdjustment + scene.cslc_offset4));
-    }
-  } else {
-    if (scene.speed_decimal > 0) { // 显示小数部分
-      setSpeedStr = is_cruise_set ? QString::number((setSpeed - cruiseAdjustment) * scene.set_speed_ratio1, 'f', scene.speed_decimal) : "–";
-      if (is_cruise_set && setSpeed > 61 && setSpeed < 91) setSpeedStr = QString::number((setSpeed - cruiseAdjustment) * scene.set_speed_ratio2, 'f', scene.speed_decimal);
-      if (is_cruise_set && setSpeed >= 91) setSpeedStr = QString::number((setSpeed - cruiseAdjustment) * scene.set_speed_ratio3, 'f', scene.speed_decimal);
-    } else { // 显示整数部分
-      setSpeedStr = is_cruise_set ? QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio1)) : "–";
-      if (is_cruise_set && setSpeed > 61 && setSpeed < 91) setSpeedStr = QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio2));
-      if (is_cruise_set && setSpeed >= 91) setSpeedStr = QString::number(std::nearbyint((setSpeed - cruiseAdjustment) * scene.set_speed_ratio3));
-    }
-  }
   //setSpeedStr = QString::number(getAccSpeedDisplay(23.87));
   //setSpeedStr = QString::number(getAccSpeedActual(25),'f',2);
   if (is_metric) {

@@ -427,16 +427,6 @@ void ui_update_frogpilot_params(UIState *s) {
 
   //SpeedMap
   scene.use_acc_speed_maps = quality_of_life_visuals && params.getBool("UseAccSpeedMaps");
-
-  scene.set_speed_ratio1 = quality_of_life_visuals ? params.getFloat("SetSpeedRatio1") : 1;
-  scene.set_speed_ratio2 = quality_of_life_visuals ? params.getFloat("SetSpeedRatio2") : 1;
-  scene.set_speed_ratio3 = quality_of_life_visuals ? params.getFloat("SetSpeedRatio3") : 1;
-
-  scene.cslc_offset1 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset1") * (scene.is_metric ? 1 : 1/1.609344) : 0;
-  scene.cslc_offset2 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset2") * (scene.is_metric ? 1 : 1/1.609344) : 0;
-  scene.cslc_offset3 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset3") * (scene.is_metric ? 1 : 1/1.609344) : 0;
-  scene.cslc_offset4 = (scene.cslc_enabled && quality_of_life_visuals) ? params.getInt("Offset4") * (scene.is_metric ? 1 : 1/1.609344) : 0;
-
   scene.speed_decimal = quality_of_life_visuals ? params.getInt("SpeedDecimal") : 0;
 
   scene.personalities_via_screen = params.getBool("PersonalitiesViaScreen") && params.getBool("AdjustablePersonalities");

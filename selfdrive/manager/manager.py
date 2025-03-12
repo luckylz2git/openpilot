@@ -284,9 +284,6 @@ def manager_init() -> None:
     ("DashSpeedRatio1", "1.065"),
     ("DashSpeedRatio2", "1.055"),
     ("DashSpeedRatio3", "1.045"),
-    ("SetSpeedRatio1", "1.065"),
-    ("SetSpeedRatio2", "1.055"),
-    ("SetSpeedRatio3", "1.045"),
     ("UseAccSpeedMaps", "0"), #SpeedMap    
     ("SpeedDecimal", "0"),
     ("CalibrationCycles", "1"), 
