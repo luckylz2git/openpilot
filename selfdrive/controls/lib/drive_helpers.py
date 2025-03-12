@@ -49,6 +49,7 @@ class VCruiseHelper:
 
     # FrogPilot variables
     self.params_memory = Params("/dev/shm/params")
+    self.speed_map = SpeedMap()
 
   @property
   def v_cruise_initialized(self):
@@ -135,7 +136,7 @@ class VCruiseHelper:
 
     #self.v_cruise_kph += v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type]
     #先获取整数倍的kph，再转换成实际kph
-    self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(self.v_cruise_kph) + v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type])
+    self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(self.v_cruise_kph) + v_cruise_delta * CRUISE_INTERVAL_SIGN[button_type])
 
     # Apply offset 不要用set_speed_offset
     v_cruise_offset = (frogpilot_variables.set_speed_offset * CRUISE_INTERVAL_SIGN[button_type]) if long_press else 0
@@ -181,11 +182,11 @@ class VCruiseHelper:
         if desired_speed_limit != 0 and frogpilot_variables.set_speed_limit:
           # If there's a known speed limit and the corresponding FP toggle is set, push it to the car
           #self.v_cruise_kph = int(round(desired_speed_limit * CV.MS_TO_KPH))
-          self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(desired_speed_limit * CV.MS_TO_KPH))
+          self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(desired_speed_limit * CV.MS_TO_KPH))
         else:
           # Use fixed initial set speed from mode etc.
           #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-          self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
+          self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
       self.v_cruise_cluster_kph = self.v_cruise_kph
       return
 
@@ -197,11 +198,11 @@ class VCruiseHelper:
       if desired_speed_limit != 0 and frogpilot_variables.set_speed_limit:
         # If there's a known speed limit and the corresponding FP toggle is set, push it to the car
         #self.v_cruise_kph = int(round(desired_speed_limit * CV.MS_TO_KPH))
-        self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(desired_speed_limit * CV.MS_TO_KPH))
+        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(desired_speed_limit * CV.MS_TO_KPH))
       else:
         # Use fixed initial set speed from mode etc.
         #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-        self.v_cruise_kph = SpeedMap.get_acc_speed_actual(SpeedMap.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
+        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
 
     self.v_cruise_cluster_kph = self.v_cruise_kph
 
