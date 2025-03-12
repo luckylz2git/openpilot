@@ -59,9 +59,9 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
     {"DashSpeedRatio3", tr("Dash Speed Ratio H"), "Use the dash speed (90+ kph) ratio in onroad ui.", ""},
     {"SpeedDecimal", tr("Speed Decimal"), "Set the decimal place of dash speed & set speed in onroad ui.", ""},
     {"UseAccSpeedMaps", tr("Use Cruise Speed Maps"), "Use the cruise speed maps for Buick Enclave in onroad ui.", ""},
-    {"SetSpeedRatio1", tr("Set Speed Ratio L"), "Use the cruise set speed (25-60 kph) ratio in onroad ui.", ""},
-    {"SetSpeedRatio2", tr("Set Speed Ratio M"), "Use the cruise set speed (61-90 kph) ratio in onroad ui.", ""},
-    {"SetSpeedRatio3", tr("Set Speed Ratio H"), "Use the cruise set speed (90+ kph) ratio in onroad ui.", ""},    
+    // {"SetSpeedRatio1", tr("Set Speed Ratio L"), "Use the cruise set speed (25-60 kph) ratio in onroad ui.", ""},
+    // {"SetSpeedRatio2", tr("Set Speed Ratio M"), "Use the cruise set speed (61-90 kph) ratio in onroad ui.", ""},
+    // {"SetSpeedRatio3", tr("Set Speed Ratio H"), "Use the cruise set speed (90+ kph) ratio in onroad ui.", ""},    
     {"HideSpeed", tr("Hide Speed"), "Hide the speed indicator in the onroad UI. Additional toggle allows it to be hidden/shown via tapping the speed itself.", ""},
     {"MapStyle", tr("Map Style"), "Use a custom map style to be used for 'Navigate on openpilot'.", ""},
     {"WheelSpeed", tr("Use Wheel Speed"), "Use the wheel speed metric as opposed to the artificial speed.", ""},
@@ -199,12 +199,12 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
     } else if (param == "DashSpeedRatio3") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
-    } else if (param == "SetSpeedRatio1") {
-      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
-    } else if (param == "SetSpeedRatio2") {
-      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
-    } else if (param == "SetSpeedRatio3") {
-      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
+    // } else if (param == "SetSpeedRatio1") {
+    //   toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
+    // } else if (param == "SetSpeedRatio2") {
+    //   toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
+    // } else if (param == "SetSpeedRatio3") {
+    //   toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.8, 1.2, std::map<int, QString>(), this, false, "", 1, 0.001);
     } else if (param == "SpeedDecimal") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 2, std::map<int, QString>(), this, false, "", 0, 1);
     } else if (param == "MapStyle") {

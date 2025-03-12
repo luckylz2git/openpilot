@@ -752,12 +752,12 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   //setSpeedStr = QString::number(getAccSpeedDisplay(23.87));
   //setSpeedStr = QString::number(getAccSpeedActual(25),'f',2);
   if (is_metric) {
-    //测试
-    speedStr = is_cruise_set ? QString::number(setSpeed, 'f', 2) + " | " + QString::number(cruiseAdjustment, 'f', 2) : "-";
+    //测试代码，用speed显示带小数点的acc speed值
+    speedStr = is_cruise_set ? QString::number(setSpeed, 'f', 2) : "-";
     setSpeedStr = is_cruise_set ? QString::number(getAccSpeedDisplay(setSpeed - cruiseAdjustment)) : "–";
-  } //else {
-    //setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
-  //}  
+  } else {
+    setSpeedStr = is_cruise_set ? QString::number(std::nearbyint(setSpeed - cruiseAdjustment)) : "–";
+  }  
 
   if (!(scene.hide_max_speed)) {
     // Draw outer box + border to contain set speed and speed limit
