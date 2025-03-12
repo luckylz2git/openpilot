@@ -817,7 +817,8 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     p.setFont(InterFont(40, QFont::DemiBold));
     p.setPen(max_color);
     p.drawText(set_speed_rect.adjusted(0, 27, 0, 0), Qt::AlignTop | Qt::AlignHCenter, tr("MAX"));
-    p.setFont(InterFont(90 - scene.speed_decimal * 15, QFont::Bold));
+    //p.setFont(InterFont(90 - scene.speed_decimal * 15, QFont::Bold));
+    p.setFont(InterFont(90, QFont::Bold));
     p.setPen(set_speed_color);
     p.drawText(set_speed_rect.adjusted(0, 77, 0, 0), Qt::AlignTop | Qt::AlignHCenter, setSpeedStr);
 
