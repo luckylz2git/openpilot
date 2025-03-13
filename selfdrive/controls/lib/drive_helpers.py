@@ -151,7 +151,7 @@ class VCruiseHelper:
     # If set is pressed while overriding, clip cruise speed to minimum of vEgo
     if CS.gasPressed and button_type in (ButtonType.decelCruise, ButtonType.setCruise):
       #self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
-      v_ego_offset = 0.3 if frogpilot_variables.use_acc_speed_maps else 0
+      v_ego_offset = 0.5 if frogpilot_variables.use_acc_speed_maps else 0
       self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH + v_ego_offset)))
 
     #保留2位小数
@@ -194,7 +194,7 @@ class VCruiseHelper:
         else:
           # Use fixed initial set speed from mode etc.
           #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-          v_ego_offset = 0.3 if frogpilot_variables.use_acc_speed_maps else 0
+          v_ego_offset = 0.5 if frogpilot_variables.use_acc_speed_maps else 0
           self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH  + v_ego_offset, initial, V_CRUISE_MAX)))
       self.v_cruise_cluster_kph = self.v_cruise_kph
       return
@@ -211,7 +211,7 @@ class VCruiseHelper:
       else:
         # Use fixed initial set speed from mode etc.
         #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-        v_ego_offset = 0.3 if frogpilot_variables.use_acc_speed_maps else 0
+        v_ego_offset = 0.5 if frogpilot_variables.use_acc_speed_maps else 0
         self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH + v_ego_offset, initial, V_CRUISE_MAX)))
 
     self.v_cruise_cluster_kph = self.v_cruise_kph
