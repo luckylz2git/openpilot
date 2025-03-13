@@ -58,9 +58,7 @@ class VCruiseHelper:
   def update_v_cruise(self, CS, enabled, is_metric, speed_limit_changed, frogpilot_variables):
     #SpeedMap
     self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
-    
-    self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(self.v_cruise_kph))
-    self.v_cruise_kph_last = self.v_cruise_kph    
+    self.v_cruise_kph_last = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(self.v_cruise_kph))  
 
     if CS.cruiseState.available:
       if not self.CP.pcmCruise or frogpilot_variables.CSLC:
@@ -151,8 +149,10 @@ class VCruiseHelper:
     # If set is pressed while overriding, clip cruise speed to minimum of vEgo
     if CS.gasPressed and button_type in (ButtonType.decelCruise, ButtonType.setCruise):
       #self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
-      v_ego_offset = 0.5 if frogpilot_variables.use_acc_speed_maps else 0
-      self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH + v_ego_offset)))
+      if frogpilot_variables.use_acc_speed_maps:
+        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.cruiseState.speed * CV.MS_TO_KPH)))
+      else:
+        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
 
     #保留2位小数
     self.v_cruise_kph = clip(round(self.v_cruise_kph, 2), V_CRUISE_MIN, V_CRUISE_MAX)
@@ -194,8 +194,10 @@ class VCruiseHelper:
         else:
           # Use fixed initial set speed from mode etc.
           #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-          v_ego_offset = 0.5 if frogpilot_variables.use_acc_speed_maps else 0
-          self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH  + v_ego_offset, initial, V_CRUISE_MAX)))
+          if frogpilot_variables.use_acc_speed_maps:
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.cruiseState.speed * CV.MS_TO_KPH)))
+          else:
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
       self.v_cruise_cluster_kph = self.v_cruise_kph
       return
 
@@ -211,9 +213,11 @@ class VCruiseHelper:
       else:
         # Use fixed initial set speed from mode etc.
         #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-        v_ego_offset = 0.5 if frogpilot_variables.use_acc_speed_maps else 0
-        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH + v_ego_offset, initial, V_CRUISE_MAX)))
-
+          if frogpilot_variables.use_acc_speed_maps:
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.cruiseState.speed * CV.MS_TO_KPH)))
+          else:
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
+    
     self.v_cruise_cluster_kph = self.v_cruise_kph
 
 def apply_deadzone(error, deadzone):
