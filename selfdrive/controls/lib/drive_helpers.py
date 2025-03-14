@@ -152,7 +152,8 @@ class VCruiseHelper:
       #self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
       if frogpilot_variables.use_acc_speed_maps:
         #30
-        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 28.37))) 
+        #self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 28.37))) 
+        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
       else:
         self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
 
@@ -198,7 +199,8 @@ class VCruiseHelper:
           #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
           if frogpilot_variables.use_acc_speed_maps:
             #40
-            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 37.18))) 
+            #self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 37.18))) 
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
           else:
             self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
       self.v_cruise_cluster_kph = self.v_cruise_kph
@@ -218,7 +220,8 @@ class VCruiseHelper:
         #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
           if frogpilot_variables.use_acc_speed_maps:
             #50
-            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 46.75))) 
+            #self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 46.75))) 
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
           else:
             self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
     
