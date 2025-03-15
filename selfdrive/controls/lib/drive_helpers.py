@@ -213,9 +213,7 @@ class VCruiseHelper:
         # Use fixed initial set speed from mode etc.
         #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
         self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-        if frogpilot_variables.use_acc_speed_maps:
-          self.params_memory.put_float("CSLCSpeed", round(self.v_cruise_kph * CV.KPH_TO_MS, 4)) #using ms
-    
+            
     self.v_cruise_cluster_kph = self.v_cruise_kph
 
 def apply_deadzone(error, deadzone):
