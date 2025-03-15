@@ -204,9 +204,9 @@ class VCruiseHelper:
             #25~40kph，重新激活时，执行此行
             #self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 37.18))) 
             self.v_cruise_has_offset = 3
-            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)) + self.v_cruise_has_offset)
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX))) + self.v_cruise_has_offset)
           else:
-            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
+            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX))))
       self.v_cruise_cluster_kph = self.v_cruise_kph
       return
 
@@ -222,13 +222,13 @@ class VCruiseHelper:
       else:
         # Use fixed initial set speed from mode etc.
         #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-          if frogpilot_variables.use_acc_speed_maps:
-            #50
-            #self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 46.75))) 
-            self.v_cruise_has_offset = 4
-            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)) + self.v_cruise_has_offset)
-          else:
-            self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
+        if frogpilot_variables.use_acc_speed_maps:
+          #50
+          #self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, 46.75))) 
+          self.v_cruise_has_offset = 4
+          self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)) + self.v_cruise_has_offset)
+        else:
+          self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
     
     self.v_cruise_cluster_kph = self.v_cruise_kph
 
