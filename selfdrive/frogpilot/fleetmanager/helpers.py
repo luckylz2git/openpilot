@@ -642,10 +642,10 @@ def get_all_toggle_values():
     "ShowStorageLeft", "ShowStorageUsed", "Sidebar",
 
     "MinSteerSpeedStandard", "MinSteerSpeedEngage",
-    "DashSpeedRatio1", "DashSpeedRatio2", "DashSpeedRatio3", "SpeedDecimal",
+    "DashSpeedRatio1", "DashSpeedRatio2", "DashSpeedRatio3", "SpeedDecimal", "UseAccSpeedMaps",
     "FrogPilotDrives", "FrogPilotKilometers", "FrogPilotMinutes", "CarMake", "CarModel", 
     "DriverPrivacyProtectionFake", "CSLCEnabled", "CalibrationCycles", 
-    "UseRedPanda", "CruiseAutoResume"
+    "UseRedPanda", "CruiseAutoResume", "AutoResumeDistance"
   ]
 
   toggle_values = {}
