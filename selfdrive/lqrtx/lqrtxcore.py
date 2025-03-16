@@ -83,6 +83,7 @@ class C3UDPSendHelper(threading.Thread):
                             "a":params_memory.get_bool("CruiseAutoResumeActivated"), #CruiseAutoResumeActivated
                             "b":params_memory.get_bool("ESP32HasIP"), # has ESP32 or not.
                             "c":params_memory.get_bool("LqrtxOnRoad"), # OnRoad status
+                            "d":params_memory.get_float("SetSpeed2ESP32"), #ACC Set Speed send to ESP32
                             "a1":"", #C3 IP Address
                             "a2":""  #ESP32 IP Address
                         }
