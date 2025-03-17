@@ -106,7 +106,7 @@ class DesireHelper:
 
         # Conduct a nudgeless lane change if all the conditions are met
         self.lane_change_wait_timer += DT_MDL
-        if self.nudgeless and lane_available and not self.lane_change_completed and self.lane_change_wait_timer >= self.lane_change_delay:
+        if self.nudgeless and self.nudgeless_speed >= v_ego and lane_available and not self.lane_change_completed and self.lane_change_wait_timer >= self.lane_change_delay:
           self.lane_change_wait_timer = 0
           torque_applied = True
 
@@ -174,6 +174,8 @@ class DesireHelper:
     is_metric = self.params.get_bool("IsMetric")
 
     self.nudgeless = self.params.get_bool("NudgelessLaneChange")
+    self.nudgeless_speed = self.params.get_int("NudgelessSpeed")
+
     self.lane_change_delay = self.params.get_int("LaneChangeTime") if self.nudgeless else 0
     self.lane_detection = self.nudgeless and self.params.get_bool("LaneDetection")
     self.lane_detection_width = self.params.get_int("LaneDetectionWidth") * (1 if is_metric else CV.FOOT_TO_METER) / 10 if self.lane_detection else 0
