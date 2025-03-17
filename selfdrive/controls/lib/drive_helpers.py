@@ -50,7 +50,6 @@ class VCruiseHelper:
     # FrogPilot variables
     self.params_memory = Params("/dev/shm/params")
     self.speed_map = SpeedMap()
-    self.params_memory.put_int("SetSpeedTestKey", 0) #ACC Set Speed Test Key
 
   @property
   def v_cruise_initialized(self):
