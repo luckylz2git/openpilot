@@ -51,6 +51,7 @@ class VCruiseHelper:
     # FrogPilot variables
     self.params_memory = Params("/dev/shm/params")
     self.speed_map = SpeedMap()
+    self.params_memory.put_int("SetSpeedTestKey", 0) #ACC Set Speed Test Key
 
   @property
   def v_cruise_initialized(self):
@@ -159,8 +160,9 @@ class VCruiseHelper:
     # If set is pressed while overriding, clip cruise speed to minimum of vEgo
     if CS.gasPressed and button_type in (ButtonType.decelCruise, ButtonType.setCruise):
       #self.v_cruise_kph = max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)
-      self.v_cruise_has_set = frogpilot_variables.use_acc_speed_maps
       self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(max(self.v_cruise_kph, CS.vEgo * CV.MS_TO_KPH)))
+      self.v_cruise_has_set = frogpilot_variables.use_acc_speed_maps
+      self.params_memory.put_int("SetSpeedTestKey", 1) #ACC Set Speed Test Key
 
     #保留2位小数
     self.v_cruise_kph = clip(round(self.v_cruise_kph, 2), V_CRUISE_MIN, V_CRUISE_MAX)
@@ -203,7 +205,8 @@ class VCruiseHelper:
           # Use fixed initial set speed from mode etc.
           #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
           self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-          self.v_cruise_has_set = frogpilot_variables.use_acc_speed_maps and self.v_cruise_kph > initial
+          self.v_cruise_has_set = frogpilot_variables.use_acc_speed_maps #and self.v_cruise_kph > initial
+          self.params_memory.put_int("SetSpeedTestKey", 2) #ACC Set Speed Test Key
 
       self.v_cruise_cluster_kph = self.v_cruise_kph
       return
@@ -221,7 +224,8 @@ class VCruiseHelper:
         # Use fixed initial set speed from mode etc.
         #self.v_cruise_kph = int(round(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))        
         self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(clip(CS.vEgo * CV.MS_TO_KPH, initial, V_CRUISE_MAX)))
-        self.v_cruise_has_set = frogpilot_variables.use_acc_speed_maps and self.v_cruise_kph > initial
+        self.v_cruise_has_set = frogpilot_variables.use_acc_speed_maps #and self.v_cruise_kph > initial
+        self.params_memory.put_int("SetSpeedTestKey", 3) #ACC Set Speed Test Key
             
     self.v_cruise_cluster_kph = self.v_cruise_kph
 
