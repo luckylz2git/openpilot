@@ -348,6 +348,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"NoDashCam", PERSISTENT},
     {"NoUploads", PERSISTENT},
     {"NudgelessLaneChange", PERSISTENT},
+    {"NudgelessSpeed", PERSISTENT}, // Nudgeless Lane Change Enable Speed
     {"NudgelessSmooth", PERSISTENT}, // Smoother Nudgeless Lane Change
     {"NumericalTemp", PERSISTENT},
     {"OfflineMode", PERSISTENT},

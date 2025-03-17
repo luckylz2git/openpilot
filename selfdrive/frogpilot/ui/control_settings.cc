@@ -60,6 +60,7 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
     {"LaneDetection", tr("Lane Detection"), "Block nudgeless lane changes when a lane isn't detected.", ""},
     {"LaneDetectionWidth", tr("Lane Detection Threshold"), "Set the required lane width to be qualified as a lane.", ""},
     {"OneLaneChange", tr("One Lane Change Per Signal"), "Limit to one nudgeless lane change per turn signal activation.", ""},
+    {"NudgelessSpeed", tr("Nudgeless Speed"), tr("When vehicle speed above the set value, enable nudgeless lane change."), ""},
     {"NudgelessSmooth", tr("Smoother Lane Change"), tr("Smoother lane change on start, beware of understeer."), ""},
 
     {"QOLControls", tr("Quality of Life"), "Miscellaneous quality of life changes to improve your overall openpilot experience.", "../frogpilot/assets/toggle_icons/quality_of_life.png"},
@@ -356,6 +357,8 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
         laneChangeTimeLabels[i] = i == 0 ? "Instant" : QString::number(i / 2.0) + tr(" seconds");
       }
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 10, laneChangeTimeLabels, this, false);
+    } else if (param == "NudgelessSpeed") {
+      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 62, std::map<int, QString>(), this, false, " mph");
     } else if (param == "LaneDetectionWidth") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 100, std::map<int, QString>(), this, false, " feet", 10);
 
@@ -605,6 +608,7 @@ void FrogPilotControlsPanel::updateMetric() {
     params.putIntNonBlocking("Offset2", std::nearbyint(params.getInt("Offset2") * speedConversion));
     params.putIntNonBlocking("Offset3", std::nearbyint(params.getInt("Offset3") * speedConversion));
     params.putIntNonBlocking("Offset4", std::nearbyint(params.getInt("Offset4") * speedConversion));
+    params.putIntNonBlocking("NudgelessSpeed", std::nearbyint(params.getInt("NudgelessSpeed") * speedConversion));
     params.putIntNonBlocking("MinSteerSpeedStandard", std::nearbyint(params.getInt("MinSteerSpeedStandard") * speedConversion));
     params.putIntNonBlocking("MinSteerSpeedEngage", std::nearbyint(params.getInt("MinSteerSpeedEngage") * speedConversion));
     params.putIntNonBlocking("PauseLateralOnSignal", std::nearbyint(params.getInt("PauseLateralOnSignal") * speedConversion));
@@ -620,6 +624,7 @@ void FrogPilotControlsPanel::updateMetric() {
   FrogPilotParamValueControl *offset2Toggle = static_cast<FrogPilotParamValueControl*>(toggles["Offset2"]);
   FrogPilotParamValueControl *offset3Toggle = static_cast<FrogPilotParamValueControl*>(toggles["Offset3"]);
   FrogPilotParamValueControl *offset4Toggle = static_cast<FrogPilotParamValueControl*>(toggles["Offset4"]);
+  FrogPilotParamValueControl *nudgelessSpeed = static_cast<FrogPilotParamValueControl*>(toggles["NudgelessSpeed"]);
   FrogPilotParamValueControl *minSteerSpeedStandardToggle = static_cast<FrogPilotParamValueControl*>(toggles["MinSteerSpeedStandard"]);
   FrogPilotParamValueControl *minSteerSpeedEngageToggle = static_cast<FrogPilotParamValueControl*>(toggles["MinSteerSpeedEngage"]);
   FrogPilotParamValueControl *pauseLateralToggle = static_cast<FrogPilotParamValueControl*>(toggles["PauseLateralOnSignal"]);
@@ -648,6 +653,8 @@ void FrogPilotControlsPanel::updateMetric() {
     offset2Toggle->updateControl(-99, 99, " kph");
     offset3Toggle->updateControl(-99, 99, " kph");
     offset4Toggle->updateControl(-99, 99, " kph");
+
+    nudgelessSpeed->updateControl(0, 100, " kph");
 
     minSteerSpeedStandardToggle->updateControl(10, 48, " kph");
     minSteerSpeedEngageToggle->updateControl(10, 48, " kph");
@@ -678,6 +685,8 @@ void FrogPilotControlsPanel::updateMetric() {
     offset3Toggle->updateControl(-99, 99, " mph");
     offset4Toggle->updateControl(-99, 99, " mph");
 
+    nudgelessSpeed->updateControl(0, 62, " mph");
+
     minSteerSpeedStandardToggle->updateControl(7, 30, " mph");
     minSteerSpeedEngageToggle->updateControl(7, 30, " mph");
     pauseLateralToggle->updateControl(0, 99, " mph");
@@ -694,6 +703,7 @@ void FrogPilotControlsPanel::updateMetric() {
   offset2Toggle->refresh();
   offset3Toggle->refresh();
   offset4Toggle->refresh();
+  nudgelessSpeed->refresh();
   minSteerSpeedStandardToggle->refresh();
   minSteerSpeedEngageToggle->refresh();
   pauseLateralToggle->refresh();

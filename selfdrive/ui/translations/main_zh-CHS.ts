@@ -638,7 +638,19 @@
     </message>
     <message>
         <source>Smoother Lane Change</source>
-        <translation>轻柔变道(测试)</translation>
+        <translation>轻柔变道</translation>
+    </message>
+    <message>
+        <source>Nudgeless Speed</source>
+        <translation>自动变道车速</translation>
+    </message>
+    <message>
+        <source>Nudgeless Speed</source>
+        <translation>自动变道车速</translation>
+    </message>
+    <message>
+        <source>When vehicle speed above the set value, enable nudgeless lane change.</source>
+        <translation>自动变道车速启用速度。当高于设定车速时，打灯自动变道，无需手动控制。</translation>
     </message>
     <message>
         <source>Smoother lane change on start, beware of understeer.</source>

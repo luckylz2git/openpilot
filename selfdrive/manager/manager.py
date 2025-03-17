@@ -200,6 +200,7 @@ def manager_init() -> None:
     ("NoDashCam", "0"),
     ("NoUploads", "0"),
     ("NudgelessLaneChange", "1"),
+    ("NudgelessSpeed", "0"), # Nudgeless Lane Change Enable Speed
     ("NudgelessSmooth", "0"), # Smoother Nudgeless Lane Change
     ("NumericalTemp", "0"),
     ("OfflineMode", "0"),
