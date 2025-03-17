@@ -61,7 +61,8 @@ class VCruiseHelper:
     #SpeedMap
     self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
     if self.v_cruise_has_set:
-      self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(CS.cruiseState.speed * CV.MS_TO_KPH))
+      if abs(CS.cruiseState.speed * CV.MS_TO_KPH - self.v_cruise_kph) <= 0.5:
+        self.v_cruise_kph = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(CS.cruiseState.speed * CV.MS_TO_KPH))
       self.v_cruise_has_set = False
 
     self.v_cruise_kph_last = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(self.v_cruise_kph))  
