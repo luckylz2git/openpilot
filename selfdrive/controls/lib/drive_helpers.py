@@ -161,7 +161,7 @@ class VCruiseHelper:
 
     #保留2位小数
     self.v_cruise_kph = clip(round(self.v_cruise_kph, 2), V_CRUISE_MIN, V_CRUISE_MAX)
-    #防止停止时被修改速度
+    #防止ACC静止时，速度被修改
     if self.speed_map.get_acc_speed_display(last_standstill_speed) <= 25 and self.speed_map.get_acc_speed_display(self.v_cruise_kph) > last_standstill_speed and CS.vEgo < 0.1:
       self.v_cruise_kph = last_standstill_speed
 
