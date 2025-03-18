@@ -697,14 +697,19 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   
   // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
   // 显示整数部分
-  QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio1));
-  if (speed > 61 && speed < 91) speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio2));
-  if (speed >= 91) speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio3));
-  // 显示小数部分
-  if (scene.speed_decimal > 0) {
-    speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', scene.speed_decimal);
-    if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', scene.speed_decimal);
-    if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', scene.speed_decimal);
+  QString speedStr = "";
+  if (scene.use_acc_speed_maps) {
+    speedStr = QString::number(getAccSpeedDisplay(speed));
+  } else {
+    speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio1));
+    if (speed > 61 && speed < 91) speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio2));
+    if (speed >= 91) speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio3));
+    // 显示小数部分
+    if (scene.speed_decimal > 0) {
+      speedStr = QString::number(speed * scene.dash_speed_ratio1, 'f', scene.speed_decimal);
+      if (speed > 61 && speed < 91) speedStr = QString::number(speed * scene.dash_speed_ratio2, 'f', scene.speed_decimal);
+      if (speed >= 91) speedStr = QString::number(speed * scene.dash_speed_ratio3, 'f', scene.speed_decimal);
+    }
   }
   // speedStr = QString("%1,%2,%3").arg(onstar_gps_longitude).arg(onstar_gps_latitude).arg(onstar_gps_altitude); // ONSTAR_GPS_TEST
   // QString::number(onstar_gps_longitude, 'f', 0) + "," + QString::number(onstar_gps_latitude, 'f', 0) + ","
