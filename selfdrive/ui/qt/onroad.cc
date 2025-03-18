@@ -1297,6 +1297,8 @@ void AnnotatedCameraWidget::paintEvent(QPaintEvent *event) {
       auto lead_one = radar_state.getLeadOne();
       auto lead_two = radar_state.getLeadTwo();
       if (lead_one.getStatus()) {
+        paramsMemory.putFloat("LqrtxDistanceRelated",lead_one.getDRel());
+        paramsMemory.putFloat("LqrtxVelocityRelated",lead_one.getVRel());
         drawLead(painter, lead_one, s->scene.lead_vertices[0]);
       }
       if (lead_two.getStatus() && (std::abs(lead_one.getDRel() - lead_two.getDRel()) > 3.0)) {

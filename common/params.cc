@@ -471,7 +471,9 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"ESP32IPAddress", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //ESP32 ip address
     {"ESP32EngineOn", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //ESP32 Engine On
     {"LqrtxOnRoad",CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // used for lqrtx core to check if is on road status
-    {"SetSpeed2ESP32",CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // ACC Set Speed send to ESP32
+    {"LqrtxVCruiseKPH",CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // ACC Set Speed send out
+    {"LqrtxDistanceRelated",CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // Lead Car Distince Related send out
+    {"LqrtxVelocityRelated",CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // Lead Car Velocity Related send out
     {"LqrtxDebugText",CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     // UDP Broadcast Params
     {"UDP_TurnSignals", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
