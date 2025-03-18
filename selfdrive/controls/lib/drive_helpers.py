@@ -132,6 +132,8 @@ class VCruiseHelper:
     if not self.button_change_states[button_type]["enabled"]:
       return
 
+    last_standstill_speed = self.v_cruise_kph
+
     v_cruise_delta_interval = frogpilot_variables.custom_cruise_increase_long if long_press else frogpilot_variables.custom_cruise_increase
     # v_cruise_delta = v_cruise_delta * (5 if long_press else 1)
     v_cruise_delta = v_cruise_delta * v_cruise_delta_interval
@@ -159,6 +161,9 @@ class VCruiseHelper:
 
     #保留2位小数
     self.v_cruise_kph = clip(round(self.v_cruise_kph, 2), V_CRUISE_MIN, V_CRUISE_MAX)
+    #防止停止时被修改速度
+    if self.speed_map.get_acc_speed_display(last_standstill_speed) <= 25 and self.speed_map.get_acc_speed_display(self.v_cruise_kph) > last_standstill_speed and CS.vEgo < 0.1:
+      self.v_cruise_kph = last_standstill_speed
 
   def update_button_timers(self, CS, enabled):
     # increment timer for buttons still pressed
