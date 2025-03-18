@@ -77,7 +77,7 @@ class VCruiseHelper:
     if self.v_cruise_kph > 0 and self.v_cruise_kph != V_CRUISE_UNSET:
       self.params_memory.put_float("LqrtxVCruiseKPH", self.v_cruise_kph)
     else:
-      self.params_memory.put_float("LqrtxVCruiseKPH", 0.0)
+      self.params_memory.put_float("LqrtxVCruiseKPH", 0)
 
   def _update_v_cruise_non_pcm(self, CS, enabled, is_metric, speed_limit_changed, frogpilot_variables):
     # handle button presses. TODO: this should be in state_control, but a decelCruise press
