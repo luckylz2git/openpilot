@@ -84,8 +84,8 @@ class C3UDPSendHelper(threading.Thread):
                             "b":params_memory.get_bool("ESP32HasIP"), # has ESP32 or not.
                             "c":params_memory.get_bool("LqrtxOnRoad"), # OnRoad status
                             "d":params_memory.get_float("LqrtxVCruiseKPH"), #ACC Set Speed send to ESP32
-                            "l1":params_memory.get_float("LqrtxDistanceRelated"), #Lead Car Distince Related send out
-                            "l2":params_memory.get_float("LqrtxVelocityRelated"), #Lead Car Velocity Related send out
+                            "l1":params_memory.get_float("LqrtxDistanceRelated"), #meter, Lead Car Distince Related send out
+                            "l2":params_memory.get_float("LqrtxVelocityRelated"), #kph, Lead Car Velocity Related send out
                             #"k":params_memory.get("LqrtxDebugText", encoding='utf-8'), #测试用途
                             "a1":"", #C3 IP Address
                             "a2":""  #ESP32 IP Address
