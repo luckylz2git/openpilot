@@ -698,7 +698,7 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
   // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
   // 显示整数部分
   QString speedStr = "";
-  if (scene.use_acc_speed_maps) {
+  if (scene.use_acc_speed_maps && is_metric) {
     speedStr = QString::number(getAccSpeedDisplay(speed));
   } else {
     speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio1));
