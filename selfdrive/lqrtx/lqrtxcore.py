@@ -90,10 +90,13 @@ class C3UDPSendHelper(threading.Thread):
                             "a1":"", #C3 IP Address
                             "a2":""  #ESP32 IP Address
                         }
-                        if params_memory.get_bool("ESP32HasIP"):
-                            msg["a2"] = params_memory.get("ESP32IPAddress").decode()
+                        #C3 IP Address
                         if self.__opLocalIP is not None:
                             msg["a1"] = self.__opLocalIP
+                        #ESP32 IP Address
+                        if params_memory.get_bool("ESP32HasIP"):
+                            msg["a2"] = params_memory.get("ESP32IPAddress").decode()
+                        
                         self.__udpSocket.sendto(json.dumps(msg).encode(), ("255.255.255.255", self.__c3UDPPort))
                         time.sleep(1)
                     except Exception as e:
