@@ -695,6 +695,11 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     speedLimitOffsetStr = "";
   }
   
+  //测试停止时跟车距离
+  if (pedalsOnUI && scene.standstill) {
+    speedLimitStr = QString::number(paramsMemory.getFloat("LqrtxDistanceRelated"), 'f', 2);
+  }
+
   // QString speedStr = QString::number(std::nearbyint(speed * scene.dash_speed_ratio));
   // 显示整数部分
   QString speedStr = "";
