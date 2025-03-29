@@ -270,6 +270,7 @@ typedef struct UIScene {
   float dash_speed_ratio3;
   int speed_decimal;
 
+  int autoresume_setspeed;
   int bearing_deg;
   int camera_view;
   int conditional_speed;
