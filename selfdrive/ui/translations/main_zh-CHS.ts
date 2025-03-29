@@ -883,7 +883,11 @@
     </message>
     <message>
         <source>Auto Resume Distance</source>
-        <translation>跟车起步距离小于</translation>
+        <translation>跟车起步距离</translation>
+    </message>
+    <message>
+        <source>Auto Resume Set Speed</source>
+        <translation>跟车起步限速</translation>
     </message>
     <message>
         <source> meters</source>
