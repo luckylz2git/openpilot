@@ -129,6 +129,7 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     {"UseRedPanda", tr("Use External Red Panda"), tr("Use external red panda to connect can bus."), ""},
     {"CruiseAutoResume", tr("Cruise Auto Resume"), tr("Enable Auto Resume when Adapted Cruise Control On, Set Speed as 25 kph."), ""},
     {"AutoResumeDistance", tr("Auto Resume Distance"), "Cruise Auto Resume will be triggered, only when lead car below the setup distance.", ""},
+    {"AutoResumeSetSpeed", tr("Auto Resume Set Speed"), "Cruise Auto Resume activate set speed.", ""},
     {"EVTable", tr("EV Lookup Tables"), "Smoothen out the gas and brake controls for EV vehicles.", ""},
     {"GasRegenCmd", tr("GM Truck Gas Tune"), "Increase acceleration and smoothen brake to stop. For use on Silverado/Sierra only.", ""},
     {"LongPitch", tr("Long Pitch Compensation"), "Reduce speed and acceleration error for greater passenger comfort and improved vehicle efficiency.", ""},
@@ -162,6 +163,8 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
       });
     } else if (param == "AutoResumeDistance") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 50, std::map<int, QString>(), this, false, " feet", 1);
+    } else if (param == "AutoResumeSetSpeed") {
+      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 16, 18, std::map<int, QString>(), this, false, " mph", 1);
     } else {
       toggle = new ParamControl(param, title, desc, icon, this);
     }
@@ -231,14 +234,19 @@ void FrogPilotVehiclesPanel::updateMetric() {
   if (isMetric != previousIsMetric) {
     double speedConversion = isMetric ? FOOT_TO_METER : METER_TO_FOOT;
     params.putIntNonBlocking("AutoResumeDistance", std::nearbyint(params.getInt("AutoResumeDistance") * speedConversion));
+    double setSpeedConv = isMetric ? MILE_TO_KM : KM_TO_MILE;
+    params.putIntNonBlocking("AutoResumeSetSpeed", std::nearbyint(params.getInt("AutoResumeSetSpeed") * setSpeedConv));
   }
 
   FrogPilotParamValueControl *arDistanceToggle = static_cast<FrogPilotParamValueControl*>(toggles["AutoResumeDistance"]);
+  FrogPilotParamValueControl *arSetSpeedToggle = static_cast<FrogPilotParamValueControl*>(toggles["AutoResumeSetSpeed"]);
 
   if (isMetric) {
     arDistanceToggle->updateControl(0, 15, tr(" meters"), 1);
+    arSetSpeedToggle->updateControl(25, 30, tr(" kph"), 1);
   } else {
     arDistanceToggle->updateControl(0, 50, tr(" feet"), 1);
+    arSetSpeedToggle->updateControl(16, 18, tr(" mph"), 1);
   }
   previousIsMetric = isMetric;
 }

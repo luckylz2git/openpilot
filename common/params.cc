@@ -463,7 +463,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"FrogPilotPrebuilt", PERSISTENT}, //FROGPILOT_PREBUILT_TEST
     {"UseRedPanda", PERSISTENT}, //Red Panda Config BUS 0/1/2/3 -> 4/5/6/7
     {"CruiseAutoResume", PERSISTENT}, //auto_resume
-    {"AutoResumeDistance", PERSISTENT},
+    {"AutoResumeDistance", PERSISTENT}, //auto_resume distance
+    {"AutoResumeSetSpeed", PERSISTENT}, //auto_resume set speed
     {"LeadDepartDistance", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"CruiseAutoResumeActivated", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // ESP32 Auto resume status.
     {"ESP32AutoResume", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //auto_resume default value=0
