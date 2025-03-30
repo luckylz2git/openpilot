@@ -9,6 +9,7 @@ from types import SimpleNamespace
 from typing import SupportsFloat
 
 import requests #auto_resume
+from openpilot.selfdrive.lqrtx.speed import SpeedMap
 
 import cereal.messaging as messaging
 import openpilot.selfdrive.sentry as sentry
@@ -182,6 +183,7 @@ class Controls:
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
     # auto_resume
+    self.speed_map = SpeedMap()
     #self.standstill_time = 0
     self.leaddepart_time = 0
 
@@ -700,7 +702,9 @@ class Controls:
           cruise_auto_resume &= previous_lead <= self.params.get_int("AutoResumeDistance")*conversion
 
           speedconv = 1 if self.is_metric else CV.MPH_TO_KPH
-          autoresume_setspeed = self.params.get_int("AutoResumeSetSpeed")*conversion
+          #SpeedMap
+          autoresume_setspeed = self.speed_map.get_acc_speed_actual(self.params.get_int("AutoResumeSetSpeed"))
+          autoresume_setspeed *= conversion
           # long_personality = self.params.get_int("LongitudinalPersonality") == 0
           # if long_personality and cruise_auto_resume and self.state == State.enabled and not CS.brakePressed and self.v_cruise_helper.v_cruise_cluster_kph < 24.0:
           #增加AccState:STANDSTILL = 4
@@ -1292,7 +1296,9 @@ class Controls:
     self.frogpilot_variables.conditional_experimental_mode = self.params.get_bool("ConditionalExperimental")
     self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
     self.frogpilot_variables.use_acc_speed_maps = self.params.get_bool("QOLVisuals") and self.params.get_bool("UseAccSpeedMaps")
-    
+    #SpeedMap
+    self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
+
     custom_alerts = self.params.get_bool("CustomAlerts")
     self.green_light_alert = custom_alerts and self.params.get_bool("GreenLightAlert")
     self.lead_departing_alert = custom_alerts and self.params.get_bool("LeadDepartingAlert")
