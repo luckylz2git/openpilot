@@ -1297,7 +1297,7 @@ class Controls:
     self.frogpilot_variables.CSLC = self.params.get_bool("CSLCEnabled")
     self.frogpilot_variables.use_acc_speed_maps = self.params.get_bool("QOLVisuals") and self.params.get_bool("UseAccSpeedMaps")
     #SpeedMap
-    self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
+    self.speed_map.enable_acc_speed_maps(self.frogpilot_variables.use_acc_speed_maps)
 
     custom_alerts = self.params.get_bool("CustomAlerts")
     self.green_light_alert = custom_alerts and self.params.get_bool("GreenLightAlert")
