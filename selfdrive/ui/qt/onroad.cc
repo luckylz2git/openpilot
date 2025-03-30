@@ -605,6 +605,10 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   if (is_cruise_set && !s.scene.is_metric) {
     setSpeed *= KM_TO_MILE;
   }
+  //update autoresume_setspeed_act
+  if (s.scene.autoresume_setspeed_act == 0) {
+    s.scene.autoresume_setspeed_act = getAccSpeedActual(s.scene.autoresume_setspeed);
+  }
 
   onstar_gps_longitude = car_state.getOnstarGpsLongitude(); // ONSTAR_GPS_TEST
   onstar_gps_latitude = car_state.getOnstarGpsLatitude(); // ONSTAR_GPS_TEST
