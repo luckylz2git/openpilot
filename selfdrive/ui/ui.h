@@ -271,7 +271,6 @@ typedef struct UIScene {
   int speed_decimal;
 
   int autoresume_setspeed; //auto_resume set speed
-  float autoresume_setspeed_act; //auto_resume set speed actual
   int bearing_deg;
   int camera_view;
   int conditional_speed;

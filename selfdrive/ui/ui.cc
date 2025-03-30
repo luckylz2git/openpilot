@@ -332,7 +332,7 @@ void ui_update_frogpilot_params(UIState *s) {
 
   scene.cruise_auto_resume = params.getBool("CruiseAutoResume"); //auto_resume
   scene.autoresume_setspeed = params.getInt("AutoResumeSetSpeed"); //auto_resume set speed
-  scene.autoresume_setspeed_act = 0; //auto_resume set speed actual, update in onroad.cc
+  paramsMemory.putFloat("AutoResumeSetSpeedAct",0); //auto_resume set speed actual, update in onroad.cc
 
   scene.always_on_lateral = params.getBool("AlwaysOnLateral");
   scene.hide_aol_status_bar = scene.always_on_lateral && params.getBool("HideAOLStatusBar");
@@ -492,7 +492,9 @@ void UIState::updateStatus() {
         if (paramsMemory.getBool("ESP32HasIP")) {
           float v_cruise = controls_state.getVCruiseCluster() == 0.0 ? controls_state.getVCruise() : controls_state.getVCruiseCluster();
           //autoresume_setspeed和autoresume_setspeed_act取小值
-          if (v_cruise > 0 && v_cruise <= (scene.autoresume_setspeed>scene.autoresume_setspeed_act ? scene.autoresume_setspeed_act : scene.autoresume_setspeed)) {
+          float autoresume_setspeed_act = paramsMemory.getFloat("AutoResumeSetSpeedAct");
+          autoresume_setspeed_act = autoresume_setspeed_act > 0 ? autoresume_setspeed_act : scene.autoresume_setspeed;
+          if (v_cruise > 0 && v_cruise <= autoresume_setspeed_act) {
             bActivated = true;
           }
         }

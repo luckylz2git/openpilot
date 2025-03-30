@@ -465,6 +465,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"CruiseAutoResume", PERSISTENT}, //auto_resume
     {"AutoResumeDistance", PERSISTENT}, //auto_resume distance
     {"AutoResumeSetSpeed", PERSISTENT}, //auto_resume set speed
+    {"AutoResumeSetSpeedAct", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //auto_resume set speed actual, update in onroad.cc
     {"LeadDepartDistance", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION},
     {"CruiseAutoResumeActivated", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, // ESP32 Auto resume status.
     {"ESP32AutoResume", CLEAR_ON_MANAGER_START | CLEAR_ON_OFFROAD_TRANSITION}, //auto_resume default value=0
