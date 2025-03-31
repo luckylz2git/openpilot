@@ -898,8 +898,16 @@
         <translation>英尺</translation>
     </message>
     <message>
-        <source>Enable Auto Resume when Adapted Cruise Control On, Set Speed 25 kph and Aggressive following distance.</source>
-        <translation>自动跟车起步，启用条件：自适应巡航已开启，未踩下油门或刹车，巡航车速设定为 25 kph，跟车距离设定为 1 格。严禁在红绿灯处使用，否则后果自负！</translation>
+        <source>Enable Auto Resume when Adapted Cruise Control On.</source>
+        <translation>自动跟车起步，启用条件：已加装ESP32模块，自适应巡航已开启，未踩下油门或刹车。严禁在红绿灯处使用，否则后果自负！</translation>
+    </message>
+    <message>
+        <source>Cruise Auto Resume activate when lead car below the distance.</source>
+        <translation>自动跟车起步，前方静止车辆距离，必须等于或小于当前设定值。</translation>
+    </message>
+    <message>
+        <source>Cruise Auto Resume activate when below the set speed.</source>
+        <translation>自动跟车起步，自适应巡航限速，必须等于或小于当前设定值。</translation>
     </message>
     <message>
         <source>SELECT</source>
