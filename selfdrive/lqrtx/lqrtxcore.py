@@ -74,7 +74,11 @@ class C3UDPSendHelper(threading.Thread):
                     #print(e.errno,e.strerror)
                     time.sleep(5)
                     continue
-             
+
+                idx = 0
+                autoResumeDistance = 0
+                autoResumeSetSpeed = 0
+                
                 while True:
                     try:
                         # 发送广播数据包到 255.255.255.255（全网广播）或 192.168.X.255（子网广播）
@@ -87,8 +91,10 @@ class C3UDPSendHelper(threading.Thread):
                             "l1":params_memory.get_float("LqrtxDistanceRelated"), #meter, Lead Car Distince Related send out
                             "l2":params_memory.get_float("LqrtxVelocityRelated"), #kph, Lead Car Velocity Related send out
                             #"k":params_memory.get("LqrtxDebugText", encoding='utf-8'), #测试用途
-                            "a1":"", #C3 IP Address
-                            "a2":""  #ESP32 IP Address
+                            "a1":"",  #C3 IP Address
+                            "a2":"",  #ESP32 IP Address
+                            "d1":autoResumeDistance, #auto_resume distance
+                            "d2":autoResumeSetSpeed  #auto_resume set speed
                         }
                         #C3 IP Address
                         if self.__opLocalIP is not None:
@@ -96,6 +102,11 @@ class C3UDPSendHelper(threading.Thread):
                         #ESP32 IP Address
                         if params_memory.get_bool("ESP32HasIP"):
                             msg["a2"] = params_memory.get("ESP32IPAddress").decode()
+
+                        if idx == 0:
+                            idx = (idx + 1) % 100
+                            autoResumeDistance = params.get_int("AutoResumeDistance") if params.get_bool("CruiseAutoResume") else 0
+                            autoResumeSetSpeed = params.get_int("AutoResumeSetSpeed") if params.get_bool("CruiseAutoResume") else 0
                         
                         self.__udpSocket.sendto(json.dumps(msg).encode(), ("255.255.255.255", self.__c3UDPPort))
                         time.sleep(1)
