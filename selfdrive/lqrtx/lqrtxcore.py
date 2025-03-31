@@ -77,7 +77,6 @@ class C3UDPSendHelper(threading.Thread):
 
                 idx = 0
                 autoResumeDistance = 0
-                autoResumeSetSpeed = 0
                 
                 while True:
                     try:
@@ -94,7 +93,7 @@ class C3UDPSendHelper(threading.Thread):
                             "a1":"",  #C3 IP Address
                             "a2":"",  #ESP32 IP Address
                             "d1":autoResumeDistance, #auto_resume distance
-                            "d2":autoResumeSetSpeed  #auto_resume set speed
+                            "d2":params_memory.get_float("AutoResumeSetSpeedAct")  #auto_resume set speed
                         }
                         #C3 IP Address
                         if self.__opLocalIP is not None:
@@ -106,7 +105,6 @@ class C3UDPSendHelper(threading.Thread):
                         if idx == 0:
                             idx = (idx + 1) % 100
                             autoResumeDistance = params.get_int("AutoResumeDistance") if params.get_bool("CruiseAutoResume") else 0
-                            autoResumeSetSpeed = params.get_int("AutoResumeSetSpeed") if params.get_bool("CruiseAutoResume") else 0
                         
                         self.__udpSocket.sendto(json.dumps(msg).encode(), ("255.255.255.255", self.__c3UDPPort))
                         time.sleep(1)
