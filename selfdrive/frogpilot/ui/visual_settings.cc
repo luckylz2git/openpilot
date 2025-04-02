@@ -58,7 +58,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
     {"DashSpeedRatio2", tr("Dash Speed Ratio M"), "Use the dash speed (61-90 kph) ratio in onroad ui.", ""},
     {"DashSpeedRatio3", tr("Dash Speed Ratio H"), "Use the dash speed (90+ kph) ratio in onroad ui.", ""},
     {"SpeedDecimal", tr("Speed Decimal"), "Set the decimal place of dash speed & set speed in onroad ui.", ""},
-    {"UseAccSpeedMaps", tr("Use Cruise Speed Maps"), "Use the cruise speed maps for Buick Enclave in onroad ui.", ""},
+    {"UseAccSpeedMaps", tr("Use Cruise Speed Maps"), tr("Use the cruise speed maps for Buick Enclave in onroad ui."), ""},
     // {"SetSpeedRatio1", tr("Set Speed Ratio L"), "Use the cruise set speed (25-60 kph) ratio in onroad ui.", ""},
     // {"SetSpeedRatio2", tr("Set Speed Ratio M"), "Use the cruise set speed (61-90 kph) ratio in onroad ui.", ""},
     // {"SetSpeedRatio3", tr("Set Speed Ratio H"), "Use the cruise set speed (90+ kph) ratio in onroad ui.", ""},    

@@ -1200,6 +1200,10 @@
         <source>Use Cruise Speed Maps</source>
         <translation>使用巡航车速系数</translation>
     </message>  
+    <message>
+        <source>Use the cruise speed maps for Buick Enclave in onroad ui.</source>
+        <translation>使用自适应巡航的限速转换系数，保持行车界面与车辆仪表显示一致。</translation>
+    </message>  
 </context>
 <context>
     <name>InputDialog</name>
