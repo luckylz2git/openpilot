@@ -58,6 +58,9 @@ QStringList getCarNames(const QString &carMake) {
               names << " 昂科旗(2020-23)";
             } else if (capCarName == "BUICK BABY ENCLAVE AVENIR 2020") {
               names << " 昂科旗·艾维亚(2020-23)";
+            //CT6
+            } else if (capCarName == "CADILLAC CT6 SGM 2020") {
+              names << " 凯迪拉克CT6(2020-21)";
             } else {
               names << capCarName; //it.next().captured(1);
             }
@@ -98,7 +101,10 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
     modelDisplayName = " 昂科旗(2020-23)";
   } else if (modelSelection == "BUICK BABY ENCLAVE AVENIR 2020") {
     modelDisplayName = " 昂科旗·艾维亚(2020-23)";
-  }
+  //CT6
+  } else if (modelSelection == "CADILLAC CT6 SGM 2020") {
+    modelDisplayName = " 凯迪拉克CT6(2020-21)";
+  } 
   QObject::connect(selectModelButton, &ButtonControl::clicked, [this]() {
     //QString newModelSelection = MultiOptionDialog::getSelection(tr("Select a Model"), models, "", this);
     QString newModelDisplayName = MultiOptionDialog::getSelection(tr("Select a Model"), models, "", this);
@@ -108,7 +114,11 @@ FrogPilotVehiclesPanel::FrogPilotVehiclesPanel(SettingsWindow *parent) : FrogPil
       newModelSelection = "BUICK BABY ENCLAVE 2020";
     } else if (newModelSelection == " 昂科旗·艾维亚(2020-23)") {
       newModelSelection = "BUICK BABY ENCLAVE AVENIR 2020";
-    }if (!newModelSelection.isEmpty()) {
+    //CT6
+    } else if (newModelSelection == " 凯迪拉克CT6(2020-21)") {
+      newModelSelection = "CADILLAC CT6 SGM 2020";
+    }
+    if (!newModelSelection.isEmpty()) {
       params.putNonBlocking("CarModel", newModelSelection.toStdString());
       //selectModelButton->setValue(newModelSelection);
       selectModelButton->setValue(newModelDisplayName);
