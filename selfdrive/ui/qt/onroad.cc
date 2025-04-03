@@ -591,8 +591,11 @@ AnnotatedCameraWidget::AnnotatedCameraWidget(VisionStreamType type, QWidget* par
 void AnnotatedCameraWidget::updateState(const UIState &s) {
   const int SET_SPEED_NA = 255;
   const SubMaster &sm = *(s.sm);
-
+  status = s.status;
   const bool cs_alive = sm.alive("controlsState");
+  if (s.scene.ct6_sgm && status != STATUS_DISENGAGED) { //CT6
+    cs_alive = true;
+  }
   const bool nav_alive = sm.alive("navInstruction") && sm["navInstruction"].getValid();
   const auto cs = sm["controlsState"].getControlsState();
   const auto car_state = sm["carState"].getCarState();
@@ -642,7 +645,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   is_metric = s.scene.is_metric;
   speedUnit =  s.scene.is_metric ? tr("km/h") : tr("mph");
   hideBottomIcons = (cs.getAlertSize() != cereal::ControlsState::AlertSize::NONE || customSignals && (turnSignalLeft || turnSignalRight)) || fullMapOpen || showDriverCamera;
-  status = s.status;
+  //status = s.status;
 
   // update engageability/experimental mode button
   experimental_btn->updateState(s, leadInfo);

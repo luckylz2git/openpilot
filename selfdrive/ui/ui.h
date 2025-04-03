@@ -251,6 +251,7 @@ typedef struct UIScene {
   bool cruise_auto_resume; //自动跟车启用
   bool cruise_auto_resume_activated; //自动跟车激活
   bool use_acc_speed_maps; //使用巡航车速系数
+  bool ct6_sgm; //CT6
 
   float acceleration;
   float adjusted_cruise;
