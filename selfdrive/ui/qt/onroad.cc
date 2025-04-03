@@ -592,7 +592,7 @@ void AnnotatedCameraWidget::updateState(const UIState &s) {
   const int SET_SPEED_NA = 255;
   const SubMaster &sm = *(s.sm);
   status = s.status;
-  const bool cs_alive = sm.alive("controlsState");
+  bool cs_alive = sm.alive("controlsState");
   if (s.scene.ct6_sgm && status != STATUS_DISENGAGED) { //CT6
     cs_alive = true;
   }
