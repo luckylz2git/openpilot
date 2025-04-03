@@ -333,7 +333,7 @@ void ui_update_frogpilot_params(UIState *s) {
   scene.cruise_auto_resume = params.getBool("CruiseAutoResume"); //auto_resume
   scene.autoresume_setspeed = params.getInt("AutoResumeSetSpeed"); //auto_resume set speed
   paramsMemory.putFloat("AutoResumeSetSpeedAct",0); //auto_resume set speed actual, update in onroad.cc
-  scene.ct6_sgm = params.get("CarModel")=="CADILLAC CT6 SGM 2020" //CT6
+  scene.ct6_sgm = params.get("CarModel")=="CADILLAC CT6 SGM 2020"; //CT6
 
   scene.always_on_lateral = params.getBool("AlwaysOnLateral");
   scene.hide_aol_status_bar = scene.always_on_lateral && params.getBool("HideAOLStatusBar");
