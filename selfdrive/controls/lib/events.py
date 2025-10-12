@@ -1062,12 +1062,13 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
   },
 
   # FrogPilot Events
+  # Cancel sound effect
   EventName.frogSteerSaturated: {
     ET.WARNING: Alert(
-      "Turn Exceeds Steering Limit",
+      "FROG Turn Exceeds Steering Limit",
       "JESUS TAKE THE WHEEL!!",
       AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.warningSoft, 2.),
+      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.promptRepeat, 2.),
   },
 
   EventName.greenLight: {
@@ -1167,13 +1168,15 @@ EVENTS: Dict[int, Dict[str, Union[Alert, AlertCallbackType]]] = {
       Priority.LOW, VisualAlert.none, AudibleAlert.uwu, 4.),
   },
 
+  # Cancel sound effect
   EventName.firefoxSteerSaturated: {
     ET.WARNING: Alert(
-      "Turn Exceeds Steering Limit",
+      "FIREFOX Turn Exceeds Steering Limit",
       "IE Has Stopped Responding...",
       AlertStatus.userPrompt, AlertSize.mid,
-      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.firefox, 4.),
+      Priority.LOW, VisualAlert.steerRequired, AudibleAlert.promptRepeat, 2.),
   },
+  # Priority.LOW, VisualAlert.steerRequired, AudibleAlert.firefox, 4.),
 
   EventName.openpilotCrashedRandomEvents: {
     ET.PERMANENT: Alert(
