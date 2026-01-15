@@ -458,6 +458,7 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"SpeedDecimal", PERSISTENT},
     {"CalibrationCycles", PERSISTENT},
     {"OnStarGPS", PERSISTENT},
+    {"RoadEdgeOffset", PERSISTENT}, //车道边缘偏移量(厘米)
     {"QueitFan", PERSISTENT}, //风扇静音
     {"GearNumber", PERSISTENT}, //GEAR_NUMBER_TEST
     {"FrogPilotPrebuilt", PERSISTENT}, //FROGPILOT_PREBUILT_TEST

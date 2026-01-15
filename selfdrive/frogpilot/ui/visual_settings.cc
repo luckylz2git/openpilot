@@ -45,6 +45,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
     {"PathEdgeWidth", tr("Path Edges"), "Adjust the width of the path edges shown on your UI to represent different driving modes and statuses.\n\nDefault is 20% of the total path.\n\nBlue = Navigation\nLight Blue = Always On Lateral\nGreen = Default with 'FrogPilot Colors'\nLight Green = Default with stock colors\nOrange = Experimental Mode Active\nYellow = Conditional Overriden", ""},
     {"PathWidth", tr("Path Width"), "Customize the width of the driving path shown on your UI.\n\nDefault matches the width of a 2019 Lexus ES 350.", ""},
     {"RoadEdgesWidth", tr("Road Edges"), "Adjust the visual thickness of road edges on your display.\n\nDefault is 1/2 of the MUTCD average lane line width of 4 inches.", ""},
+    {"RoadEdgeOffset", tr("Road Edge Offset"), tr("Adjust the offset of road edges for lateral tune control."), ""},
     {"UnlimitedLength", tr("'Unlimited' Road UI Length"), "Extend the display of the path, lane lines, and road edges as far as the system can detect, providing a more expansive view of the road ahead.", ""},
 
     {"NumericalTemp", tr("Numerical Temperature Gauge"), "Replace the 'GOOD', 'OK', and 'HIGH' temperature statuses with a numerical temperature gauge based on the highest temperature between the memory, CPU, and GPU.", "../frogpilot/assets/toggle_icons/icon_temperature.png"},
@@ -169,6 +170,8 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(SettingsWindow *parent) : FrogPilot
       toggle = modelUIToggle;
     } else if (param == "LaneLinesWidth" || param == "RoadEdgesWidth") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 24, std::map<int, QString>(), this, false, " inches");
+    } else if (param == "RoadEdgeOffset") {
+      toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 30, std::map<int, QString>(), this, false, " centimeters");
     } else if (param == "PathEdgeWidth") {
       toggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 100, std::map<int, QString>(), this, false, "%");
     } else if (param == "PathWidth") {

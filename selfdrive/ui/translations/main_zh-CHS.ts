@@ -1173,6 +1173,14 @@
         <translation>车道边缘宽度</translation>
     </message>
     <message>
+        <source>Road Edge Offset</source>
+        <translation>车道边缘偏移</translation>
+    </message>
+    <message>
+        <source>Adjust the offset of road edges for lateral tune control.</source>
+        <translation>微整车道边缘横行居中偏移值</translation>
+    </message>
+    <message>
         <source>'Unlimited' Road UI Length</source>
         <translation>延伸道路界面</translation>
     </message>

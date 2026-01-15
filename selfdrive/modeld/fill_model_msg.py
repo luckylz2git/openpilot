@@ -5,6 +5,10 @@ from typing import Dict
 from cereal import log
 from openpilot.selfdrive.modeld.constants import ModelConstants, Plan, Meta
 
+from openpilot.common.params import Params
+# 车道边缘偏移量(厘米)
+ROAD_EDGE_OFFSET = Params().get_int("RoadEdgeOffset") * 0.01
+
 SEND_RAW_PRED = os.getenv('SEND_RAW_PRED')
 
 ConfidenceClass = log.ModelDataV2.ConfidenceClass
@@ -99,7 +103,17 @@ def fill_model_msg(msg: capnp._DynamicStructBuilder, net_output_data: Dict[str, 
   for i in range(6):
     if i < 4:
       lane_line = modelV2.laneLines[i]
-      fill_xyzt(lane_line, PLAN_T_IDXS, np.array(ModelConstants.X_IDXS), net_output_data['lane_lines'][0,i,:,0], net_output_data['lane_lines'][0,i,:,1])
+      # 左车道(index 1): 向右偏移(正值), 使车辆远离左车道线
+      if i==1:
+        y_offset = net_output_data['lane_lines'][0,i,:,0] + ROAD_EDGE_OFFSET
+      # 右车道(index 2): 向左偏移(负值), 使车辆远离右车道线
+      elif i==2:
+        y_offset = net_output_data['lane_lines'][0,i,:,0] - ROAD_EDGE_OFFSET
+      else:
+        y_offset = net_output_data['lane_lines'][0,i,:,0]
+
+      #fill_xyzt(lane_line, PLAN_T_IDXS, np.array(ModelConstants.X_IDXS), net_output_data['lane_lines'][0,i,:,0], net_output_data['lane_lines'][0,i,:,1])
+      fill_xyzt(lane_line, PLAN_T_IDXS, np.array(ModelConstants.X_IDXS), y_offset, net_output_data['lane_lines'][0,i,:,1])
     else:
       lane_line = modelV2.laneLines[i]
       far_lane, near_lane, road_edge = (0, 1, 0) if i == 4 else (3, 2, 1)

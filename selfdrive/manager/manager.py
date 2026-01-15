@@ -296,6 +296,7 @@ def manager_init() -> None:
     ("CruiseAutoResume", "0"), #auto_resume
     ("AutoResumeDistance", "10"), #auto_resume distance
     ("AutoResumeSetSpeed", "25"), #auto_resume set speed #kph
+    ("RoadEdgeOffset", "0"), #车道边缘偏移量(厘米)
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))
