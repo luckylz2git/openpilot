@@ -1178,7 +1178,7 @@
     </message>
     <message>
         <source>Adjust the offset of road edges for lateral tune control.</source>
-        <translation>微整车道边缘横行居中偏移值</translation>
+        <translation>车道边缘横行居中偏移值微调</translation>
     </message>
     <message>
         <source>'Unlimited' Road UI Length</source>
