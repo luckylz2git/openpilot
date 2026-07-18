@@ -62,7 +62,8 @@ class VCruiseHelper:
     self.v_cruise_kph_last = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(self.v_cruise_kph))  
 
     if CS.cruiseState.available:
-      if not self.CP.pcmCruise or frogpilot_variables.CSLC:
+      # CustomCruise
+      if not self.CP.pcmCruise or frogpilot_variables.CSLC or frogpilot_variables.quality_of_life:
         # if stock cruise is completely disabled, then we can use our own set speed logic
         self._update_v_cruise_non_pcm(CS, enabled, is_metric, speed_limit_changed, frogpilot_variables)
         self.v_cruise_cluster_kph = self.v_cruise_kph

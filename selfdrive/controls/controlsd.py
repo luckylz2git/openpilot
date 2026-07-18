@@ -1334,6 +1334,8 @@ class Controls:
     self.frogpilot_variables.sng_hack = self.params.get_bool("SNGHack")
 
     quality_of_life = self.params.get_bool("QOLControls")
+    # CustomCruise
+    self.frogpilot_variables.quality_of_life = quality_of_life
 
     self.pause_lateral_on_signal = self.params.get_int("PauseLateralOnSignal") * (CV.KPH_TO_MS if self.is_metric else CV.MPH_TO_MS) if quality_of_life else 0
     # drive_helpers.py改用ReverseCruiseRunTime控制
