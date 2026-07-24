@@ -763,7 +763,10 @@ void AnnotatedCameraWidget::drawHud(QPainter &p) {
     int top_radius = 32;
     int bottom_radius = has_eu_speed_limit ? 100 : 32;
 
-    QRect set_speed_rect(QPoint(60 + (default_size.width() - set_speed_size.width()) / 2, 45), set_speed_size);
+    //自动缩进 每分钟修改一个位置
+    auto curTime = QDateTime::currentDateTime().time();
+    int curMin = curTime.minute();
+    QRect set_speed_rect(QPoint((curMin > 30 ? 60 - curMin : curMin) + 60 + (default_size.width() - set_speed_size.width()) / 2, 45), set_speed_size);
     if (is_cruise_set && cruiseAdjustment) {
       float transition = qBound(0.0f, 4.0f * (cruiseAdjustment / setSpeed), 1.0f);
       QColor min = whiteColor(75);
