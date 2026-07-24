@@ -1605,10 +1605,10 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
       personality_btn->checkUpdate();
     }
     bottom_layout->setAlignment(personality_btn, (rightHandDM ? Qt::AlignRight : Qt::AlignLeft));
-    //测试缩进
+    //自动缩进 每分钟修改一个位置
     auto curTime = QDateTime::currentDateTime().time();
-    int currentSecond = curTime.second();
-    bottom_layout->setContentsMargins(currentSecond, 0, 0, 0);
+    int curMin = curTime.minute();
+    bottom_layout->setContentsMargins(curMin > 30 ? 60 - curMin : curMin, 0, 0, 0);
   }
 
   map_settings_btn_bottom->setEnabled(map_settings_btn->isEnabled());
