@@ -62,8 +62,7 @@ class VCruiseHelper:
     self.v_cruise_kph_last = self.speed_map.get_acc_speed_actual(self.speed_map.get_acc_speed_display(self.v_cruise_kph))  
 
     if CS.cruiseState.available:
-      # CustomCruise 2026-07-27
-      if not self.CP.pcmCruise or frogpilot_variables.CSLC or frogpilot_variables.quality_of_life:
+      if not self.CP.pcmCruise or frogpilot_variables.CSLC:
         # if stock cruise is completely disabled, then we can use our own set speed logic
         self._update_v_cruise_non_pcm(CS, enabled, is_metric, speed_limit_changed, frogpilot_variables)
         self.v_cruise_cluster_kph = self.v_cruise_kph
@@ -180,8 +179,7 @@ class VCruiseHelper:
 
   def initialize_v_cruise(self, CS, experimental_mode: bool, desired_speed_limit, frogpilot_variables) -> None:
     # initializing is handled by the PCM
-    # CustomCruise 2026-07-27
-    if self.CP.pcmCruise and not frogpilot_variables.CSLC or not frogpilot_variables.quality_of_life:
+    if self.CP.pcmCruise and not frogpilot_variables.CSLC:
       return
 
     if frogpilot_variables.conditional_experimental_mode:
@@ -192,8 +190,7 @@ class VCruiseHelper:
     self.speed_map.enable_acc_speed_maps(frogpilot_variables.use_acc_speed_maps)
     
     # CSLC resume/set logic
-    # CustomCruise 2026-07-27
-    if frogpilot_variables.CSLC or frogpilot_variables.quality_of_life:
+    if frogpilot_variables.CSLC:
       if frogpilot_variables.prev_button == ButtonType.resumeCruise and self.v_cruise_kph_last < 250:
         self.v_cruise_kph = self.v_cruise_kph_last
       else:
