@@ -1336,7 +1336,10 @@ void AnnotatedCameraWidget::paintEvent(QPaintEvent *event) {
     drawDriverState(painter, s);
   }
 
-  drawHud(painter);
+  //STATUS_DISENGAGED时隐藏
+  if (!(s->scene.hide_speed && status == STATUS_DISENGAGED)) {
+    drawHud(painter);
+  }
 
   double cur_draw_t = millis_since_boot();
   double dt = cur_draw_t - prev_draw_t;
