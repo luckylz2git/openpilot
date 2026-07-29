@@ -1337,7 +1337,8 @@ void AnnotatedCameraWidget::paintEvent(QPaintEvent *event) {
   }
 
   //STATUS_DISENGAGED时隐藏
-  if (!(s->scene.hide_speed) || status == STATUS_OVERRIDE || status == STATUS_ENGAGED) {
+  //if (!(s->scene.hide_speed) || status == STATUS_OVERRIDE || status == STATUS_ENGAGED) {
+  if (!scene.hide_speed || status == STATUS_OVERRIDE || status == STATUS_ENGAGED) {
     drawHud(painter);
   }
 
