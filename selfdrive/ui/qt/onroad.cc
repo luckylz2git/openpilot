@@ -1338,7 +1338,7 @@ void AnnotatedCameraWidget::paintEvent(QPaintEvent *event) {
 
   //STATUS_DISENGAGED时隐藏
   //if (!(s->scene.hide_speed) || status == STATUS_OVERRIDE || status == STATUS_ENGAGED) {
-  if (!scene.hide_speed || status == STATUS_OVERRIDE || status == STATUS_ENGAGED) {
+  if (!scene.hide_speed || status == STATUS_OVERRIDE || status == STATUS_ENGAGED || status == STATUS_LATERAL_ACTIVE) {
     drawHud(painter);
   }
 
@@ -1606,6 +1606,8 @@ void AnnotatedCameraWidget::updateFrogPilotWidgets(QPainter &p) {
   }
 
   bool enablePersonalityButton = onroadAdjustableProfiles && !hideBottomIcons;
+  //STATUS_DISENGAGED时隐藏
+  enablePersonalityButton = enablePersonalityButton && (!scene.hide_speed || status == STATUS_OVERRIDE || status == STATUS_ENGAGED || status == STATUS_LATERAL_ACTIVE);
   personality_btn->setVisible(enablePersonalityButton);
   if (enablePersonalityButton) {
     if (paramsMemory.getBool("PersonalityChangedViaWheel")) {
